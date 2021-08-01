@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import Sidebar from "./sections/Sidebar";
+import Main from "./sections/Main";
+import { useRef } from "react";
 
 function App() {
+  const backgroundRef = useRef(
+    "https://cdn.akamai.steamstatic.com/steam/apps/1151640/header.jpg?t=1623162512"
+  );
+
+  //Change background Image and set Blur
+  const changeBackgroundImage = (gameImageURL) => {
+    backgroundRef.current.style.backgroundImage = `url("${gameImageURL}")`;
+    backgroundRef.current.style.backgroundRepeat = `no-repeat`;
+    backgroundRef.current.style.backgroundSize = `cover`;
+    backgroundRef.current.style.backdropFilter = `blur(20px)`;
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main className='app' ref={backgroundRef}>
+      <Sidebar />
+      <Main />
+    </main>
   );
 }
 

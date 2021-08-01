@@ -1,0 +1,118 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "DINPro", "Lato", sans-serif;
+  background-image: url("https://cdn.akamai.steamstatic.com/steam/apps/1151640/header.jpg?t=1623162512");
+  background-size: cover;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(20px);
+  color: #ffffffdd;
+}
+
+main.app {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  min-height: 100vh;
+  max-height: 100vh;
+  flex-direction: row;
+
+  section.sidebar {
+    width: 18%;
+    max-height: 100vh;
+    height: 100vh;
+    overflow: scroll;
+    background-image: linear-gradient(315deg, #000000dd 30%, #181818dd 100%);
+    padding: 2rem;
+
+    .button {
+      width: 100%;
+      font-family: inherit;
+      font-size: 0.85rem;
+      cursor: pointer;
+      border: none;
+
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.25rem;
+      color: #ffffffdd;
+      background-color: rgba($color: #3d3d3d, $alpha: 0.8);
+      outline: none;
+
+      &:hover {
+        background-color: rgba($color: #000000, $alpha: 1);
+        color: #ffffffdd;
+      }
+
+      i.icon {
+        font-size: 1rem;
+      }
+      span.title {
+        font-weight: bold;
+        padding: 0 0.25rem;
+      }
+    }
+  }
+
+  section.main {
+    width: 82%;
+    background-image: linear-gradient(315deg, #000000dd 0%, #181818dd 50%);
+    padding: 1rem 2rem;
+
+    .allgames {
+      width: 100%;
+      height: 100%;
+
+      .title {
+        text-align: center;
+      }
+
+      .gamesContainer {
+        width: 100%;
+        margin: 1rem 0.5rem;
+        height: 100%;
+        overflow: scroll;
+        display: flex;
+        flex-direction: row;
+        padding: 1rem 0rem;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        .gameContainer {
+          padding: 1rem;
+          display: flex;
+          flex-direction: column;
+          width: 230px;
+          align-items: center;
+          justify-content: center;
+          margin: 0.5rem 1rem;
+          cursor: pointer;
+
+          .game {
+            width: 230px;
+            height: 107px;
+            background-size: cover;
+
+            &:hover {
+              border: 1px solid #ffffffdd;
+            }
+          }
+
+          .name {
+            align-items: center;
+            justify-self: center;
+            padding: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: normal;
+          }
+        }
+      }
+    }
+  }
+}
