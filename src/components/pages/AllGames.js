@@ -4,9 +4,9 @@ import UserContext from "../../context/UserContext";
 
 export default function AllGames(props) {
   const [games, setGames] = useState({});
-  const userGames = useContext(UserContext);
+  const appData = useContext(UserContext);
 
-  let gamesHavingAchievements = userGames.filter(
+  let gamesHavingAchievements = appData.userGames.filter(
     (game) => game.schema_achievements.length > 0
   );
 

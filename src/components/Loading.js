@@ -3,8 +3,9 @@ import LoadingIcons from "react-loading-icons";
 
 export default function Loading() {
   return (
-    <div>
-      <LoadingIcons.Bars />
+    <div className='loading'>
+      <h1 className='loadingInfo'>Please wait..</h1>
+      <LoadingIcons.BallTriangle />
     </div>
   );
 }

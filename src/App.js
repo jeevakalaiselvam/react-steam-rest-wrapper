@@ -7,6 +7,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Loading from "./components/Loading";
 
 function App() {
+  console.clear();
   const mainBackgroundRef = useRef(null);
 
   //Change background Image and set Blur
@@ -18,10 +19,12 @@ function App() {
   };
 
   const getRandomImage = () => {
-    return games[Math.floor(Math.random() * games.length)].header_image;
+    return appData.userGames[
+      Math.floor(Math.random() * appData.userGames.length)
+    ].header_image;
   };
 
-  const [games, setGames] = useState({});
+  const [appData, setAppData] = useState({ userGames: [], sidebarIndex: 0 });
   const [loading, setLoading] = useState(true);
 
   const getAllGames = async () => {
@@ -38,24 +41,21 @@ function App() {
     let userGames = {};
     userGames = allGames;
     console.log(userGames);
-    setGames((oldGames) => userGames);
+    setAppData((oldAppData) => ({ ...oldAppData, userGames }));
     setLoading((oldIsloading) => false);
   };
 
   //Get all games for the first time
   useEffect(() => {
-    console.log("Getting games");
     getAllGames();
   }, []);
 
   //Change background image
   useEffect(() => {
     console.log("Changing background");
-    if (games.length > 0) {
-      console.log("Can set a random game image");
+    if (appData.userGames.length > 0) {
       changeBackgroundImage(getRandomImage());
     } else {
-      console.log("Can set a starter game image");
       changeBackgroundImage(
         "https://cdn.cloudflare.steamstatic.com/steam/apps/381210/header.jpg"
       );
@@ -63,7 +63,7 @@ function App() {
   }, [loading]);
 
   return (
-    <UserProvider value={games}>
+    <UserProvider value={appData}>
       {!loading && (
         <main className='app' ref={mainBackgroundRef}>
           <Sidebar />
@@ -77,7 +77,6 @@ function App() {
 
       {loading && (
         <main className='app' ref={mainBackgroundRef}>
-          <Sidebar />
           <Loading />
         </main>
       )}
