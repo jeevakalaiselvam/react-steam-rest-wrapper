@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import Game from "./Game";
+import { getAllGamesFromSteamWrapper } from "../actions/steam";
 
 export default function AllGames(props) {
   const [games, setGames] = useState([]);
 
   const getAllGames = async () => {
-    const allGamesResponse = await axios.get(
-      process.env.REACT_APP_API_ALL_GAMES
-    );
+    const allGames = await getAllGamesFromSteamWrapper();
+    console.log(allGames);
     setGames((oldGames) => {
-      const games = allGamesResponse.data.games;
-      return games;
+      return allGames.games;
     });
   };
 
@@ -21,11 +19,11 @@ export default function AllGames(props) {
 
   return (
     <div className='allgames'>
-      <h1 className='title'>MY LIBRARY</h1>
+      <h1 className='title'>ALL GAMES</h1>
 
       <div className='gamesContainer'>
         {games.map((game) => {
-          return <Game key={game.gameid} game={game} />;
+          return <Game key={game.appid} game={game} />;
         })}
       </div>
     </div>

@@ -5,7 +5,7 @@ export default function Sidebar() {
     <section className='sidebar'>
       <button className='button'>
         <i className='fas fa-book-open icon'></i>{" "}
-        <span className='title'>MY LIBRARY</span>
+        <span className='title'>ALL GAMES</span>
       </button>
     </section>
   );

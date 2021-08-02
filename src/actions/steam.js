@@ -1,17 +1,16 @@
-let userState;
+import axios from "axios";
 
-if (window.localStorage.getItem("user_state")) {
-  userState = JSON.parse(window.localStorage.getItem("user_state"));
-} else {
-  userState = null;
-}
-
-//Actions are of format -> { type: "ALL_GAMES" , payload: { name: "Ryan" , role: "Seller"}}
-export const authReducer = (state = userState, action) => {
-  switch (action.type) {
-    case "ALL_GAMES":
-      return { ...state, ...action.payload.games };
-    default:
-      return { ...state }; //For default we always return the previous state
+export const getAllGamesFromSteamWrapper = async () => {
+  try {
+    const allGamesResponse = await axios.get(
+      process.env.REACT_APP_API_ALL_GAMES
+    );
+    if (allGamesResponse.data.status === "success") {
+      return allGamesResponse.data;
+    } else {
+      console.log("Unable to get all games!");
+    }
+  } catch (error) {
+    console.log("Error getting all gmaes -> ", error.message);
   }
 };
