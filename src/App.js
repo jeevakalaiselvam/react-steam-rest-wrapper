@@ -1,6 +1,8 @@
 import Sidebar from "./sections/Sidebar";
 import Main from "./sections/Main";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { UserProvider } from "./context/UserContext";
+import { getAllGamesFromSteamWrapper } from "./actions/steam";
 
 function App() {
   const backgroundRef = useRef(
@@ -15,11 +17,30 @@ function App() {
   //   backgroundRef.current.style.backdropFilter = `blur(20px)`;
   // };
 
+  let userGames = {};
+  const [games, setGames] = useState({});
+
+  const getAllGames = async () => {
+    const allGames = await getAllGamesFromSteamWrapper();
+    userGames = allGames.games;
+    console.log(userGames);
+    setGames((oldGames) => userGames);
+  };
+
+  useEffect(() => {
+    console.log("Getting games");
+    getAllGames();
+  }, []);
+
   return (
-    <main className='app' ref={backgroundRef}>
-      <Sidebar />
-      <Main />
-    </main>
+    <UserProvider value={games}>
+      {games.length > 0 && (
+        <main className='app' ref={backgroundRef}>
+          <Sidebar />
+          <Main />
+        </main>
+      )}
+    </UserProvider>
   );
 }
 
