@@ -7,7 +7,6 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Loading from "./components/Loading";
 
 function App() {
-  console.clear();
   const mainBackgroundRef = useRef(null);
 
   //Change background Image and set Blur
@@ -19,13 +18,12 @@ function App() {
   };
 
   const getRandomImage = () => {
-    return appData.userGames[
-      Math.floor(Math.random() * appData.userGames.length)
-    ].header_image;
+    return userGames[Math.floor(Math.random() * userGames.length)].header_image;
   };
 
-  const [appData, setAppData] = useState({ userGames: [], sidebarIndex: 0 });
+  const [userGames, setUserGames] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [sidebarIndex, setSidebarIndex] = useState(0);
 
   const getAllGames = async () => {
     let allGames = {};
@@ -38,10 +36,8 @@ function App() {
       localStorage.setItem("gameData", JSON.stringify(allGames));
     }
 
-    let userGames = {};
-    userGames = allGames;
-    console.log(userGames);
-    setAppData((oldAppData) => ({ ...oldAppData, userGames }));
+    console.log(allGames);
+    setUserGames((oldUserGames) => allGames);
     setLoading((oldIsloading) => false);
   };
 
@@ -52,8 +48,7 @@ function App() {
 
   //Change background image
   useEffect(() => {
-    console.log("Changing background");
-    if (appData.userGames.length > 0) {
+    if (userGames.length > 0) {
       changeBackgroundImage(getRandomImage());
     } else {
       changeBackgroundImage(
@@ -63,7 +58,7 @@ function App() {
   }, [loading]);
 
   return (
-    <UserProvider value={appData}>
+    <UserProvider value={{ userGames, sidebarIndex }}>
       {!loading && (
         <main className='app' ref={mainBackgroundRef}>
           <Sidebar />

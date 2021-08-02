@@ -6,7 +6,14 @@ export const getAllGamesFromSteamWrapper = async () => {
       process.env.REACT_APP_API_ALL_GAMES
     );
     if (allGamesResponse.data.status === "success") {
-      return allGamesResponse.data;
+      let gamesHavingAchievements = allGamesResponse.data.games.filter(
+        (game) => {
+          if (!game.schema_achievements.length)
+            console.log(`${game.name} has no achivements!`);
+          return game.schema_achievements.length > 0;
+        }
+      );
+      return gamesHavingAchievements;
     } else {
       console.log("Unable to get all games!");
     }

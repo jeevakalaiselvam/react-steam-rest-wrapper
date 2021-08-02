@@ -3,22 +3,19 @@ import Game from "../Game";
 import UserContext from "../../context/UserContext";
 
 export default function AllGames(props) {
-  const [games, setGames] = useState({});
-  const appData = useContext(UserContext);
-
-  let gamesHavingAchievements = appData.userGames.filter(
-    (game) => game.schema_achievements.length > 0
-  );
+  const [filteredGames, setFilteredGames] = useState({});
+  const { userGames } = useContext(UserContext);
 
   useEffect(() => {
-    setGames((oldGames) => gamesHavingAchievements);
+    setFilteredGames(userGames);
   }, []);
 
   const searchTextChangedHandler = (e) => {
-    const filteredGames = gamesHavingAchievements.filter((game) => {
+    const searchFilteredGames = userGames.filter((game) => {
       return game.name.toLowerCase().includes(e.target.value.toLowerCase());
     });
-    setGames((oldGames) => filteredGames);
+    console.log("SEARCH FILTERED GAMES ->", searchFilteredGames);
+    setFilteredGames((oldFilteredGames) => searchFilteredGames);
   };
 
   return (
@@ -35,8 +32,8 @@ export default function AllGames(props) {
 
         <div className='gamesContainer'>
           <div className='gameInnerContainer'>
-            {games.length > 0 &&
-              games.map((game) => {
+            {filteredGames.length > 0 &&
+              filteredGames.map((game) => {
                 return <Game key={game.game_id} game={game} />;
               })}
           </div>
