@@ -21,7 +21,6 @@ function App() {
     return games[Math.floor(Math.random() * games.length)].header_image;
   };
 
-  let userGames = {};
   const [games, setGames] = useState({});
   const [loading, setLoading] = useState(true);
 
@@ -36,7 +35,8 @@ function App() {
       localStorage.setItem("gameData", JSON.stringify(allGames));
     }
 
-    userGames = allGames.games;
+    let userGames = {};
+    userGames = allGames;
     console.log(userGames);
     setGames((oldGames) => userGames);
     setLoading((oldIsloading) => false);
