@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import Game from "./Game";
-import UserContext from "../context/UserContext";
+import Game from "../Game";
+import UserContext from "../../context/UserContext";
 
 export default function AllGames(props) {
   const [games, setGames] = useState({});
@@ -22,24 +22,26 @@ export default function AllGames(props) {
   };
 
   return (
-    <div className='allgames'>
-      <div className='searchContainer'>
-        <input
-          type='text'
-          className='searchText'
-          placeholder='Search for a game'
-          onChange={searchTextChangedHandler}
-        />
-      </div>
+    <section className='main'>
+      <div className='allgames'>
+        <div className='searchContainer'>
+          <input
+            type='text'
+            className='searchText'
+            placeholder='Search for a game'
+            onChange={searchTextChangedHandler}
+          />
+        </div>
 
-      <div className='gamesContainer'>
-        <div className='gameInnerContainer'>
-          {games.length > 0 &&
-            games.map((game) => {
-              return <Game key={game.game_id} game={game} />;
-            })}
+        <div className='gamesContainer'>
+          <div className='gameInnerContainer'>
+            {games.length > 0 &&
+              games.map((game) => {
+                return <Game key={game.game_id} game={game} />;
+              })}
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

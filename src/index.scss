@@ -8,10 +8,6 @@
 
 body {
   font-family: "DINPro", "Lato", sans-serif;
-  background-image: url("https://cdn.akamai.steamstatic.com/steam/apps/1151640/header.jpg?t=1623162512");
-  background-size: cover;
-  background-repeat: no-repeat;
-  backdrop-filter: blur(20px);
   color: #ffffffdd;
 }
 
@@ -21,12 +17,18 @@ main.app {
   display: flex;
   min-height: 100vh;
   max-height: 100vh;
+  backdrop-filter: blur(20px);
   flex-direction: row;
 
   section.sidebar {
-    width: 18%;
+    width: 250px;
     max-height: 100vh;
     height: 100vh;
+    display: flex;
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    align-items: flex-start;
+
     overflow: scroll;
     background-image: linear-gradient(315deg, #000000dd 30%, #181818dd 100%);
     padding: 2rem;
@@ -34,11 +36,13 @@ main.app {
     .button {
       width: 100%;
       font-family: inherit;
+      text-align: left;
       font-size: 0.85rem;
+      margin: 0.5rem 0;
       cursor: pointer;
       border: none;
 
-      padding: 0.5rem 0.75rem;
+      padding: 0.5rem 2rem;
       border-radius: 0.25rem;
       color: #ffffffdd;
       background-color: rgba($color: #3d3d3d, $alpha: 0.8);
@@ -54,13 +58,15 @@ main.app {
       }
       span.title {
         font-weight: bold;
+        margin-left: 1rem;
         padding: 0 0.25rem;
       }
     }
   }
 
   section.main {
-    width: 82%;
+    backdrop-filter: blur(20px);
+    flex: 1;
     background-image: linear-gradient(315deg, #000000dd 0%, #181818dd 50%);
     padding: 1rem 2rem;
 
@@ -147,4 +153,12 @@ main.app {
       }
     }
   }
+}
+
+main.loading {
+  background-image: linear-gradient(315deg, #000000dd 0%, #181818dd 50%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
