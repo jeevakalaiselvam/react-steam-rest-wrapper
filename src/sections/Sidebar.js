@@ -10,9 +10,6 @@ export default function Sidebar() {
         <i className='fas fa-book-open icon'></i>{" "}
         <span className='title'>ALL GAMES</span>
       </button>
-      {userGames.map((game) => (
-        <h1>{game.name}</h1>
-      ))}
     </section>
   );
 }

@@ -19,12 +19,14 @@ function App() {
 
   let userGames = {};
   const [games, setGames] = useState({});
+  const [loading, setLoading] = useState(true);
 
   const getAllGames = async () => {
     const allGames = await getAllGamesFromSteamWrapper();
     userGames = allGames.games;
     console.log(userGames);
     setGames((oldGames) => userGames);
+    setLoading((oldIsloading) => false);
   };
 
   useEffect(() => {
@@ -34,12 +36,13 @@ function App() {
 
   return (
     <UserProvider value={games}>
-      {games.length > 0 && (
+      {!loading && (
         <main className='app' ref={backgroundRef}>
           <Sidebar />
           <Main />
         </main>
       )}
+      {loading && <h1>Loading</h1>}
     </UserProvider>
   );
 }
