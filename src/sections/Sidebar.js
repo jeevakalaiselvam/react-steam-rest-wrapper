@@ -1,9 +1,6 @@
-import React, { useContext } from "react";
-import UserContext from "../context/UserContext";
+import React from "react";
 
 export default function Sidebar() {
-  const userGames = useContext(UserContext);
-
   return (
     <section className='sidebar'>
       <button className='button'>

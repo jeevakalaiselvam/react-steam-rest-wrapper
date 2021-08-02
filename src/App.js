@@ -58,7 +58,7 @@ function App() {
   }, [loading]);
 
   return (
-    <UserProvider value={{ userGames, sidebarIndex }}>
+    <UserProvider value={{ userGames, sidebarIndex, setSidebarIndex }}>
       {!loading && (
         <main className='app' ref={mainBackgroundRef}>
           <Sidebar />

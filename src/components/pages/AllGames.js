@@ -8,7 +8,7 @@ export default function AllGames(props) {
 
   useEffect(() => {
     setFilteredGames(userGames);
-  }, []);
+  }, [userGames]);
 
   const searchTextChangedHandler = (e) => {
     const searchFilteredGames = userGames.filter((game) => {
