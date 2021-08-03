@@ -1,9 +1,11 @@
 import React, { useRef, useState } from "react";
 import {
   getAchievementImage,
+  getAchievementName,
   getRecentAchievements,
 } from "../helpers/achievementHelper";
 import ReactTooltip from "react-tooltip";
+import DarkToolTip from "./core/DarkToolTip";
 
 export default function Game(props) {
   const game = props.game;
@@ -13,20 +15,6 @@ export default function Game(props) {
   const schemaAchievements = game.schema_achievements;
   const playerAchievements = game.player_achievements;
   const globalAchievements = game.global_achievements;
-
-  const totalAchievements = schemaAchievements.length;
-  const completedAchievements = playerAchievements.reduce(
-    (acc, achievement) => {
-      if (achievement.achieved) {
-        return acc + 1;
-      }
-      return acc + 0;
-    },
-    0
-  );
-  const completionPercentage = Math.ceil(
-    (completedAchievements / totalAchievements) * 100
-  );
 
   const recentUnlockedAchievements = getRecentAchievements(
     playerAchievements,
@@ -48,16 +36,25 @@ export default function Game(props) {
         {recentUnlockedAchievements.length > 0 &&
           recentUnlockedAchievements.map((achievement) => {
             return (
-              <div
-                className='achievementIcon'
+              <DarkToolTip
+                title={getAchievementName(
+                  achievement.apiname,
+                  schemaAchievements
+                )}
+                className='sortOptions'
                 key={`${game.name}-${achievement.apiname}`}
-                style={{
-                  backgroundImage: `url("${getAchievementImage(
-                    achievement.apiname,
-                    schemaAchievements
-                  )}")`,
-                }}
-              ></div>
+              >
+                <div
+                  className='achievementIcon'
+                  key={`${game.name}-${achievement.apiname}`}
+                  style={{
+                    backgroundImage: `url("${getAchievementImage(
+                      achievement.apiname,
+                      schemaAchievements
+                    )}")`,
+                  }}
+                ></div>
+              </DarkToolTip>
             );
           })}
 

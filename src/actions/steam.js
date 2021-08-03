@@ -1,4 +1,5 @@
 import axios from "axios";
+import { setupCompletionForGames } from "../helpers/achievementHelper";
 
 export const getAllGamesFromSteamWrapper = async () => {
   try {
@@ -13,7 +14,11 @@ export const getAllGamesFromSteamWrapper = async () => {
           return game.schema_achievements.length > 0;
         }
       );
-      return gamesHavingAchievements;
+      const completionPercentageAddedGames = setupCompletionForGames(
+        gamesHavingAchievements
+      );
+      console.log("FROM STEAM -> ", completionPercentageAddedGames);
+      return completionPercentageAddedGames;
     } else {
       console.log("Unable to get all games!");
     }

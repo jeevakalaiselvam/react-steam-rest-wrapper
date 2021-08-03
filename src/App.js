@@ -5,6 +5,7 @@ import { getAllGamesFromSteamWrapper } from "./actions/steam";
 import AllGames from "./components/pages/AllGames";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Loading from "./components/Loading";
+import { setupCompletionForGames } from "./helpers/achievementHelper";
 
 function App() {
   const mainBackgroundRef = useRef(null);
@@ -36,6 +37,8 @@ function App() {
       allGames = await getAllGamesFromSteamWrapper();
       localStorage.setItem("gameData", JSON.stringify(allGames));
     }
+
+    localStorage.setItem("gameData", JSON.stringify(allGames));
 
     setUserGames((oldUserGames) => allGames);
     setLoading((oldIsloading) => false);
