@@ -45,13 +45,29 @@ export default function AllGames(props) {
             placeholder='Search for a game'
             onChange={searchTextChangedHandler}
           />
-          <DarkToolTip title='Sort by Name Ascending' class='sortOptions'>
-            <div className='sortOptions'>
-              <div className='sortbutton'>
-                <i class='fas fa-sort-alpha-down'></i>
+          <div className='sortContainer'>
+            <DarkToolTip title='Sort by Name Ascending' class='sortOptions'>
+              <div className='sortOptions'>
+                <div className='sortbutton'>
+                  <i class='fas fa-sort-alpha-down'></i>
+                </div>
               </div>
-            </div>
-          </DarkToolTip>
+            </DarkToolTip>
+            <DarkToolTip title='Sort by Name Descending' class='sortOptions'>
+              <div className='sortOptions'>
+                <div className='sortbutton'>
+                  <i class='fas fa-sort-alpha-down-alt'></i>
+                </div>
+              </div>
+            </DarkToolTip>
+            <DarkToolTip title='Sort by Playtime' class='sortOptions'>
+              <div className='sortOptions'>
+                <div className='sortbutton'>
+                  <i class='fas fa-hourglass'></i>
+                </div>
+              </div>
+            </DarkToolTip>
+          </div>
         </div>
 
         <div className='gamesContainer'>
