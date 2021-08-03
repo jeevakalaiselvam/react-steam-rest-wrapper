@@ -2,14 +2,16 @@ import React, { useContext, useEffect, useState } from "react";
 import Game from "../Game";
 import UserContext from "../../context/UserContext";
 import { Button, IconButton, makeStyles, Tooltip } from "@material-ui/core";
+import { getGamesSortedByOption } from "../../helpers/achievementHelper";
 
 export default function AllGames(props) {
   const [filteredGames, setFilteredGames] = useState({});
   const { userGames } = useContext(UserContext);
+  const [sortOption, setSortOption] = useState(0);
 
   useEffect(() => {
-    setFilteredGames(userGames);
-  }, [userGames]);
+    setFilteredGames(getGamesSortedByOption(userGames, sortOption));
+  }, [userGames, sortOption]);
 
   const searchTextChangedHandler = (e) => {
     const searchFilteredGames = userGames.filter((game) => {
@@ -35,6 +37,11 @@ export default function AllGames(props) {
     return <Tooltip arrow classes={classes} {...props} />;
   }
 
+  const setSorting = (sortOption) => {
+    console.log("OPTION SELECTED -> ", sortOption);
+    setSortOption(sortOption);
+  };
+
   return (
     <section className='main'>
       <div className='allgames'>
@@ -46,24 +53,27 @@ export default function AllGames(props) {
             onChange={searchTextChangedHandler}
           />
           <div className='sortContainer'>
-            <DarkToolTip title='Sort by Name Ascending' class='sortOptions'>
+            <DarkToolTip title='Sort by Playtime' className='sortOptions'>
               <div className='sortOptions'>
-                <div className='sortbutton'>
-                  <i class='fas fa-sort-alpha-down'></i>
+                <div className='sortbutton' onClick={() => setSorting(0)}>
+                  <i className='fas fa-hourglass'></i>
                 </div>
               </div>
             </DarkToolTip>
-            <DarkToolTip title='Sort by Name Descending' class='sortOptions'>
+            <DarkToolTip title='Sort by Name Ascending' className='sortOptions'>
               <div className='sortOptions'>
-                <div className='sortbutton'>
-                  <i class='fas fa-sort-alpha-down-alt'></i>
+                <div className='sortbutton' onClick={() => setSorting(1)}>
+                  <i className='fas fa-sort-alpha-down'></i>
                 </div>
               </div>
             </DarkToolTip>
-            <DarkToolTip title='Sort by Playtime' class='sortOptions'>
+            <DarkToolTip
+              title='Sort by Name Descending'
+              className='sortOptions'
+            >
               <div className='sortOptions'>
-                <div className='sortbutton'>
-                  <i class='fas fa-hourglass'></i>
+                <div className='sortbutton' onClick={() => setSorting(2)}>
+                  <i className='fas fa-sort-alpha-down-alt'></i>
                 </div>
               </div>
             </DarkToolTip>

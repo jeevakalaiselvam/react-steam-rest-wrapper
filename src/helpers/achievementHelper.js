@@ -21,3 +21,17 @@ exports.getAchievementImage = (achievementID, schemaAchievements) => {
   );
   return imageURL.icon;
 };
+
+exports.getGamesSortedByOption = (games, sortOption) => {
+  console.log("SORTING GAMES OPTION SELECTED -> ", sortOption);
+  if (sortOption === 0) {
+  }
+
+  if (sortOption === 1) {
+  }
+
+  if (sortOption === 2) {
+  }
+
+  return games;
+};

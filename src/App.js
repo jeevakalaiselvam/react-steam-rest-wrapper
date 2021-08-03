@@ -24,6 +24,7 @@ function App() {
   const [userGames, setUserGames] = useState([]);
   const [loading, setLoading] = useState(true);
   const [sidebarIndex, setSidebarIndex] = useState(0);
+  const [gamePageSortOption, setGamePageSortOption] = useState(0);
 
   const getAllGames = async () => {
     let allGames = {};
@@ -58,7 +59,13 @@ function App() {
   }, [loading]);
 
   return (
-    <UserProvider value={{ userGames, sidebarIndex, setSidebarIndex }}>
+    <UserProvider
+      value={{
+        userGames,
+        sidebarIndex,
+        setSidebarIndex,
+      }}
+    >
       {!loading && (
         <main className='app' ref={mainBackgroundRef}>
           <Sidebar />

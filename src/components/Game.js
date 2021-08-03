@@ -8,6 +8,8 @@ import ReactTooltip from "react-tooltip";
 export default function Game(props) {
   const game = props.game;
 
+  const RECENT_ACHIEVEMENT_COUNT = 6;
+
   const schemaAchievements = game.schema_achievements;
   const playerAchievements = game.player_achievements;
   const globalAchievements = game.global_achievements;
@@ -28,7 +30,7 @@ export default function Game(props) {
 
   const recentUnlockedAchievements = getRecentAchievements(
     playerAchievements,
-    6
+    RECENT_ACHIEVEMENT_COUNT
   );
 
   return (
@@ -61,24 +63,14 @@ export default function Game(props) {
 
         {recentUnlockedAchievements.length === 0 && (
           <>
-            <div className='achivementIcon'>
-              <i className='fas fa-trophy noAchievementIcon'></i>
-            </div>
-            <div className='achivementIcon'>
-              <i className='fas fa-trophy noAchievementIcon'></i>
-            </div>
-            <div className='achivementIcon'>
-              <i className='fas fa-trophy noAchievementIcon'></i>
-            </div>
-            <div className='achivementIcon'>
-              <i className='fas fa-trophy noAchievementIcon'></i>
-            </div>
-            <div className='achivementIcon'>
-              <i className='fas fa-trophy noAchievementIcon'></i>
-            </div>
-            <div className='achivementIcon'>
-              <i className='fas fa-trophy noAchievementIcon'></i>
-            </div>
+            {Array.from(
+              { length: RECENT_ACHIEVEMENT_COUNT },
+              (_, index) => index + 1
+            ).map((item) => (
+              <div className='achivementIcon' key={item}>
+                <i className='fas fa-lock noAchievementIcon'></i>
+              </div>
+            ))}
           </>
         )}
       </div>
