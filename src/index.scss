@@ -18,4 +18,10 @@ ul {
   list-style: none;
 }
 
+//Import all
 @import "./components/Header/header.scss";
+@import "./pages/AchievementsHistory/achievementshistory.scss";
+@import "./pages/AllAchievements/allAchievements.scss";
+@import "./pages/AllGames/allGames.scss";
+@import "./pages/Homepage/homepage.scss";
+@import "./pages/Milestones/milestones.scss";
