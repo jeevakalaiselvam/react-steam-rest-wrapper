@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import Game from "../Game";
 import UserContext from "../../context/UserContext";
+import { Button, IconButton, makeStyles, Tooltip } from "@material-ui/core";
 
 export default function AllGames(props) {
   const [filteredGames, setFilteredGames] = useState({});
@@ -18,6 +19,22 @@ export default function AllGames(props) {
     setFilteredGames((oldFilteredGames) => searchFilteredGames);
   };
 
+  const useStylesBootstrap = makeStyles((theme) => ({
+    arrow: {
+      color: theme.palette.common.black,
+    },
+    tooltip: {
+      backgroundColor: theme.palette.common.black,
+      fontFamily: "inherit",
+    },
+  }));
+
+  function DarkToolTip(props) {
+    const classes = useStylesBootstrap();
+
+    return <Tooltip arrow classes={classes} {...props} />;
+  }
+
   return (
     <section className='main'>
       <div className='allgames'>
@@ -28,6 +45,13 @@ export default function AllGames(props) {
             placeholder='Search for a game'
             onChange={searchTextChangedHandler}
           />
+          <DarkToolTip title='Sort by Name Ascending' class='sortOptions'>
+            <div className='sortOptions'>
+              <div className='sortbutton'>
+                <i class='fas fa-sort-alpha-down'></i>
+              </div>
+            </div>
+          </DarkToolTip>
         </div>
 
         <div className='gamesContainer'>

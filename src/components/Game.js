@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import {
   getAchievementImage,
   getRecentAchievements,
 } from "../helpers/achievementHelper";
+import ReactTooltip from "react-tooltip";
 
 export default function Game(props) {
   const game = props.game;
@@ -54,9 +55,7 @@ export default function Game(props) {
                     schemaAchievements
                   )}")`,
                 }}
-              >
-                {}
-              </div>
+              ></div>
             );
           })}
 
