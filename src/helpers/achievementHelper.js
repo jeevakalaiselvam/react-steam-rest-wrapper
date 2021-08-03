@@ -1,3 +1,11 @@
+const {
+  comparatorPlaytime,
+  comparatorName,
+  comparatorPlaytimeDesc,
+  comparatorNameDesc,
+  comparatorNameAsc,
+} = require("./comparators");
+
 exports.getRecentAchievements = (playerAchivements, count) => {
   const sortedAchievements = this.getUnlockedAchievements(
     playerAchivements
@@ -22,16 +30,27 @@ exports.getAchievementImage = (achievementID, schemaAchievements) => {
   return imageURL.icon;
 };
 
-exports.getGamesSortedByOption = (games, sortOption) => {
-  console.log("SORTING GAMES OPTION SELECTED -> ", sortOption);
+exports.getGamesSortedByOption = (userGames, sortOption) => {
+  console.log("SORTING INDEX  -> ", sortOption);
+  console.log("BEFORE SORTING (TOP) -> ", userGames[0]);
+
   if (sortOption === 0) {
+    const sortedGames = userGames.slice().sort(comparatorPlaytimeDesc);
+    console.log("AFTER SORTING (TOP) -> ", sortedGames[0]);
+    return sortedGames;
   }
 
   if (sortOption === 1) {
+    const sortedGames = userGames.slice().sort(comparatorNameDesc);
+    console.log("AFTER SORTING (TOP) -> ", sortedGames[0]);
+    return sortedGames;
   }
 
   if (sortOption === 2) {
+    const sortedGames = userGames.slice().sort(comparatorNameAsc);
+    console.log("AFTER SORTING (TOP) -> ", sortedGames[0]);
+    return sortedGames;
   }
 
-  return games;
+  return userGames;
 };

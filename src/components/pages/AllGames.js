@@ -5,12 +5,19 @@ import { Button, IconButton, makeStyles, Tooltip } from "@material-ui/core";
 import { getGamesSortedByOption } from "../../helpers/achievementHelper";
 
 export default function AllGames(props) {
+  const [games, setGames] = useState({});
   const [filteredGames, setFilteredGames] = useState({});
   const { userGames } = useContext(UserContext);
   const [sortOption, setSortOption] = useState(0);
 
   useEffect(() => {
-    setFilteredGames(getGamesSortedByOption(userGames, sortOption));
+    console.clear();
+    console.log("RENDERING EFFECT, DEPENDENCY AFFECTED");
+    console.log("USERGAMES BEFORE EFFECT ->", userGames[0]);
+    const sortedGames = getGamesSortedByOption(userGames, sortOption);
+    console.log("USERGAMES AFTER EFFECT ->", userGames[0]);
+    setFilteredGames({});
+    setFilteredGames(sortedGames);
   }, [userGames, sortOption]);
 
   const searchTextChangedHandler = (e) => {
@@ -18,6 +25,7 @@ export default function AllGames(props) {
       return game.name.toLowerCase().includes(e.target.value.toLowerCase());
     });
     console.log("SEARCH FILTERED GAMES ->", searchFilteredGames);
+
     setFilteredGames((oldFilteredGames) => searchFilteredGames);
   };
 
@@ -38,7 +46,7 @@ export default function AllGames(props) {
   }
 
   const setSorting = (sortOption) => {
-    console.log("OPTION SELECTED -> ", sortOption);
+    console.log("CHANGING SORT INDEX STATE -> ", sortOption);
     setSortOption(sortOption);
   };
 
@@ -53,14 +61,22 @@ export default function AllGames(props) {
             onChange={searchTextChangedHandler}
           />
           <div className='sortContainer'>
-            <DarkToolTip title='Sort by Playtime' className='sortOptions'>
+            <DarkToolTip
+              title='Sort by Playtime'
+              className='sortOptions'
+              key='0'
+            >
               <div className='sortOptions'>
                 <div className='sortbutton' onClick={() => setSorting(0)}>
                   <i className='fas fa-hourglass'></i>
                 </div>
               </div>
             </DarkToolTip>
-            <DarkToolTip title='Sort by Name Ascending' className='sortOptions'>
+            <DarkToolTip
+              title='Sort by Name Ascending'
+              className='sortOptions'
+              key='1'
+            >
               <div className='sortOptions'>
                 <div className='sortbutton' onClick={() => setSorting(1)}>
                   <i className='fas fa-sort-alpha-down'></i>
@@ -70,6 +86,7 @@ export default function AllGames(props) {
             <DarkToolTip
               title='Sort by Name Descending'
               className='sortOptions'
+              key='2'
             >
               <div className='sortOptions'>
                 <div className='sortbutton' onClick={() => setSorting(2)}>

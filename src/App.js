@@ -37,7 +37,6 @@ function App() {
       localStorage.setItem("gameData", JSON.stringify(allGames));
     }
 
-    console.log(allGames);
     setUserGames((oldUserGames) => allGames);
     setLoading((oldIsloading) => false);
   };
