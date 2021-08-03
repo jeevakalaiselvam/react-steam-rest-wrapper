@@ -13,9 +13,7 @@ export default function AllGames(props) {
   useEffect(() => {
     console.clear();
     console.log("RENDERING EFFECT, DEPENDENCY AFFECTED");
-    console.log("USERGAMES BEFORE EFFECT ->", userGames[0]);
     const sortedGames = getGamesSortedByOption(userGames, sortOption);
-    console.log("USERGAMES AFTER EFFECT ->", userGames[0]);
     setFilteredGames({});
     setFilteredGames(sortedGames);
   }, [userGames, sortOption]);

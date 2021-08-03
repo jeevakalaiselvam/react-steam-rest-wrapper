@@ -35,20 +35,28 @@ exports.getGamesSortedByOption = (userGames, sortOption) => {
   console.log("BEFORE SORTING (TOP) -> ", userGames[0]);
 
   if (sortOption === 0) {
+    const time1 = performance.now();
     const sortedGames = userGames.slice().sort(comparatorPlaytimeDesc);
-    console.log("AFTER SORTING (TOP) -> ", sortedGames[0]);
+    const time2 = performance.now();
+    console.log("SORT took ", time2 - time1, " milliseconds");
     return sortedGames;
   }
 
   if (sortOption === 1) {
+    const time1 = performance.now();
     const sortedGames = userGames.slice().sort(comparatorNameDesc);
+    const time2 = performance.now();
     console.log("AFTER SORTING (TOP) -> ", sortedGames[0]);
+    console.log("SORT took ", time2 - time1, " milliseconds");
     return sortedGames;
   }
 
   if (sortOption === 2) {
+    const time1 = performance.now();
     const sortedGames = userGames.slice().sort(comparatorNameAsc);
+    const time2 = performance.now();
     console.log("AFTER SORTING (TOP) -> ", sortedGames[0]);
+    console.log("SORT took ", time2 - time1, " milliseconds");
     return sortedGames;
   }
 
