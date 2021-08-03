@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Cabin&display=swap");
+
 *,
 *::before,
 *::after {
@@ -7,5 +9,10 @@
 }
 
 body {
-  font-family: "DINPro", "Lato", sans-serif;
+  font-family: "Cabin", sans-serif;
+  background: url("https://static.completionist.me/images/velvet/bg.png");
+  color: #959da6;
 }
+
+@import "./components/navigation/Header/header.scss";
+@import "./components/button/IconButton/iconbutton.scss";
