@@ -1,5 +1,24 @@
-.header {
-  padding: 0.5rem;
-  display: flex;
-  flex-direction: row;
+.mainHeader {
+  background-color: rgba(10, 17, 25, 0.25);
+
+  width: 100%;
+  .navigationMain {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .navigationList {
+      display: flex;
+      margin: 0;
+      padding: 0;
+      flex-direction: row;
+      .navigationItem {
+        padding: 0.25rem;
+        .nav-icon {
+          width: 50px;
+          color: rgb(198, 205, 211);
+          height: 50px;
+        }
+      }
+    }
+  }
 }
