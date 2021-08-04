@@ -41,6 +41,7 @@ const SidebarNav = styled.nav`
 
 const SidebarWrap = styled.div`
   width: 100%;
+  padding: 0 0.2rem;
 `;
 export default function Header() {
   const [sidebar, setSidebar] = useState(false);
@@ -59,32 +60,32 @@ export default function Header() {
         <SidebarNav sidebar={sidebar}>
           <SidebarWrap>
             <SidebarItem
-              title='All Games'
+              title='Games'
               path='/all-games'
               linkClicked={showSidebar}
             >
-              <FaIcons.FaBars />
+              <FaIcons.FaGamepad />
             </SidebarItem>
             <SidebarItem
-              title='All Achievements'
+              title='Achievements'
               path='/all-achievements'
               linkClicked={showSidebar}
             >
-              <FaIcons.FaBars />
+              <FaIcons.FaTrophy />
             </SidebarItem>
             <SidebarItem
-              title='All Achievements'
+              title='History'
               path='/achievements-history'
               linkClicked={showSidebar}
             >
-              <FaIcons.FaBars />
+              <FaIcons.FaBookOpen />
             </SidebarItem>
             <SidebarItem
-              title='All Achievements'
+              title='Milestones'
               path='/milestones'
               linkClicked={showSidebar}
             >
-              <FaIcons.FaBars />
+              <FaIcons.FaMedal />
             </SidebarItem>
           </SidebarWrap>
         </SidebarNav>
