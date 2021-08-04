@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./index.scss";
 import styled from "styled-components";
-import Homepage from "./pages/Homepage";
+import Overview from "./pages/Overview";
 import Milestones from "./pages/Milestones";
 import History from "./pages/History";
 import Achievements from "./pages/Achievements";
@@ -15,7 +15,7 @@ ReactDOM.render(
   <Router>
     <Switch>
       <Route exact path='/'>
-        <Homepage />
+        <Overview />
       </Route>
       <Route exact path='/games'>
         <Games />
