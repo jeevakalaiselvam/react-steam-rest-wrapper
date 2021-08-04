@@ -12,7 +12,7 @@ export default function Homepage() {
   return (
     <>
       <Page>
-        <ContentContainer>Homepage</ContentContainer>
+        <ContentContainer>Overview</ContentContainer>
       </Page>
     </>
   );
