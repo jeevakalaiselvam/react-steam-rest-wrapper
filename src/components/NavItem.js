@@ -29,7 +29,7 @@ const Title = styled.div`
 export default function NavItem(props) {
   return (
     <>
-      <ItemContainer to={props.navigatePath}>
+      <ItemContainer to={props.navigate || ""}>
         <Icon>{props.children}</Icon>
         <Title>{props.title}</Title>
       </ItemContainer>

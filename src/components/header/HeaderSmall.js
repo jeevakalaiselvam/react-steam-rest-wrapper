@@ -39,14 +39,14 @@ const Icon = styled.div`
 export default function HeaderSmall(props) {
   const [open, setOpen] = useState(false);
 
-  const openNav = () => {
+  const toggleNav = () => {
     setOpen((oldState) => !open);
-    props.showOrHideNav();
+    props.toggleNav();
   };
 
   return (
     <Container>
-      <NavButton onClick={openNav}>
+      <NavButton onClick={toggleNav}>
         <Icon>
           {!open && (
             <FaIcons.FaBars style={{ width: "25px", height: "25px" }} />
