@@ -33,13 +33,11 @@ const SidebarContainer = styled.div`
   transition: all 0.2s;
   width: 200px;
   min-height: 100vh;
-  background-color: rgba(10, 17, 25, 0.15);
-  background-color: red;
+  background-color: rgba(10, 17, 25, 0.8);
   z-index: 10;
 
   @media (min-width: 769px) {
     width: 200px;
-    background-color: blue;
     position: relative;
     display: block;
     top: 0;
@@ -68,10 +66,10 @@ export default function AppContainer() {
       <HeaderLargeContainer>
         <HeaderLarge />
       </HeaderLargeContainer>
-      <MainContainer>
+      <MainContainer onClick={toggleNav}>
         <SidebarContainer sidebar={sidebar}>
           <NavItem title='All Games'>
-            <FaIcons.FaGamepad />
+            <FaIcons.FaGamepad style={{ width: "30px", height: "30px" }} />
           </NavItem>
         </SidebarContainer>
         <ContentContainer>Content</ContentContainer>
