@@ -12,9 +12,7 @@ const ContentContainer = styled.div`
 export default function Achievements() {
   return (
     <>
-      <Page>
-        <ContentContainer>Achievements</ContentContainer>
-      </Page>
+      <Page title='All Achievements'>All Achievements</Page>
     </>
   );
 }

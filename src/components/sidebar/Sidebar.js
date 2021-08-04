@@ -15,9 +15,11 @@ const SidebarContainer = styled.div`
   min-height: 100vh;
   background-color: rgba(10, 17, 25, 0.8);
   z-index: 10;
+  text-shadow: rgba(10, 17, 25, 0.45);
+  border-right-color: rgba(10, 17, 25, 0.6);
 
   @media (min-width: 769px) {
-    width: 200px;
+    width: 230px;
     position: relative;
     display: block;
     top: 0;
@@ -54,6 +56,14 @@ export default function Sidebar(props) {
       </NavItem>
       <NavItem title='Milestones' desc='Your Milestones' navigate='/milestones'>
         <FaIcons.FaMedal style={{ width: "20px", height: "20px" }} />
+      </NavItem>
+
+      <NavItem
+        title='Games Backlog'
+        desc='Your Games Backlog'
+        navigate='/gamesbacklog'
+      >
+        <FaIcons.FaFolderOpen style={{ width: "20px", height: "20px" }} />
       </NavItem>
     </SidebarContainer>
   );

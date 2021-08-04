@@ -35,7 +35,11 @@ export default function Page(props) {
 
   return (
     <>
-      <Header toggleNav={toggleNav} sidebarOpen={sidebarOpen} />
+      <Header
+        toggleNav={toggleNav}
+        sidebarOpen={sidebarOpen}
+        title={props.title}
+      />
       <MainContainer>
         <Sidebar
           sidebarOpen={sidebarOpen}

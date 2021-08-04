@@ -23,6 +23,9 @@ const Icon = styled.div`
 `;
 const Title = styled.div`
   padding-left: 1rem;
+  font-size: 0.9rem;
+  justify-self: baseline;
+  transform: translate(0, 10%);
 
   cursor: pointer;
 `;
@@ -30,12 +33,12 @@ const Title = styled.div`
 export default function NavItem(props) {
   return (
     <>
-      <BlackToolTip title={props.desc}>
-        <ItemContainer to={`${props.navigate}`}>
-          <Icon>{props.children}</Icon>
-          <Title>{props.title}</Title>
-        </ItemContainer>
-      </BlackToolTip>
+      {/* <BlackToolTip title={props.desc}> */}
+      <ItemContainer to={`${props.navigate}`}>
+        <Icon>{props.children}</Icon>
+        <Title>{props.title}</Title>
+      </ItemContainer>
+      {/* </BlackToolTip> */}
     </>
   );
 }

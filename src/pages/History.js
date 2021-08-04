@@ -12,9 +12,7 @@ const ContentContainer = styled.div`
 export default function History() {
   return (
     <>
-      <Page>
-        <ContentContainer>History</ContentContainer>
-      </Page>
+      <Page title='History'>History</Page>
     </>
   );
 }

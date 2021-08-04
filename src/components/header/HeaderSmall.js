@@ -35,6 +35,12 @@ const Icon = styled.div`
   }
 `;
 
+const Title = styled.h1`
+  font-size: 1rem;
+  flex: 1;
+  text-align: center;
+`;
+
 export default function HeaderSmall(props) {
   const [open, setOpen] = useState(false);
 
@@ -46,6 +52,17 @@ export default function HeaderSmall(props) {
   return (
     <Container>
       <NavButton onClick={toggleNav}>
+        <Icon>
+          {!props.sidebarOpen && (
+            <FaIcons.FaBars style={{ width: "25px", height: "25px" }} />
+          )}
+          {props.sidebarOpen && (
+            <FaIcons.FaTimes style={{ width: "25px", height: "25px" }} />
+          )}
+        </Icon>
+      </NavButton>
+      <Title>{props.title}</Title>
+      <NavButton onClick={toggleNav} style={{ visibility: "hidden" }}>
         <Icon>
           {!props.sidebarOpen && (
             <FaIcons.FaBars style={{ width: "25px", height: "25px" }} />

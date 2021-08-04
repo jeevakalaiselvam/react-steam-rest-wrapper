@@ -8,6 +8,7 @@ import Milestones from "./pages/Milestones";
 import History from "./pages/History";
 import Achievements from "./pages/Achievements";
 import Games from "./pages/Games";
+import GamesBacklog from "./pages/GamesBacklog";
 
 console.clear();
 
@@ -28,6 +29,9 @@ ReactDOM.render(
       </Route>
       <Route exact path='/milestones'>
         <Milestones />
+      </Route>
+      <Route exact path='/gamesbacklog'>
+        <GamesBacklog />
       </Route>
     </Switch>
   </Router>,
