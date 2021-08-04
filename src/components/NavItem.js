@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-const ItemContainer = styled.div`
+const ItemContainer = styled(Link)`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -28,7 +29,7 @@ const Title = styled.div`
 export default function NavItem(props) {
   return (
     <>
-      <ItemContainer>
+      <ItemContainer to={props.navigatePath}>
         <Icon>{props.children}</Icon>
         <Title>{props.title}</Title>
       </ItemContainer>

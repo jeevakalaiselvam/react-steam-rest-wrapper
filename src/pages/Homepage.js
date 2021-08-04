@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import HeaderLarge from "./components/header/HeaderLarge";
-import HeaderSmall from "./components/header/HeaderSmall";
-import NavItem from "./components/NavItem";
+import HeaderLarge from "../components/header/HeaderLarge";
+import HeaderSmall from "../components/header/HeaderSmall";
+import NavItem from "../components/NavItem";
 import * as FaIcons from "react-icons/fa";
 
 const HeaderSmallContainer = styled.div`
@@ -50,7 +50,7 @@ const ContentContainer = styled.div`
   flex-direction: column;
 `;
 
-export default function AppContainer() {
+export default function Homepage() {
   const [sidebar, setSidebar] = useState(false);
 
   const toggleNav = () => {
@@ -68,11 +68,32 @@ export default function AppContainer() {
       </HeaderLargeContainer>
       <MainContainer onClick={toggleNav}>
         <SidebarContainer sidebar={sidebar}>
-          <NavItem title='All Games'>
-            <FaIcons.FaGamepad style={{ width: "30px", height: "30px" }} />
+          <NavItem title='Games'>
+            <FaIcons.FaGamepad
+              style={{ width: "20px", height: "20pxs" }}
+              navigatePath='/games'
+            />
+          </NavItem>
+          <NavItem title='Achievements'>
+            <FaIcons.FaTrophy
+              style={{ width: "20px", height: "20px" }}
+              navigatePath='/achievements'
+            />
+          </NavItem>
+          <NavItem title='History'>
+            <FaIcons.FaBookOpen
+              style={{ width: "20px", height: "20px" }}
+              navigatePath='/history'
+            />
+          </NavItem>
+          <NavItem title='Milestones'>
+            <FaIcons.FaMedal
+              style={{ width: "20px", height: "20px" }}
+              navigatePath='/milestones'
+            />
           </NavItem>
         </SidebarContainer>
-        <ContentContainer>Content</ContentContainer>
+        <ContentContainer>Homepage</ContentContainer>
       </MainContainer>
     </>
   );

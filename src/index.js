@@ -3,13 +3,17 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./index.scss";
 import styled from "styled-components";
-import AppContainer from "./AppContainer";
+import Homepage from "./pages/Homepage";
 
 console.clear();
 
 ReactDOM.render(
   <Router>
-    <AppContainer />
+    <Switch>
+      <Route exact path='/'>
+        <Homepage />
+      </Route>
+    </Switch>
   </Router>,
   document.getElementById("root")
 );
