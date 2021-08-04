@@ -1,51 +1,61 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import AllGames from "./pages/AllGames";
 import "./index.scss";
-import Header from "./components/Header";
-import Homepage from "./pages/Homepage";
-import AchievementsHistory from "./pages/AchievementsHistory";
-import AllAchievements from "./pages/AllAchievements";
-import Milestones from "./pages/Milestones";
 import styled from "styled-components";
+import HeaderSmall from "./components/header/HeaderSmall";
 
 console.clear();
 
-const HeaderSmallDevices = styled.div`
+const HeaderSmallContainer = styled.div`
   @media (max-width: 768px) {
     display: block;
   }
   display: none;
 `;
 
+const HeaderLargeContainer = styled.div`
+  @media (min-width: 769px) {
+    display: block;
+  }
+  display: none;
+`;
+
+const MainContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const SidebarContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: -100%;
+  top: 0;
+
+  @media (min-width: 769px) {
+    display: block;
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+`;
+
+const ContentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 ReactDOM.render(
   <Router>
-    <HeaderSmallDevices>
-      <Header />
-    </HeaderSmallDevices>
-    <Switch>
-      <Route exact path='/'>
-        <MainContent>
-          <SidebarBigDevices>
-            <Sidebar />
-          </SidebarBigDevices>
-          <Homepage />
-        </MainContent>
-      </Route>
-      <Route path='/all-games'>
-        <AllGames />
-      </Route>
-      <Route path='/all-achievements'>
-        <AllAchievements />
-      </Route>
-      <Route path='/achievements-history'>
-        <AchievementsHistory />
-      </Route>
-      <Route path='/milestones'>
-        <Milestones />
-      </Route>
-    </Switch>
+    <HeaderSmallContainer>
+      <HeaderSmall />
+    </HeaderSmallContainer>
+    <HeaderLargeContainer>HeaderLarge</HeaderLargeContainer>
+    <MainContainer>
+      <SidebarContainer>Sidebar</SidebarContainer>
+      <ContentContainer>Content</ContentContainer>
+    </MainContainer>
   </Router>,
   document.getElementById("root")
 );
