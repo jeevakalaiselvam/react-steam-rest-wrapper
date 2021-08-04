@@ -8,15 +8,30 @@ import Homepage from "./pages/Homepage";
 import AchievementsHistory from "./pages/AchievementsHistory";
 import AllAchievements from "./pages/AllAchievements";
 import Milestones from "./pages/Milestones";
+import styled from "styled-components";
 
 console.clear();
 
+const HeaderSmallDevices = styled.div`
+  @media (max-width: 768px) {
+    display: block;
+  }
+  display: none;
+`;
+
 ReactDOM.render(
   <Router>
-    <Header />
+    <HeaderSmallDevices>
+      <Header />
+    </HeaderSmallDevices>
     <Switch>
       <Route exact path='/'>
-        <Homepage />
+        <MainContent>
+          <SidebarBigDevices>
+            <Sidebar />
+          </SidebarBigDevices>
+          <Homepage />
+        </MainContent>
       </Route>
       <Route path='/all-games'>
         <AllGames />
