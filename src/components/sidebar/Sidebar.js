@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import * as FaIcons from "react-icons/fa";
 import NavItem from "../ui/NavItem";
+import BlackToolTip from "../ui/BlackToolTip";
 
 const SidebarContainer = styled.div`
   display: flex;
@@ -30,19 +31,28 @@ export default function Sidebar(props) {
       sidebarOpen={props.sidebarOpen}
       onClick={props.sidebarItemClicked}
     >
-      <NavItem title='Overview' navigate='/'>
+      <NavItem title='Overview' desc='Profile overview' navigate='/'>
         <FaIcons.FaSteamSquare style={{ width: "20px", height: "20px" }} />
       </NavItem>
-      <NavItem title='Games' navigate='/games'>
+
+      <NavItem title='Games' desc='All your Games' navigate='/games'>
         <FaIcons.FaGamepad style={{ width: "20px", height: "20px" }} />
       </NavItem>
-      <NavItem title='Achievements' navigate='/achievements'>
+      <NavItem
+        title='Achievements'
+        desc='All your Achievements'
+        navigate='/achievements'
+      >
         <FaIcons.FaTrophy style={{ width: "20px", height: "20px" }} />
       </NavItem>
-      <NavItem title='History' navigate='/history'>
+      <NavItem
+        title='History'
+        desc='Your Achievement History'
+        navigate='/history'
+      >
         <FaIcons.FaBookOpen style={{ width: "20px", height: "20px" }} />
       </NavItem>
-      <NavItem title='Milestones' navigate='/milestones'>
+      <NavItem title='Milestones' desc='Your Milestones' navigate='/milestones'>
         <FaIcons.FaMedal style={{ width: "20px", height: "20px" }} />
       </NavItem>
     </SidebarContainer>

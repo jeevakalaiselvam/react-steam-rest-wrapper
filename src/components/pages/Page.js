@@ -12,6 +12,11 @@ const MainContainer = styled.div`
 const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+  width: 100vw;
+  align-items: center;
+  padding: 0.5rem;
+  justify-content: flex-start;
 `;
 
 export default function Page(props) {
@@ -36,7 +41,7 @@ export default function Page(props) {
           sidebarOpen={sidebarOpen}
           sidebarItemClicked={sidebarItemClicked}
         />
-        {props.children}
+        <ContentContainer>{props.children}</ContentContainer>
       </MainContainer>
     </>
   );

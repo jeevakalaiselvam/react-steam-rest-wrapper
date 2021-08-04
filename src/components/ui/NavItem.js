@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import BlackToolTip from "./BlackToolTip";
 
 const ItemContainer = styled(Link)`
   display: flex;
@@ -29,10 +30,12 @@ const Title = styled.div`
 export default function NavItem(props) {
   return (
     <>
-      <ItemContainer to={`${props.navigate}`}>
-        <Icon>{props.children}</Icon>
-        <Title>{props.title}</Title>
-      </ItemContainer>
+      <BlackToolTip title={props.desc}>
+        <ItemContainer to={`${props.navigate}`}>
+          <Icon>{props.children}</Icon>
+          <Title>{props.title}</Title>
+        </ItemContainer>
+      </BlackToolTip>
     </>
   );
 }
