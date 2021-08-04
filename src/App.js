@@ -11,7 +11,6 @@ import { GamesContext } from "./context/GameContext";
 
 export default function App() {
   const [games] = useContext(GamesContext);
-  console.log("GAMES IN APP CONTEXT ->", games);
 
   return (
     <Router>
