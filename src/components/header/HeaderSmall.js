@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import { Button } from "@material-ui/core";
+import * as FaIcons from "react-icons/fa";
+import NavItem from "../NavItem";
 
 const Container = styled.div``;
 
 export default function HeaderSmall(props) {
   const NavButton = styled.button`
-    background-color: red;
     border: none;
     z-index: 1000;
 
@@ -17,7 +18,9 @@ export default function HeaderSmall(props) {
 
   return (
     <Container>
-      <NavButton onClick={props.showOrHideNav}>Home</NavButton>
+      <NavButton onClick={props.showOrHideNav}>
+        <FaIcons.FaBars />
+      </NavButton>
     </Container>
   );
 }

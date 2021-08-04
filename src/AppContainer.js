@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import HeaderLarge from "./components/header/HeaderLarge";
 import HeaderSmall from "./components/header/HeaderSmall";
+import NavItem from "./components/NavItem";
+import * as FaIcons from "react-icons/fa";
 
 const HeaderSmallContainer = styled.div`
   @media (max-width: 768px) {
@@ -67,7 +69,11 @@ export default function AppContainer() {
         <HeaderLarge />
       </HeaderLargeContainer>
       <MainContainer>
-        <SidebarContainer sidebar={sidebar}>Sidebar</SidebarContainer>
+        <SidebarContainer sidebar={sidebar}>
+          <NavItem title='All Games'>
+            <FaIcons.FaGamepad />
+          </NavItem>
+        </SidebarContainer>
         <ContentContainer>Content</ContentContainer>
       </MainContainer>
     </>
