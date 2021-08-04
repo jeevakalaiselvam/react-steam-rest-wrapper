@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const userSlice = createSlice({
   name: "user",
   initialState: {
-    games: {},
+    games: [],
   },
   reducers: {
     addGames: (state, action) => {
@@ -13,6 +13,6 @@ export const userSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { getGames } = userSlice.actions;
+export const { addGames } = userSlice.actions;
 
 export default userSlice.reducer;
