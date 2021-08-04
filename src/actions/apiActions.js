@@ -1,12 +1,14 @@
 import axios from "axios";
 
-export const getAllGamesFromAPI = async () => {
+export const getAllGamesFromAPI = async (cache = true) => {
   let games = [];
-  if (localStorage.getItem("gameData")) {
-    games = JSON.parse(localStorage.getItem("gameData")).games;
+  if (localStorage.getItem("gameData") && cache) {
+    games = JSON.parse(localStorage.getItem("gameData"));
     console.log("GAMES FROM LOCAL STORAGE -> ", games);
   } else {
-    games = (await axios.get(process.env.REACT_APP_API_ALL_GAMES)).games;
+    games = await (
+      await axios.get(process.env.REACT_APP_API_ALL_GAMES)
+    ).data.games;
     console.log("GAMES FROM API -> ", games);
     localStorage.setItem("gameData", JSON.stringify(games));
   }
