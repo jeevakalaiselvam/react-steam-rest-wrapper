@@ -23,13 +23,10 @@ export default function Page(props) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const toggleNav = () => {
-    sidebarOpen && console.log("NAV CLOSED");
-    !sidebarOpen && console.log("NAV OPENED");
     setSidebarOpen((oldSidebar) => !oldSidebar);
   };
 
   const sidebarItemClicked = () => {
-    console.log("NAV ITEM CLICKED");
     setSidebarOpen((oldSidebar) => false);
   };
 

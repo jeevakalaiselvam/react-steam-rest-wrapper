@@ -9,15 +9,19 @@ import Games from "./pages/Games";
 import GamesBacklog from "./pages/GamesBacklog";
 import { useDispatch } from "react-redux";
 import { addGames } from "./slice/userSlice";
+import axios from "axios";
+import { getAllGamesFromAPI } from "./actions/apiActions";
 
 export default function App() {
-  const dispatch = useDispatch();
-
   //Load all games and add it into state
   useEffect(() => {
-    console.log("FIRST TIME");
-    const games = [{ name: "Horizon Zero Dawn" }];
-    dispatch(addGames(games));
+    const fetchGamesfromAPI = async () => {
+      console.log("EFFECT IN APP COMPONENT GETTING GAMES");
+      console.log(process.env.REACT_APP_API_ALL_GAMES);
+      let games = [];
+      games = await getAllGamesFromAPI();
+    };
+    fetchGamesfromAPI();
   }, []);
 
   return (
