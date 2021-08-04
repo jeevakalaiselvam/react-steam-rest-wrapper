@@ -14,19 +14,19 @@ const ContentContainer = styled.div`
   flex-direction: column;
 `;
 
-export default function Games() {
-  const [sidebar, setSidebar] = useState(false);
+export default function Homepage() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const toggleNav = () => {
     console.log("NAV TOGGLE");
-    setSidebar((oldSidebar) => !oldSidebar);
+    setSidebarOpen((oldSidebar) => !oldSidebar);
   };
 
   return (
     <>
       <Header toggleNav={toggleNav} />
       <MainContainer onClick={toggleNav}>
-        <Sidebar sidebar={sidebar} />
+        <Sidebar sidebarOpen={sidebarOpen} />
         <ContentContainer>Games</ContentContainer>
       </MainContainer>
     </>

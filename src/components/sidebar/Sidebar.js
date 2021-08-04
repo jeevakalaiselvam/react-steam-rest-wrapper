@@ -26,10 +26,19 @@ const SidebarContainer = styled.div`
 
 export default function Sidebar(props) {
   return (
-    <SidebarContainer sidebarOpen={props.sidebarOpen}>
+    <SidebarContainer
+      sidebarOpen={props.sidebarOpen}
+      onClick={props.sidebarItemClicked}
+    >
+      <NavItem title='Overview'>
+        <FaIcons.FaSteamSquare
+          style={{ width: "20px", height: "20px" }}
+          navigate='/'
+        />
+      </NavItem>
       <NavItem title='Games'>
         <FaIcons.FaGamepad
-          style={{ width: "20px", height: "20pxs" }}
+          style={{ width: "20px", height: "20px" }}
           navigate='/games'
         />
       </NavItem>

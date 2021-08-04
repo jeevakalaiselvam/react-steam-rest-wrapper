@@ -40,7 +40,7 @@ export default function HeaderSmall(props) {
   const [open, setOpen] = useState(false);
 
   const toggleNav = () => {
-    setOpen((oldState) => !open);
+    setOpen((old) => !open);
     props.toggleNav();
   };
 
@@ -48,10 +48,10 @@ export default function HeaderSmall(props) {
     <Container>
       <NavButton onClick={toggleNav}>
         <Icon>
-          {!open && (
+          {!props.sidebarOpen && (
             <FaIcons.FaBars style={{ width: "25px", height: "25px" }} />
           )}
-          {open && (
+          {props.sidebarOpen && (
             <FaIcons.FaTimes style={{ width: "25px", height: "25px" }} />
           )}
         </Icon>

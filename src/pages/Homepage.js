@@ -18,15 +18,24 @@ export default function Homepage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const toggleNav = () => {
-    console.log("NAV TOGGLE");
+    sidebarOpen && console.log("NAV CLOSED");
+    !sidebarOpen && console.log("NAV OPENED");
     setSidebarOpen((oldSidebar) => !oldSidebar);
+  };
+
+  const sidebarItemClicked = () => {
+    console.log("NAV ITEM CLICKED");
+    setSidebarOpen((oldSidebar) => false);
   };
 
   return (
     <>
-      <Header toggleNav={toggleNav} />
-      <MainContainer onClick={toggleNav}>
-        <Sidebar sidebarOpen={sidebarOpen} />
+      <Header toggleNav={toggleNav} sidebarOpen={sidebarOpen} />
+      <MainContainer>
+        <Sidebar
+          sidebarOpen={sidebarOpen}
+          sidebarItemClicked={sidebarItemClicked}
+        />
         <ContentContainer>Homepage</ContentContainer>
       </MainContainer>
     </>
