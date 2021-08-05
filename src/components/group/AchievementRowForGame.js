@@ -4,15 +4,6 @@ import { getRecentAchievementsForGame } from "../../actions/achievementActions";
 import AchievementIconSmall from "../base/AchievementIconSmall";
 import styled from "styled-components";
 
-const SetContainer = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  height: 100%;
-  overflow: hidden;
-  flex-direction: column;
-`;
-
 const Container = styled.div`
   width: 100%;
   padding: 0.5rem 0;

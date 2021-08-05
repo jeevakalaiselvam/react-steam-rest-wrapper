@@ -2,7 +2,6 @@ import React from "react";
 import HeaderLarge from "./HeaderLarge";
 import HeaderSmall from "./HeaderSmall";
 import styled from "styled-components";
-import * as FaIcons from "react-icons/fa";
 
 const HeaderSmallContainer = styled.div`
   @media (max-width: 768px) {

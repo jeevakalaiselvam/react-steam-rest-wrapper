@@ -1,14 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
-import * as FaIcons from "react-icons/fa";
 import Page from "../components/pages/Page";
 import TotalAchievementsCard from "../components/toolkit/TotalAchievementsCard";
 import TotalGamesCard from "../components/toolkit/TotalGamesCard";
 import Card from "../components/core/Card";
 import TotalPerfectGamesCard from "../components/toolkit/TotalPerfectGamesCard";
+import { GamesContext } from "../context/GameContext";
 import RecentlyPlayedGame from "../components/toolkit/RecentlyPlayedGame";
 import { getRecentlyPlayedGame } from "../actions/achievementActions";
-import { GamesContext } from "../context/GameContext";
 
 const PageContainer = styled.div`
   width: 100%;
@@ -54,6 +53,7 @@ const CardContainer = styled.div`
 
 export default function Overview() {
   const [games] = useContext(GamesContext);
+
   return (
     <>
       <Page title='Overview'>
@@ -74,11 +74,11 @@ export default function Overview() {
               <TotalGamesCard />
             </Card>
           </CardContainer>
-          {/* <CardContainer>
+          <CardContainer>
             <Card>
               <RecentlyPlayedGame game={getRecentlyPlayedGame(games)} />
             </Card>
-          </CardContainer> */}
+          </CardContainer>
         </PageContainer>
       </Page>
     </>

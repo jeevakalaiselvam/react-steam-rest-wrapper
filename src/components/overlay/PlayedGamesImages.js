@@ -1,12 +1,7 @@
 import React, { useContext } from "react";
-import AchievementIconSmall from "../base/AchievementIconSmall";
 import styled from "styled-components";
 import { GamesContext } from "../../context/GameContext";
-import {
-  getNPlayedGames,
-  getRandomNUnlockedAchievements,
-  getRecentlyUnlockedAllAchievements,
-} from "../../actions/achievementActions";
+import { getNPlayedGames } from "../../actions/achievementActions";
 import GameIconSmall from "../base/GameIconSmall";
 import { v4 as uuidv4 } from "uuid";
 

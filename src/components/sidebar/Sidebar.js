@@ -1,10 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import * as FaIcons from "react-icons/fa";
+import {
+  FaGamepad,
+  FaTrophy,
+  FaBookOpen,
+  FaMedal,
+  FaFolderOpen,
+} from "react-icons/fa";
 import NavItem from "../ui/NavItem";
-import BlackToolTip from "../ui/BlackToolTip";
 import { HiHome } from "react-icons/hi";
-import { IoGameController } from "react-icons/io5";
 
 const SidebarContainer = styled.div`
   display: flex;
@@ -40,24 +44,24 @@ export default function Sidebar(props) {
       </NavItem>
 
       <NavItem title='Owned Games' desc='All your Games' navigate='/games'>
-        <FaIcons.FaGamepad style={{ width: "20px", height: "20px" }} />
+        <FaGamepad style={{ width: "20px", height: "20px" }} />
       </NavItem>
       <NavItem
         title='Achievements'
         desc='All your Achievements'
         navigate='/achievements'
       >
-        <FaIcons.FaTrophy style={{ width: "20px", height: "20px" }} />
+        <FaTrophy style={{ width: "20px", height: "20px" }} />
       </NavItem>
       <NavItem
         title='History'
         desc='Your Achievement History'
         navigate='/history'
       >
-        <FaIcons.FaBookOpen style={{ width: "20px", height: "20px" }} />
+        <FaBookOpen style={{ width: "20px", height: "20px" }} />
       </NavItem>
       <NavItem title='Milestones' desc='Your Milestones' navigate='/milestones'>
-        <FaIcons.FaMedal style={{ width: "20px", height: "20px" }} />
+        <FaMedal style={{ width: "20px", height: "20px" }} />
       </NavItem>
 
       <NavItem
@@ -65,7 +69,7 @@ export default function Sidebar(props) {
         desc='Your Games Backlog'
         navigate='/gamesbacklog'
       >
-        <FaIcons.FaFolderOpen style={{ width: "20px", height: "20px" }} />
+        <FaFolderOpen style={{ width: "20px", height: "20px" }} />
       </NavItem>
     </SidebarContainer>
   );

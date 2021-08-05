@@ -147,6 +147,7 @@ export const getRecentlyPlayedGame = (games) => {
     if (game.id === lastUnlockedAchievement.game_id) {
       return true;
     }
+    return false;
   });
 
   return recentGame;

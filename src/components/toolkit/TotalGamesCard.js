@@ -1,5 +1,4 @@
 import { React } from "react";
-import PlayedGamesImages from "../overlay/PlayedGamesImages";
 import ImageOverlayCard from "../core/ImageOverlayCard";
 import AllGamesCountTextBig from "../group/AllGamesCountTextBig";
 import AllGamesImages from "../overlay/AllGamesImages";

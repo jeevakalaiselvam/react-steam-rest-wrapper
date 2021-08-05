@@ -1,10 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import * as FaIcons from "react-icons/fa";
-import {
-  getAllPerfectedGames,
-  getAllUnlockedAchievements,
-} from "../../actions/achievementActions";
+import { FaMedal } from "react-icons/fa";
+import { getAllPerfectedGames } from "../../actions/achievementActions";
 import { GamesContext } from "../../context/GameContext";
 
 const IconAndData = styled.div`
@@ -41,7 +38,7 @@ export default function PerfectGamesTextBig() {
     <>
       <IconAndData>
         <Icon>
-          <FaIcons.FaMedal style={{ width: "50px", height: "50px" }} />
+          <FaMedal style={{ width: "50px", height: "50px" }} />
         </Icon>
         <Count>{getAllPerfectedGames(games).length}</Count>
       </IconAndData>

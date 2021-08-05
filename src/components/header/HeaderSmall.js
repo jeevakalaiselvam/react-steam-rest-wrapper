@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import * as FaIcons from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 const Container = styled.div`
   width: 100%;
@@ -53,10 +52,10 @@ export default function HeaderSmall(props) {
       <NavButton onClick={toggleNav}>
         <Icon>
           {!props.sidebarOpen && (
-            <FaIcons.FaBars style={{ width: "25px", height: "25px" }} />
+            <FaBars style={{ width: "25px", height: "25px" }} />
           )}
           {props.sidebarOpen && (
-            <FaIcons.FaTimes style={{ width: "25px", height: "25px" }} />
+            <FaTimes style={{ width: "25px", height: "25px" }} />
           )}
         </Icon>
       </NavButton>
@@ -64,10 +63,10 @@ export default function HeaderSmall(props) {
       <NavButton onClick={toggleNav} style={{ visibility: "hidden" }}>
         <Icon>
           {!props.sidebarOpen && (
-            <FaIcons.FaBars style={{ width: "25px", height: "25px" }} />
+            <FaBars style={{ width: "25px", height: "25px" }} />
           )}
           {props.sidebarOpen && (
-            <FaIcons.FaTimes style={{ width: "25px", height: "25px" }} />
+            <FaTimes style={{ width: "25px", height: "25px" }} />
           )}
         </Icon>
       </NavButton>

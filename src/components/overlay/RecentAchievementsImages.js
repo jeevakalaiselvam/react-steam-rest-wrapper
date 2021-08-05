@@ -2,10 +2,7 @@ import React, { useContext } from "react";
 import AchievementIconSmall from "../base/AchievementIconSmall";
 import styled from "styled-components";
 import { GamesContext } from "../../context/GameContext";
-import {
-  getRandomNUnlockedAchievements,
-  getRecentlyUnlockedAllAchievements,
-} from "../../actions/achievementActions";
+import { getRandomNUnlockedAchievements } from "../../actions/achievementActions";
 import { v4 as uuidv4 } from "uuid";
 
 const SetContainer = styled.div`

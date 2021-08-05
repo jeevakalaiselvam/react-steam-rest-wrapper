@@ -1,8 +1,5 @@
-import { React, useContext, useRef } from "react";
-import { GamesContext } from "../../context/GameContext";
+import { React } from "react";
 import styled from "styled-components";
-import * as FaIcons from "react-icons/fa";
-import RecentAchievementsImages from "../overlay/RecentAchievementsImages";
 
 const Overlay = styled.div`
   position: relative;

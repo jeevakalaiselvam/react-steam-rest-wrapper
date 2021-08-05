@@ -1,14 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import * as FaIcons from "react-icons/fa";
-import {
-  getAllUnlockedAchievements,
-  getCompletionAverage,
-  getCompletionAveragePercentageData,
-} from "../../actions/achievementActions";
+import { FaGamepad } from "react-icons/fa";
 import { GamesContext } from "../../context/GameContext";
-
-import { IoGameController } from "react-icons/io5";
 
 const IconAndData = styled.div`
   display: flex;
@@ -42,7 +35,7 @@ export default function AllGamesCountTextBig() {
     <>
       <IconAndData>
         <Icon>
-          <FaIcons.FaGamepad style={{ width: "60px", height: "60px" }} />
+          <FaGamepad style={{ width: "60px", height: "60px" }} />
         </Icon>
         <Count>{games.length}</Count>
       </IconAndData>

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import * as FaIcons from "react-icons/fa";
+import { FaTrophy } from "react-icons/fa";
 import { getAllUnlockedAchievements } from "../../actions/achievementActions";
 import { GamesContext } from "../../context/GameContext";
 
@@ -36,7 +36,7 @@ export default function AchievementsCountTextBig() {
     <>
       <IconAndData>
         <Icon>
-          <FaIcons.FaTrophy style={{ width: "60px", height: "60px" }} />
+          <FaTrophy style={{ width: "60px", height: "60px" }} />
         </Icon>
         <Count>{getAllUnlockedAchievements(games).length}</Count>
       </IconAndData>

@@ -1,8 +1,6 @@
-import { createContext } from "react";
-import { useState, useEffect } from "react";
-import { getAllGamesFromAPI } from "../actions/apiActions";
+import React from "react";
 
-export const GamesContext = createContext([
+export const GamesContext = React.createContext([
   {
     name: "Jeeva Game Test",
   },
