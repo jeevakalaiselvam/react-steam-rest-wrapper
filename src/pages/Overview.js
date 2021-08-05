@@ -56,14 +56,15 @@ export default function Overview() {
         <PageContainer>
           <CardContainer>
             <Card>
-              <TotalAchievementsCard />
+              <AverageCompletionRateCard />
             </Card>
           </CardContainer>
           <CardContainer>
             <Card>
-              <AverageCompletionRateCard />
+              <TotalAchievementsCard />
             </Card>
           </CardContainer>
+
           <CardContainer>
             <Card>
               <TotalPerfectGamesCard />
