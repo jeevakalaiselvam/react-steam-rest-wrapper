@@ -15,7 +15,7 @@ const SidebarContainer = styled.div`
   flex-direction: column;
   position: fixed;
   top: 60px;
-  left: ${({ sidebarOpen }) => (sidebarOpen ? "0" : "-100%")};
+  right: ${({ sidebarOpenRight }) => (sidebarOpenRight ? "0" : "-100%")};
   transition: all 0.2s;
   width: 200px;
   min-height: 100vh;
@@ -33,10 +33,10 @@ const SidebarContainer = styled.div`
   }
 `;
 
-export default function Sidebar(props) {
+export default function SidebarRight(props) {
   return (
     <SidebarContainer
-      sidebarOpen={props.sidebarOpen}
+      sidebarOpenRight={props.sidebarOpenRight}
       onClick={props.sidebarItemClicked}
     >
       <NavItem title='Overview' desc='Profile overview' navigate='/'>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes, FaEllipsisV } from "react-icons/fa";
 
 const Container = styled.div`
   width: 100%;
@@ -45,32 +45,38 @@ const Title = styled.h1`
 `;
 
 export default function HeaderSmall(props) {
-  const [open, setOpen] = useState(false);
+  const [openLeft, setOpenLeft] = useState(false);
+  const [openRight, setOpenRight] = useState(false);
 
-  const toggleNav = () => {
-    setOpen((old) => !open);
-    props.toggleNav();
+  const toggleNavLeft = () => {
+    setOpenLeft((old) => !openLeft);
+    props.toggleNavLeft();
+  };
+
+  const toggleNavRight = () => {
+    setOpenRight((old) => !openRight);
+    props.toggleNavRight();
   };
 
   return (
     <Container>
-      <NavButton onClick={toggleNav}>
+      <NavButton onClick={toggleNavLeft}>
         <Icon>
-          {!props.sidebarOpen && (
+          {!props.sidebarOpenLeft && (
             <FaBars style={{ width: "25px", height: "25px" }} />
           )}
-          {props.sidebarOpen && (
+          {props.sidebarOpenLeft && (
             <FaTimes style={{ width: "25px", height: "25px" }} />
           )}
         </Icon>
       </NavButton>
       <Title>{props.title}</Title>
-      <NavButton onClick={toggleNav} style={{ visibility: "hidden" }}>
+      <NavButton onClick={toggleNavRight}>
         <Icon>
-          {!props.sidebarOpen && (
-            <FaBars style={{ width: "25px", height: "25px" }} />
+          {!props.sidebarOpenRight && (
+            <FaEllipsisV style={{ width: "23px", height: "23px" }} />
           )}
-          {props.sidebarOpen && (
+          {props.sidebarOpenRight && (
             <FaTimes style={{ width: "25px", height: "25px" }} />
           )}
         </Icon>

@@ -22,8 +22,10 @@ export default function Header(props) {
     <>
       <HeaderSmallContainer>
         <HeaderSmall
-          toggleNav={props.toggleNav}
-          sidebarOpen={props.sidebarOpen}
+          toggleNavLeft={props.toggleNavLeft}
+          sidebarOpenLeft={props.sidebarOpenLeft}
+          toggleNavRight={props.toggleNavRight}
+          sidebarOpenRight={props.sidebarOpenRight}
           title={props.title}
         />
       </HeaderSmallContainer>
