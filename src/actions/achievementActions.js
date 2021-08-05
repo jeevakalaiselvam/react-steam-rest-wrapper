@@ -54,3 +54,24 @@ export const getAllUnlockedAchievements = (games) => {
 
   return allUnlockedAchievements;
 };
+
+export const getAllPlayedGames = (games) => {
+  let allPlayedGames = [];
+
+  games.forEach((game) => {
+    if (game.playtime_minutes > 0) allPlayedGames.push(game);
+  });
+
+  return allPlayedGames;
+};
+
+export const getNPlayedGames = (games, n) => {
+  let randomNPlayedGames = [];
+  const allPlayedGames = getAllPlayedGames(games);
+  for (let i = 0; i <= n; i++) {
+    const randomPlayedGame =
+      allPlayedGames[Math.floor(Math.random() * allPlayedGames.length)];
+    randomNPlayedGames.push(randomPlayedGame);
+  }
+  return randomNPlayedGames;
+};

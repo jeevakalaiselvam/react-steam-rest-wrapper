@@ -15,7 +15,7 @@ const OverlayImage = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  opacity: 0.07;
+  opacity: 0.1;
   z-index: 0;
   width: 100%;
   height: 100%;
@@ -33,6 +33,7 @@ const Inner = styled.div`
 const IconAndData = styled.div`
   display: flex;
   flex-direction: row;
+  z-index: 100;
   align-items: center;
   padding: 1rem;
   justify-content: center;
@@ -40,6 +41,7 @@ const IconAndData = styled.div`
 
 const Icon = styled.div`
   color: rgb(85, 174, 206);
+  z-index: 100;
 `;
 
 const Count = styled.h1`
