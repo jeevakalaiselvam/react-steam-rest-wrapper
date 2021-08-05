@@ -1,78 +1,15 @@
 import { React, useContext, useRef } from "react";
-import { GamesContext } from "../../context/GameContext";
+import GamesContext from "../../context/GameContext";
 import styled from "styled-components";
 import * as FaIcons from "react-icons/fa";
-import RecentAchievementsCard from "../fancy/RecentAchievementsCard";
-import PlayedGamesCard from "../fancy/PlayedGamesCard";
-
-const Overlay = styled.div`
-  position: relative;
-  width: 100%;
-  z-index: 0;
-  height: 100%;
-`;
-
-const OverlayImage = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0.1;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-`;
-
-const Inner = styled.div`
-  display: flex;
-  padding: 1rem;
-  flex-direction: column;
-  align-items: center;
-  z-index: 100;
-  justify-content: center;
-`;
-
-const IconAndData = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 1rem;
-  z-index: 100;
-  justify-content: center;
-`;
-
-const Icon = styled.div`
-  z-index: 100;
-  color: rgb(85, 174, 206);
-`;
-
-const Count = styled.h1`
-  margin-left: 10px;
-  color: rgb(85, 174, 206);
-  text-shadow: rgba(10, 17, 25, 0.45) 2px 2px 2px;
-  font-size: 3rem;
-  transform: translateY(4%);
-`;
-const Title = styled.h4`
-  font-size: 1rem;
-`;
+import PlayedGamesImages from "../fancy/PlayedGamesImages";
+import ImageOverlayCard from "../core/ImageOverlayCard";
+import AchievementsCountTextBig from "../group/AchievementsCountTextBig";
+import RecentAchievementsImages from "../fancy/RecentAchievementsImages";
 
 export default function TotalAchievementsCard() {
-  const [games] = useContext(GamesContext);
+  const image = <RecentAchievementsImages />;
+  const content = <AchievementsCountTextBig />;
 
-  return (
-    <Overlay>
-      <OverlayImage>
-        <PlayedGamesCard />
-      </OverlayImage>
-      <Inner>
-        <IconAndData>
-          <Icon>
-            <FaIcons.FaTrophy style={{ width: "60px", height: "60px" }} />
-          </Icon>
-          <Count>{games.length}</Count>
-        </IconAndData>
-        <Title>Average Completion</Title>
-      </Inner>
-    </Overlay>
-  );
+  return <ImageOverlayCard image={image} content={content} />;
 }
