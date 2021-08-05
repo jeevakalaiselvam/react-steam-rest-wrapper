@@ -16,6 +16,10 @@ const ContentContainer = styled.div`
   align-items: center;
   padding: 0.5rem;
   justify-content: flex-start;
+
+  @media (max-width: 769px) {
+    margin-top: 60px;
+  }
 `;
 
 export default function Page(props) {

@@ -14,7 +14,7 @@ const SidebarContainer = styled.div`
   display: flex;
   flex-direction: column;
   position: fixed;
-  top: 30px;
+  top: 60px;
   left: ${({ sidebarOpen }) => (sidebarOpen ? "0" : "-100%")};
   transition: all 0.2s;
   width: 200px;

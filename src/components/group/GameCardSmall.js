@@ -71,7 +71,7 @@ const Name = styled.div`
   overflow: hidden;
   top: 0;
   left: 0;
-  font-size: 0.75rem;
+  font-size: 0.85rem;
 `;
 
 const AchievementData = styled.div`

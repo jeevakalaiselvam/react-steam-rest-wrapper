@@ -30,6 +30,16 @@ const PageContainer = styled.div`
 
 const CardContainer = styled.div`
   margin: 8px;
+  cursor: pointer;
+  border-top: 1px solid rgb(10, 17, 25);
+  border-left: 1px solid rgb(10, 17, 25);
+  color: rgb(198, 205, 211);
+  text-shadow: rgba(10, 17, 25, 0.45) 1px 1px 1px;
+  background-image: linear-gradient(
+    rgba(10, 17, 25, 0.14) 0px,
+    rgba(10, 17, 25, 0)
+  );
+  box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 22px -2px;
 
   @media only screen and (min-width: 1201px) {
     width: 30%;
