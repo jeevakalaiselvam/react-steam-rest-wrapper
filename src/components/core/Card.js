@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 const CardContainer = styled.div`
-  padding: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
