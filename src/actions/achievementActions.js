@@ -137,6 +137,26 @@ export const getCompletionAveragePercentageData = (games) => {
     0
   );
   const averagePercentage =
-    totalPercentage / getCompletionAveragePercentages.length;
+    totalPercentage / getCompletionAveragePercentages(games).length;
   return averagePercentage;
+};
+
+export const getRecentlyPlayedGame = (games) => {
+  const lastUnlockedAchievement = getRecentlyUnlockedAllAchievements(games)[0];
+  const recentGame = games.find((game) => {
+    if (game.id === lastUnlockedAchievement.game_id) {
+      return true;
+    }
+  });
+
+  return recentGame;
+};
+
+export const getRecentAchievementsForGame = (game) => {
+  const recentlyUnlockedAchievements = game.all_achievements.sort(
+    (ach1, ach2) => {
+      return ach1.unlocked_time - ach2.unlocked_time;
+    }
+  );
+  return recentlyUnlockedAchievements;
 };

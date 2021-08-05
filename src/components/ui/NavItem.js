@@ -25,7 +25,7 @@ const Title = styled.div`
   padding-left: 1rem;
   font-size: 0.9rem;
   justify-self: baseline;
-  transform: translate(0, 10%);
+  transform: translate(0, 5%);
 
   cursor: pointer;
 `;

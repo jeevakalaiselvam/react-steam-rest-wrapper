@@ -32,28 +32,28 @@ export default function RecentAchievementsCard(props) {
   return (
     <SetContainer>
       <Container>
-        {getRandomNUnlockedAchievements(games, 30).map((achievement) => {
+        {getRandomNUnlockedAchievements(games, 15).map((achievement) => {
           return (
             <AchievementIconSmall image={achievement.icon} key={uuidv4()} />
           );
         })}
       </Container>
       <Container>
-        {getRandomNUnlockedAchievements(games, 30).map((achievement) => {
+        {getRandomNUnlockedAchievements(games, 15).map((achievement) => {
           return (
             <AchievementIconSmall image={achievement.icon} key={uuidv4()} />
           );
         })}
       </Container>
       <Container>
-        {getRandomNUnlockedAchievements(games, 30).map((achievement) => {
+        {getRandomNUnlockedAchievements(games, 15).map((achievement) => {
           return (
             <AchievementIconSmall image={achievement.icon} key={uuidv4()} />
           );
         })}
       </Container>
       <Container>
-        {getRandomNUnlockedAchievements(games, 30).map((achievement) => {
+        {getRandomNUnlockedAchievements(games, 15).map((achievement) => {
           return (
             <AchievementIconSmall image={achievement.icon} key={uuidv4()} />
           );

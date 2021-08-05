@@ -3,7 +3,9 @@ import styled from "styled-components";
 
 const CardContainer = styled.div`
   display: flex;
+  height: 170px;
   align-items: center;
+  overflow: hidden;
   justify-content: center;
 
   color: rgb(198, 205, 211);

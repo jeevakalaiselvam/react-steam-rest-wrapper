@@ -23,37 +23,18 @@ const SetContainer = styled.div`
 const Container = styled.div`
   width: 100%;
   display: flex;
+  height: 100%;
   align-items: center;
   justify-content: center;
   flex-direction: row;
   overflow: hidden;
+  background-image: url("${(props) => props.image}");
 `;
 
-export default function AllGamesImages(props) {
-  const [games] = useContext(GamesContext);
-
+export default function GameImage(props) {
   return (
     <SetContainer>
-      <Container>
-        {getNAllGames(games, 4).map((game) => {
-          return <GameIconSmall image={game.image} key={uuidv4()} />;
-        })}
-      </Container>
-      <Container>
-        {getNAllGames(games, 4).map((game) => {
-          return <GameIconSmall image={game.image} key={uuidv4()} />;
-        })}
-      </Container>
-      <Container>
-        {getNAllGames(games, 4).map((game) => {
-          return <GameIconSmall image={game.image} key={uuidv4()} />;
-        })}
-      </Container>
-      <Container>
-        {getNAllGames(games, 4).map((game) => {
-          return <GameIconSmall image={game.image} key={uuidv4()} />;
-        })}
-      </Container>
+      <Container image={props.game.image}></Container>
     </SetContainer>
   );
 }

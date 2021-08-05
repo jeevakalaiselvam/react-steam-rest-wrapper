@@ -36,22 +36,22 @@ export default function PerfectedGamesImages(props) {
   return (
     <SetContainer>
       <Container>
-        {getNPerfectedGames(games, 10).map((game) => {
+        {getNPerfectedGames(games, 3).map((game) => {
           return <GameIconSmall image={game.image} key={uuidv4()} />;
         })}
       </Container>
       <Container>
-        {getNPerfectedGames(games, 10).map((game) => {
+        {getNPerfectedGames(games, 3).map((game) => {
           return <GameIconSmall image={game.image} key={uuidv4()} />;
         })}
       </Container>
       <Container>
-        {getNPerfectedGames(games, 10).map((game) => {
+        {getNPerfectedGames(games, 3).map((game) => {
           return <GameIconSmall image={game.image} key={uuidv4()} />;
         })}
       </Container>
       <Container>
-        {getNPerfectedGames(games, 10).map((game) => {
+        {getNPerfectedGames(games, 3).map((game) => {
           return <GameIconSmall image={game.image} key={uuidv4()} />;
         })}
       </Container>

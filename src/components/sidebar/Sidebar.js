@@ -3,6 +3,8 @@ import styled from "styled-components";
 import * as FaIcons from "react-icons/fa";
 import NavItem from "../ui/NavItem";
 import BlackToolTip from "../ui/BlackToolTip";
+import { HiHome } from "react-icons/hi";
+import { IoGameController } from "react-icons/io5";
 
 const SidebarContainer = styled.div`
   display: flex;
@@ -34,10 +36,10 @@ export default function Sidebar(props) {
       onClick={props.sidebarItemClicked}
     >
       <NavItem title='Overview' desc='Profile overview' navigate='/'>
-        <FaIcons.FaSteamSquare style={{ width: "20px", height: "20px" }} />
+        <HiHome style={{ width: "20px", height: "20px" }} />
       </NavItem>
 
-      <NavItem title='Games' desc='All your Games' navigate='/games'>
+      <NavItem title='Owned Games' desc='All your Games' navigate='/games'>
         <FaIcons.FaGamepad style={{ width: "20px", height: "20px" }} />
       </NavItem>
       <NavItem

@@ -34,22 +34,22 @@ export default function PlayedGamesCard(props) {
   return (
     <SetContainer>
       <Container>
-        {getNPlayedGames(games, 10).map((game) => {
+        {getNPlayedGames(games, 3).map((game) => {
           return <GameIconSmall image={game.image} key={uuidv4()} />;
         })}
       </Container>
       <Container>
-        {getNPlayedGames(games, 10).map((game) => {
+        {getNPlayedGames(games, 3).map((game) => {
           return <GameIconSmall image={game.image} key={uuidv4()} />;
         })}
       </Container>
       <Container>
-        {getNPlayedGames(games, 10).map((game) => {
+        {getNPlayedGames(games, 3).map((game) => {
           return <GameIconSmall image={game.image} key={uuidv4()} />;
         })}
       </Container>
       <Container>
-        {getNPlayedGames(games, 10).map((game) => {
+        {getNPlayedGames(games, 3).map((game) => {
           return <GameIconSmall image={game.image} key={uuidv4()} />;
         })}
       </Container>
