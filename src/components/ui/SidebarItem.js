@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import BlackToolTip from "./BlackToolTip";
 
-const ItemContainer = styled(Link)`
+const ItemContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -21,6 +21,7 @@ const ItemContainer = styled(Link)`
 const Icon = styled.div`
   cursor: pointer;
 `;
+
 const Title = styled.div`
   padding-left: 1rem;
   font-size: 0.9rem;
@@ -30,11 +31,11 @@ const Title = styled.div`
   cursor: pointer;
 `;
 
-export default function NavItem(props) {
+export default function SidebarItem(props) {
   return (
     <>
       {/* <BlackToolTip title={props.desc}> */}
-      <ItemContainer to={`${props.navigate}`}>
+      <ItemContainer onClick={props.sidebarItemClicked}>
         <Icon>{props.children}</Icon>
         <Title>{props.title}</Title>
       </ItemContainer>
