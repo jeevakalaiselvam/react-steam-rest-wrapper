@@ -4,6 +4,7 @@ import Page from "../components/pages/Page";
 import { GamesContext } from "../context/GameContext";
 import GameCardSmall from "../components/group/GameCardSmall";
 import Card from "../components/core/Card";
+import GamesPageRightMenu from "../menu/GamesPageRightMenu";
 
 const PageContainer = styled.div`
   width: 100%;
@@ -20,7 +21,11 @@ export default function Games() {
 
   return (
     <>
-      <Page title='All Games'>
+      <Page
+        title='All Games'
+        rightMenuItem={<GamesPageRightMenu />}
+        showRightMenu={true}
+      >
         <PageContainer>
           {games.slice(0, 50).map((game) => {
             return <GameCardSmall game={game} key={game.id} />;

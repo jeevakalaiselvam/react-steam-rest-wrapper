@@ -23,6 +23,7 @@ const SidebarContainer = styled.div`
   z-index: 10;
   text-shadow: rgba(10, 17, 25, 0.45);
   border-right-color: rgba(10, 17, 25, 0.6);
+  display: ${(props) => (props.showRightMenu ? "block" : "none")};
 
   @media (min-width: 769px) {
     width: 230px;
@@ -30,47 +31,19 @@ const SidebarContainer = styled.div`
     display: block;
     top: 0;
     left: 0;
+    display: ${(props) => (props.showRightMenu ? "block" : "none")};
   }
 `;
 
 export default function SidebarRight(props) {
+  console.log(props.showRightMenu);
   return (
     <SidebarContainer
       sidebarOpenRight={props.sidebarOpenRight}
       onClick={props.sidebarItemClicked}
+      showRightMenu={props.showRightMenu}
     >
-      <NavItem title='Overview' desc='Profile overview' navigate='/'>
-        <HiHome style={{ width: "20px", height: "20px" }} />
-      </NavItem>
-
-      <NavItem title='Owned Games' desc='All your Games' navigate='/games'>
-        <FaGamepad style={{ width: "20px", height: "20px" }} />
-      </NavItem>
-      <NavItem
-        title='Achievements'
-        desc='All your Achievements'
-        navigate='/achievements'
-      >
-        <FaTrophy style={{ width: "20px", height: "20px" }} />
-      </NavItem>
-      <NavItem
-        title='History'
-        desc='Your Achievement History'
-        navigate='/history'
-      >
-        <FaBookOpen style={{ width: "20px", height: "20px" }} />
-      </NavItem>
-      <NavItem title='Milestones' desc='Your Milestones' navigate='/milestones'>
-        <FaMedal style={{ width: "20px", height: "20px" }} />
-      </NavItem>
-
-      <NavItem
-        title='Games Backlog'
-        desc='Your Games Backlog'
-        navigate='/gamesbacklog'
-      >
-        <FaFolderOpen style={{ width: "20px", height: "20px" }} />
-      </NavItem>
+      {props.rightMenuItem}
     </SidebarContainer>
   );
 }

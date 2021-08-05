@@ -51,6 +51,7 @@ export default function Page(props) {
         toggleNavRight={toggleNavRight}
         sidebarOpenRight={sidebarOpenRight}
         title={props.title}
+        showRightMenu={props.showRightMenu}
       />
       <MainContainer>
         <SidebarLeft
@@ -62,6 +63,8 @@ export default function Page(props) {
         <SidebarRight
           sidebarOpenRight={sidebarOpenRight}
           sidebarItemClickedRight={sidebarItemClickedRight}
+          rightMenuItem={props.rightMenuItem}
+          showRightMenu={props.showRightMenu}
         />
       </MainContainer>
     </>

@@ -71,16 +71,18 @@ export default function HeaderSmall(props) {
         </Icon>
       </NavButton>
       <Title>{props.title}</Title>
-      <NavButton onClick={toggleNavRight}>
-        <Icon>
-          {!props.sidebarOpenRight && (
-            <FaEllipsisV style={{ width: "23px", height: "23px" }} />
-          )}
-          {props.sidebarOpenRight && (
-            <FaTimes style={{ width: "25px", height: "25px" }} />
-          )}
-        </Icon>
-      </NavButton>
+      {props.showRightMenu && (
+        <NavButton onClick={toggleNavRight}>
+          <Icon>
+            {!props.sidebarOpenRight && (
+              <FaEllipsisV style={{ width: "23px", height: "23px" }} />
+            )}
+            {props.sidebarOpenRight && (
+              <FaTimes style={{ width: "25px", height: "25px" }} />
+            )}
+          </Icon>
+        </NavButton>
+      )}
     </Container>
   );
 }

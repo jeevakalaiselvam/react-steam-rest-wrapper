@@ -27,6 +27,7 @@ export default function Header(props) {
           toggleNavRight={props.toggleNavRight}
           sidebarOpenRight={props.sidebarOpenRight}
           title={props.title}
+          showRightMenu={props.showRightMenu}
         />
       </HeaderSmallContainer>
       <HeaderLargeContainer>

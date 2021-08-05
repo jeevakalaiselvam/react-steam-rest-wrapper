@@ -61,7 +61,7 @@ const CardContainer = styled.div`
 export default function Overview() {
   return (
     <>
-      <Page title='Overview'>
+      <Page title='Overview' showRightMenu={true}>
         <PageContainer>
           <CardContainer>
             <TotalAchievementsCard />
