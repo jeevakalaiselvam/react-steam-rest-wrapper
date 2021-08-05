@@ -1,8 +1,5 @@
-import { React, useContext, useRef } from "react";
-import { GamesContext } from "../../context/GameContext";
-import styled from "styled-components";
-import * as FaIcons from "react-icons/fa";
-import RecentAchievementsImages from "../fancy/RecentAchievementsImages";
+import { React } from "react";
+import RecentAchievementsImages from "../overlay/RecentAchievementsImages";
 import AchievementsCountTextBig from "../group/AchievementsCountTextBig";
 import ImageOverlayCard from "../core/ImageOverlayCard";
 

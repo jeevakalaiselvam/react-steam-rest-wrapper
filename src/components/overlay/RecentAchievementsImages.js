@@ -6,6 +6,7 @@ import {
   getRandomNUnlockedAchievements,
   getRecentlyUnlockedAllAchievements,
 } from "../../actions/achievementActions";
+import { v4 as uuidv4 } from "uuid";
 
 const SetContainer = styled.div`
   width: 100%;
@@ -32,22 +33,30 @@ export default function RecentAchievementsCard(props) {
     <SetContainer>
       <Container>
         {getRandomNUnlockedAchievements(games, 30).map((achievement) => {
-          return <AchievementIconSmall image={achievement.icon} />;
+          return (
+            <AchievementIconSmall image={achievement.icon} key={uuidv4()} />
+          );
         })}
       </Container>
       <Container>
         {getRandomNUnlockedAchievements(games, 30).map((achievement) => {
-          return <AchievementIconSmall image={achievement.icon} />;
+          return (
+            <AchievementIconSmall image={achievement.icon} key={uuidv4()} />
+          );
         })}
       </Container>
       <Container>
         {getRandomNUnlockedAchievements(games, 30).map((achievement) => {
-          return <AchievementIconSmall image={achievement.icon} />;
+          return (
+            <AchievementIconSmall image={achievement.icon} key={uuidv4()} />
+          );
         })}
       </Container>
       <Container>
         {getRandomNUnlockedAchievements(games, 30).map((achievement) => {
-          return <AchievementIconSmall image={achievement.icon} />;
+          return (
+            <AchievementIconSmall image={achievement.icon} key={uuidv4()} />
+          );
         })}
       </Container>
     </SetContainer>

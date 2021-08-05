@@ -111,3 +111,32 @@ export const getAllPerfectedGames = (games) => {
 
   return perfectedGames;
 };
+
+export const getCompletionAveragePercentages = (games) => {
+  const allGamesPercentages = [];
+  games.forEach((game) => {
+    if (game.completed_achievements_count !== 0) {
+      const completionPercentage = (
+        (game.completed_achievements_count /
+          game.completed_achievements_count) *
+        100
+      ).toFixed(2);
+
+      if (completionPercentage >= 80) allGamesPercentages.push(100);
+    }
+  });
+
+  return allGamesPercentages;
+};
+
+export const getCompletionAveragePercentageData = (games) => {
+  const totalPercentage = getCompletionAveragePercentages(games).reduce(
+    (acc, percentage) => {
+      return acc + percentage;
+    },
+    0
+  );
+  const averagePercentage =
+    totalPercentage / getCompletionAveragePercentages.length;
+  return averagePercentage;
+};

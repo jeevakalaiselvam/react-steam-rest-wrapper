@@ -9,6 +9,7 @@ import { GamesContext } from "../../context/GameContext";
 
 const IconAndData = styled.div`
   display: flex;
+
   flex-direction: row;
   align-items: center;
   padding: 1rem;
@@ -18,13 +19,14 @@ const IconAndData = styled.div`
 
 const Icon = styled.div`
   z-index: 100;
-  color: rgb(85, 174, 206);
+  color: rgb(254, 204, 9);
+  text-shadow: rgb(218, 140, 74) 0px 0px 6px;
 `;
 
 const Count = styled.h1`
   margin-left: 10px;
-  color: rgb(85, 174, 206);
-  text-shadow: rgba(10, 17, 25, 0.45) 2px 2px 2px;
+  color: rgb(254, 204, 9);
+  text-shadow: rgb(218, 140, 74) 10px 10px 100px;
   font-size: 3rem;
   transform: translateY(4%);
 `;

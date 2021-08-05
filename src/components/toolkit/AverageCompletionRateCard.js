@@ -1,14 +1,9 @@
-import { React, useContext, useRef } from "react";
-import GamesContext from "../../context/GameContext";
-import styled from "styled-components";
-import * as FaIcons from "react-icons/fa";
+import { React } from "react";
 import PlayedGamesImages from "../overlay/PlayedGamesImages";
 import ImageOverlayCard from "../core/ImageOverlayCard";
-import AchievementsCountTextBig from "../group/AchievementsCountTextBig";
-import RecentAchievementsImages from "../overlay/RecentAchievementsImages";
 import CompletionRateTextBig from "../group/CompletionRateTextBig";
 
-export default function TotalAchievementsCard() {
+export default function AverageCompletionRateCard() {
   const image = <PlayedGamesImages />;
   const content = <CompletionRateTextBig />;
 

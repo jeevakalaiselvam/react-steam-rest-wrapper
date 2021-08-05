@@ -9,6 +9,7 @@ import {
   getRecentlyUnlockedAllAchievements,
 } from "../../actions/achievementActions";
 import GameIconSmall from "../base/GameIconSmall";
+import { v4 as uuidv4 } from "uuid";
 
 const SetContainer = styled.div`
   width: 100%;
@@ -35,22 +36,22 @@ export default function PlayedGamesCard(props) {
     <SetContainer>
       <Container>
         {getNAllGames(games, 10).map((game) => {
-          return <GameIconSmall image={game.image} />;
+          return <GameIconSmall image={game.image} key={uuidv4()} />;
         })}
       </Container>
       <Container>
         {getNAllGames(games, 10).map((game) => {
-          return <GameIconSmall image={game.image} />;
+          return <GameIconSmall image={game.image} key={uuidv4()} />;
         })}
       </Container>
       <Container>
         {getNAllGames(games, 10).map((game) => {
-          return <GameIconSmall image={game.image} />;
+          return <GameIconSmall image={game.image} key={uuidv4()} />;
         })}
       </Container>
       <Container>
         {getNAllGames(games, 10).map((game) => {
-          return <GameIconSmall image={game.image} />;
+          return <GameIconSmall image={game.image} key={uuidv4()} />;
         })}
       </Container>
     </SetContainer>

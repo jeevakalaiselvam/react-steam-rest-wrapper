@@ -16,7 +16,6 @@ const Icon = styled.div`
 `;
 
 export default function AchievementIconSmall(props) {
-  console.log(props.image);
   return (
     <AchievementContainer>
       <Icon image={props.image}></Icon>

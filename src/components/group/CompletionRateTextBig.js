@@ -1,7 +1,11 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import * as FaIcons from "react-icons/fa";
-import { getAllUnlockedAchievements } from "../../actions/achievementActions";
+import {
+  getAllUnlockedAchievements,
+  getCompletionAverage,
+  getCompletionAveragePercentageData,
+} from "../../actions/achievementActions";
 import { GamesContext } from "../../context/GameContext";
 
 const IconAndData = styled.div`
@@ -38,9 +42,9 @@ export default function CompletionRateTextBig() {
         <Icon>
           <FaIcons.FaGamepad style={{ width: "60px", height: "60px" }} />
         </Icon>
-        <Count>{getAllUnlockedAchievements(games).length}</Count>
+        <Count>{getCompletionAveragePercentageData(games)}</Count>
       </IconAndData>
-      <Title>Achievements</Title>
+      <Title>Completion Rate</Title>
     </>
   );
 }
