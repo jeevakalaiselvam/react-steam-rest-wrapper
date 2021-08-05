@@ -5,8 +5,13 @@ import { FaBars, FaTimes } from "react-icons/fa";
 const Container = styled.div`
   width: 100%;
   display: flex;
-  background-color: rgba(10, 17, 25, 0.25);
+  background-color: rgba(10, 17, 25, 1);
   flex-direction: row;
+  position: fixed;
+  z-index: 3000;
+  height: 60px;
+  top: 0;
+  left: 0;
   padding: 0.5rem 1rem;
   align-items: center;
 `;

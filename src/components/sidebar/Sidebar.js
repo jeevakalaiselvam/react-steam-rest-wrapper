@@ -14,12 +14,12 @@ const SidebarContainer = styled.div`
   display: flex;
   flex-direction: column;
   position: fixed;
-  top: 20;
+  top: 30px;
   left: ${({ sidebarOpen }) => (sidebarOpen ? "0" : "-100%")};
   transition: all 0.2s;
   width: 200px;
   min-height: 100vh;
-  background-color: rgba(10, 17, 25, 0.8);
+  background-color: rgba(10, 17, 25, 1);
   z-index: 10;
   text-shadow: rgba(10, 17, 25, 0.45);
   border-right-color: rgba(10, 17, 25, 0.6);

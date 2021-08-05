@@ -12,11 +12,12 @@ const CardContainer = styled.div`
   background-color: red;
   background-image: url("${(props) => props.image}");
   background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
 
   @media only screen and (min-width: 1201px) {
     width: 22%;
-    height: 10vh;
+    height: 15vh;
   }
   @media only screen and (max-width: 1200px) and (min-width: 1025px) {
     width: 30%;
@@ -27,12 +28,12 @@ const CardContainer = styled.div`
     height: 20vh;
   }
   @media only screen and (max-width: 768px) and (min-width: 481px) {
-    width: 18%;
-    height: 10vh;
+    width: 48%;
+    height: 20vh;
   }
   @media only screen and (max-width: 480px) and (min-width: 320px) {
-    width: 18%;
-    height: 10vh;
+    width: 46%;
+    height: 20vh;
   }
 `;
 
