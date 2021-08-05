@@ -5,6 +5,7 @@ const CardContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
   color: rgb(198, 205, 211);
   text-shadow: rgba(10, 17, 25, 0.45) 1px 1px 1px;
   background-image: linear-gradient(
