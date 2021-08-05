@@ -1,40 +1,38 @@
 import React from "react";
 import styled from "styled-components";
-import { FaTrophy } from "react-icons/fa";
+import { FaTrophy, FaStar } from "react-icons/fa";
 
 const CardContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   cursor: pointer;
   position: relative;
-  margin: 1rem;
-  justify-content: center;
+  margin: 0.25rem;
+  align-self: flex-start;
+  justify-self: flex-start;
+  flex-shrink: 1;
+  background-color: red;
   background-image: url("${(props) => props.image}");
   background-repeat: no-repeat;
   background-size: cover;
 
   @media only screen and (min-width: 1201px) {
-    width: 200px;
-    height: 93px;
+    width: 22%;
+    height: 10vh;
   }
   @media only screen and (max-width: 1200px) and (min-width: 1025px) {
-    width: 200px;
-    height: 93px;
+    width: 30%;
+    height: 15vh;
   }
   @media only screen and (max-width: 1024px) and (min-width: 769px) {
-    width: 200px;
-    height: 93px;
+    width: 48%;
+    height: 20vh;
   }
   @media only screen and (max-width: 768px) and (min-width: 481px) {
-    width: 200px;
-    height: 93px;
-    justify-content: center;
+    width: 18%;
+    height: 10vh;
   }
   @media only screen and (max-width: 480px) and (min-width: 320px) {
-    width: 200px;
-    height: 93px;
-    justify-content: center;
+    width: 18%;
+    height: 10vh;
   }
 `;
 
@@ -45,7 +43,19 @@ const GameDetails = styled.div`
 
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   bottom: 0;
+`;
+
+const Star = styled.div`
+  position: absolute;
+  width: 100%;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  top: 0;
+  left: 0;
 `;
 
 const AchievementData = styled.div`
@@ -78,13 +88,27 @@ const Data = styled.div`
 const Percentage = styled.div`
   width: ${(props) => props.percentage}%;
   height: 2px;
-  background-color: red;
+  background-color: ${(props) => props.color};
 `;
 
 export default function GameCardSmall(props) {
   const game = props.game;
+
+  const getColor = (percentage) => {
+    if (percentage >= 80) {
+      return "gold";
+    } else if (percentage >= 50) {
+      return "green";
+    } else {
+      return "orange";
+    }
+  };
+
   return (
     <CardContainer image={game.image}>
+      <Star>
+        <FaStar />
+      </Star>
       <GameDetails>
         <AchievementData>
           <Icon>
@@ -97,11 +121,8 @@ export default function GameCardSmall(props) {
           <Playtime></Playtime>
         </AchievementData>
         <Percentage
-          percentage={
-            (game.completed_achievements_count /
-              game.total_achievements_count) *
-            100
-          }
+          percentage={(game.completion_percentage / 80) * 100}
+          color={getColor(game.completion_percentage)}
         />
       </GameDetails>
     </CardContainer>

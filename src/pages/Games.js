@@ -12,20 +12,6 @@ const PageContainer = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
-  align-items: center;
-
-  @media only screen and (min-width: 1201px) {
-  }
-  @media only screen and (max-width: 1200px) and (min-width: 1025px) {
-  }
-  @media only screen and (max-width: 1024px) and (min-width: 769px) {
-  }
-  @media only screen and (max-width: 768px) and (min-width: 481px) {
-    justify-content: center;
-  }
-  @media only screen and (max-width: 480px) and (min-width: 320px) {
-    justify-content: center;
-  }
 `;
 
 export default function Games() {
@@ -35,7 +21,7 @@ export default function Games() {
     <>
       <Page title='All Games'>
         <PageContainer>
-          {games.map((game) => {
+          {games.slice(0, 30).map((game) => {
             return <GameCardSmall game={game} key={game.id} />;
           })}
         </PageContainer>

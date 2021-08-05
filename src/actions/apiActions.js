@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const getAllGamesFromAPI = async (cache = true) => {
+export const getAllGamesFromAPI = async (cache = false) => {
   let games = [];
   if (localStorage.getItem("gameData") && cache) {
     games = JSON.parse(localStorage.getItem("gameData"));
