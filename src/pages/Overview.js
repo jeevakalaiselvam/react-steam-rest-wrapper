@@ -54,20 +54,14 @@ export default function Overview() {
       <Page title='Overview'>
         <PageContainer>
           <CardContainer>
-            <Card>
-              <TotalAchievementsCard />
-            </Card>
+            <TotalAchievementsCard />
           </CardContainer>
 
           <CardContainer>
-            <Card>
-              <TotalPerfectGamesCard />
-            </Card>
+            <TotalPerfectGamesCard />
           </CardContainer>
           <CardContainer>
-            <Card>
-              <TotalGamesCard />
-            </Card>
+            <TotalGamesCard />
           </CardContainer>
           {/* <CardContainer>
             <Card>

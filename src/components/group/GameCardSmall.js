@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { FaTrophy, FaStar } from "react-icons/fa";
 
@@ -9,7 +9,6 @@ const CardContainer = styled.div`
   align-self: flex-start;
   justify-self: flex-start;
   flex-shrink: 1;
-  background-color: red;
   background-image: url("${(props) => props.image}");
   background-repeat: no-repeat;
   background-position: center;
@@ -53,10 +52,26 @@ const Star = styled.div`
   width: 100%;
   font-size: 1rem;
   display: flex;
+  color: gold;
   flex-direction: column;
+  overflow: hidden;
+  top: -7px;
+  left: -7px;
+`;
+
+const Name = styled.div`
+  position: absolute;
+  width: 100%;
+  font-size: 1rem;
+  background-color: rgba(10, 17, 25, 0.8);
+  display: flex;
+  color: #fefefe;
+  flex-direction: column;
+  padding: 0.25rem;
   overflow: hidden;
   top: 0;
   left: 0;
+  font-size: 0.75rem;
 `;
 
 const AchievementData = styled.div`
@@ -94,6 +109,8 @@ const Percentage = styled.div`
 
 export default function GameCardSmall(props) {
   const game = props.game;
+  const completion = game.completion_percentage;
+  const [isShown, setIsShown] = useState(false);
 
   const getColor = (percentage) => {
     if (percentage >= 80) {
@@ -106,10 +123,17 @@ export default function GameCardSmall(props) {
   };
 
   return (
-    <CardContainer image={game.image}>
-      <Star>
-        <FaStar />
-      </Star>
+    <CardContainer
+      image={game.image}
+      onMouseEnter={() => setIsShown(true)}
+      onMouseLeave={() => setIsShown(false)}
+    >
+      {completion >= 80 && (
+        <Star>
+          <FaStar />
+        </Star>
+      )}
+      {isShown && <Name>{game.name}</Name>}
       <GameDetails>
         <AchievementData>
           <Icon>

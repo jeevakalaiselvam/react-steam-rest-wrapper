@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Page from "../components/pages/Page";
 import { GamesContext } from "../context/GameContext";
 import GameCardSmall from "../components/group/GameCardSmall";
+import Card from "../components/core/Card";
 
 const PageContainer = styled.div`
   width: 100%;
@@ -21,7 +22,7 @@ export default function Games() {
     <>
       <Page title='All Games'>
         <PageContainer>
-          {games.slice(0, 30).map((game) => {
+          {games.slice(0, 50).map((game) => {
             return <GameCardSmall game={game} key={game.id} />;
           })}
         </PageContainer>
