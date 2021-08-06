@@ -16,6 +16,30 @@ export const getRecentlyUnlockedAllAchievements = (games) => {
   return sortedByUnlockTimeAchievements;
 };
 
+export const getAllAchievementsSortedAZ = (games) => {
+  let allUnlockedAchievementsSortedAZ = getAllUnlockedAchievements(games).sort(
+    (ach1, ach2) => {
+      if (ach1.name < ach2.name) return -1;
+      if (ach1.name > ach2.name) return 1;
+      return 0;
+    }
+  );
+
+  return allUnlockedAchievementsSortedAZ;
+};
+
+export const getAllAchievementsSortedZA = (games) => {
+  let allUnlockedAchievementsSortedZA = getAllUnlockedAchievements(games).sort(
+    (ach1, ach2) => {
+      if (ach2.name < ach1.name) return -1;
+      if (ach2.name > ach1.name) return 1;
+      return 0;
+    }
+  );
+
+  return allUnlockedAchievementsSortedZA;
+};
+
 export const sortAchivementsByUnlockTime = (achievements) => {
   const sortedByUnlockTimeAchievements = achievements.sort(
     (ach1, ach2) => +ach2.unlocked_time - +ach1.unlocked_time

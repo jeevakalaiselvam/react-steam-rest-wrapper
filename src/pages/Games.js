@@ -43,10 +43,6 @@ export default function Games(props) {
     return sortedGames;
   };
 
-  useEffect(() => {
-    getSortedGames(sortOptionGames);
-  }, [sortOptionGames]);
-
   return (
     <>
       <Page

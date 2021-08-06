@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import styled from "styled-components";
 import Overview from "./pages/Overview";
@@ -10,10 +10,7 @@ import GamesBacklog from "./pages/GamesBacklog";
 import { GamesContext } from "./context/GameContext";
 import ClipLoader from "react-spinners/ClipLoader";
 import { getAllGamesFromAPI } from "./actions/apiActions";
-import {
-  getGamesSortedByCompletion,
-  getGamesSortedByPlaytime,
-} from "./actions/gameActions";
+import { getGamesSortedByCompletion } from "./actions/gameActions";
 
 const LoadingContainer = styled.div`
   width: 100%;
@@ -27,7 +24,8 @@ export default function App() {
   const [games, setGames] = useState([]);
   const [viewOptionGames, setViewOptionGames] = useState(0);
   const [sortOptionGames, setSortOptionGames] = useState(0);
-  const [viewOptionAchievements, setViewOptionAchievements] = useState(1);
+  const [viewOptionAchievements, setViewOptionAchievements] = useState(0);
+  const [sortOptionAchievements, setSortOptionAchievements] = useState(0);
 
   //Load all games and add it into state
   useEffect(() => {
@@ -53,6 +51,8 @@ export default function App() {
         setViewOptionGames,
         viewOptionAchievements,
         setViewOptionAchievements,
+        sortOptionAchievements,
+        setSortOptionAchievements,
       }}
     >
       <>

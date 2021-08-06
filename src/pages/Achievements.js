@@ -1,14 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import Page from "../components/pages/Page";
 import { GamesContext } from "../context/GameContext";
-import GameCardMedium from "../components/group/GameCardMedium";
-import Card from "../components/core/Card";
-import GamesPageRightMenu from "../menu/GamesPageRightMenu";
-import GameCardSmall from "../components/group/GameCardSmall";
 import AchievementCardSmall from "../components/group/AchievementCardSmall";
 import AchievementCardMedium from "../components/group/AchievementCardMedium";
-import { getRecentlyUnlockedAllAchievements } from "../actions/achievementActions";
+import {
+  getAllAchievementsSortedAZ,
+  getAllAchievementsSortedZA,
+  getRecentlyUnlockedAllAchievements,
+} from "../actions/achievementActions";
+import AchievementsPageRightMenu from "../menu/AchievementsPageRightMenu";
 
 const PageContainer = styled.div`
   width: 100%;
@@ -20,40 +21,56 @@ const PageContainer = styled.div`
   justify-content: space-around;
 `;
 
-export default function Games(props) {
-  const { games, viewOptionAchievements, setViewOptionAchievements } =
+export default function Achievements(props) {
+  const { games, viewOptionAchievements, sortOptionAchievements } =
     useContext(GamesContext);
 
   console.log("RENDERING ACHIEVEMENT PAGE");
 
+  const getSortedAchievements = () => {
+    let sortedAchievements = [];
+    if (sortOptionAchievements === 0) {
+      sortedAchievements = getRecentlyUnlockedAllAchievements(games);
+    } else if (sortOptionAchievements === 1) {
+      sortedAchievements = getAllAchievementsSortedAZ(games);
+    } else if (sortOptionAchievements === 2) {
+      sortedAchievements = getAllAchievementsSortedZA(games);
+    } else {
+      sortedAchievements = getRecentlyUnlockedAllAchievements(games);
+    }
+
+    console.log("SORTED ACHIEVEMENTS", sortedAchievements);
+    return sortedAchievements;
+  };
+
   return (
     <>
       <Page
-        title='All Games'
-        rightMenuItem={<GamesPageRightMenu />}
+        title='All Achievements'
+        rightMenuItem={<AchievementsPageRightMenu />}
         showRightMenu={true}
       >
         <PageContainer>
-          {getRecentlyUnlockedAllAchievements(games).map((achievement) => {
+          {getSortedAchievements(games).map((achievement) => {
             if (viewOptionAchievements === 0)
               return (
                 <AchievementCardSmall
                   achievement={achievement}
-                  key={achievement.id}
+                  key={`${achievement.game_id}_${achievement.id}`}
                 />
               );
             else if (viewOptionAchievements === 1)
               return (
                 <AchievementCardMedium
-                  game={achievement}
-                  key={achievement.id}
+                  achievement={achievement}
+                  key={`${achievement.game_id}_${achievement.id}`}
                 />
               );
             else
               return (
                 <AchievementCardMedium
-                  game={achievement}
-                  key={achievement.id}
+                  achievement={achievement}
+                  key={`${achievement.game_id}_${achievement.id}`}
                 />
               );
           })}

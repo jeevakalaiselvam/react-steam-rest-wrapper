@@ -3,12 +3,6 @@ import { GamesContext } from "../context/GameContext";
 import styled from "styled-components";
 import SidebarItem from "../components/ui/SidebarItem";
 import { FaClock, FaPercentage } from "react-icons/fa";
-import {
-  getGamesSortedByCompletion,
-  getGamesSortedByNameAZ,
-  getGamesSortedByNameZA,
-  getGamesSortedByPlaytime,
-} from "../actions/gameActions";
 
 const RightMenu = styled.div`
   padding: 0.5rem;
@@ -31,7 +25,7 @@ export default function AchievementsPageRightMenu() {
         desc='Sort achievements by recent'
         sidebarItemClicked={() => {
           localStorage.setItem("ACHIEVEMENTS_SORT_OPTION", 0);
-          setSortOptionGames((old) => 0);
+          setSortOptionAchievements((old) => 0);
         }}
       >
         <FaPercentage style={{ width: "20px", height: "20px" }} />
@@ -41,7 +35,7 @@ export default function AchievementsPageRightMenu() {
         desc='Sort games by names ascending'
         sidebarItemClicked={() => {
           localStorage.setItem("ACHIEVEMENTS_SORT_OPTION", 1);
-          setGames((oldGames) => getGamesSortedByNameAZ(games));
+          setSortOptionAchievements((old) => 1);
         }}
       >
         <FaClock style={{ width: "20px", height: "20px" }} />
@@ -51,7 +45,7 @@ export default function AchievementsPageRightMenu() {
         desc='Sort games by names descending'
         sidebarItemClicked={() => {
           localStorage.setItem("ACHIEVEMENTS_SORT_OPTION", 2);
-          setGames((oldGames) => getGamesSortedByNameZA(games));
+          setSortOptionAchievements((old) => 2);
         }}
       >
         <FaClock style={{ width: "20px", height: "20px" }} />
@@ -63,7 +57,7 @@ export default function AchievementsPageRightMenu() {
         desc='Small view type'
         sidebarItemClicked={() => {
           localStorage.setItem("ACHIEVEMENTS_VIEW_OPTION", 0);
-          setViewOptionGames((oldViewOption) => 0);
+          setViewOptionAchievements((old) => 0);
         }}
       >
         <FaClock style={{ width: "20px", height: "20px" }} />
@@ -73,7 +67,7 @@ export default function AchievementsPageRightMenu() {
         desc='Normal view type'
         sidebarItemClicked={() => {
           localStorage.setItem("ACHIEVEMENTS_VIEW_OPTION", 1);
-          setViewOptionGames((oldViewOption) => 1);
+          setViewOptionAchievements((old) => 1);
         }}
       >
         <FaPercentage style={{ width: "20px", height: "20px" }} />
