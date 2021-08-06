@@ -40,7 +40,7 @@ export default function Achievements(props) {
     }
 
     console.log("SORTED ACHIEVEMENTS", sortedAchievements);
-    return sortedAchievements;
+    return sortedAchievements.slice(0, 50);
   };
 
   return (

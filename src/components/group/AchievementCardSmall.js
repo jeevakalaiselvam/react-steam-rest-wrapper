@@ -12,6 +12,7 @@ const CardContainerOuter = styled.div`
   width: 60px;
   height: 60px;
   justify-self: flex-start;
+  box-shadow: 1px 1px 1px hsl(0deg 0% 100% / 10%);
   display: flex;
   flex-direction: column;
   border: 1px solid rgba(10, 17, 25, 0.3);
@@ -25,7 +26,7 @@ const AchivementImageContainer = styled.div`
   width: 100%;
   background-size: cover;
   height: 100%;
-
+  border-radius: 2px;
   background-image: url("${(props) => props.image}");
 `;
 
