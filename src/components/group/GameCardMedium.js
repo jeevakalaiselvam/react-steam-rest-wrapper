@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { FaTrophy, FaMedal } from "react-icons/fa";
+import { FaTrophy, FaMedal, FaCheck } from "react-icons/fa";
 
 const CardContainer = styled.div`
   cursor: pointer;
@@ -98,12 +98,12 @@ const Icon = styled.div`
 const Data = styled.div`
   margin: 0 0.5rem;
   color: #fff;
-  font-size: 1rem;
+  font-size: 0.8rem;
 `;
 
 const Remaining = styled.div`
   justify-self: flex-end;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   padding-right: 1rem;
   text-align: right;
   flex: 1;
@@ -139,13 +139,27 @@ export default function GameCardSmall(props) {
       {isShown && <Name>{game.name}</Name>}
       <GameDetails>
         <AchievementData>
-          <Icon>
-            <FaTrophy></FaTrophy>
-          </Icon>
-          <Data>
-            {game.completed_achievements_count} /{" "}
-            {game.total_achievements_count}
-          </Data>
+          {completion >= 80 && (
+            <>
+              <Icon>
+                <FaTrophy></FaTrophy>
+              </Icon>
+              <Data>
+                <FaCheck></FaCheck>
+              </Data>
+            </>
+          )}
+          {completion < 80 && (
+            <>
+              <Icon>
+                <FaTrophy></FaTrophy>
+              </Icon>
+              <Data>
+                {game.completed_achievements_count} /{" "}
+                {game.total_achievements_count}
+              </Data>
+            </>
+          )}
 
           {game.completion_percentage < 80 && (
             <Remaining>
@@ -161,10 +175,10 @@ export default function GameCardSmall(props) {
           )}
         </AchievementData>
 
-        <Percentage
+        {/* <Percentage
           percentage={(game.completion_percentage / 80) * 100}
           color={getColor(game.completion_percentage)}
-        />
+        /> */}
       </GameDetails>
     </CardContainer>
   );
