@@ -2,7 +2,14 @@ import React, { useContext } from "react";
 import { GamesContext } from "../context/GameContext";
 import styled from "styled-components";
 import SidebarItem from "../components/ui/SidebarItem";
-import { FaClock, FaPercentage } from "react-icons/fa";
+import {
+  FaClock,
+  FaPercentage,
+  FaCheck,
+  FaSortAlphaDown,
+  FaSortAlphaDownAlt,
+  FaGripHorizontal,
+} from "react-icons/fa";
 import {
   getGamesSortedByCompletion,
   getGamesSortedByNameAZ,
@@ -34,7 +41,7 @@ export default function GamesPageRightMenu() {
           setSortOptionGames((old) => 0);
         }}
       >
-        <FaPercentage style={{ width: "20px", height: "20px" }} />
+        <FaCheck style={{ width: "20px", height: "20px" }} />
       </SidebarItem>
       <SidebarItem
         title='Playtime'
@@ -54,7 +61,7 @@ export default function GamesPageRightMenu() {
           setSortOptionGames((old) => 2);
         }}
       >
-        <FaClock style={{ width: "20px", height: "20px" }} />
+        <FaSortAlphaDown style={{ width: "20px", height: "20px" }} />
       </SidebarItem>
       <SidebarItem
         title='Name Z-A'
@@ -64,7 +71,7 @@ export default function GamesPageRightMenu() {
           setSortOptionGames((old) => 3);
         }}
       >
-        <FaClock style={{ width: "20px", height: "20px" }} />
+        <FaSortAlphaDownAlt style={{ width: "20px", height: "20px" }} />
       </SidebarItem>
 
       <Title>View Options</Title>
@@ -76,7 +83,7 @@ export default function GamesPageRightMenu() {
           setViewOptionGames((oldViewOption) => 0);
         }}
       >
-        <FaClock style={{ width: "20px", height: "20px" }} />
+        <FaGripHorizontal style={{ width: "20px", height: "20px" }} />
       </SidebarItem>
       <SidebarItem
         title='Normal'
@@ -86,7 +93,7 @@ export default function GamesPageRightMenu() {
           setViewOptionGames((oldViewOption) => 1);
         }}
       >
-        <FaPercentage style={{ width: "20px", height: "20px" }} />
+        <FaGripHorizontal style={{ width: "20px", height: "20px" }} />
       </SidebarItem>
     </RightMenu>
   );

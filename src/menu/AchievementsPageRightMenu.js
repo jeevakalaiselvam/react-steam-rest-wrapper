@@ -2,7 +2,14 @@ import React, { useContext } from "react";
 import { GamesContext } from "../context/GameContext";
 import styled from "styled-components";
 import SidebarItem from "../components/ui/SidebarItem";
-import { FaClock, FaPercentage } from "react-icons/fa";
+import {
+  FaClock,
+  FaPercentage,
+  FaCheck,
+  FaSortAlphaDown,
+  FaSortAlphaDownAlt,
+  FaGripHorizontal,
+} from "react-icons/fa";
 
 const RightMenu = styled.div`
   padding: 0.5rem;
@@ -28,7 +35,7 @@ export default function AchievementsPageRightMenu() {
           setSortOptionAchievements((old) => 0);
         }}
       >
-        <FaPercentage style={{ width: "20px", height: "20px" }} />
+        <FaClock style={{ width: "20px", height: "20px" }} />
       </SidebarItem>
       <SidebarItem
         title='Name A-Z'
@@ -38,7 +45,7 @@ export default function AchievementsPageRightMenu() {
           setSortOptionAchievements((old) => 1);
         }}
       >
-        <FaClock style={{ width: "20px", height: "20px" }} />
+        <FaSortAlphaDown style={{ width: "20px", height: "20px" }} />
       </SidebarItem>
       <SidebarItem
         title='Name Z-A'
@@ -48,7 +55,7 @@ export default function AchievementsPageRightMenu() {
           setSortOptionAchievements((old) => 2);
         }}
       >
-        <FaClock style={{ width: "20px", height: "20px" }} />
+        <FaSortAlphaDownAlt style={{ width: "20px", height: "20px" }} />
       </SidebarItem>
 
       <Title>View Options</Title>
@@ -60,7 +67,7 @@ export default function AchievementsPageRightMenu() {
           setViewOptionAchievements((old) => 0);
         }}
       >
-        <FaClock style={{ width: "20px", height: "20px" }} />
+        <FaGripHorizontal style={{ width: "20px", height: "20px" }} />
       </SidebarItem>
       <SidebarItem
         title='Normal'
@@ -70,7 +77,7 @@ export default function AchievementsPageRightMenu() {
           setViewOptionAchievements((old) => 1);
         }}
       >
-        <FaPercentage style={{ width: "20px", height: "20px" }} />
+        <FaGripHorizontal style={{ width: "20px", height: "20px" }} />
       </SidebarItem>
     </RightMenu>
   );

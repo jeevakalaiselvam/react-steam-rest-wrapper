@@ -7,6 +7,7 @@ const CardContainer = styled.div`
   align-self: center;
   align-items: center;
   position: relative;
+  flex-grow: 1;
   justify-self: flex-start;
   display: flex;
   flex-direction: row;
@@ -18,26 +19,34 @@ const CardContainer = styled.div`
     border: 0.5px solid rgba(10, 17, 25, 1);
   }
 
+  height: 120px;
   @media only screen and (min-width: 1201px) {
     width: 47%;
+    height: 120px;
   }
   @media only screen and (min-width: 1201px) {
     width: 47%;
+    height: 120px;
   }
   @media only screen and (max-width: 1200px) and (min-width: 1025px) {
     width: 47%;
+    height: 120px;
   }
   @media only screen and (max-width: 1024px) and (min-width: 769px) {
     width: 97%;
+    height: 120px;
   }
   @media only screen and (max-width: 768px) and (min-width: 481px) {
     width: 97%;
+    height: 120px;
   }
   @media only screen and (max-width: 768px) and (min-width: 481px) {
     width: 97%;
+    height: 120px;
   }
   @media only screen and (max-width: 480px) and (min-width: 320px) {
     width: 97%;
+    height: 120px;
   }
 `;
 
@@ -58,7 +67,6 @@ const AchievementImage = styled.div`
 
 const AchievementDataContainer = styled.div`
   flex: 1;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-self: flex-start;
