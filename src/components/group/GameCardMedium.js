@@ -50,16 +50,15 @@ const GameDetails = styled.div`
 `;
 
 const Star = styled.div`
-  position: absolute;
   width: 100%;
   font-size: 1rem;
-  display: flex;
   z-index: 100;
   color: gold;
-  flex-direction: column;
-  overflow: hidden;
-  top: -7px;
-  left: -7px;
+  justify-self: flex-end;
+  font-size: 0.9rem;
+  padding-right: 1rem;
+  text-align: right;
+  flex: 1;
 `;
 
 const Name = styled.div`
@@ -135,11 +134,6 @@ export default function GameCardSmall(props) {
       onMouseEnter={() => setIsShown(true)}
       onMouseLeave={() => setIsShown(false)}
     >
-      {completion >= 80 && (
-        <Star>
-          <FaMedal />
-        </Star>
-      )}
       {isShown && <Name>{game.name}</Name>}
       <GameDetails>
         <AchievementData>
@@ -150,11 +144,19 @@ export default function GameCardSmall(props) {
             {game.completed_achievements_count} /{" "}
             {game.total_achievements_count}
           </Data>
-          <Remaining>
-            {Math.ceil((80 / 100) * game.total_achievements_count) -
-              game.completed_achievements_count}{" "}
-            more...
-          </Remaining>
+
+          {game.completion_percentage < 80 && (
+            <Remaining>
+              {Math.ceil((80 / 100) * game.total_achievements_count) -
+                game.completed_achievements_count}{" "}
+              more..
+            </Remaining>
+          )}
+          {game.completion_percentage >= 80 && (
+            <Star>
+              <FaMedal />
+            </Star>
+          )}
         </AchievementData>
 
         <Percentage

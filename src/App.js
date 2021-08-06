@@ -25,45 +25,53 @@ const LoadingContainer = styled.div`
 
 export default function App() {
   const [games, setGames] = useState([]);
+  const [gamesViewType, setGamesViewType] = useState(1);
 
   //Load all games and add it into state
   useEffect(() => {
     const fetchGamesfromAPI = async () => {
-      console.log("EFFECT IN GAME PROVIDER GETTING GAMES");
-      console.log(process.env.REACT_APP_API_ALL_GAMES);
       let newGames = [];
+      let completionSortedGames = [];
       newGames = await getAllGamesFromAPI();
-      setGames((oldGames) => newGames.slice(0, 50));
+      completionSortedGames = getGamesSortedByCompletion(newGames);
+      setGames((oldGames) => completionSortedGames);
     };
 
     fetchGamesfromAPI();
   }, []);
 
   const contextSortGamePlaytime = () => {
-    console.log("Sorting games by playtime in Context");
     const sortedGamesByPlaytime = getGamesSortedByPlaytime(games);
 
     setGames((oldGames) => {});
     setGames((oldGames) => sortedGamesByPlaytime);
-    console.log("NEW GAMES AFTER PLAYTIME -> ", games[0]);
   };
 
   const contextSortGameCompletion = () => {
-    console.log("Sorting games by completion in Context");
     const sortedGamesByCompletion = getGamesSortedByCompletion(games);
 
     setGames((oldGames) => {});
     setGames((oldGames) => sortedGamesByCompletion);
-    console.log("NEW GAMES AFTER COMPLETION -> ", games[0]);
+  };
+
+  const contextChangeGamesViewSmall = () => {
+    setGamesViewType(0);
+  };
+  const contextChangeGamesViewMedium = () => {
+    setGamesViewType(1);
   };
 
   return (
     <GamesContext.Provider
       value={{
         games,
+        setGames,
+        gamesViewType,
+        setGamesViewType,
         contextSortGamePlaytime,
         contextSortGameCompletion,
-        setGames,
+        contextChangeGamesViewSmall,
+        contextChangeGamesViewMedium,
       }}
     >
       <>
@@ -74,7 +82,7 @@ export default function App() {
                 <Overview />
               </Route>
               <Route exact path='/games'>
-                <Games games={games} />
+                <Games />
               </Route>
               <Route exact path='/achievements'>
                 <Achievements />

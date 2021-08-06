@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import Page from "../components/pages/Page";
 import { GamesContext } from "../context/GameContext";
-import GameCardSmall from "../components/group/GameCardSmall";
+import GameCardMedium from "../components/group/GameCardMedium";
 import Card from "../components/core/Card";
 import GamesPageRightMenu from "../menu/GamesPageRightMenu";
 
@@ -17,6 +17,8 @@ const PageContainer = styled.div`
 `;
 
 export default function Games(props) {
+  const { games } = useContext(GamesContext);
+
   return (
     <>
       <Page
@@ -25,8 +27,8 @@ export default function Games(props) {
         showRightMenu={true}
       >
         <PageContainer>
-          {props.games.map((game) => {
-            return <GameCardSmall game={game} key={game.id} />;
+          {games.map((game) => {
+            return <GameCardMedium game={game} key={game.id} />;
           })}
         </PageContainer>
       </Page>

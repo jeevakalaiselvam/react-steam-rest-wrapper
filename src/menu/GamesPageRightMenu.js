@@ -14,8 +14,13 @@ const Title = styled.div`
 `;
 
 export default function GamesPageRightMenu() {
-  const { contextSortGamePlaytime, contextSortGameCompletion } =
-    useContext(GamesContext);
+  const {
+    contextSortGamePlaytime,
+    contextSortGameCompletion,
+    contextChangeGamesViewSmall,
+    contextChangeGamesViewMedium,
+    setGamesViewType,
+  } = useContext(GamesContext);
 
   const sortGamesByPlaytime = () => {
     contextSortGamePlaytime();
@@ -23,6 +28,14 @@ export default function GamesPageRightMenu() {
 
   const sortGamesByCompletion = () => {
     contextSortGameCompletion();
+  };
+
+  const showGamesSmall = () => {
+    setGamesViewType(0);
+  };
+
+  const showGamesMedium = () => {
+    setGamesViewType(1);
   };
 
   return (
@@ -39,6 +52,21 @@ export default function GamesPageRightMenu() {
         title='Completion'
         desc='Sort games by completion'
         sidebarItemClicked={sortGamesByCompletion}
+      >
+        <FaPercentage style={{ width: "20px", height: "20px" }} />
+      </SidebarItem>
+      <Title>View Options</Title>
+      <SidebarItem
+        title='Small View'
+        desc='Show small'
+        sidebarItemClicked={showGamesSmall}
+      >
+        <FaClock style={{ width: "20px", height: "20px" }} />
+      </SidebarItem>
+      <SidebarItem
+        title='Medium View'
+        desc='Show Medium'
+        sidebarItemClicked={showGamesMedium}
       >
         <FaPercentage style={{ width: "20px", height: "20px" }} />
       </SidebarItem>

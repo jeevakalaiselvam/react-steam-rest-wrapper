@@ -13,10 +13,6 @@ export const getRecentlyUnlockedAllAchievements = (games) => {
     allUnlockedAchievements
   );
 
-  console.log(
-    "RECENTLY UNLOCKED ACHIVEMENTS -> ",
-    sortedByUnlockTimeAchievements
-  );
   return sortedByUnlockTimeAchievements;
 };
 
