@@ -8,7 +8,7 @@ const CardContainerOuter = styled.div`
   margin: 0.25rem;
   align-self: flex-start;
   position: relative;
-  border: 1px solid ${(props) => props.color};
+
   justify-self: flex-start;
   display: flex;
   flex-direction: column;

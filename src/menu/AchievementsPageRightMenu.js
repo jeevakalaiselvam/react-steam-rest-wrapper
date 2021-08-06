@@ -19,39 +19,29 @@ const Title = styled.div`
   font-size: 0.8rem;
 `;
 
-export default function GamesPageRightMenu() {
-  const { games, setGames, setViewOptionGames, setSortOptionGames } =
+export default function AchievementsPageRightMenu() {
+  const { setViewOptionAchievements, setSortOptionAchievements } =
     useContext(GamesContext);
 
   return (
     <RightMenu>
       <Title>Sort Options</Title>
       <SidebarItem
-        title='Completion'
-        desc='Sort games by completion'
+        title='Recent'
+        desc='Sort achievements by recent'
         sidebarItemClicked={() => {
-          localStorage.setItem("GAMES_SORT_OPTION", 0);
+          localStorage.setItem("ACHIEVEMENTS_SORT_OPTION", 0);
           setSortOptionGames((old) => 0);
         }}
       >
         <FaPercentage style={{ width: "20px", height: "20px" }} />
       </SidebarItem>
       <SidebarItem
-        title='Playtime'
-        desc='Sort games by playtime'
-        sidebarItemClicked={() => {
-          localStorage.setItem("GAMES_SORT_OPTION", 1);
-          setSortOptionGames((old) => 1);
-        }}
-      >
-        <FaClock style={{ width: "20px", height: "20px" }} />
-      </SidebarItem>
-      <SidebarItem
         title='Name A-Z'
         desc='Sort games by names ascending'
         sidebarItemClicked={() => {
-          localStorage.setItem("GAMES_SORT_OPTION", 2);
-          setSortOptionGames((old) => 2);
+          localStorage.setItem("ACHIEVEMENTS_SORT_OPTION", 1);
+          setGames((oldGames) => getGamesSortedByNameAZ(games));
         }}
       >
         <FaClock style={{ width: "20px", height: "20px" }} />
@@ -60,8 +50,8 @@ export default function GamesPageRightMenu() {
         title='Name Z-A'
         desc='Sort games by names descending'
         sidebarItemClicked={() => {
-          localStorage.setItem("GAMES_SORT_OPTION", 3);
-          setSortOptionGames((old) => 3);
+          localStorage.setItem("ACHIEVEMENTS_SORT_OPTION", 2);
+          setGames((oldGames) => getGamesSortedByNameZA(games));
         }}
       >
         <FaClock style={{ width: "20px", height: "20px" }} />
@@ -72,7 +62,7 @@ export default function GamesPageRightMenu() {
         title='Minimal'
         desc='Small view type'
         sidebarItemClicked={() => {
-          localStorage.setItem("GAMES_VIEW_OPTION", 0);
+          localStorage.setItem("ACHIEVEMENTS_VIEW_OPTION", 0);
           setViewOptionGames((oldViewOption) => 0);
         }}
       >
@@ -82,7 +72,7 @@ export default function GamesPageRightMenu() {
         title='Normal'
         desc='Normal view type'
         sidebarItemClicked={() => {
-          localStorage.setItem("GAMES_VIEW_OPTION", 1);
+          localStorage.setItem("ACHIEVEMENTS_VIEW_OPTION", 1);
           setViewOptionGames((oldViewOption) => 1);
         }}
       >

@@ -8,6 +8,8 @@ import GamesPageRightMenu from "../menu/GamesPageRightMenu";
 import GameCardSmall from "../components/group/GameCardSmall";
 import {
   getGamesSortedByCompletion,
+  getGamesSortedByNameAZ,
+  getGamesSortedByNameZA,
   getGamesSortedByPlaytime,
 } from "../actions/gameActions";
 
@@ -24,21 +26,20 @@ const PageContainer = styled.div`
 export default function Games(props) {
   const { games, viewOptionGames, sortOptionGames } = useContext(GamesContext);
 
-  console.log("RENDERING GAMES PAGE");
-
   const getSortedGames = () => {
-    console.log("Sorting games");
     let sortedGames = [];
     if (sortOptionGames === 0) {
       sortedGames = getGamesSortedByCompletion(games);
     } else if (sortOptionGames === 1) {
       sortedGames = getGamesSortedByPlaytime(games);
+    } else if (sortOptionGames === 2) {
+      sortedGames = getGamesSortedByNameAZ(games);
+    } else if (sortOptionGames === 3) {
+      sortedGames = getGamesSortedByNameZA(games);
     } else {
       sortedGames = games;
     }
 
-    console.log("GAMES IN CONTEXT ", games);
-    console.log("NEW GAME AT TOP -> ", sortedGames[0]);
     return sortedGames;
   };
 
