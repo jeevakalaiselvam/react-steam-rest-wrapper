@@ -105,6 +105,21 @@ const AchievementCount = styled.div`
   font-size: 0.8rem;
 `;
 
+const Medal = styled.div`
+  color: gold;
+  text-align: center;
+
+  padding: 0.25rem;
+  font-size: 1.2rem;
+`;
+
+const MedalText = styled.div`
+  color: gold;
+  text-align: center;
+
+  font-size: 0.5rem;
+`;
+
 const ToGet = styled.div`
   color: #aaa;
   text-align: center;
@@ -138,13 +153,22 @@ export default function GameCardSmall(props) {
       {isShown && (
         <GameNameAndStatusContainer>
           <Name>{game.name}</Name>
-          <AchievementCount>
-            {game.completed_achievements_count} /{" "}
-            {game.total_achievements_count} ({" "}
-            {Math.ceil((80 / 100) * game.total_achievements_count) -
-              game.completed_achievements_count}
-            {" more.."})
-          </AchievementCount>
+          {game.completion_percentage < 80 && (
+            <AchievementCount>
+              {game.completed_achievements_count} /{" "}
+              {game.total_achievements_count} ({" "}
+              {Math.ceil((80 / 100) * game.total_achievements_count) -
+                game.completed_achievements_count}
+              {" more.."})
+            </AchievementCount>
+          )}
+
+          {game.completion_percentage >= 80 && (
+            <Medal>
+              {/* <MedalText>TARGET ACHIEVED</MedalText> */}
+              <FaMedal />
+            </Medal>
+          )}
         </GameNameAndStatusContainer>
       )}
       <CardContainer image={game.image}>
