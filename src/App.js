@@ -32,7 +32,9 @@ export default function App() {
     const fetchGamesfromAPI = async () => {
       let newGames = [];
       newGames = await getAllGamesFromAPI();
-      setGames((oldGames) => getGamesSortedByCompletion(newGames));
+      const realGames = getGamesSortedByCompletion(newGames);
+      const testGames = getGamesSortedByCompletion(newGames).slice(0, 50);
+      setGames((oldGames) => testGames);
     };
 
     fetchGamesfromAPI();

@@ -15,6 +15,7 @@ const SidebarContainer = styled.div`
   flex-direction: column;
   position: fixed;
   top: 60px;
+  padding: 0.5rem;
   left: ${({ sidebarOpenLeft }) => (sidebarOpenLeft ? "0" : "-100%")};
   transition: all 0.2s;
   width: 200px;
@@ -33,12 +34,18 @@ const SidebarContainer = styled.div`
   }
 `;
 
+const Title = styled.div`
+  padding: 0.5rem;
+  font-size: 0.8rem;
+`;
+
 export default function SidebarLeft(props) {
   return (
     <SidebarContainer
       sidebarOpenLeft={props.sidebarOpenLeft}
       onClick={props.sidebarItemClicked}
     >
+      <Title>Select Options</Title>
       <NavItem title='Overview' desc='Profile overview' navigate='/'>
         <HiHome style={{ width: "20px", height: "20px" }} />
       </NavItem>

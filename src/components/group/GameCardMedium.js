@@ -18,7 +18,7 @@ const CardContainer = styled.div`
 
   @media only screen and (min-width: 1201px) {
     width: 22%;
-    height: 15vh;
+    height: 12vh;
   }
   @media only screen and (max-width: 1200px) and (min-width: 1025px) {
     width: 30%;
@@ -68,6 +68,7 @@ const Name = styled.div`
   background-color: rgba(10, 17, 25, 0.8);
   display: flex;
   color: #fefefe;
+  text-align: center;
   flex-direction: column;
   padding: 0.25rem;
   overflow: hidden;
