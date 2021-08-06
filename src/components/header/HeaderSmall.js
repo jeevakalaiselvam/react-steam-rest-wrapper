@@ -116,7 +116,7 @@ export default function HeaderSmall(props) {
         </Icon>
       </NavButton>
       <NavStatus>
-        <StatusColumn color={"rgb(165, 201, 58)"}>
+        <StatusColumn color={"rgb(254, 204, 9)"}>
           <StatusIcon>
             <FaMedal />
           </StatusIcon>
@@ -128,7 +128,7 @@ export default function HeaderSmall(props) {
           </StatusIcon>
           <StatusData>{getAllUnlockedAchievements(games).length}</StatusData>
         </StatusColumn>
-        <StatusColumn color={"rgb(254, 204, 9)"}>
+        <StatusColumn color={"rgb(165, 201, 58)"}>
           <StatusIcon>
             <FaGamepad />
           </StatusIcon>

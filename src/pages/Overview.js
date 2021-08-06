@@ -64,12 +64,12 @@ export default function Overview() {
       <Page title='Overview' showRightMenu={false}>
         <PageContainer>
           <CardContainer>
+            <TotalPerfectGamesCard />
+          </CardContainer>
+          <CardContainer>
             <TotalAchievementsCard />
           </CardContainer>
 
-          <CardContainer>
-            <TotalPerfectGamesCard />
-          </CardContainer>
           <CardContainer>
             <TotalGamesCard />
           </CardContainer>
