@@ -18,9 +18,8 @@ const PageContainer = styled.div`
 `;
 
 export default function Games(props) {
-  const { games, gamesViewType } = useContext(GamesContext);
-  console.log("GAMEVIEWTYPE: ", gamesViewType);
-
+  const { games } = useContext(GamesContext);
+  const gamesViewType = 0;
   return (
     <>
       <Page
@@ -28,8 +27,7 @@ export default function Games(props) {
         rightMenuItem={<GamesPageRightMenu />}
         showRightMenu={true}
       >
-        {gamesViewType === 0 && console.log("RENDERING SMALL")}
-        {gamesViewType === 1 && console.log("RENDERING MEDIUM")}
+        {console.log("RENDERING GAMES PAGE")}
         {gamesViewType === 0 && (
           <PageContainer>
             {games.map((game) => {

@@ -25,53 +25,23 @@ const LoadingContainer = styled.div`
 
 export default function App() {
   const [games, setGames] = useState([]);
-  const [gamesViewType, setGamesViewType] = useState(1);
 
   //Load all games and add it into state
   useEffect(() => {
     const fetchGamesfromAPI = async () => {
       let newGames = [];
-      let completionSortedGames = [];
       newGames = await getAllGamesFromAPI();
-      completionSortedGames = getGamesSortedByCompletion(newGames);
-      setGames((oldGames) => completionSortedGames);
+      setGames((oldGames) => getGamesSortedByCompletion(newGames));
     };
 
     fetchGamesfromAPI();
   }, []);
-
-  const contextSortGamePlaytime = () => {
-    localStorage.setItem("GAMES_SORT_TYPE", 0);
-    const sortedGamesByPlaytime = getGamesSortedByPlaytime(games);
-    setGames((oldGames) => sortedGamesByPlaytime);
-  };
-
-  const contextSortGameCompletion = () => {
-    localStorage.setItem("GAMES_SORT_TYPE", 1);
-    const sortedGamesByCompletion = getGamesSortedByCompletion(games);
-    setGames((oldGames) => sortedGamesByCompletion);
-  };
-
-  const contextChangeGamesViewSmall = () => {
-    //localStorage.setItem("GAMES_VIEW_TYPE", 0);
-    setGamesViewType((old) => 0);
-  };
-  const contextChangeGamesViewMedium = () => {
-    //localStorage.setItem("GAMES_VIEW_TYPE", 1);
-    setGamesViewType((old) => 1);
-  };
 
   return (
     <GamesContext.Provider
       value={{
         games,
         setGames,
-        gamesViewType,
-        setGamesViewType,
-        contextSortGamePlaytime,
-        contextSortGameCompletion,
-        contextChangeGamesViewSmall,
-        contextChangeGamesViewMedium,
       }}
     >
       <>

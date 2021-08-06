@@ -15,3 +15,25 @@ export const getGamesSortedByPlaytime = (games) => {
     .slice();
   return gamesSortedByPlaytime;
 };
+
+export const getGamesSortedByNameAZ = (games) => {
+  const gamesSortedByNameAZ = games
+    .sort((game1, game2) => {
+      if (game1.name < game2.name) return -1;
+      if (game1.name > game2.name) return 1;
+      return 0;
+    })
+    .slice();
+  return gamesSortedByNameAZ;
+};
+
+export const getGamesSortedByNameZA = (games) => {
+  const gamesSortedByNameZA = games
+    .sort((game1, game2) => {
+      if (game2.name < game1.name) return -1;
+      if (game2.name > game1.name) return 1;
+      return 0;
+    })
+    .slice();
+  return gamesSortedByNameZA;
+};
