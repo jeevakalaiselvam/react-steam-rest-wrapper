@@ -18,7 +18,7 @@ const PageContainer = styled.div`
   overflow: scroll;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: flex-start;
 `;
 
 export default function Achievements(props) {
@@ -40,7 +40,7 @@ export default function Achievements(props) {
     }
 
     console.log("SORTED ACHIEVEMENTS", sortedAchievements);
-    return sortedAchievements.slice(0, 50);
+    return sortedAchievements;
   };
 
   return (

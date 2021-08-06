@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const getGamesSortedByCompletion = (games) => {
   const gamesSortedByCompletion = games
     .sort((game1, game2) => {
@@ -36,4 +38,16 @@ export const getGamesSortedByNameZA = (games) => {
     })
     .slice();
   return gamesSortedByNameZA;
+};
+
+export const addHiddenToGames = (games) => {
+  games.map(async (game) => {
+    const data = await axios.get(
+      `https://cors-anywhere.herokuapp.com/https://completionist.me/steam/profile/76561198983167428/app/${game.id}/achievements`
+    );
+    console.log(data);
+    return game;
+  });
+
+  return games;
 };

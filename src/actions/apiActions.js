@@ -12,5 +12,6 @@ export const getAllGamesFromAPI = async (cache = false) => {
     console.log("GAMES FROM API -> ", games);
     localStorage.setItem("gameData", JSON.stringify(games));
   }
+
   return games;
 };

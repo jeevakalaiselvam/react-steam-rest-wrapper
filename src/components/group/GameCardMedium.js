@@ -145,7 +145,8 @@ export default function GameCardSmall(props) {
                 <FaTrophy></FaTrophy>
               </Icon>
               <Data>
-                <FaCheck></FaCheck>
+                {/* <FaCheck></FaCheck> */}
+                COMPLETED
               </Data>
             </>
           )}

@@ -1,4 +1,6 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect } from "react";
+import { FaEyeSlash } from "react-icons/fa";
 import styled from "styled-components";
 
 const CardContainer = styled.div`
@@ -10,6 +12,7 @@ const CardContainer = styled.div`
   flex-grow: 1;
   justify-self: flex-start;
   display: flex;
+  position: relative;
   flex-direction: row;
   padding: 0.5rem 1rem;
   background-color: rgba(10, 17, 25, 0.6);
@@ -20,12 +23,9 @@ const CardContainer = styled.div`
   }
 
   height: 120px;
+
   @media only screen and (min-width: 1201px) {
-    width: 47%;
-    height: 120px;
-  }
-  @media only screen and (min-width: 1201px) {
-    width: 47%;
+    width: 30%;
     height: 120px;
   }
   @media only screen and (max-width: 1200px) and (min-width: 1025px) {
@@ -90,12 +90,34 @@ const AchievementGame = styled.div`
   color: #454545;
   text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
 `;
+const HiddenImage = styled.div`
+  font-size: 1.5rem;
+  color: #454545;
+  position: absolute;
+  right: 10px;
+  top: 0;
+  text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
+
+  &:hover {
+    color: #f5f5f5;
+  }
+`;
 
 export default function AchievementCardMedium(props) {
   const achievement = props.achievement;
 
+  const gotoGoogleSearchNewtab = () => {
+    const googleSearchURL = `https://www.google.com/search?q=${achievement.game_name}+${achievement.name}`;
+    window.open(googleSearchURL, "_blank");
+  };
+
   return (
     <CardContainer>
+      {achievement.hidden === 1 && (
+        <HiddenImage onClick={gotoGoogleSearchNewtab}>
+          <FaEyeSlash />
+        </HiddenImage>
+      )}
       <AchievementImageContainer>
         <AchievementImage image={achievement.icon}></AchievementImage>
       </AchievementImageContainer>

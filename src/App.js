@@ -10,7 +10,10 @@ import GamesBacklog from "./pages/GamesBacklog";
 import { GamesContext } from "./context/GameContext";
 import ClipLoader from "react-spinners/ClipLoader";
 import { getAllGamesFromAPI } from "./actions/apiActions";
-import { getGamesSortedByCompletion } from "./actions/gameActions";
+import {
+  addHiddenToGames,
+  getGamesSortedByCompletion,
+} from "./actions/gameActions";
 
 const LoadingContainer = styled.div`
   width: 100%;
