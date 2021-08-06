@@ -11,22 +11,31 @@ const CardContainerOuter = styled.div`
   justify-self: flex-start;
   display: flex;
   flex-direction: column;
+
   box-shadow: 1px 1px 1px hsl(0deg 0% 100% / 10%);
 
   @media only screen and (min-width: 1201px) {
-    width: 15%;
-    height: 8vh;
+    width: 22%;
+    height: 10vh;
   }
   @media only screen and (max-width: 1200px) and (min-width: 1025px) {
-    width: 20%;
+    width: 22%;
     height: 8vh;
   }
-  @media only screen and (max-width: 1024px) and (min-width: 769px) {
+  @media only screen and (max-width: 1024px) and (min-width: 841px) {
     width: 30%;
-    height: 8vh;
+    height: 10vh;
   }
-  @media only screen and (max-width: 768px) and (min-width: 481px) {
-    width: 48%;
+  @media only screen and (max-width: 840px) and (min-width: 769px) {
+    width: 47%;
+    height: 10vh;
+  }
+  @media only screen and (max-width: 768px) and (min-width: 521px) {
+    width: 30%;
+    height: 10vh;
+  }
+  @media only screen and (max-width: 520px) and (min-width: 481px) {
+    width: 47%;
     height: 11vh;
   }
   @media only screen and (max-width: 480px) and (min-width: 320px) {
@@ -57,8 +66,10 @@ const Star = styled.div`
   color: gold;
   justify-self: flex-end;
   font-size: 0.9rem;
-  padding-right: 1rem;
+  padding-right: 0.2rem;
   text-align: right;
+  color: #fecc09;
+  text-shadow: 0 0 6px #da8c4a;
   flex: 1;
 `;
 
@@ -126,14 +137,11 @@ export default function GameCardSmall(props) {
           <Name>{game.name}</Name>
           <AchievementCount>
             {game.completed_achievements_count} /{" "}
-            {game.total_achievements_count}
-          </AchievementCount>
-          <ToGet>
-            {" "}
+            {game.total_achievements_count} ({" "}
             {Math.ceil((80 / 100) * game.total_achievements_count) -
-              game.completed_achievements_count}{" "}
-            more..
-          </ToGet>
+              game.completed_achievements_count}
+            {" more.."})
+          </AchievementCount>
         </GameNameAndStatusContainer>
       )}
       <CardContainer image={game.image}>
