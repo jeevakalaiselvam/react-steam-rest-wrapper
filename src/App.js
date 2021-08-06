@@ -41,21 +41,23 @@ export default function App() {
   }, []);
 
   const contextSortGamePlaytime = () => {
+    localStorage.setItem("GAMES_SORT_TYPE", 0);
     const sortedGamesByPlaytime = getGamesSortedByPlaytime(games);
-
     setGames((oldGames) => sortedGamesByPlaytime);
   };
 
   const contextSortGameCompletion = () => {
+    localStorage.setItem("GAMES_SORT_TYPE", 1);
     const sortedGamesByCompletion = getGamesSortedByCompletion(games);
-
     setGames((oldGames) => sortedGamesByCompletion);
   };
 
   const contextChangeGamesViewSmall = () => {
+    localStorage.setItem("GAMES_VIEW_TYPE", 0);
     setGamesViewType((old) => 0);
   };
   const contextChangeGamesViewMedium = () => {
+    localStorage.setItem("GAMES_VIEW_TYPE", 1);
     setGamesViewType((old) => 1);
   };
 
@@ -97,7 +99,7 @@ export default function App() {
             </Switch>
           </Router>
         )}
-        {!games && (
+        {!games.length && (
           <LoadingContainer>
             <ClipLoader color={"#edffde"} loading={true} size={150} />
           </LoadingContainer>

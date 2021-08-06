@@ -19,7 +19,6 @@ export default function GamesPageRightMenu() {
     contextSortGameCompletion,
     contextChangeGamesViewSmall,
     contextChangeGamesViewMedium,
-    setGamesViewType,
   } = useContext(GamesContext);
 
   const sortGamesByPlaytime = () => {
@@ -31,11 +30,11 @@ export default function GamesPageRightMenu() {
   };
 
   const showGamesSmall = () => {
-    setGamesViewType((old) => 0);
+    contextChangeGamesViewSmall();
   };
 
   const showGamesMedium = () => {
-    setGamesViewType((old) => 1);
+    contextChangeGamesViewMedium();
   };
 
   return (
@@ -57,14 +56,14 @@ export default function GamesPageRightMenu() {
       </SidebarItem>
       <Title>View Options</Title>
       <SidebarItem
-        title='Small View'
+        title='Small'
         desc='Show small'
         sidebarItemClicked={showGamesSmall}
       >
         <FaClock style={{ width: "20px", height: "20px" }} />
       </SidebarItem>
       <SidebarItem
-        title='Medium View'
+        title='Medium'
         desc='Show Medium'
         sidebarItemClicked={showGamesMedium}
       >
