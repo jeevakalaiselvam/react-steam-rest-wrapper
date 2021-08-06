@@ -53,11 +53,11 @@ export default function App() {
   };
 
   const contextChangeGamesViewSmall = () => {
-    localStorage.setItem("GAMES_VIEW_TYPE", 0);
+    //localStorage.setItem("GAMES_VIEW_TYPE", 0);
     setGamesViewType((old) => 0);
   };
   const contextChangeGamesViewMedium = () => {
-    localStorage.setItem("GAMES_VIEW_TYPE", 1);
+    //localStorage.setItem("GAMES_VIEW_TYPE", 1);
     setGamesViewType((old) => 1);
   };
 
