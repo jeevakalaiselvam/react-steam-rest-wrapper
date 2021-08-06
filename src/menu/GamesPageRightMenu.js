@@ -20,7 +20,8 @@ const Title = styled.div`
 `;
 
 export default function GamesPageRightMenu() {
-  const { games, setGames } = useContext(GamesContext);
+  const { games, setGames, viewOptionGames, setViewOptionGames } =
+    useContext(GamesContext);
 
   return (
     <RightMenu>
@@ -75,7 +76,9 @@ export default function GamesPageRightMenu() {
         title='Small'
         desc='Show small'
         sidebarItemClicked={() => {
-          console.log("SMALL VIEW CLICKED");
+          console.log("SMALL VIEW OPTION");
+          localStorage.setItem("GAMES_VIEW_OPTION", 0);
+          setViewOptionGames((oldViewOption) => 0);
         }}
       >
         <FaClock style={{ width: "20px", height: "20px" }} />
@@ -84,7 +87,9 @@ export default function GamesPageRightMenu() {
         title='Medium'
         desc='Show Medium'
         sidebarItemClicked={() => {
-          console.log("MEDIUM VIEW CLICKED");
+          console.log("MEDIUM VIEW OPTION");
+          localStorage.setItem("GAMES_VIEW_OPTION", 1);
+          setViewOptionGames((oldViewOption) => 1);
         }}
       >
         <FaPercentage style={{ width: "20px", height: "20px" }} />

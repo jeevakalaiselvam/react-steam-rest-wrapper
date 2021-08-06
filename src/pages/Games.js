@@ -18,8 +18,11 @@ const PageContainer = styled.div`
 `;
 
 export default function Games(props) {
-  const { games } = useContext(GamesContext);
-  const gamesViewType = 0;
+  const { games, viewOptionGames, setViewOptionGames } =
+    useContext(GamesContext);
+
+  console.log("RENDERING GAMES PAGE");
+
   return (
     <>
       <Page
@@ -27,21 +30,15 @@ export default function Games(props) {
         rightMenuItem={<GamesPageRightMenu />}
         showRightMenu={true}
       >
-        {console.log("RENDERING GAMES PAGE")}
-        {gamesViewType === 0 && (
-          <PageContainer>
-            {games.map((game) => {
+        <PageContainer>
+          {games.map((game) => {
+            if (viewOptionGames === 0)
               return <GameCardSmall game={game} key={game.id} />;
-            })}
-          </PageContainer>
-        )}
-        {gamesViewType === 1 && (
-          <PageContainer>
-            {games.map((game) => {
+            else if (viewOptionGames === 1)
               return <GameCardMedium game={game} key={game.id} />;
-            })}
-          </PageContainer>
-        )}
+            else return <GameCardMedium game={game} key={game.id} />;
+          })}
+        </PageContainer>
       </Page>
     </>
   );

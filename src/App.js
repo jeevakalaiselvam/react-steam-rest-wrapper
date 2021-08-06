@@ -25,6 +25,7 @@ const LoadingContainer = styled.div`
 
 export default function App() {
   const [games, setGames] = useState([]);
+  const [viewOptionGames, setViewOptionGames] = useState(0);
 
   //Load all games and add it into state
   useEffect(() => {
@@ -42,6 +43,8 @@ export default function App() {
       value={{
         games,
         setGames,
+        viewOptionGames,
+        setViewOptionGames,
       }}
     >
       <>

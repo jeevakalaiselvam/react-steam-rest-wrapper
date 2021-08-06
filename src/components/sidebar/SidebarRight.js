@@ -20,7 +20,7 @@ const SidebarContainer = styled.div`
   width: 200px;
   min-height: 100vh;
   background-color: rgba(10, 17, 25, 1);
-  z-index: 10;
+  z-index: 10000;
   text-shadow: rgba(10, 17, 25, 0.45);
   border-right-color: rgba(10, 17, 25, 0.6);
   display: ${(props) => (props.showRightMenu ? "block" : "none")};
