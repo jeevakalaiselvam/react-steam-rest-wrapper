@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { FaTrophy, FaStar } from "react-icons/fa";
+import { FaTrophy, FaMedal } from "react-icons/fa";
 
 const CardContainer = styled.div`
   cursor: pointer;
@@ -13,6 +13,8 @@ const CardContainer = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  display: flex;
+  flex-direction: column;
 
   @media only screen and (min-width: 1201px) {
     width: 22%;
@@ -52,6 +54,7 @@ const Star = styled.div`
   width: 100%;
   font-size: 1rem;
   display: flex;
+  z-index: 100;
   color: gold;
   flex-direction: column;
   overflow: hidden;
@@ -77,10 +80,11 @@ const Name = styled.div`
 const AchievementData = styled.div`
   display: flex;
   width: 100%;
-  padding: 0.25rem;
+  padding: 0.25rem 0.1rem;
+  flex: 1;
   flex-direction: row;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
 `;
 
 const Icon = styled.div`
@@ -98,6 +102,10 @@ const Data = styled.div`
 
 const Remaining = styled.div`
   justify-self: flex-end;
+  font-size: 0.9rem;
+  padding-right: 1rem;
+  text-align: right;
+  flex: 1;
 `;
 
 const Percentage = styled.div`
@@ -129,7 +137,7 @@ export default function GameCardSmall(props) {
     >
       {completion >= 80 && (
         <Star>
-          <FaStar />
+          <FaMedal />
         </Star>
       )}
       {isShown && <Name>{game.name}</Name>}
@@ -142,7 +150,11 @@ export default function GameCardSmall(props) {
             {game.completed_achievements_count} /{" "}
             {game.total_achievements_count}
           </Data>
-          <Remaining>2 more..</Remaining>
+          <Remaining>
+            {Math.ceil((80 / 100) * game.total_achievements_count) -
+              game.completed_achievements_count}{" "}
+            more...
+          </Remaining>
         </AchievementData>
 
         <Percentage

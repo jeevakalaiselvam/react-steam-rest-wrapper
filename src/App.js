@@ -33,7 +33,7 @@ export default function App() {
       console.log(process.env.REACT_APP_API_ALL_GAMES);
       let newGames = [];
       newGames = await getAllGamesFromAPI();
-      setGames((oldGames) => newGames);
+      setGames((oldGames) => newGames.slice(0, 50));
     };
 
     fetchGamesfromAPI();

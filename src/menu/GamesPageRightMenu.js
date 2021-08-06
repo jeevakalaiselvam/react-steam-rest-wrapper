@@ -8,6 +8,11 @@ const RightMenu = styled.div`
   padding: 0.5rem;
 `;
 
+const Title = styled.div`
+  padding: 0.5rem;
+  font-size: 0.8rem;
+`;
+
 export default function GamesPageRightMenu() {
   const { contextSortGamePlaytime, contextSortGameCompletion } =
     useContext(GamesContext);
@@ -22,6 +27,7 @@ export default function GamesPageRightMenu() {
 
   return (
     <RightMenu>
+      <Title>Sort Options</Title>
       <SidebarItem
         title='Playtime'
         desc='Sort games by playtime'
