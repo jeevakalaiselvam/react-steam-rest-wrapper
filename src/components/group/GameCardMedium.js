@@ -98,6 +98,7 @@ const Icon = styled.div`
 const Data = styled.div`
   margin: 0 0.5rem;
   color: #fff;
+  font-size: 1rem;
 `;
 
 const Remaining = styled.div`
@@ -110,7 +111,7 @@ const Remaining = styled.div`
 
 const Percentage = styled.div`
   width: ${(props) => props.percentage}%;
-  height: 2px;
+  height: 1px;
   background-color: ${(props) => props.color};
 `;
 

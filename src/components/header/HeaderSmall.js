@@ -1,6 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
-import { FaBars, FaTimes, FaEllipsisV } from "react-icons/fa";
+import {
+  FaBars,
+  FaTimes,
+  FaEllipsisV,
+  FaTrophy,
+  FaGamepad,
+  FaMedal,
+} from "react-icons/fa";
+import {
+  getAllPerfectedGames,
+  getAllUnlockedAchievements,
+} from "../../actions/achievementActions";
+import { GamesContext } from "../../context/GameContext";
 
 const Container = styled.div`
   width: 100%;
@@ -44,7 +56,40 @@ const Title = styled.h1`
   text-align: center;
 `;
 
+const NavStatus = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
+
+const StatusColumn = styled.div`
+  display: flex;
+  margin: 0.5rem 1rem;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: ${(props) => props.color};
+`;
+
+const StatusIcon = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-size: 1.2rem;
+  margin: 0.5rem;
+  align-items: center;
+`;
+const StatusData = styled.div`
+  display: flex;
+  font-size: 1.2rem;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
 export default function HeaderSmall(props) {
+  const { games } = useContext(GamesContext);
   const [openLeft, setOpenLeft] = useState(false);
   const [openRight, setOpenRight] = useState(false);
 
@@ -70,7 +115,26 @@ export default function HeaderSmall(props) {
           )}
         </Icon>
       </NavButton>
-      <Title>{props.title}</Title>
+      <NavStatus>
+        <StatusColumn color={"rgb(165, 201, 58)"}>
+          <StatusIcon>
+            <FaMedal />
+          </StatusIcon>
+          <StatusData>{getAllPerfectedGames(games).length}</StatusData>
+        </StatusColumn>
+        <StatusColumn color={"rgb(85, 174, 206)"}>
+          <StatusIcon>
+            <FaTrophy />
+          </StatusIcon>
+          <StatusData>{getAllUnlockedAchievements(games).length}</StatusData>
+        </StatusColumn>
+        <StatusColumn color={"rgb(254, 204, 9)"}>
+          <StatusIcon>
+            <FaGamepad />
+          </StatusIcon>
+          <StatusData>{games.length}</StatusData>
+        </StatusColumn>
+      </NavStatus>
       {props.showRightMenu && (
         <NavButton onClick={toggleNavRight}>
           <Icon>

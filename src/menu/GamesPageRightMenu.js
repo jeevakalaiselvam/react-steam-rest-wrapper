@@ -73,8 +73,8 @@ export default function GamesPageRightMenu() {
 
       <Title>View Options</Title>
       <SidebarItem
-        title='Small'
-        desc='Show small'
+        title='Minimal'
+        desc='Small view type'
         sidebarItemClicked={() => {
           console.log("SMALL VIEW OPTION");
           localStorage.setItem("GAMES_VIEW_OPTION", 0);
@@ -84,8 +84,8 @@ export default function GamesPageRightMenu() {
         <FaClock style={{ width: "20px", height: "20px" }} />
       </SidebarItem>
       <SidebarItem
-        title='Medium'
-        desc='Show Medium'
+        title='Normal'
+        desc='Normal view type'
         sidebarItemClicked={() => {
           console.log("MEDIUM VIEW OPTION");
           localStorage.setItem("GAMES_VIEW_OPTION", 1);
