@@ -9,27 +9,30 @@ const RightMenu = styled.div`
 `;
 
 export default function GamesPageRightMenu() {
-  const [games] = useContext(GamesContext);
+  const { contextSortGamePlaytime, contextSortGameCompletion } =
+    useContext(GamesContext);
 
   const sortGamesByPlaytime = () => {
-    console.log("Sorting games by playtime");
+    contextSortGamePlaytime();
   };
 
-  const sortGamesByCompletion = () => {};
+  const sortGamesByCompletion = () => {
+    contextSortGameCompletion();
+  };
 
   return (
     <RightMenu>
       <SidebarItem
-        title='Sort by Playtime'
+        title='Playtime'
         desc='Sort games by playtime'
         sidebarItemClicked={sortGamesByPlaytime}
       >
         <FaClock style={{ width: "20px", height: "20px" }} />
       </SidebarItem>
       <SidebarItem
-        title='Sort by Completion'
+        title='Completion'
         desc='Sort games by completion'
-        sidebarItemClicked={sortGamesByPlaytime}
+        sidebarItemClicked={sortGamesByCompletion}
       >
         <FaPercentage style={{ width: "20px", height: "20px" }} />
       </SidebarItem>

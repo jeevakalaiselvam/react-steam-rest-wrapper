@@ -29,7 +29,7 @@ const Title = styled.h4`
 `;
 
 export default function AllGamesCountTextBig() {
-  const [games] = useContext(GamesContext);
+  const { games } = useContext(GamesContext);
 
   return (
     <>

@@ -24,7 +24,7 @@ const Container = styled.div`
 `;
 
 export default function AllGamesImages(props) {
-  const [games] = useContext(GamesContext);
+  const { games } = useContext(GamesContext);
 
   return (
     <SetContainer>

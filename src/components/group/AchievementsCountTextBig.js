@@ -30,7 +30,7 @@ const Title = styled.h4`
 `;
 
 export default function AchievementsCountTextBig() {
-  const [games] = useContext(GamesContext);
+  const { games } = useContext(GamesContext);
 
   return (
     <>

@@ -16,9 +16,7 @@ const PageContainer = styled.div`
   justify-content: space-around;
 `;
 
-export default function Games() {
-  const [games] = useContext(GamesContext);
-
+export default function Games(props) {
   return (
     <>
       <Page
@@ -27,7 +25,7 @@ export default function Games() {
         showRightMenu={true}
       >
         <PageContainer>
-          {games.slice(0, 50).map((game) => {
+          {props.games.map((game) => {
             return <GameCardSmall game={game} key={game.id} />;
           })}
         </PageContainer>

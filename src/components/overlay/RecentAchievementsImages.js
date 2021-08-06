@@ -24,7 +24,7 @@ const Container = styled.div`
 `;
 
 export default function RecentAchievementsCard(props) {
-  const [games] = useContext(GamesContext);
+  const { games } = useContext(GamesContext);
 
   return (
     <SetContainer>

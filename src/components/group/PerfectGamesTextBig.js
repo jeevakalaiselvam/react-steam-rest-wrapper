@@ -32,7 +32,7 @@ const Title = styled.h4`
 `;
 
 export default function PerfectGamesTextBig() {
-  const [games] = useContext(GamesContext);
+  const { games } = useContext(GamesContext);
 
   return (
     <>

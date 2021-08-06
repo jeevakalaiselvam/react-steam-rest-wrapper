@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import styled from "styled-components";
 import Overview from "./pages/Overview";
@@ -9,6 +9,11 @@ import Games from "./pages/Games";
 import GamesBacklog from "./pages/GamesBacklog";
 import { GamesContext } from "./context/GameContext";
 import ClipLoader from "react-spinners/ClipLoader";
+import { getAllGamesFromAPI } from "./actions/apiActions";
+import {
+  getGamesSortedByCompletion,
+  getGamesSortedByPlaytime,
+} from "./actions/gameActions";
 
 const LoadingContainer = styled.div`
   width: 100%;
@@ -19,39 +24,79 @@ const LoadingContainer = styled.div`
 `;
 
 export default function App() {
-  const [games] = useContext(GamesContext);
+  const [games, setGames] = useState([]);
+
+  //Load all games and add it into state
+  useEffect(() => {
+    const fetchGamesfromAPI = async () => {
+      console.log("EFFECT IN GAME PROVIDER GETTING GAMES");
+      console.log(process.env.REACT_APP_API_ALL_GAMES);
+      let newGames = [];
+      newGames = await getAllGamesFromAPI();
+      setGames((oldGames) => newGames);
+    };
+
+    fetchGamesfromAPI();
+  }, []);
+
+  const contextSortGamePlaytime = () => {
+    console.log("Sorting games by playtime in Context");
+    const sortedGamesByPlaytime = getGamesSortedByPlaytime(games);
+
+    setGames((oldGames) => {});
+    setGames((oldGames) => sortedGamesByPlaytime);
+    console.log("NEW GAMES AFTER PLAYTIME -> ", games[0]);
+  };
+
+  const contextSortGameCompletion = () => {
+    console.log("Sorting games by completion in Context");
+    const sortedGamesByCompletion = getGamesSortedByCompletion(games);
+
+    setGames((oldGames) => {});
+    setGames((oldGames) => sortedGamesByCompletion);
+    console.log("NEW GAMES AFTER COMPLETION -> ", games[0]);
+  };
 
   return (
-    <>
-      {games.length > 0 && (
-        <Router>
-          <Switch>
-            <Route exact path='/'>
-              <Overview />
-            </Route>
-            <Route exact path='/games'>
-              <Games />
-            </Route>
-            <Route exact path='/achievements'>
-              <Achievements />
-            </Route>
-            <Route exact path='/history'>
-              <History />
-            </Route>
-            <Route exact path='/milestones'>
-              <Milestones />
-            </Route>
-            <Route exact path='/gamesbacklog'>
-              <GamesBacklog />
-            </Route>
-          </Switch>
-        </Router>
-      )}
-      {!games.length && (
-        <LoadingContainer>
-          <ClipLoader color={"#edffde"} loading={true} size={150} />
-        </LoadingContainer>
-      )}
-    </>
+    <GamesContext.Provider
+      value={{
+        games,
+        contextSortGamePlaytime,
+        contextSortGameCompletion,
+        setGames,
+      }}
+    >
+      <>
+        {games && games.length > 0 && (
+          <Router>
+            <Switch>
+              <Route exact path='/'>
+                <Overview />
+              </Route>
+              <Route exact path='/games'>
+                <Games games={games} />
+              </Route>
+              <Route exact path='/achievements'>
+                <Achievements />
+              </Route>
+              <Route exact path='/history'>
+                <History />
+              </Route>
+              <Route exact path='/milestones'>
+                <Milestones />
+              </Route>
+              <Route exact path='/gamesbacklog'>
+                <GamesBacklog />
+              </Route>
+            </Switch>
+          </Router>
+        )}
+        {!games && (
+          <LoadingContainer>
+            <ClipLoader color={"#edffde"} loading={true} size={150} />
+          </LoadingContainer>
+        )}
+      </>
+    </GamesContext.Provider>
   );
 }

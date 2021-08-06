@@ -6,9 +6,4 @@ import GamesProvider from "./context/GameProvider";
 
 console.clear();
 
-ReactDOM.render(
-  <GamesProvider>
-    <App />
-  </GamesProvider>,
-  document.getElementById("root")
-);
+ReactDOM.render(<App />, document.getElementById("root"));
