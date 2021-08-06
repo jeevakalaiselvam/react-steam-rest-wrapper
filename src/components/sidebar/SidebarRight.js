@@ -40,7 +40,7 @@ export default function SidebarRight(props) {
   return (
     <SidebarContainer
       sidebarOpenRight={props.sidebarOpenRight}
-      onClick={props.sidebarItemClicked}
+      onClick={props.sidebarItemClickedRight}
       showRightMenu={props.showRightMenu}
     >
       {props.rightMenuItem}

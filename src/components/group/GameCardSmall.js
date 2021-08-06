@@ -24,15 +24,15 @@ const CardContainer = styled.div`
   }
   @media only screen and (max-width: 1024px) and (min-width: 769px) {
     width: 48%;
-    height: 20vh;
+    height: 15vh;
   }
   @media only screen and (max-width: 768px) and (min-width: 481px) {
     width: 48%;
-    height: 20vh;
+    height: 15vh;
   }
   @media only screen and (max-width: 480px) and (min-width: 320px) {
     width: 46%;
-    height: 20vh;
+    height: 12vh;
   }
 `;
 
@@ -80,12 +80,7 @@ const AchievementData = styled.div`
   padding: 0.25rem;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
-`;
-
-const Playtime = styled.div`
-  display: flex;
-  flex-direction: row;
+  justify-content: start;
 `;
 
 const Icon = styled.div`
@@ -99,6 +94,10 @@ const Icon = styled.div`
 const Data = styled.div`
   margin: 0 0.5rem;
   color: #fff;
+`;
+
+const Remaining = styled.div`
+  justify-self: flex-end;
 `;
 
 const Percentage = styled.div`
@@ -143,8 +142,9 @@ export default function GameCardSmall(props) {
             {game.completed_achievements_count} /{" "}
             {game.total_achievements_count}
           </Data>
-          <Playtime></Playtime>
+          <Remaining>2 more..</Remaining>
         </AchievementData>
+
         <Percentage
           percentage={(game.completion_percentage / 80) * 100}
           color={getColor(game.completion_percentage)}
