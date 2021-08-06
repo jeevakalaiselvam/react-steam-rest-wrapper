@@ -5,6 +5,7 @@ import { GamesContext } from "../context/GameContext";
 import GameCardMedium from "../components/group/GameCardMedium";
 import Card from "../components/core/Card";
 import GamesPageRightMenu from "../menu/GamesPageRightMenu";
+import GameCardSmall from "../components/group/GameCardSmall";
 
 const PageContainer = styled.div`
   width: 100%;
@@ -17,7 +18,8 @@ const PageContainer = styled.div`
 `;
 
 export default function Games(props) {
-  const { games } = useContext(GamesContext);
+  const { games, gamesViewType } = useContext(GamesContext);
+  console.log("GAMEVIEWTYPE: ", gamesViewType);
 
   return (
     <>
@@ -26,11 +28,22 @@ export default function Games(props) {
         rightMenuItem={<GamesPageRightMenu />}
         showRightMenu={true}
       >
-        <PageContainer>
-          {games.map((game) => {
-            return <GameCardMedium game={game} key={game.id} />;
-          })}
-        </PageContainer>
+        {gamesViewType === 0 && console.log("RENDERING SMALL")}
+        {gamesViewType === 1 && console.log("RENDERING MEDIUM")}
+        {gamesViewType === 0 && (
+          <PageContainer>
+            {games.map((game) => {
+              return <GameCardSmall game={game} key={game.id} />;
+            })}
+          </PageContainer>
+        )}
+        {gamesViewType === 1 && (
+          <PageContainer>
+            {games.map((game) => {
+              return <GameCardMedium game={game} key={game.id} />;
+            })}
+          </PageContainer>
+        )}
       </Page>
     </>
   );

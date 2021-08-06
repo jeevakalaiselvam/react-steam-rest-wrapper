@@ -36,7 +36,6 @@ const SidebarContainer = styled.div`
 `;
 
 export default function SidebarRight(props) {
-  console.log(props.showRightMenu);
   return (
     <SidebarContainer
       sidebarOpenRight={props.sidebarOpenRight}

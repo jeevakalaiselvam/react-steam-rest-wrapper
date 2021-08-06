@@ -31,11 +31,11 @@ export default function GamesPageRightMenu() {
   };
 
   const showGamesSmall = () => {
-    setGamesViewType(0);
+    setGamesViewType((old) => 0);
   };
 
   const showGamesMedium = () => {
-    setGamesViewType(1);
+    setGamesViewType((old) => 1);
   };
 
   return (

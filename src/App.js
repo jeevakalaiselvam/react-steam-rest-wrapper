@@ -43,22 +43,20 @@ export default function App() {
   const contextSortGamePlaytime = () => {
     const sortedGamesByPlaytime = getGamesSortedByPlaytime(games);
 
-    setGames((oldGames) => {});
     setGames((oldGames) => sortedGamesByPlaytime);
   };
 
   const contextSortGameCompletion = () => {
     const sortedGamesByCompletion = getGamesSortedByCompletion(games);
 
-    setGames((oldGames) => {});
     setGames((oldGames) => sortedGamesByCompletion);
   };
 
   const contextChangeGamesViewSmall = () => {
-    setGamesViewType(0);
+    setGamesViewType((old) => 0);
   };
   const contextChangeGamesViewMedium = () => {
-    setGamesViewType(1);
+    setGamesViewType((old) => 1);
   };
 
   return (
