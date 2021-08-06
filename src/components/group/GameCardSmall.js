@@ -8,6 +8,7 @@ const CardContainerOuter = styled.div`
   margin: 0.25rem;
   align-self: flex-start;
   position: relative;
+  border: 1px solid ${(props) => props.color};
   justify-self: flex-start;
   display: flex;
   flex-direction: column;
@@ -44,7 +45,7 @@ const CardContainerOuter = styled.div`
   }
 
   &:hover {
-    border: 0.5px solid white;
+    border: 0.5px solid ${(props) => props.colorHover};
   }
 `;
 
@@ -129,6 +130,8 @@ export default function GameCardSmall(props) {
 
   return (
     <CardContainerOuter
+      colorHover={game.completion_percentage >= 80 ? "gold" : "#F5f5f5"}
+      color={game.completion_percentage >= 80 ? "gold" : "#00000000"}
       onMouseEnter={() => setIsShown(true)}
       onMouseLeave={() => setIsShown(false)}
     >

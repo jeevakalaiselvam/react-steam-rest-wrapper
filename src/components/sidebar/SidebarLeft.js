@@ -50,7 +50,7 @@ export default function SidebarLeft(props) {
         <HiHome style={{ width: "20px", height: "20px" }} />
       </NavItem>
 
-      <NavItem title='Owned Games' desc='All your Games' navigate='/games'>
+      <NavItem title='Games' desc='All your Games' navigate='/games'>
         <FaGamepad style={{ width: "20px", height: "20px" }} />
       </NavItem>
       <NavItem

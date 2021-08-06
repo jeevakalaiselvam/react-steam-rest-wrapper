@@ -20,7 +20,7 @@ const Title = styled.div`
 `;
 
 export default function GamesPageRightMenu() {
-  const { games, setGames, viewOptionGames, setViewOptionGames } =
+  const { games, setGames, setViewOptionGames, setSortOptionGames } =
     useContext(GamesContext);
 
   return (
@@ -32,7 +32,7 @@ export default function GamesPageRightMenu() {
         sidebarItemClicked={() => {
           console.log("COMPLETION SORT CLICKED");
           localStorage.setItem("GAMES_SORT_OPTION", 0);
-          setGames((oldGames) => getGamesSortedByCompletion(games));
+          setSortOptionGames((old) => 0);
         }}
       >
         <FaPercentage style={{ width: "20px", height: "20px" }} />
@@ -43,7 +43,7 @@ export default function GamesPageRightMenu() {
         sidebarItemClicked={() => {
           console.log("PLAYTIME SORT CLICKED");
           localStorage.setItem("GAMES_SORT_OPTION", 1);
-          setGames((oldGames) => getGamesSortedByPlaytime(games));
+          setSortOptionGames((old) => 1);
         }}
       >
         <FaClock style={{ width: "20px", height: "20px" }} />

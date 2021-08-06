@@ -26,6 +26,8 @@ const LoadingContainer = styled.div`
 export default function App() {
   const [games, setGames] = useState([]);
   const [viewOptionGames, setViewOptionGames] = useState(0);
+  const [sortOptionGames, setSortOptionGames] = useState(0);
+  const [viewOptionAchievements, setViewOptionAchievements] = useState(1);
 
   //Load all games and add it into state
   useEffect(() => {
@@ -34,7 +36,7 @@ export default function App() {
       newGames = await getAllGamesFromAPI();
       const realGames = getGamesSortedByCompletion(newGames);
 
-      setGames((oldGames) => realGames.slice(0, 50));
+      setGames((oldGames) => realGames);
     };
 
     fetchGamesfromAPI();
@@ -45,8 +47,12 @@ export default function App() {
       value={{
         games,
         setGames,
+        sortOptionGames,
+        setSortOptionGames,
         viewOptionGames,
         setViewOptionGames,
+        viewOptionAchievements,
+        setViewOptionAchievements,
       }}
     >
       <>
