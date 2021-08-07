@@ -59,14 +59,21 @@ const DateBlock = styled.div`
   cursor: pointer;
   justify-content: center;
   margin: 5px;
+  color: ${(props) => props.color};
+
+  &:hover {
+    border: 0.5px solid #fefefe;
+  }
 `;
 
 const YearContainer = styled.div`
   width: 100%;
   align-items: center;
+  color: rgb(85, 174, 206);
   font-size: 1.2rem;
   justify-content: center;
   display: flex;
+  cursor: pointer;
 
   flex-direction: column;
 `;
@@ -98,7 +105,13 @@ export default function History() {
                     {Object.keys(allAchievementsSortedByYear[year]).map(
                       (date) => {
                         return (
-                          <DateBlock>
+                          <DateBlock
+                            color={
+                              allAchievementsSortedByYear[year][date].length > 0
+                                ? "rgb(165, 201, 58)"
+                                : "#888888"
+                            }
+                          >
                             {allAchievementsSortedByYear[year][date].length}
                           </DateBlock>
                         );
