@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import Page from "../components/core/Page";
 import Header from "../components/core/Header";
+import GamesPageLeft from "../sidebar/GamesPageLeft";
+import GamesPageRight from "../sidebar/GamesPageRight";
 
 const PageContainer = styled.div`
   display: flex;
@@ -15,12 +17,11 @@ export default function Games() {
     <PageContainer>
       <Header />
       <Page
-        leftSidebar={"Left Sidebar content"}
-        rightSidebar={"Right Sidebar Content"}
+        leftSidebar={<GamesPageLeft />}
+        rightSidebar={<GamesPageRight />}
         content={"All Games"}
         leftSidebarWidth={"180px"}
         rightSidebarWidth={"180px"}
-        leftSidebarOpen={false}
       />
     </PageContainer>
   );

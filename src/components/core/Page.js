@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { GameContext } from "../../context/GameContext";
 
 const PageContainer = styled.div`
   display: flex;
@@ -21,8 +22,8 @@ const SidebarLeftContainer = styled.div`
 
   @media only screen and (max-width: 840px) {
     position: fixed;
-    left: ${(props) => (props.leftSidebarOpen ? "0" : "-100%")};
-    top: 0;
+    left: ${(props) => (props.navLeftOpen ? "0" : "-100%")};
+    top: 70px;
   }
   @media only screen and (min-width: 841px) {
     display: flex;
@@ -42,8 +43,8 @@ const SidebarRightContainer = styled.div`
 
   @media only screen and (max-width: 840px) {
     position: fixed;
-    right: ${(props) => (props.rightSidebarOpen ? "0" : "100%")};
-    top: 0;
+    right: ${(props) => (props.navRightOpen ? "0" : "-100%")};
+    top: 70px;
   }
   @media only screen and (min-width: 841px) {
     display: flex;
@@ -59,18 +60,23 @@ const ContentContainer = styled.div`
 `;
 
 export default function Page(props) {
+  const { navLeftOpen, navRightOpen } = useContext(GameContext);
+
   return (
     <PageContainer>
       <SidebarLeftContainer
-        leftSidebarOpen={props.leftSidebarOpen}
-        rightSidebarOpen={props.rightSidebarOpen}
         leftSidebarWidth={props.leftSidebarWidth}
-        rightSidebarWidth={props.rightSidebarWidth}
+        navLeftOpen={navLeftOpen}
       >
         {props.leftSidebar}
       </SidebarLeftContainer>
       <ContentContainer>{props.content}</ContentContainer>
-      <SidebarRightContainer>{props.rightSidebar}</SidebarRightContainer>
+      <SidebarRightContainer
+        rightSidebarWidth={props.rightSidebarWidth}
+        navRightOpen={navRightOpen}
+      >
+        {props.rightSidebar}
+      </SidebarRightContainer>
     </PageContainer>
   );
 }

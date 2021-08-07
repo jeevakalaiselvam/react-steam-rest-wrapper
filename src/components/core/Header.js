@@ -1,22 +1,48 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
-import { FaBars, FaEllipsisV } from "react-icons/fa";
+import { FaBars, FaEllipsisV, FaTimes } from "react-icons/fa";
+import { GameContext } from "../../context/GameContext";
 
 const HeaderContainer = styled.div`
-  display: flex;
   width: 100%;
-  height: 60px;
   padding: 0.5rem;
+  z-index: 1;
   background-color: rgba(10, 17, 25, 0.6);
+  min-height: 70px;
   flex-direction: row;
+
+  @media only screen and (max-width: 840px) {
+    display: flex;
+  }
+  @media only screen and (min-width: 841px) {
+    display: none;
+  }
 `;
 
 const LeftNav = styled.div`
-  width: 50px;
+  font-size: 1.5rem;
+  cursor: pointer;
   display: flex;
+  padding: 0.5rem;
   align-items: center;
   justify-content: center;
   height: 100%;
+  &:hover {
+    color: #f5f5f5;
+  }
+`;
+
+const RightNav = styled.div`
+  font-size: 1.5rem;
+  height: 100%;
+  display: flex;
+  padding: 0.5rem;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    color: #f5f5f5;
+  }
 `;
 
 const MiddleNav = styled.div`
@@ -26,23 +52,30 @@ const MiddleNav = styled.div`
   justify-content: center;
 `;
 
-const RightNav = styled.div`
-  width: 50px;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
+export default function Header(props) {
+  const { navLeftOpen, setNavLeftOpen, navRightOpen, setNavRightOpen } =
+    useContext(GameContext);
 
-export default function Header() {
+  const toggleNavLeft = () => {
+    console.log("NAV LEFT TOGGLE");
+    setNavLeftOpen((navState) => !navState);
+  };
+
+  const toggleNavRight = () => {
+    console.log("NAV RIGHT TOGGLE");
+    setNavRightOpen((navState) => !navState);
+  };
+
   return (
     <HeaderContainer>
-      <LeftNav>
-        <FaBars />
+      <LeftNav onClick={toggleNavLeft}>
+        {!navLeftOpen && <FaBars />}
+        {navLeftOpen && <FaTimes />}
       </LeftNav>
       <MiddleNav>Middle</MiddleNav>
-      <RightNav>
-        <FaEllipsisV />
+      <RightNav onClick={toggleNavRight}>
+        {!navRightOpen && <FaEllipsisV />}
+        {navRightOpen && <FaTimes />}
       </RightNav>
     </HeaderContainer>
   );
