@@ -19,6 +19,7 @@ import AchievementCardSmall from "../components/group/AchievementCardSmall";
 import AchievementCardMedium from "../components/group/AchievementCardMedium";
 import MainLeftMenu from "../menu/MainLeftMenu";
 import RightMenuAchievementCard from "../components/group/RightMenuAchievementCard";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const PageContainer = styled.div`
   width: 100%;
@@ -105,42 +106,72 @@ const TrophyCount = styled.div`
 `;
 const AchievementContainer = styled.div`
   width: 100%;
+  padding: 0.5rem;
+`;
+
+const LoadingContainer = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 `;
 
 export default function History() {
   const { games } = useContext(GamesContext);
   const [dateAchievements, setDateAchievements] = useState([]);
+  const [allAchievementsSortedByYear, setAllAchievementsSortedByYear] =
+    useState({});
+  const [loading, setLoading] = useState(true);
+  console.log("RENDERING HISTORY COMPONENT");
 
-  //Sort all achievements and put them in a object containing year mapped to array of all achievements unlocked that year in that date
-  const allAchievementsSortedByYear = getAllUnlockedAchievementsSortedByYear(
-    getRecentlyUnlockedAllAchievements(games)
-  );
-  console.log(allAchievementsSortedByYear);
+  useEffect(() => {
+    console.log("LOADING -> ", loading);
+    setLoading((old) => true);
+    console.log(
+      "Effect sorting all obtained achievements per year for all dates first time.."
+    );
+    //Sort all achievements and put them in a object containing year mapped to array of all achievements unlocked that year in that date
+    const allAchievementsSortedByYearInEffect =
+      getAllUnlockedAchievementsSortedByYear(
+        getRecentlyUnlockedAllAchievements(games)
+      );
+    setAllAchievementsSortedByYear(
+      (old) => allAchievementsSortedByYearInEffect
+    );
+    setLoading((old) => false);
+    console.log("LOADING -> ", loading);
+  }, []);
 
   const dateBoxClicked = (date) => {
-    console.log(date);
+    setLoading((old) => true);
     setDateAchievements((old) => date);
+    setLoading((old) => false);
   };
 
   return (
     <>
+      {loading && (
+        <LoadingContainer>
+          <ClipLoader color={"#edffde"} loading={true} size={150} />
+        </LoadingContainer>
+      )}
       <Page
         title='History'
         rightMenuItem={
           <AchievementContainer>
-            {dateAchievements.length &&
-              dateAchievements.map((achievement) => {
-                return (
-                  <RightMenuAchievementCard
-                    key={uuidv4()}
-                    achievement={achievement}
-                  />
-                );
-              })}
+            {dateAchievements.map((achievement) => {
+              return (
+                <RightMenuAchievementCard
+                  key={uuidv4()}
+                  achievement={achievement}
+                />
+              );
+            })}
           </AchievementContainer>
         }
         leftMenuItem={<MainLeftMenu />}
-        sidebarLeftWidth='250px'
+        sidebarLeftWidth='180px'
         sidebarRightWidth='500px'
         sidebarRightVisible={true}
       >

@@ -50,8 +50,8 @@ export default function Achievements(props) {
         title='All Achievements'
         rightMenuItem={<AchievementsPageRightMenu />}
         leftMenuItem={<MainLeftMenu />}
-        sidebarLeftWidth='250px'
-        sidebarRightWidth='200px'
+        sidebarLeftWidth='180px'
+        sidebarRightWidth='180px'
         sidebarRightVisible={true}
       >
         <PageContainer>

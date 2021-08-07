@@ -8,7 +8,7 @@ const SidebarContainer = styled.div`
   position: fixed;
   top: 60px;
   padding: 0.5rem;
-  right: ${({ sidebarOpen }) => (sidebarOpen ? "0" : "100%")};
+  right: ${({ sidebarOpenRight }) => (sidebarOpenRight ? "0" : "-100%")};
   transition: all 0.2s;
   width: ${({ sidebarWidth }) => sidebarWidth};
   min-height: 100vh;

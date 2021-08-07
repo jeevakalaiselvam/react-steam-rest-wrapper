@@ -100,6 +100,9 @@ export default function HeaderSmall(props) {
   const toggleNavLeft = () => {
     setSidebarOpenLeft((old) => !old);
   };
+  const toggleNavRight = () => {
+    setSidebarOpenRight((old) => !old);
+  };
 
   return (
     <Container>
@@ -134,7 +137,7 @@ export default function HeaderSmall(props) {
         </StatusColumn>
       </NavStatus>
 
-      <NavButton>
+      <NavButton onClick={toggleNavRight}>
         <Icon>
           {!sidebarOpenRight && (
             <FaEllipsisV style={{ width: "23px", height: "23px" }} />

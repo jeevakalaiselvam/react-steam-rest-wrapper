@@ -6,6 +6,7 @@ import SidebarRight from "../sidebar/SidebarRight";
 
 const MainContainer = styled.div`
   display: flex;
+  width: 100vw;
   flex-direction: row;
 `;
 
@@ -13,7 +14,7 @@ const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  width: 100vw;
+  flex: 1;
   align-items: center;
   padding: 0.5rem;
   justify-content: flex-start;

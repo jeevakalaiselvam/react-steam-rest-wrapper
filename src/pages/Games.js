@@ -48,10 +48,10 @@ export default function Games(props) {
     <>
       <Page
         title='All Games'
-        leftMenuItem={<MainLeftMenu />}
         rightMenuItem={<GamesPageRightMenu />}
-        sidebarLeftWidth='250px'
-        sidebarRightWidth='200px'
+        leftMenuItem={<MainLeftMenu />}
+        sidebarLeftWidth='180px'
+        sidebarRightWidth='180px'
         sidebarRightVisible={true}
       >
         <PageContainer>

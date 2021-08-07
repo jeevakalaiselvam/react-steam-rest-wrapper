@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import BlackToolTip from "./BlackToolTip";
+import { useContext } from "react";
+import { GamesContext } from "../../context/GameContext";
 
 const ItemContainer = styled(Link)`
   display: flex;
@@ -31,10 +33,15 @@ const Title = styled.div`
 `;
 
 export default function NavItem(props) {
+  const { setSidebarOpenLeft } = useContext(GamesContext);
+
   return (
     <>
       {/* <BlackToolTip title={props.desc}> */}
-      <ItemContainer to={`${props.navigate}`}>
+      <ItemContainer
+        to={`${props.navigate}`}
+        onClick={() => setSidebarOpenLeft((old) => false)}
+      >
         <Icon>{props.children}</Icon>
         <Title>{props.title}</Title>
       </ItemContainer>

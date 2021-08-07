@@ -67,8 +67,8 @@ export default function Overview() {
         title='Overview'
         leftMenuItem={<MainLeftMenu />}
         rightMenuItem={<></>}
-        sidebarLeftWidth='250px'
-        sidebarRightWidth='200px'
+        sidebarLeftWidth='180px'
+        sidebarRightWidth='180px'
         sidebarRightVisible={false}
       >
         <PageContainer>
