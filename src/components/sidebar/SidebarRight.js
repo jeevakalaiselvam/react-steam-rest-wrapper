@@ -15,7 +15,8 @@ const SidebarContainer = styled.div`
   flex-direction: column;
   position: fixed;
   top: 60px;
-  right: ${({ sidebarOpenRight }) => (sidebarOpenRight ? "0" : "-100%")};
+  right: ${({ sidebarOpenRight, openRightMenu }) =>
+    sidebarOpenRight || openRightMenu ? "0" : "-100%"};
   transition: all 0.2s;
   width: ${(props) => props.size};
   max-height: 100vh;
@@ -25,7 +26,8 @@ const SidebarContainer = styled.div`
   z-index: 10000;
   text-shadow: rgba(10, 17, 25, 0.45);
   border-right-color: rgba(10, 17, 25, 0.6);
-  display: ${(props) => (props.showRightMenu ? "block" : "none")};
+  display: ${(props) =>
+    props.showRightMenu || props.openRightMenu ? "block" : "none"};
 
   @media (min-width: 769px) {
     width: ${(props) => props.size};
@@ -44,6 +46,7 @@ export default function SidebarRight(props) {
       sidebarOpenRight={props.sidebarOpenRight}
       onClick={props.sidebarItemClickedRight}
       showRightMenu={props.showRightMenu}
+      openRightMenu={props.openRightMenu}
     >
       {props.rightMenuItem}
     </SidebarContainer>

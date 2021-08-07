@@ -36,11 +36,16 @@ export default function Page(props) {
   };
 
   const toggleNavRight = () => {
+    console.log("TOGGLING NAV RIGHT");
     setSidebarOpenRight((oldSidebar) => !oldSidebar);
   };
 
   const sidebarItemClickedRight = () => {
     setSidebarOpenRight((oldSidebar) => false);
+  };
+
+  const openSideBarRight = () => {
+    setSidebarOpenRight((oldSidebar) => true);
   };
 
   return (
@@ -52,6 +57,7 @@ export default function Page(props) {
         sidebarOpenRight={sidebarOpenRight}
         title={props.title}
         showRightMenu={props.showRightMenu}
+        openRightMenu={props.openRightMenu}
       />
       <MainContainer>
         <SidebarLeft
@@ -66,6 +72,7 @@ export default function Page(props) {
           sidebarItemClickedRight={sidebarItemClickedRight}
           rightMenuItem={props.rightMenuItem}
           showRightMenu={props.showRightMenu}
+          openRightMenu={props.openRightMenu || sidebarOpenRight}
         />
       </MainContainer>
     </>

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import Page from "../components/pages/Page";
 import styled from "styled-components";
@@ -107,7 +107,7 @@ const AchievementContainer = styled.div`
 
 export default function History() {
   const { games } = useContext(GamesContext);
-  let dateAchievements = {};
+  const [dateAchievements, setDateAchievements] = useState([]);
   const [openRightMenu, setOpenRightMenu] = useState(false);
 
   //Sort all achievements and put them in a object containing year mapped to array of all achievements unlocked that year in that date
@@ -117,8 +117,13 @@ export default function History() {
   console.log(allAchievementsSortedByYear);
 
   const dateBoxClicked = (date) => {
-    dateAchievements = date;
+    console.log(date);
+    setDateAchievements((old) => date);
     setOpenRightMenu((old) => true);
+  };
+
+  const closeRightMenuHandler = () => {
+    setOpenRightMenu((old) => false);
   };
 
   return (
@@ -140,6 +145,8 @@ export default function History() {
           </AchievementContainer>
         }
         showRightMenu={true}
+        openRightMenu={openRightMenu}
+        closeRightMenu={closeRightMenuHandler}
       >
         <PageContainer>
           <PageContainerInner>

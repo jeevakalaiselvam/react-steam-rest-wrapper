@@ -28,6 +28,7 @@ export default function Header(props) {
           sidebarOpenRight={props.sidebarOpenRight}
           title={props.title}
           showRightMenu={props.showRightMenu}
+          openRightMenu={props.openRightMenu}
         />
       </HeaderSmallContainer>
       <HeaderLargeContainer>
