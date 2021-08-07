@@ -49,7 +49,7 @@ export default function MainLeftMenu() {
       </NavItem>
 
       <NavItem
-        title='Games Backlog'
+        title='Backlog'
         desc='Your Games Backlog'
         navigate='/gamesbacklog'
       >

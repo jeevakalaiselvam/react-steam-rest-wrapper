@@ -10,10 +10,7 @@ import GamesBacklog from "./pages/GamesBacklog";
 import { GamesContext } from "./context/GameContext";
 import ClipLoader from "react-spinners/ClipLoader";
 import { getAllGamesFromAPI } from "./actions/apiActions";
-import {
-  addHiddenToGames,
-  getGamesSortedByCompletion,
-} from "./actions/gameActions";
+import { getGamesSortedByCompletion } from "./actions/gameActions";
 
 const LoadingContainer = styled.div`
   width: 100%;
@@ -38,7 +35,6 @@ export default function App() {
       let newGames = [];
       newGames = await getAllGamesFromAPI();
       const realGames = getGamesSortedByCompletion(newGames);
-
       setGames((oldGames) => realGames);
     };
 

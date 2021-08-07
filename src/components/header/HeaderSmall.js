@@ -97,9 +97,13 @@ export default function HeaderSmall(props) {
     setSidebarOpenRight,
   } = useContext(GamesContext);
 
+  const toggleNavLeft = () => {
+    setSidebarOpenLeft((old) => !old);
+  };
+
   return (
     <Container>
-      <NavButton>
+      <NavButton onClick={toggleNavLeft}>
         <Icon>
           {!sidebarOpenLeft && (
             <FaBars style={{ width: "25px", height: "25px" }} />

@@ -15,10 +15,10 @@ const CardContainerOuter = styled.div`
   box-shadow: 1px 1px 1px hsl(0deg 0% 100% / 10%);
   display: flex;
   flex-direction: column;
-  border: 1px solid rgba(10, 17, 25, 0.3);
+  border: 0.5px solid rgba(10, 17, 25, 0.3);
 
   &:hover {
-    border: 0.5px solid #f5f5f5;
+    border: 0.5px solidrgba(10, 17, 25, 0.9);
   }
 `;
 

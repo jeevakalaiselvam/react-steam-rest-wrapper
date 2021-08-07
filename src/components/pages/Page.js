@@ -35,9 +35,8 @@ export default function Page(props) {
         <ContentContainer>{props.children}</ContentContainer>
         <SidebarRight
           rightMenuItem={props.rightMenuItem}
-          sidebarNotNeededForPage={props.sidebarNotNeededForPage}
           sidebarWidth={props.sidebarRightWidth}
-          visible={props.sidebarRightVisible}
+          sidebarRightVisible={props.sidebarRightVisible}
         />
       </MainContainer>
     </>

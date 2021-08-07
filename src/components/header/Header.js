@@ -1,5 +1,4 @@
 import React from "react";
-import HeaderLarge from "./HeaderLarge";
 import HeaderSmall from "./HeaderSmall";
 import styled from "styled-components";
 
@@ -31,9 +30,6 @@ export default function Header(props) {
           openRightMenu={props.openRightMenu}
         />
       </HeaderSmallContainer>
-      <HeaderLargeContainer>
-        <HeaderLarge />
-      </HeaderLargeContainer>
     </>
   );
 }

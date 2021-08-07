@@ -12,6 +12,7 @@ import {
   getGamesSortedByNameZA,
   getGamesSortedByPlaytime,
 } from "../actions/gameActions";
+import MainLeftMenu from "../menu/MainLeftMenu";
 
 const PageContainer = styled.div`
   width: 100%;
@@ -47,9 +48,11 @@ export default function Games(props) {
     <>
       <Page
         title='All Games'
+        leftMenuItem={<MainLeftMenu />}
         rightMenuItem={<GamesPageRightMenu />}
-        sidebarLeftWidth='100px'
-        sidebarRightWidth='100px'
+        sidebarLeftWidth='250px'
+        sidebarRightWidth='200px'
+        sidebarRightVisible={true}
       >
         <PageContainer>
           {getSortedGames().map((game) => {

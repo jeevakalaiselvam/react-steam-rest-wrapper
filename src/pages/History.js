@@ -126,7 +126,6 @@ export default function History() {
     <>
       <Page
         title='History'
-        leftMenuItem={<MainLeftMenu />}
         rightMenuItem={
           <AchievementContainer>
             {dateAchievements.length &&
@@ -140,8 +139,10 @@ export default function History() {
               })}
           </AchievementContainer>
         }
+        leftMenuItem={<MainLeftMenu />}
         sidebarLeftWidth='250px'
         sidebarRightWidth='500px'
+        sidebarRightVisible={true}
       >
         <PageContainer>
           <PageContainerInner>

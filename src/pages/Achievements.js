@@ -10,6 +10,7 @@ import {
   getRecentlyUnlockedAllAchievements,
 } from "../actions/achievementActions";
 import AchievementsPageRightMenu from "../menu/AchievementsPageRightMenu";
+import MainLeftMenu from "../menu/MainLeftMenu";
 
 const PageContainer = styled.div`
   width: 100%;
@@ -48,8 +49,10 @@ export default function Achievements(props) {
       <Page
         title='All Achievements'
         rightMenuItem={<AchievementsPageRightMenu />}
-        sidebarLeftWidth='100px'
-        sidebarRightWidth='100px'
+        leftMenuItem={<MainLeftMenu />}
+        sidebarLeftWidth='250px'
+        sidebarRightWidth='200px'
+        sidebarRightVisible={true}
       >
         <PageContainer>
           {getSortedAchievements(games).map((achievement) => {

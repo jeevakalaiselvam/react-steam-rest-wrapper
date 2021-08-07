@@ -18,10 +18,10 @@ const CardContainer = styled.div`
   flex-direction: row;
   padding: 0.5rem 1rem;
   background-color: rgba(10, 17, 25, 0.6);
-  border: 1px solid rgba(10, 17, 25, 0.9);
+  border: 0.5px solid rgba(10, 17, 25, 0.3);
 
   &:hover {
-    border: 0.5px solid rgba(10, 17, 25, 1);
+    border: 0.5px solidrgba(10, 17, 25, 0.9);
   }
 
   height: 120px;

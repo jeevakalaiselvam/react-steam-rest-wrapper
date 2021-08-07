@@ -1,14 +1,5 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import {
-  FaGamepad,
-  FaTrophy,
-  FaBookOpen,
-  FaMedal,
-  FaFolderOpen,
-} from "react-icons/fa";
-import NavItem from "../ui/NavItem";
-import { HiHome } from "react-icons/hi";
 import { GamesContext } from "../../context/GameContext";
 
 const SidebarContainer = styled.div`
@@ -21,14 +12,18 @@ const SidebarContainer = styled.div`
   transition: all 0.2s;
   width: ${({ sidebarWidth }) => sidebarWidth};
   min-height: 100vh;
+  max-height: 100vh;
+  overflow: scroll;
   background-color: rgba(10, 17, 25, 1);
   z-index: 10000;
   text-shadow: rgba(10, 17, 25, 0.45);
   border-right-color: rgba(10, 17, 25, 0.6);
-  display: ${({ visible }) => (visible ? "block" : "none")};
+  display: ${(props) =>
+    props.sidebarRightVisible ? "flex" : "none !important"};
 
   @media (min-width: 769px) {
     width: ${({ sidebarWidth }) => sidebarWidth};
+
     position: relative;
     display: block;
     top: 0;
@@ -38,11 +33,12 @@ const SidebarContainer = styled.div`
 
 export default function SidebarRight(props) {
   const { sidebarOpenRight } = useContext(GamesContext);
+
   return (
     <SidebarContainer
       sidebarOpenRight={sidebarOpenRight}
       sidebarWidth={props.sidebarWidth}
-      visible={props.visible}
+      sidebarRightVisible={props.sidebarRightVisible}
     >
       {props.rightMenuItem}
     </SidebarContainer>
