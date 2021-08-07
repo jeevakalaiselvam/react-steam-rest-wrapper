@@ -14,6 +14,7 @@ import Card from "../components/core/Card";
 import BlackToolTip from "../components/ui/BlackToolTip";
 import { FaTrophy } from "react-icons/fa";
 import { getFullDate } from "../helper/dateHelper";
+import { v4 as uuidv4 } from "uuid";
 
 const PageContainer = styled.div`
   width: 100%;
@@ -144,6 +145,7 @@ export default function History() {
                             }
                           >
                             <DateBlock
+                              key={uuidv4()}
                               color={
                                 allAchievementsSortedByYear[year][date].length >
                                 0
