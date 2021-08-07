@@ -4,6 +4,7 @@ import Page from "../components/pages/Page";
 import styled from "styled-components";
 import { GamesContext } from "../context/GameContext";
 import {
+  getAllAchievementsSortedAZ,
   getAllUnlockedAchievements,
   getAllUnlockedAchievementsSortedByYear,
   getRecentlyUnlockedAllAchievements,
@@ -74,37 +75,18 @@ export default function History() {
 
   const rightMenuItem = <>TO CALCULATE</>;
 
-  const getDateArraysforAYear = (year) => {
-    // new Date(`January 1, ${year} 00:00:00`).getTime()
-    if (year > 1970) {
-      return 0 + year * 12 * 30 * 24 * 60 * 60 * 1000;
-    }
-  };
-
   //Sort all achievements and put them in a object containing year mapped to array of all achievements unlocked that year
   const allAchievementsSortedByYear = getAllUnlockedAchievementsSortedByYear(
-    getAllUnlockedAchievements(games)
+    getRecentlyUnlockedAllAchievements(games)
   );
   console.log(allAchievementsSortedByYear);
-
-  var getDateArray = function (start, end) {
-    var arr = new Array(),
-      dt = new Date(start);
-
-    while (dt <= end) {
-      arr.push(new Date(dt));
-      dt.setDate(dt.getDate() + 1);
-    }
-
-    return arr;
-  };
 
   return (
     <>
       <Page title='History' rightMenuItem={rightMenuItem} showRightMenu={true}>
         <PageContainer>
           <PageContainerInner>
-            {Object.keys(allAchievementsSortedByYear)
+            {/* {Object.keys(allAchievementsSortedByYear)
               .sort((year1, year2) => {
                 return year2 - year1;
               })
@@ -114,8 +96,10 @@ export default function History() {
                   new Date(`January 1, ${year} 00:00:00`),
                   new Date(`December 31, ${year} 23:59:59`)
                 );
-                console.log("ALL DATES -> ", allDatesInAYear);
-              })}
+                allDatesInAYear.map((date) => {
+                  return <DateBlock>{}</DateBlock>;
+                });
+              })} */}
           </PageContainerInner>
         </PageContainer>
       </Page>

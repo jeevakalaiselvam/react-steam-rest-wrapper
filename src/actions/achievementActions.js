@@ -212,28 +212,62 @@ function formatDate(date) {
 }
 
 export const getAllUnlockedAchievementsSortedByYear = (
-  allUnlockedAchievements
+  allRecentlyUnlockedAchievement
 ) => {
   const achivementsSortedByYear = {
-    2021: [],
-    2020: [],
-    2019: [],
-    2018: [],
-    2017: [],
-    2016: [],
-    2015: [],
-    2014: [],
-    2013: [],
-    2012: [],
-    2011: [],
-    2010: [],
+    2021: {},
+    2020: {},
+    2019: {},
+    2018: {},
+    2017: {},
+    2016: {},
+    2015: {},
+    2014: {},
+    2013: {},
+    2012: {},
+    2011: {},
+    2010: {},
   };
 
-  allUnlockedAchievements.forEach((achievement) => {
-    achivementsSortedByYear[
-      new Date(achievement.unlocked_time * 1000).getFullYear()
-    ].push(achievement);
+  Object.keys(achivementsSortedByYear)
+    .slice()
+    .forEach((year) => {
+      const startDate = new Date(`January 1, ${year} 00:00:00`);
+      const endDate = new Date(`December 31, ${year} 23:59:59`);
+      let newDate = startDate;
+      while (newDate <= endDate) {
+        achivementsSortedByYear[year][
+          `${newDate.getFullYear()}-${
+            newDate.getMonth() + 1
+          }-${newDate.getDate()}`
+        ] = [];
+        newDate.setDate(newDate.getDate() + 1);
+      }
+    });
+
+  allRecentlyUnlockedAchievement.slice(0, 10).forEach((achievement) => {
+    const unlockedDate = new Date(achievement.unlocked_time * 1000);
+    const unlockedInYear = unlockedDate.getFullYear();
+    const formattedUnlockDate = `${unlockedDate.getFullYear()}-${
+      unlockedDate.getMonth() + 1
+    }-${unlockedDate.getDate()}`;
+    console.log("UNLOCKED IN DATE -> ", formattedUnlockDate);
+    achivementsSortedByYear[unlockedInYear][formattedUnlockDate].push(
+      achievement
+    );
   });
 
   return achivementsSortedByYear;
+};
+
+export const getDateArray = function (startDate, endDate) {
+  var dateArray = new Array(),
+    newDate = new Date(startDate);
+
+  while (newDate <= endDate) {
+    dateArray.push(new Date(newDate));
+    newDate.setDate(newDate.getDate() + 1);
+  }
+
+  return dateArray;
 };
