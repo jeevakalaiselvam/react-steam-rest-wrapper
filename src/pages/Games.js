@@ -48,7 +48,8 @@ export default function Games(props) {
       <Page
         title='All Games'
         rightMenuItem={<GamesPageRightMenu />}
-        showRightMenu={true}
+        sidebarLeftWidth='100px'
+        sidebarRightWidth='100px'
       >
         <PageContainer>
           {getSortedGames().map((game) => {

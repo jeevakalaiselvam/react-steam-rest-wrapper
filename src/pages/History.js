@@ -17,6 +17,8 @@ import { getFullDate } from "../helper/dateHelper";
 import { v4 as uuidv4 } from "uuid";
 import AchievementCardSmall from "../components/group/AchievementCardSmall";
 import AchievementCardMedium from "../components/group/AchievementCardMedium";
+import MainLeftMenu from "../menu/MainLeftMenu";
+import RightMenuAchievementCard from "../components/group/RightMenuAchievementCard";
 
 const PageContainer = styled.div`
   width: 100%;
@@ -108,7 +110,6 @@ const AchievementContainer = styled.div`
 export default function History() {
   const { games } = useContext(GamesContext);
   const [dateAchievements, setDateAchievements] = useState([]);
-  const [openRightMenu, setOpenRightMenu] = useState(false);
 
   //Sort all achievements and put them in a object containing year mapped to array of all achievements unlocked that year in that date
   const allAchievementsSortedByYear = getAllUnlockedAchievementsSortedByYear(
@@ -119,24 +120,19 @@ export default function History() {
   const dateBoxClicked = (date) => {
     console.log(date);
     setDateAchievements((old) => date);
-    setOpenRightMenu((old) => true);
-  };
-
-  const closeRightMenuHandler = () => {
-    setOpenRightMenu((old) => false);
   };
 
   return (
     <>
       <Page
         title='History'
-        size={"500px"}
+        leftMenuItem={<MainLeftMenu />}
         rightMenuItem={
           <AchievementContainer>
             {dateAchievements.length &&
               dateAchievements.map((achievement) => {
                 return (
-                  <AchievementCardMedium
+                  <RightMenuAchievementCard
                     key={uuidv4()}
                     achievement={achievement}
                   />
@@ -144,9 +140,8 @@ export default function History() {
               })}
           </AchievementContainer>
         }
-        showRightMenu={true}
-        openRightMenu={openRightMenu}
-        closeRightMenu={closeRightMenuHandler}
+        sidebarLeftWidth='250px'
+        sidebarRightWidth='500px'
       >
         <PageContainer>
           <PageContainerInner>

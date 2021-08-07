@@ -5,6 +5,8 @@ import TotalAchievementsCard from "../components/toolkit/TotalAchievementsCard";
 import TotalGamesCard from "../components/toolkit/TotalGamesCard";
 import Card from "../components/core/Card";
 import TotalPerfectGamesCard from "../components/toolkit/TotalPerfectGamesCard";
+import GamesPageRightMenu from "../menu/GamesPageRightMenu";
+import MainLeftMenu from "../menu/MainLeftMenu";
 
 const PageContainer = styled.div`
   width: 100%;
@@ -61,7 +63,13 @@ const CardContainer = styled.div`
 export default function Overview() {
   return (
     <>
-      <Page title='Overview' showRightMenu={false}>
+      <Page
+        title='Overview'
+        leftMenuItem={<MainLeftMenu />}
+        sidebarLeftWidth='100px'
+        sidebarRightWidth='100px'
+        sidebarRightVisible={false}
+      >
         <PageContainer>
           <CardContainer>
             <TotalPerfectGamesCard />

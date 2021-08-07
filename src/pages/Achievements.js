@@ -48,7 +48,8 @@ export default function Achievements(props) {
       <Page
         title='All Achievements'
         rightMenuItem={<AchievementsPageRightMenu />}
-        showRightMenu={true}
+        sidebarLeftWidth='100px'
+        sidebarRightWidth='100px'
       >
         <PageContainer>
           {getSortedAchievements(games).map((achievement) => {

@@ -16,31 +16,34 @@ const SidebarContainer = styled.div`
   flex-direction: column;
   position: fixed;
   top: 60px;
-  right: ${({ sidebarOpenRight }) => (sidebarOpenRight ? "0" : "-100%")};
+  padding: 0.5rem;
+  right: ${({ sidebarOpen }) => (sidebarOpen ? "0" : "100%")};
   transition: all 0.2s;
-  width: ${(props) => props.size};
-  max-height: 100vh;
+  width: ${({ sidebarWidth }) => sidebarWidth};
   min-height: 100vh;
-  overflow: scroll;
   background-color: rgba(10, 17, 25, 1);
   z-index: 10000;
   text-shadow: rgba(10, 17, 25, 0.45);
   border-right-color: rgba(10, 17, 25, 0.6);
+  display: ${({ visible }) => (visible ? "block" : "none")};
 
   @media (min-width: 769px) {
-    width: ${(props) => props.size};
+    width: ${({ sidebarWidth }) => sidebarWidth};
     position: relative;
     display: block;
     top: 0;
     left: 0;
-    display: ${(props) => (props.showRightMenu ? "block" : "none")};
   }
 `;
 
 export default function SidebarRight(props) {
   const { sidebarOpenRight } = useContext(GamesContext);
   return (
-    <SidebarContainer sidebarOpenRight={sidebarOpenRight}>
+    <SidebarContainer
+      sidebarOpenRight={sidebarOpenRight}
+      sidebarWidth={props.sidebarWidth}
+      visible={props.visible}
+    >
       {props.rightMenuItem}
     </SidebarContainer>
   );

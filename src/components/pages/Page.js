@@ -28,9 +28,17 @@ export default function Page(props) {
     <>
       <Header title={props.title} />
       <MainContainer>
-        <SidebarLeft leftMenuItem={props.leftMenuItem} />
+        <SidebarLeft
+          leftMenuItem={props.leftMenuItem}
+          sidebarWidth={props.sidebarLeftWidth}
+        />
         <ContentContainer>{props.children}</ContentContainer>
-        <SidebarRight rightMenuItem={props.rightMenuItem} />
+        <SidebarRight
+          rightMenuItem={props.rightMenuItem}
+          sidebarNotNeededForPage={props.sidebarNotNeededForPage}
+          sidebarWidth={props.sidebarRightWidth}
+          visible={props.sidebarRightVisible}
+        />
       </MainContainer>
     </>
   );

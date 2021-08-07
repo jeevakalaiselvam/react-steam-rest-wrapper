@@ -19,7 +19,7 @@ const SidebarContainer = styled.div`
   padding: 0.5rem;
   left: ${({ sidebarOpen }) => (sidebarOpen ? "0" : "-100%")};
   transition: all 0.2s;
-  width: 200px;
+  width: ${({ sidebarWidth }) => sidebarWidth};
   min-height: 100vh;
   background-color: rgba(10, 17, 25, 1);
   z-index: 10000;
@@ -27,7 +27,7 @@ const SidebarContainer = styled.div`
   border-right-color: rgba(10, 17, 25, 0.6);
 
   @media (min-width: 769px) {
-    width: 230px;
+    width: ${({ sidebarWidth }) => sidebarWidth};
     position: relative;
     display: block;
     top: 0;
@@ -44,8 +44,11 @@ export default function SidebarLeft(props) {
   const { sidebarOpenLeft } = useContext(GamesContext);
 
   return (
-    <SidebarContainer sidebarOpenLeft={sidebarOpenLeft}>
-      {props.rightMenuItem}
+    <SidebarContainer
+      sidebarOpenLeft={sidebarOpenLeft}
+      sidebarWidth={props.sidebarWidth}
+    >
+      {props.leftMenuItem}
     </SidebarContainer>
   );
 }
