@@ -5,10 +5,11 @@ import { GameContext } from "../../context/GameContext";
 
 const HeaderContainer = styled.div`
   width: 100%;
+  position: fixed;
   padding: 0.5rem;
   z-index: 1;
-  background-color: rgba(10, 17, 25, 0.6);
-  min-height: 70px;
+  background-color: rgba(10, 17, 25, 1);
+  min-height: 60px;
   flex-direction: row;
 
   @media only screen and (max-width: 840px) {
@@ -57,12 +58,10 @@ export default function Header(props) {
     useContext(GameContext);
 
   const toggleNavLeft = () => {
-    console.log("NAV LEFT TOGGLE");
     setNavLeftOpen((navState) => !navState);
   };
 
   const toggleNavRight = () => {
-    console.log("NAV RIGHT TOGGLE");
     setNavRightOpen((navState) => !navState);
   };
 

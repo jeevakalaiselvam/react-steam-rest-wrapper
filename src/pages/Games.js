@@ -2,14 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import Page from "../components/core/Page";
 import Header from "../components/core/Header";
-import GamesPageLeft from "../sidebar/GamesPageLeft";
+import AllPageLeft from "../sidebar/AllPageLeft";
 import GamesPageRight from "../sidebar/GamesPageRight";
+import AllGames from "../content/AllGames";
 
 const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100vw;
-  height: 100vh;
 `;
 
 export default function Games() {
@@ -17,9 +17,9 @@ export default function Games() {
     <PageContainer>
       <Header />
       <Page
-        leftSidebar={<GamesPageLeft />}
+        leftSidebar={<AllPageLeft />}
         rightSidebar={<GamesPageRight />}
-        content={"All Games"}
+        content={<AllGames />}
         leftSidebarWidth={"180px"}
         rightSidebarWidth={"180px"}
       />
