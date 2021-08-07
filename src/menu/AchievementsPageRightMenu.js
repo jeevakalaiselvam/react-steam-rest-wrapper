@@ -4,11 +4,11 @@ import styled from "styled-components";
 import SidebarItem from "../components/ui/SidebarItem";
 import {
   FaClock,
-  FaPercentage,
-  FaCheck,
+  FaList,
   FaSortAlphaDown,
   FaSortAlphaDownAlt,
   FaGripHorizontal,
+  FaTh,
 } from "react-icons/fa";
 
 const RightMenu = styled.div`
@@ -67,7 +67,7 @@ export default function AchievementsPageRightMenu() {
           setViewOptionAchievements((old) => 0);
         }}
       >
-        <FaGripHorizontal style={{ width: "20px", height: "20px" }} />
+        <FaTh style={{ width: "20px", height: "20px" }} />
       </SidebarItem>
       <SidebarItem
         title='Normal'
@@ -77,7 +77,7 @@ export default function AchievementsPageRightMenu() {
           setViewOptionAchievements((old) => 1);
         }}
       >
-        <FaGripHorizontal style={{ width: "20px", height: "20px" }} />
+        <FaList style={{ width: "20px", height: "20px" }} />
       </SidebarItem>
     </RightMenu>
   );

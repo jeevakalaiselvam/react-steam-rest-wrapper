@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { FaTrophy, FaMedal } from "react-icons/fa";
 import BlackToolTip from "../ui/BlackToolTip";
+import Card from "../core/Card";
 
 const CardContainerOuter = styled.div`
   cursor: pointer;

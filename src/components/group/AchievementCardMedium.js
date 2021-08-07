@@ -13,6 +13,8 @@ const CardContainer = styled.div`
   justify-self: flex-start;
   display: flex;
   position: relative;
+
+  border-radius: 2px;
   flex-direction: row;
   padding: 0.5rem 1rem;
   background-color: rgba(10, 17, 25, 0.6);
@@ -91,7 +93,7 @@ const AchievementGame = styled.div`
   text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
 `;
 const HiddenImage = styled.div`
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: #454545;
   position: absolute;
   right: 10px;

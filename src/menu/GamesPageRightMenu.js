@@ -4,11 +4,12 @@ import styled from "styled-components";
 import SidebarItem from "../components/ui/SidebarItem";
 import {
   FaClock,
-  FaPercentage,
+  FaList,
   FaCheck,
   FaSortAlphaDown,
   FaSortAlphaDownAlt,
   FaGripHorizontal,
+  FaThLarge,
 } from "react-icons/fa";
 import {
   getGamesSortedByCompletion,
@@ -93,7 +94,7 @@ export default function GamesPageRightMenu() {
           setViewOptionGames((oldViewOption) => 1);
         }}
       >
-        <FaGripHorizontal style={{ width: "20px", height: "20px" }} />
+        <FaThLarge style={{ width: "20px", height: "20px", padding: "2px" }} />
       </SidebarItem>
     </RightMenu>
   );

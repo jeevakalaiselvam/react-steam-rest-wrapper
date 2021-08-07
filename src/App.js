@@ -25,9 +25,9 @@ const LoadingContainer = styled.div`
 
 export default function App() {
   const [games, setGames] = useState([]);
-  const [viewOptionGames, setViewOptionGames] = useState(0);
+  const [viewOptionGames, setViewOptionGames] = useState(1);
   const [sortOptionGames, setSortOptionGames] = useState(0);
-  const [viewOptionAchievements, setViewOptionAchievements] = useState(0);
+  const [viewOptionAchievements, setViewOptionAchievements] = useState(1);
   const [sortOptionAchievements, setSortOptionAchievements] = useState(0);
 
   //Load all games and add it into state

@@ -1,5 +1,6 @@
 import { React } from "react";
 import styled from "styled-components";
+import Card from "./Card";
 
 const Overlay = styled.div`
   position: relative;
@@ -30,8 +31,10 @@ const Inner = styled.div`
 export default function ImageOverlayCard(props) {
   return (
     <Overlay>
-      <OverlayImage>{props.image}</OverlayImage>
-      <Inner>{props.content}</Inner>
+      <Card radius='2px'>
+        <OverlayImage>{props.image}</OverlayImage>
+        <Inner>{props.content}</Inner>
+      </Card>
     </Overlay>
   );
 }
