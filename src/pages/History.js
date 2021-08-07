@@ -11,6 +11,9 @@ import {
   getTotalAchievementsInADate,
 } from "../actions/achievementActions";
 import Card from "../components/core/Card";
+import BlackToolTip from "../components/ui/BlackToolTip";
+import { FaTrophy } from "react-icons/fa";
+import { getFullDate } from "../helper/dateHelper";
 
 const PageContainer = styled.div`
   width: 100%;
@@ -78,6 +81,24 @@ const YearContainer = styled.div`
   flex-direction: column;
 `;
 
+const ToolTipData = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const TrophyData = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;
+
+const TrophyCount = styled.div`
+  margin-left: 0.5rem;
+`;
+
 export default function History() {
   const { games } = useContext(GamesContext);
 
@@ -105,15 +126,37 @@ export default function History() {
                     {Object.keys(allAchievementsSortedByYear[year]).map(
                       (date) => {
                         return (
-                          <DateBlock
-                            color={
-                              allAchievementsSortedByYear[year][date].length > 0
-                                ? "rgb(165, 201, 58)"
-                                : "#888888"
+                          <BlackToolTip
+                            title={
+                              <ToolTipData>
+                                {getFullDate(date)}
+                                <TrophyData>
+                                  <FaTrophy />
+                                  <TrophyCount>
+                                    {
+                                      allAchievementsSortedByYear[year][date]
+                                        .length
+                                    }
+                                  </TrophyCount>
+                                </TrophyData>
+                              </ToolTipData>
                             }
                           >
-                            {allAchievementsSortedByYear[year][date].length}
-                          </DateBlock>
+                            <DateBlock
+                              color={
+                                allAchievementsSortedByYear[year][date].length >
+                                0
+                                  ? "#c5c5c5"
+                                  : "#888888"
+                              }
+                            >
+                              {allAchievementsSortedByYear[year][date]
+                                .length === 0
+                                ? ""
+                                : allAchievementsSortedByYear[year][date]
+                                    .length}
+                            </DateBlock>
+                          </BlackToolTip>
                         );
                       }
                     )}
