@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import {
   FaGamepad,
@@ -9,14 +9,14 @@ import {
 } from "react-icons/fa";
 import NavItem from "../ui/NavItem";
 import { HiHome } from "react-icons/hi";
+import { GamesContext } from "../../context/GameContext";
 
 const SidebarContainer = styled.div`
   display: flex;
   flex-direction: column;
   position: fixed;
   top: 60px;
-  right: ${({ sidebarOpenRight, openRightMenu }) =>
-    sidebarOpenRight || openRightMenu ? "0" : "-100%"};
+  right: ${({ sidebarOpenRight }) => (sidebarOpenRight ? "0" : "-100%")};
   transition: all 0.2s;
   width: ${(props) => props.size};
   max-height: 100vh;
@@ -26,8 +26,6 @@ const SidebarContainer = styled.div`
   z-index: 10000;
   text-shadow: rgba(10, 17, 25, 0.45);
   border-right-color: rgba(10, 17, 25, 0.6);
-  display: ${(props) =>
-    props.showRightMenu || props.openRightMenu ? "block" : "none"};
 
   @media (min-width: 769px) {
     width: ${(props) => props.size};
@@ -40,14 +38,9 @@ const SidebarContainer = styled.div`
 `;
 
 export default function SidebarRight(props) {
+  const { sidebarOpenRight } = useContext(GamesContext);
   return (
-    <SidebarContainer
-      size={props.size}
-      sidebarOpenRight={props.sidebarOpenRight}
-      onClick={props.sidebarItemClickedRight}
-      showRightMenu={props.showRightMenu}
-      openRightMenu={props.openRightMenu}
-    >
+    <SidebarContainer sidebarOpenRight={sidebarOpenRight}>
       {props.rightMenuItem}
     </SidebarContainer>
   );

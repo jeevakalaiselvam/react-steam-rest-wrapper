@@ -25,6 +25,8 @@ const LoadingContainer = styled.div`
 
 export default function App() {
   const [games, setGames] = useState([]);
+  const [sidebarOpenLeft, setSidebarOpenLeft] = useState(false);
+  const [sidebarOpenRight, setSidebarOpenRight] = useState(false);
   const [viewOptionGames, setViewOptionGames] = useState(1);
   const [sortOptionGames, setSortOptionGames] = useState(0);
   const [viewOptionAchievements, setViewOptionAchievements] = useState(1);
@@ -47,6 +49,10 @@ export default function App() {
     <GamesContext.Provider
       value={{
         games,
+        sidebarOpenLeft,
+        sidebarOpenRight,
+        setSidebarOpenLeft,
+        setSidebarOpenRight,
         setGames,
         sortOptionGames,
         setSortOptionGames,

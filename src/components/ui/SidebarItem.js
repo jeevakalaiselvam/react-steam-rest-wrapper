@@ -35,7 +35,7 @@ export default function SidebarItem(props) {
   return (
     <>
       {/* <BlackToolTip title={props.desc}> */}
-      <ItemContainer onClick={props.sidebarItemClicked}>
+      <ItemContainer>
         <Icon>{props.children}</Icon>
         <Title>{props.title}</Title>
       </ItemContainer>

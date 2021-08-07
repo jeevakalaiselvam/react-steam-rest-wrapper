@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import {
   FaGamepad,
@@ -9,6 +9,7 @@ import {
 } from "react-icons/fa";
 import NavItem from "../ui/NavItem";
 import { HiHome } from "react-icons/hi";
+import { GamesContext } from "../../context/GameContext";
 
 const SidebarContainer = styled.div`
   display: flex;
@@ -16,7 +17,7 @@ const SidebarContainer = styled.div`
   position: fixed;
   top: 60px;
   padding: 0.5rem;
-  left: ${({ sidebarOpenLeft }) => (sidebarOpenLeft ? "0" : "-100%")};
+  left: ${({ sidebarOpen }) => (sidebarOpen ? "0" : "-100%")};
   transition: all 0.2s;
   width: 200px;
   min-height: 100vh;
@@ -40,44 +41,11 @@ const Title = styled.div`
 `;
 
 export default function SidebarLeft(props) {
+  const { sidebarOpenLeft } = useContext(GamesContext);
+
   return (
-    <SidebarContainer
-      sidebarOpenLeft={props.sidebarOpenLeft}
-      onClick={props.sidebarItemClicked}
-    >
-      <Title>Select Options</Title>
-      <NavItem title='Overview' desc='Profile overview' navigate='/'>
-        <HiHome style={{ width: "20px", height: "20px" }} />
-      </NavItem>
-
-      <NavItem title='Games' desc='All your Games' navigate='/games'>
-        <FaGamepad style={{ width: "20px", height: "20px" }} />
-      </NavItem>
-      <NavItem
-        title='Achievements'
-        desc='All your Achievements'
-        navigate='/achievements'
-      >
-        <FaTrophy style={{ width: "20px", height: "20px" }} />
-      </NavItem>
-      <NavItem
-        title='History'
-        desc='Your Achievement History'
-        navigate='/history'
-      >
-        <FaBookOpen style={{ width: "20px", height: "20px" }} />
-      </NavItem>
-      <NavItem title='Milestones' desc='Your Milestones' navigate='/milestones'>
-        <FaMedal style={{ width: "20px", height: "20px" }} />
-      </NavItem>
-
-      <NavItem
-        title='Games Backlog'
-        desc='Your Games Backlog'
-        navigate='/gamesbacklog'
-      >
-        <FaFolderOpen style={{ width: "20px", height: "20px" }} />
-      </NavItem>
+    <SidebarContainer sidebarOpenLeft={sidebarOpenLeft}>
+      {props.rightMenuItem}
     </SidebarContainer>
   );
 }

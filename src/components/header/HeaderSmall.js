@@ -89,28 +89,22 @@ const StatusData = styled.div`
 `;
 
 export default function HeaderSmall(props) {
-  const { games } = useContext(GamesContext);
-  const [openLeft, setOpenLeft] = useState(false);
-  const [openRight, setOpenRight] = useState(false);
-
-  const toggleNavLeft = () => {
-    setOpenLeft((old) => !openLeft);
-    props.toggleNavLeft();
-  };
-
-  const toggleNavRight = () => {
-    setOpenRight((old) => !openRight);
-    props.toggleNavRight();
-  };
+  const {
+    games,
+    sidebarOpenLeft,
+    sidebarOpenRight,
+    setSidebarOpenLeft,
+    setSidebarOpenRight,
+  } = useContext(GamesContext);
 
   return (
     <Container>
-      <NavButton onClick={toggleNavLeft}>
+      <NavButton>
         <Icon>
-          {!props.sidebarOpenLeft && (
+          {!sidebarOpenLeft && (
             <FaBars style={{ width: "25px", height: "25px" }} />
           )}
-          {props.sidebarOpenLeft && (
+          {sidebarOpenLeft && (
             <FaTimes style={{ width: "25px", height: "25px" }} />
           )}
         </Icon>
@@ -135,18 +129,17 @@ export default function HeaderSmall(props) {
           <StatusData>{games.length}</StatusData>
         </StatusColumn>
       </NavStatus>
-      {props.showRightMenu && (
-        <NavButton onClick={toggleNavRight}>
-          <Icon>
-            {!props.sidebarOpenRight && !props.openRightMenu && (
-              <FaEllipsisV style={{ width: "23px", height: "23px" }} />
-            )}
-            {(props.sidebarOpenRight || props.openRightMenu) && (
-              <FaTimes style={{ width: "25px", height: "25px" }} />
-            )}
-          </Icon>
-        </NavButton>
-      )}
+
+      <NavButton>
+        <Icon>
+          {!sidebarOpenRight && (
+            <FaEllipsisV style={{ width: "23px", height: "23px" }} />
+          )}
+          {sidebarOpenRight && (
+            <FaTimes style={{ width: "25px", height: "25px" }} />
+          )}
+        </Icon>
+      </NavButton>
     </Container>
   );
 }
