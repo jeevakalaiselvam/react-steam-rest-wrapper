@@ -229,29 +229,27 @@ export const getAllUnlockedAchievementsSortedByYear = (
     2010: {},
   };
 
-  Object.keys(achivementsSortedByYear)
-    .slice()
-    .forEach((year) => {
-      const startDate = new Date(`January 1, ${year} 00:00:00`);
-      const endDate = new Date(`December 31, ${year} 23:59:59`);
-      let newDate = startDate;
-      while (newDate <= endDate) {
-        achivementsSortedByYear[year][
-          `${newDate.getFullYear()}-${
-            newDate.getMonth() + 1
-          }-${newDate.getDate()}`
-        ] = [];
-        newDate.setDate(newDate.getDate() + 1);
-      }
-    });
+  Object.keys(achivementsSortedByYear).forEach((year) => {
+    const startDate = new Date(`January 1, ${year} 00:00:00`);
+    const endDate = new Date(`December 31, ${year} 23:59:59`);
+    let newDate = startDate;
+    while (newDate <= endDate) {
+      achivementsSortedByYear[year][
+        `${newDate.getFullYear()}-${
+          newDate.getMonth() + 1
+        }-${newDate.getDate()}`
+      ] = [];
+      newDate.setDate(newDate.getDate() + 1);
+    }
+  });
 
-  allRecentlyUnlockedAchievement.slice(0, 10).forEach((achievement) => {
+  allRecentlyUnlockedAchievement.forEach((achievement) => {
     const unlockedDate = new Date(achievement.unlocked_time * 1000);
     const unlockedInYear = unlockedDate.getFullYear();
     const formattedUnlockDate = `${unlockedDate.getFullYear()}-${
       unlockedDate.getMonth() + 1
     }-${unlockedDate.getDate()}`;
-    console.log("UNLOCKED IN DATE -> ", formattedUnlockDate);
+
     achivementsSortedByYear[unlockedInYear][formattedUnlockDate].push(
       achievement
     );

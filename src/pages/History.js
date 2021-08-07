@@ -64,6 +64,7 @@ const DateBlock = styled.div`
 const YearContainer = styled.div`
   width: 100%;
   align-items: center;
+  font-size: 1.2rem;
   justify-content: center;
   display: flex;
 
@@ -75,7 +76,7 @@ export default function History() {
 
   const rightMenuItem = <>TO CALCULATE</>;
 
-  //Sort all achievements and put them in a object containing year mapped to array of all achievements unlocked that year
+  //Sort all achievements and put them in a object containing year mapped to array of all achievements unlocked that year in that date
   const allAchievementsSortedByYear = getAllUnlockedAchievementsSortedByYear(
     getRecentlyUnlockedAllAchievements(games)
   );
@@ -86,20 +87,26 @@ export default function History() {
       <Page title='History' rightMenuItem={rightMenuItem} showRightMenu={true}>
         <PageContainer>
           <PageContainerInner>
-            {/* {Object.keys(allAchievementsSortedByYear)
+            {Object.keys(allAchievementsSortedByYear)
               .sort((year1, year2) => {
                 return year2 - year1;
               })
               .map((year) => {
-                const allAchievements = allAchievementsSortedByYear[year];
-                const allDatesInAYear = getDateArray(
-                  new Date(`January 1, ${year} 00:00:00`),
-                  new Date(`December 31, ${year} 23:59:59`)
+                return (
+                  <AllDatesContainer>
+                    <YearContainer>{year}</YearContainer>
+                    {Object.keys(allAchievementsSortedByYear[year]).map(
+                      (date) => {
+                        return (
+                          <DateBlock>
+                            {allAchievementsSortedByYear[year][date].length}
+                          </DateBlock>
+                        );
+                      }
+                    )}
+                  </AllDatesContainer>
                 );
-                allDatesInAYear.map((date) => {
-                  return <DateBlock>{}</DateBlock>;
-                });
-              })} */}
+              })}
           </PageContainerInner>
         </PageContainer>
       </Page>
