@@ -7,7 +7,7 @@ import {
   getAllUnlockedAchievements,
   getAllUnlockedAchievementsSortedByYear,
   getRecentlyUnlockedAllAchievements,
-  getTotalDatesInUnlocked,
+  getTotalAchievementsInADate,
 } from "../actions/achievementActions";
 import Card from "../components/core/Card";
 
@@ -41,6 +41,7 @@ const DateTitle = styled.div`
 
 const AllDatesContainer = styled.div`
   width: 100%;
+
   display: flex;
   overflow: scroll;
   flex-direction: row;
@@ -59,41 +60,62 @@ const DateBlock = styled.div`
   margin: 5px;
 `;
 
+const YearContainer = styled.div`
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+
+  flex-direction: column;
+`;
+
 export default function History() {
   const { games } = useContext(GamesContext);
 
-  const allUnlockDates = getTotalDatesInUnlocked(
-    getRecentlyUnlockedAllAchievements(games)
+  const rightMenuItem = <>TO CALCULATE</>;
+
+  const getDateArraysforAYear = (year) => {
+    // new Date(`January 1, ${year} 00:00:00`).getTime()
+    if (year > 1970) {
+      return 0 + year * 12 * 30 * 24 * 60 * 60 * 1000;
+    }
+  };
+
+  //Sort all achievements and put them in a object containing year mapped to array of all achievements unlocked that year
+  const allAchievementsSortedByYear = getAllUnlockedAchievementsSortedByYear(
+    getAllUnlockedAchievements(games)
   );
+  console.log(allAchievementsSortedByYear);
+
+  var getDateArray = function (start, end) {
+    var arr = new Array(),
+      dt = new Date(start);
+
+    while (dt <= end) {
+      arr.push(new Date(dt));
+      dt.setDate(dt.getDate() + 1);
+    }
+
+    return arr;
+  };
 
   return (
     <>
-      <Page title='History' rightMenuItem={<></>} showRightMenu={true}>
+      <Page title='History' rightMenuItem={rightMenuItem} showRightMenu={true}>
         <PageContainer>
           <PageContainerInner>
-            {/* {["2021", "2020", "2019"].forEach((year) => {
-              return (
-                <>
-                  <DateTitle>{year}</DateTitle>
-                  <AllDatesContainer>
-                    {Object.keys(allUnlockDates).map((unlockPresentDate) => {
-                      if (unlockPresentDate.includes(year))
-                        return (
-                          <DateBlock>
-                            {allUnlockDates[unlockPresentDate]}
-                          </DateBlock>
-                        );
-                    })}
-                  </AllDatesContainer>
-                </>
-              );
-            })} */}
-
-            {console.log(
-              getAllUnlockedAchievementsSortedByYear(
-                getAllUnlockedAchievements(games)
-              )
-            )}
+            {Object.keys(allAchievementsSortedByYear)
+              .sort((year1, year2) => {
+                return year2 - year1;
+              })
+              .map((year) => {
+                const allAchievements = allAchievementsSortedByYear[year];
+                const allDatesInAYear = getDateArray(
+                  new Date(`January 1, ${year} 00:00:00`),
+                  new Date(`December 31, ${year} 23:59:59`)
+                );
+                console.log("ALL DATES -> ", allDatesInAYear);
+              })}
           </PageContainerInner>
         </PageContainer>
       </Page>

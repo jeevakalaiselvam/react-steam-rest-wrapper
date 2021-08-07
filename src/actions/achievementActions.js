@@ -182,7 +182,7 @@ export const getRecentAchievementsForGame = (game) => {
   return recentlyUnlockedAchievements;
 };
 
-export const getTotalDatesInUnlocked = (achievements) => {
+export const getTotalAchievementsInADate = (achievements) => {
   const dateSquare = {};
 
   achievements.forEach((achievement) => {
