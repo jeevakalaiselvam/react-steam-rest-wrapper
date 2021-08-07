@@ -123,8 +123,9 @@ export default function History() {
                 return (
                   <AllDatesContainer>
                     <YearContainer>{year}</YearContainer>
-                    {Object.keys(allAchievementsSortedByYear[year]).map(
-                      (date) => {
+                    {Object.keys(allAchievementsSortedByYear[year])
+                      .reverse()
+                      .map((date) => {
                         return (
                           <BlackToolTip
                             title={
@@ -158,8 +159,7 @@ export default function History() {
                             </DateBlock>
                           </BlackToolTip>
                         );
-                      }
-                    )}
+                      })}
                   </AllDatesContainer>
                 );
               })}

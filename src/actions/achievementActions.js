@@ -234,6 +234,9 @@ export const getAllUnlockedAchievementsSortedByYear = (
     const endDate = new Date(`December 31, ${year} 23:59:59`);
     let newDate = startDate;
     while (newDate <= endDate) {
+      if (newDate.getTime() > new Date().getTime()) {
+        return;
+      }
       achivementsSortedByYear[year][
         `${newDate.getFullYear()}-${
           newDate.getMonth() + 1
