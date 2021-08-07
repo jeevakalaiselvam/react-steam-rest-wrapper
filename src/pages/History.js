@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import Page from "../components/pages/Page";
 import styled from "styled-components";
@@ -15,6 +15,8 @@ import BlackToolTip from "../components/ui/BlackToolTip";
 import { FaTrophy } from "react-icons/fa";
 import { getFullDate } from "../helper/dateHelper";
 import { v4 as uuidv4 } from "uuid";
+import AchievementCardSmall from "../components/group/AchievementCardSmall";
+import AchievementCardMedium from "../components/group/AchievementCardMedium";
 
 const PageContainer = styled.div`
   width: 100%;
@@ -99,11 +101,14 @@ const TrophyData = styled.div`
 const TrophyCount = styled.div`
   margin-left: 0.5rem;
 `;
+const AchievementContainer = styled.div`
+  width: 100%;
+`;
 
 export default function History() {
   const { games } = useContext(GamesContext);
-
-  const rightMenuItem = <>TO CALCULATE</>;
+  let dateAchievements = {};
+  const [openRightMenu, setOpenRightMenu] = useState(false);
 
   //Sort all achievements and put them in a object containing year mapped to array of all achievements unlocked that year in that date
   const allAchievementsSortedByYear = getAllUnlockedAchievementsSortedByYear(
@@ -111,9 +116,31 @@ export default function History() {
   );
   console.log(allAchievementsSortedByYear);
 
+  const dateBoxClicked = (date) => {
+    dateAchievements = date;
+    setOpenRightMenu((old) => true);
+  };
+
   return (
     <>
-      <Page title='History' rightMenuItem={rightMenuItem} showRightMenu={true}>
+      <Page
+        title='History'
+        size={"500px"}
+        rightMenuItem={
+          <AchievementContainer>
+            {dateAchievements.length &&
+              dateAchievements.map((achievement) => {
+                return (
+                  <AchievementCardMedium
+                    key={uuidv4()}
+                    achievement={achievement}
+                  />
+                );
+              })}
+          </AchievementContainer>
+        }
+        showRightMenu={true}
+      >
         <PageContainer>
           <PageContainerInner>
             {Object.keys(allAchievementsSortedByYear)
@@ -122,13 +149,14 @@ export default function History() {
               })
               .map((year) => {
                 return (
-                  <AllDatesContainer>
+                  <AllDatesContainer key={uuidv4()}>
                     <YearContainer>{year}</YearContainer>
                     {Object.keys(allAchievementsSortedByYear[year])
                       .reverse()
                       .map((date) => {
                         return (
                           <BlackToolTip
+                            key={uuidv4()}
                             title={
                               <ToolTipData>
                                 {getFullDate(date)}
@@ -145,6 +173,11 @@ export default function History() {
                             }
                           >
                             <DateBlock
+                              onClick={() =>
+                                dateBoxClicked(
+                                  allAchievementsSortedByYear[year][date]
+                                )
+                              }
                               key={uuidv4()}
                               color={
                                 allAchievementsSortedByYear[year][date].length >

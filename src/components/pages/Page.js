@@ -61,6 +61,7 @@ export default function Page(props) {
         <ContentContainer>{props.children}</ContentContainer>
 
         <SidebarRight
+          size={props.size || ""}
           sidebarOpenRight={sidebarOpenRight}
           sidebarItemClickedRight={sidebarItemClickedRight}
           rightMenuItem={props.rightMenuItem}
