@@ -31,10 +31,8 @@ const Inner = styled.div`
 export default function ImageOverlayCard(props) {
   return (
     <Overlay>
-      <Card radius='2px'>
-        <OverlayImage>{props.image}</OverlayImage>
-        <Inner>{props.content}</Inner>
-      </Card>
+      <OverlayImage>{props.image}</OverlayImage>
+      <Inner>{props.content}</Inner>
     </Overlay>
   );
 }

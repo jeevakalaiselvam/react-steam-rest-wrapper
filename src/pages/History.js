@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { GamesContext } from "../context/GameContext";
 import {
   getAllUnlockedAchievements,
+  getAllUnlockedAchievementsSortedByYear,
   getRecentlyUnlockedAllAchievements,
   getTotalDatesInUnlocked,
 } from "../actions/achievementActions";
@@ -21,29 +22,77 @@ const PageContainerInner = styled.div`
   width: 100%;
   display: flex;
   overflow: scroll;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: flex-start;
+`;
+
+const DateTitle = styled.div`
+  width: 100%;
+  display: flex;
+  overflow: scroll;
+  flex-direction: row;
+  font-size: 1.5rem;
+  padding: 1rem;
+
+  flex-wrap: wrap;
+  justify-content: center;
+`;
+
+const AllDatesContainer = styled.div`
+  width: 100%;
+  display: flex;
+  overflow: scroll;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
 
 const DateBlock = styled.div`
   width: 20px;
   background-color: rgba(10, 17, 25, 0.8);
   height: 20px;
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
   margin: 5px;
 `;
 
 export default function History() {
   const { games } = useContext(GamesContext);
 
+  const allUnlockDates = getTotalDatesInUnlocked(
+    getRecentlyUnlockedAllAchievements(games)
+  );
+
   return (
     <>
       <Page title='History' rightMenuItem={<></>} showRightMenu={true}>
         <PageContainer>
           <PageContainerInner>
-            {new Date().getFullYear()}
+            {/* {["2021", "2020", "2019"].forEach((year) => {
+              return (
+                <>
+                  <DateTitle>{year}</DateTitle>
+                  <AllDatesContainer>
+                    {Object.keys(allUnlockDates).map((unlockPresentDate) => {
+                      if (unlockPresentDate.includes(year))
+                        return (
+                          <DateBlock>
+                            {allUnlockDates[unlockPresentDate]}
+                          </DateBlock>
+                        );
+                    })}
+                  </AllDatesContainer>
+                </>
+              );
+            })} */}
+
             {console.log(
-              getTotalDatesInUnlocked(getRecentlyUnlockedAllAchievements(games))
+              getAllUnlockedAchievementsSortedByYear(
+                getAllUnlockedAchievements(games)
+              )
             )}
           </PageContainerInner>
         </PageContainer>

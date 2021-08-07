@@ -210,3 +210,30 @@ function formatDate(date) {
 
   return [year, month, day].join("-");
 }
+
+export const getAllUnlockedAchievementsSortedByYear = (
+  allUnlockedAchievements
+) => {
+  const achivementsSortedByYear = {
+    2021: [],
+    2020: [],
+    2019: [],
+    2018: [],
+    2017: [],
+    2016: [],
+    2015: [],
+    2014: [],
+    2013: [],
+    2012: [],
+    2011: [],
+    2010: [],
+  };
+
+  allUnlockedAchievements.forEach((achievement) => {
+    achivementsSortedByYear[
+      new Date(achievement.unlocked_time * 1000).getFullYear()
+    ].push(achievement);
+  });
+
+  return achivementsSortedByYear;
+};
