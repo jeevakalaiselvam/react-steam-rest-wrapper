@@ -18,11 +18,31 @@ const MainMenu = styled.div`
 export default function AllPageLeft() {
   return (
     <MainMenu>
-      <MenuItem icon={<FaHome />} title={"Overview"} />
-      <MenuItem icon={<FaGamepad />} title={"Games"} />
-      <MenuItem icon={<FaTrophy />} title={"Achievements"} />
-      <MenuItem icon={<FaChartBar />} title={"History"} />
-      <MenuItem icon={<FaBookOpen />} title={"Backlog"} />
+      <MenuItem
+        icon={<FaHome />}
+        title={"Overview"}
+        onClick={() => (window.href = "/games")}
+      />
+      <MenuItem
+        icon={<FaGamepad />}
+        title={"Games"}
+        onClick={() => (window.href = "/games")}
+      />
+      <MenuItem
+        icon={<FaTrophy />}
+        title={"Achievements"}
+        onClick={() => (window.href = "/achievements")}
+      />
+      <MenuItem
+        icon={<FaChartBar />}
+        title={"History"}
+        onClick={() => (window.href = "/achievements")}
+      />
+      <MenuItem
+        icon={<FaBookOpen />}
+        title={"Backlog"}
+        onClick={() => (window.href = "/achievements")}
+      />
     </MainMenu>
   );
 }

@@ -6,6 +6,10 @@ const PageContainer = styled.div`
   display: flex;
   margin-top: 60px;
   flex-direction: row;
+
+  @media only screen and (min-width: 841px) {
+    margin-top: 0px;
+  }
 `;
 
 const SidebarLeftContainer = styled.div`
