@@ -5,6 +5,6 @@ const ContentContainer = styled.div`
   min-height: 100vh;
 `;
 
-export default function AllGames() {
+export default function AchievementsContent() {
   return <ContentContainer>All Games</ContentContainer>;
 }

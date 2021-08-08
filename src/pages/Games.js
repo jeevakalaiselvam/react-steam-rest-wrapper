@@ -4,7 +4,7 @@ import Page from "../components/core/Page";
 import Header from "../components/core/Header";
 import AllPageLeft from "../sidebar/AllPageLeft";
 import GamesPageRight from "../sidebar/GamesPageRight";
-import AllGames from "../content/AllGames";
+import GamesContent from "../content/GamesContent";
 
 const PageContainer = styled.div`
   display: flex;
@@ -21,7 +21,7 @@ export default function Games() {
       <Page
         leftSidebar={<AllPageLeft />}
         rightSidebar={<GamesPageRight />}
-        content={<AllGames />}
+        content={<GamesContent />}
         leftSidebarWidth={"180px"}
         rightSidebarWidth={"180px"}
       />

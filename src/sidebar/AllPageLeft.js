@@ -6,7 +6,7 @@ import {
   FaHome,
   FaTrophy,
 } from "react-icons/fa";
-import MenuItem from "../components/core/MenuItem";
+import MenuItemLink from "../components/core/MenuItemLink";
 import styled from "styled-components";
 
 const MainMenu = styled.div`
@@ -18,31 +18,15 @@ const MainMenu = styled.div`
 export default function AllPageLeft() {
   return (
     <MainMenu>
-      <MenuItem
-        icon={<FaHome />}
-        title={"Overview"}
-        onClick={() => (window.href = "/games")}
-      />
-      <MenuItem
-        icon={<FaGamepad />}
-        title={"Games"}
-        onClick={() => (window.href = "/games")}
-      />
-      <MenuItem
+      <MenuItemLink icon={<FaHome />} title={"Overview"} to={"/overview"} />
+      <MenuItemLink icon={<FaGamepad />} title={"Games"} to={"/games"} />
+      <MenuItemLink
         icon={<FaTrophy />}
         title={"Achievements"}
-        onClick={() => (window.href = "/achievements")}
+        to={"/achievements"}
       />
-      <MenuItem
-        icon={<FaChartBar />}
-        title={"History"}
-        onClick={() => (window.href = "/achievements")}
-      />
-      <MenuItem
-        icon={<FaBookOpen />}
-        title={"Backlog"}
-        onClick={() => (window.href = "/achievements")}
-      />
+      <MenuItemLink icon={<FaChartBar />} title={"History"} to={"/history"} />
+      <MenuItemLink icon={<FaBookOpen />} title={"Backlog"} to={"/backlog"} />
     </MainMenu>
   );
 }

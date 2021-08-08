@@ -4,9 +4,7 @@ import { GameContext } from "../../context/GameContext";
 
 const PageContainer = styled.div`
   display: flex;
-
   flex-direction: row;
-  background-color: green;
   min-height: 100vh;
   max-height: 100vh;
 
