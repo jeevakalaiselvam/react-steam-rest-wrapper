@@ -1,6 +1,13 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { FaBars, FaEllipsisV, FaGamepad, FaTimes } from "react-icons/fa";
+import {
+  FaBars,
+  FaEllipsisV,
+  FaGamepad,
+  FaMedal,
+  FaTimes,
+  FaTrophy,
+} from "react-icons/fa";
 import { GameContext } from "../../context/GameContext";
 
 const HeaderContainer = styled.div`
@@ -24,7 +31,7 @@ const HeaderContainer = styled.div`
 `;
 
 const LeftNav = styled.div`
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   cursor: pointer;
   display: flex;
   padding: 0.5rem;
@@ -37,7 +44,7 @@ const LeftNav = styled.div`
 `;
 
 const RightNav = styled.div`
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   height: 100%;
   display: flex;
   padding: 0.5rem;
@@ -57,16 +64,36 @@ const MiddleNav = styled.div`
   flex-direction: row;
 `;
 
-const IconSet = styled.div`
+const IconSetGold = styled.div`
   display: flex;
-  margin-left: 1rem;
+  align-items: center;
+  text-shadow: 0 0 6px #da8c4a;
+  color: #fecc09;
+  justify-content: center;
+  flex-direction: row;
+  text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
+`;
+const IconSetBlue = styled.div`
+  display: flex;
+  margin-left: 1.5rem;
+  color: #55aece;
+  text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
   align-items: center;
   justify-content: center;
   flex-direction: row;
 `;
+const IconSetGreen = styled.div`
+  display: flex;
+  margin-left: 1.5rem;
+  align-items: center;
+  color: #a5c93a;
+  justify-content: center;
+  text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
+  flex-direction: row;
+`;
 
 const Icon = styled.div`
-  font-size: 2rem;
+  font-size: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -99,24 +126,24 @@ export default function Header(props) {
         {navLeftOpen && <FaTimes />}
       </LeftNav>
       <MiddleNav>
-        <IconSet>
+        <IconSetGold>
+          <Icon>
+            <FaMedal />
+          </Icon>
+          <Data>{props.totalPerfectGames}</Data>
+        </IconSetGold>
+        <IconSetBlue>
+          <Icon>
+            <FaTrophy />
+          </Icon>
+          <Data>{props.totalAchievements}</Data>
+        </IconSetBlue>
+        <IconSetGreen>
           <Icon>
             <FaGamepad />
           </Icon>
-          <Data>23</Data>
-        </IconSet>
-        <IconSet>
-          <Icon>
-            <FaGamepad />
-          </Icon>
-          <Data>23</Data>
-        </IconSet>
-        <IconSet>
-          <Icon>
-            <FaGamepad />
-          </Icon>
-          <Data>23</Data>
-        </IconSet>
+          <Data>{props.totalGames}</Data>
+        </IconSetGreen>
       </MiddleNav>
       <RightNav onClick={toggleNavRight}>
         {!navRightOpen && <FaEllipsisV />}

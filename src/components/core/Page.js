@@ -1,12 +1,14 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { GameContext } from "../../context/GameContext";
+import LoadingIcons from "react-loading-icons";
 
 const PageContainer = styled.div`
   display: flex;
   flex-direction: row;
   min-height: 100vh;
   max-height: 100vh;
+  padding-top: 64px;
 
   @media only screen and (min-width: 841px) {
     padding-top: 0px;
@@ -62,9 +64,17 @@ const ContentContainer = styled.div`
   flex-direction: column;
 `;
 
+const ContentContainerLoading = styled.div`
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+
 export default function Page(props) {
   const { navLeftOpen, navRightOpen } = useContext(GameContext);
-
+  console.log("PAGE IS LOADING -> ", props.loading);
   return (
     <PageContainer>
       <SidebarLeftContainer
@@ -73,7 +83,12 @@ export default function Page(props) {
       >
         {props.leftSidebar}
       </SidebarLeftContainer>
-      <ContentContainer>{props.content}</ContentContainer>
+      {!props.loading && <ContentContainer>{props.content}</ContentContainer>}
+      {props.loading && (
+        <ContentContainerLoading>
+          <LoadingIcons.ThreeDots />
+        </ContentContainerLoading>
+      )}
       <SidebarRightContainer
         rightSidebarWidth={props.rightSidebarWidth}
         navRightOpen={navRightOpen}

@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import Page from "../components/core/Page";
 import Header from "../components/core/Header";
 import AllPageLeft from "../sidebar/AllPageLeft";
 import GamesPageRight from "../sidebar/GamesPageRight";
 import GamesContent from "../content/GamesContent";
+import { useState } from "react";
+import axios from "axios";
+import { fetchGames } from "../action/games";
 
 const PageContainer = styled.div`
   display: flex;
@@ -15,15 +18,34 @@ const PageContainer = styled.div`
 `;
 
 export default function Games() {
+  const [games, setGames] = useState({});
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const getAllGames = async () => {
+      const gamesResponse = await fetchGames();
+      if (gamesResponse.status === 200) {
+        console.log("GAMES EFFECT -> ", gamesResponse.data);
+        setLoading((old) => false);
+      } else {
+        console.log("ERROR IN GAMES EFFECT");
+        setLoading((old) => false);
+      }
+    };
+    setLoading((old) => true);
+    getAllGames();
+  }, []);
+
   return (
     <PageContainer>
-      <Header />
+      <Header totalGames={132} totalAchievements={456} totalPerfectGames={4} />
       <Page
         leftSidebar={<AllPageLeft />}
         rightSidebar={<GamesPageRight />}
         content={<GamesContent />}
         leftSidebarWidth={"180px"}
         rightSidebarWidth={"180px"}
+        loading={loading}
       />
     </PageContainer>
   );
