@@ -2,9 +2,9 @@ import React from "react";
 import { FaGamepad, FaMedal, FaTrophy } from "react-icons/fa";
 import styled from "styled-components";
 import PerfectGamesOverlay from "../overlay/PerfectGamesOverlay";
+import AllAchievementsOverlay from "../overlay/AllAchievementsOverlay";
+import AllGamesOverlay from "../overlay/AllGamesOverlay";
 import {
-import AllAchievementsOverlay from '../overlay/AllAchievementsOverlay';
-import AllGamesOverlay from '../overlay/AllGamesOverlay';
   STORAGE_HEADER_TOTAL_ACHIEVEMENTS,
   STORAGE_HEADER_TOTAL_GAMES,
   STORAGE_HEADER_TOTAL_PERFECT_GAMES,
@@ -33,7 +33,6 @@ const Card = styled.div`
   margin: 1rem;
   position: relative;
   overflow: hidden;
-  background-color: rgba(10, 17, 25, 0.6);
   justify-content: center;
   width: 30%;
 
@@ -72,6 +71,7 @@ const PerfectGames = styled.div`
   display: flex;
   height: 100%;
   flex: 1;
+  background-color: rgba(10, 17, 25, 0.6);
   z-index: 2;
   align-items: center;
   text-shadow: 0 0 6px #da8c4a;
@@ -85,6 +85,7 @@ const Achievements = styled.div`
   flex: 1;
   height: 100%;
   z-index: 2;
+  background-color: rgba(10, 17, 25, 0.6);
   color: #55aece;
   text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
   align-items: center;
@@ -98,6 +99,7 @@ const Games = styled.div`
   z-index: 2;
   height: 100%;
   color: #a5c93a;
+  background-color: rgba(10, 17, 25, 0.6);
   text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
   justify-content: center;
 `;
