@@ -73,7 +73,11 @@ export default function Games() {
   };
   const moveToPageLeftHandler = () => {
     console.log("Moving to Page left");
-    setGamesPage((old) => gamesPage - 1);
+    if (gamesPage === 1) {
+      setGamesPage((old) => 1);
+    } else {
+      setGamesPage((old) => gamesPage - 1);
+    }
   };
 
   return (
