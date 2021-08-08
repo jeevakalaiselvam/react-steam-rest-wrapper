@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaGamepad, FaMedal, FaTrophy } from "react-icons/fa";
 import styled from "styled-components";
 import PerfectGamesOverlay from "../overlay/PerfectGamesOverlay";
@@ -9,6 +9,7 @@ import {
   STORAGE_HEADER_TOTAL_GAMES,
   STORAGE_HEADER_TOTAL_PERFECT_GAMES,
 } from "../helper/storage";
+import { fetchOverlayImages } from "../action/games";
 
 const ContentContainer = styled.div`
   display: flex;

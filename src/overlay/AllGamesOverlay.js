@@ -7,6 +7,6 @@ const Overlay = styled.div`
   height: 100%;
 `;
 
-export default function AllGamesOverlay() {
+export default function AllGamesOverlay(props) {
   return <Overlay></Overlay>;
 }

@@ -79,7 +79,7 @@ export default function Games() {
 
   return (
     <PageContainer>
-      <Header games={games} />
+      <Header />
       <Page
         leftSidebar={<AllPageLeft />}
         rightSidebar={

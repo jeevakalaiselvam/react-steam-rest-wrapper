@@ -114,7 +114,7 @@ const Data = styled.div`
   justify-content: center;
 `;
 
-export default function Header(props) {
+export default function Header() {
   //Show initial header info from local storage
   const [gameInfo, setGameInfo] = useState({
     total_games: localStorage.getItem(STORAGE_HEADER_TOTAL_GAMES) ?? 0,

@@ -7,6 +7,6 @@ const Overlay = styled.div`
   height: 100%;
 `;
 
-export default function AllAchievementsOverlay() {
+export default function AllAchievementsOverlay(props) {
   return <Overlay></Overlay>;
 }

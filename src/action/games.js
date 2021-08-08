@@ -41,7 +41,6 @@ export const fetchGames = async (sortOrder, viewOrder, gamesPage) => {
       break;
   }
 
-  console.log("AXIOS GAMES PAGE INFO -> ", games);
   return games;
 };
 
@@ -52,8 +51,20 @@ export const fetchGamesInfo = async () => {
   ).data;
 
   //Store data in local storage
-  console.log("AXIOS GET GAME INFO -> ", gamesInfo);
   storeHeadInfoLocalStorage(gamesInfo);
 
   return gamesInfo;
+};
+
+export const fetchOverlayImages = async (
+  gamesCount = 10,
+  perfectGamesCount = 10,
+  achievementCount = 20
+) => {
+  const allImages = (
+    await axios.get(
+      `${process.env.REACT_APP_API_ENDPOINT}overlay?perfectgames=${perfectGamesCount}&games=${gamesCount}&achievements=${achievementCount}`
+    )
+  ).data;
+  return allImages;
 };

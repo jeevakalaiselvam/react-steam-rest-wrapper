@@ -1,12 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-const Overlay = styled.div`
+const OverlayContainer = styled.div`
   width: 100%;
-  background: url("https://cdn.cloudflare.steamstatic.com/steam/apps/1151640/header.jpg");
   height: 100%;
 `;
 
-export default function PerfectGamesOverlay() {
-  return <Overlay></Overlay>;
+export default function PerfectGamesOverlay(props) {
+  return <OverlayContainer></OverlayContainer>;
 }

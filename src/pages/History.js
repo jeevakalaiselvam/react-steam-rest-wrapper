@@ -17,7 +17,7 @@ const PageContainer = styled.div`
 export default function History() {
   return (
     <PageContainer>
-      <Header games={{}} />
+      <Header />
       <Page
         leftSidebar={<AllPageLeft />}
         rightSidebar={<GamesPageRight />}
