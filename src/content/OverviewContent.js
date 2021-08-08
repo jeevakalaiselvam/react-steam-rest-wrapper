@@ -41,10 +41,10 @@ const Card = styled.div`
     width: 30%;
   }
   @media only screen and (max-width: 1200px) and (min-width: 1061px) {
-    width: 30%;
+    width: 45%;
   }
   @media only screen and (max-width: 1060px) and (min-width: 961px) {
-    width: 30%;
+    width: 45%;
   }
   @media only screen and (max-width: 960px) and (min-width: 769px) {
     width: 45%;
@@ -73,7 +73,7 @@ const PerfectGames = styled.div`
   height: 100%;
   flex: 1;
   background-color: rgba(10, 17, 25, 0.6);
-  z-index: 2;
+  z-index: 10;
   align-items: center;
   text-shadow: 0 0 6px #da8c4a;
   color: #fecc09;
@@ -85,7 +85,7 @@ const Achievements = styled.div`
   display: flex;
   flex: 1;
   height: 100%;
-  z-index: 2;
+  z-index: 10;
   background-color: rgba(10, 17, 25, 0.6);
   color: #55aece;
   text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
@@ -97,7 +97,7 @@ const Games = styled.div`
   display: flex;
   flex: 1;
   align-items: center;
-  z-index: 2;
+  z-index: 10;
   height: 100%;
   color: #a5c93a;
   background-color: rgba(10, 17, 25, 0.6);
@@ -122,13 +122,15 @@ const Data = styled.div`
   justify-content: center;
 `;
 
-export default function OverviewContent() {
+export default function OverviewContent(props) {
   return (
     <ContentContainer>
       <ContainerInner>
         <Card>
           <ImageOverlay>
-            <PerfectGamesOverlay></PerfectGamesOverlay>
+            <PerfectGamesOverlay
+              images={props.images.perfect_game_images}
+            ></PerfectGamesOverlay>
           </ImageOverlay>
           <PerfectGames>
             <Icon>
@@ -141,7 +143,9 @@ export default function OverviewContent() {
         </Card>
         <Card>
           <ImageOverlay>
-            <AllAchievementsOverlay></AllAchievementsOverlay>
+            <AllAchievementsOverlay
+              images={props.images.achievement_images}
+            ></AllAchievementsOverlay>
           </ImageOverlay>
           <Achievements>
             <Icon>
@@ -154,7 +158,9 @@ export default function OverviewContent() {
         </Card>
         <Card>
           <ImageOverlay>
-            <AllGamesOverlay></AllGamesOverlay>
+            <AllGamesOverlay
+              images={props.images.game_images}
+            ></AllGamesOverlay>
           </ImageOverlay>
           <Games>
             <Icon>
