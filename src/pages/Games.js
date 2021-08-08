@@ -26,7 +26,7 @@ export default function Games() {
       const gamesResponse = await fetchGames();
       if (gamesResponse.status === 200) {
         console.log("GAMES EFFECT -> ", gamesResponse.data);
-        setGames((old) => gamesResponse.data.slice(0, 10));
+        setGames((old) => gamesResponse.data);
         setLoading((old) => false);
       } else {
         console.log("ERROR IN GAMES EFFECT");
@@ -37,12 +37,25 @@ export default function Games() {
     getAllGames();
   }, []);
 
+  const sortByCompletion = () => {
+    console.log("Sorted games by completion");
+  };
+
+  const sortByPlaytime = () => {
+    console.log("Sorted games by playtime");
+  };
+
   return (
     <PageContainer>
       <Header totalGames={132} totalAchievements={456} totalPerfectGames={4} />
       <Page
         leftSidebar={<AllPageLeft />}
-        rightSidebar={<GamesPageRight />}
+        rightSidebar={
+          <GamesPageRight
+            sortByCompletion={sortByCompletion}
+            sortByPlaytime={sortByPlaytime}
+          />
+        }
         content={<GamesContent games={games} />}
         leftSidebarWidth={"180px"}
         rightSidebarWidth={"180px"}

@@ -10,6 +10,7 @@ const ContentContainer = styled.div`
   justify-content: flex-start;
   flex-direction: column;
   overflow: scroll;
+  align-items: flex-start;
   flex-wrap: wrap;
 `;
 
