@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import GameCardNormal from "../components/card/GameCardNormal";
+import GameCardMinimal from "../components/card/GameCardMinimal";
 
 const ContentContainer = styled.div`
   display: flex;
@@ -28,12 +29,10 @@ export default function GamesContent(props) {
     <ContentContainer>
       <ContainerInner>
         {games.map((game) => {
-          return (
-            <GameCardNormal
-              game={game}
-              key={game.id}
-              viewType={props.viewType}
-            />
+          return props.viewType === 0 ? (
+            <GameCardMinimal game={game} key={game.id} />
+          ) : (
+            <GameCardNormal game={game} key={game.id} />
           );
         })}
       </ContainerInner>

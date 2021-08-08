@@ -6,7 +6,7 @@ export const fetchGames = async () => {
   games = (await axios.get(`${process.env.REACT_APP_API_ENDPOINT}games`)).data;
 
   console.log("AXIOS GAMES PAGE INFO -> ", games);
-  return games;
+  return games.slice(0, 50);
 };
 
 export const fetchGamesInfo = async () => {

@@ -2,7 +2,7 @@ import React from "react";
 import { FaMedal, FaTrophy } from "react-icons/fa";
 import styled from "styled-components";
 
-const Card = styled.div`
+const CardContainer = styled.div`
   background-color: rgba(10, 17, 25, 0.4);
   display: flex;
   flex-direction: column;
@@ -16,16 +16,16 @@ const Card = styled.div`
   cursor: pointer;
 
   @media only screen and (min-width: 1361px) {
-    width: 18%;
-    height: 10vh;
+    width: 30%;
+    height: 14vh;
   }
   @media only screen and (max-width: 1360px) and (min-width: 1201px) {
-    width: 22%;
-    height: 10vh;
+    width: 30%;
+    height: 14vh;
   }
   @media only screen and (max-width: 1200px) and (min-width: 1061px) {
-    width: 22%;
-    height: 10vh;
+    width: 30%;
+    height: 14vh;
   }
   @media only screen and (max-width: 1060px) and (min-width: 961px) {
     width: 30%;
@@ -40,13 +40,28 @@ const Card = styled.div`
     height: 10vh;
   }
   @media only screen and (max-width: 630px) and (min-width: 481px) {
-    width: 46%;
-    height: 14vh;
+    width: 96%;
+    height: 25vh;
   }
   @media only screen and (max-width: 480px) {
-    width: 46%;
-    height: 13vh;
+    width: 96%;
+    height: 25vh;
   }
+`;
+
+const Title = styled.div`
+  width: 100%;
+  padding: 0.5rem;
+  background-color: rgba(10, 17, 25, 0.8);
+  display: flex;
+  flex-direction: column;
+`;
+
+const Card = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 `;
 
 const IconInner = styled.div`
@@ -98,6 +113,7 @@ const AchievementCount = styled.div`
 
 export default function GameCardNormal(props) {
   const {
+    name,
     image,
     completion_percentage,
     completed_achievements_count,
@@ -111,25 +127,28 @@ export default function GameCardNormal(props) {
   };
 
   return (
-    <Card image={image}>
-      <InnerContainer>
-        <AchievementData>
-          <IconInner>
-            <FaTrophy />
-          </IconInner>
-          <AchievementCount>
-            {completed_achievements_count} / {total_achievements_count}
-          </AchievementCount>
-        </AchievementData>
-        {completion_percentage < 80 && (
-          <ToGet>{getRemainingForTarget()} more...</ToGet>
-        )}
-        {completion_percentage >= 80 && (
-          <Medal>
-            <FaMedal />
-          </Medal>
-        )}
-      </InnerContainer>
-    </Card>
+    <CardContainer image={image}>
+      <Title>{name}</Title>
+      <Card>
+        <InnerContainer>
+          <AchievementData>
+            <IconInner>
+              <FaTrophy />
+            </IconInner>
+            <AchievementCount>
+              {completed_achievements_count} / {total_achievements_count}
+            </AchievementCount>
+          </AchievementData>
+          {completion_percentage < 80 && (
+            <ToGet>{getRemainingForTarget()} more...</ToGet>
+          )}
+          {completion_percentage >= 80 && (
+            <Medal>
+              <FaMedal />
+            </Medal>
+          )}
+        </InnerContainer>
+      </Card>
+    </CardContainer>
   );
 }
