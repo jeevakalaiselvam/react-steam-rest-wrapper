@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { FaBars, FaEllipsisV, FaTimes } from "react-icons/fa";
+import { FaBars, FaEllipsisV, FaGamepad, FaTimes } from "react-icons/fa";
 import { GameContext } from "../../context/GameContext";
 
 const HeaderContainer = styled.div`
@@ -54,6 +54,30 @@ const MiddleNav = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: row;
+`;
+
+const IconSet = styled.div`
+  display: flex;
+  margin-left: 1rem;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+`;
+
+const Icon = styled.div`
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Data = styled.div`
+  display: flex;
+  margin-left: 0.5rem;
+  font-size: 1.5rem;
+  align-items: center;
+  justify-content: center;
 `;
 
 export default function Header(props) {
@@ -74,7 +98,26 @@ export default function Header(props) {
         {!navLeftOpen && <FaBars />}
         {navLeftOpen && <FaTimes />}
       </LeftNav>
-      <MiddleNav>Middle</MiddleNav>
+      <MiddleNav>
+        <IconSet>
+          <Icon>
+            <FaGamepad />
+          </Icon>
+          <Data>23</Data>
+        </IconSet>
+        <IconSet>
+          <Icon>
+            <FaGamepad />
+          </Icon>
+          <Data>23</Data>
+        </IconSet>
+        <IconSet>
+          <Icon>
+            <FaGamepad />
+          </Icon>
+          <Data>23</Data>
+        </IconSet>
+      </MiddleNav>
       <RightNav onClick={toggleNavRight}>
         {!navRightOpen && <FaEllipsisV />}
         {navRightOpen && <FaTimes />}

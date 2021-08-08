@@ -18,6 +18,9 @@ export default function App() {
       <GameContext.Provider value={data}>
         <Router>
           <Switch>
+            <Route exact path='/'>
+              <Overview />
+            </Route>
             <Route exact path='/overview'>
               <Overview />
             </Route>
