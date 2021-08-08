@@ -17,6 +17,12 @@ import {
   STORAGE_HEADER_TOTAL_PERFECT_GAMES,
 } from "../../helper/storage";
 
+// background-image: linear-gradient(
+//   180deg,
+//   rgba(70, 77, 83, 0.9) 0,
+//   rgba(33, 39, 47, 0.9)
+// );
+
 const HeaderContainer = styled.div`
   width: 100%;
   padding: 0.5rem;

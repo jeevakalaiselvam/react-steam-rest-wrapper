@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 const OverlayContainer = styled.div`
   display: flex;
   position: relative;
-  min-width: 100vw;
+  min-width: 200vw;
   flex-direction: column;
 `;
 
@@ -14,10 +14,14 @@ const CardBackground = styled.div`
   position: absolute;
   top: 0;
   width: 100%;
+  opacity: 1;
   height: 100%;
-  opacity: 0.3;
   left: 0;
-  background-image: url("./images/bgcard.png");
+  background-image: linear-gradient(
+    180deg,
+    rgba(70, 77, 83, 0.9) 0,
+    rgba(33, 39, 47, 0.9)
+  );
   z-index: 10;
   flex-direction: column;
 `;
@@ -29,8 +33,8 @@ const ImageRow = styled.div`
 `;
 
 const GameImage = styled.div`
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   background-image: url("${(props) => props.image}");
   background-repeat: no-repeat;
   background-position: center;

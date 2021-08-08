@@ -21,7 +21,7 @@ const SidebarLeftContainer = styled.div`
   min-height: 100vh;
   max-height: 100vh;
   background-color: rgba(10, 17, 25, 1);
-  z-index: 2;
+  z-index: 1000;
 
   align-items: center;
   flex-direction: column;
@@ -42,7 +42,7 @@ const SidebarRightContainer = styled.div`
   width: ${(props) => props.rightSidebarWidth ?? "200px"};
   min-height: 100vh;
   max-height: 100vh;
-  z-index: 2;
+  z-index: 1000;
 
   background-color: rgba(10, 17, 25, 1);
   align-items: center;

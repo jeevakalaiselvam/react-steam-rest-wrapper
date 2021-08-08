@@ -31,9 +31,10 @@ const ContainerInner = styled.div`
 const Card = styled.div`
   display: flex;
   height: 20vh;
-  margin: 1rem;
+  margin: 0.5rem;
   position: relative;
   overflow: hidden;
+  border-radius: 4px;
   justify-content: center;
   width: 30%;
 
@@ -50,7 +51,7 @@ const Card = styled.div`
     width: 45%;
   }
   @media only screen and (max-width: 768px) and (min-width: 631px) {
-    width: 96%;
+    width: 45%;
   }
   @media only screen and (max-width: 630px) and (min-width: 481px) {
     width: 96%;

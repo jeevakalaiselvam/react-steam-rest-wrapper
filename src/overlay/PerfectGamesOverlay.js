@@ -15,9 +15,13 @@ const CardBackground = styled.div`
   top: 0;
   width: 100%;
   height: 100%;
-  opacity: 0.3;
   left: 0;
-  background-image: url("./images/bgcard.png");
+  opacity: 1;
+  background-image: linear-gradient(
+    180deg,
+    rgba(70, 77, 83, 0.9) 0,
+    rgba(33, 39, 47, 0.9)
+  );
   z-index: 10;
   flex-direction: column;
 `;
