@@ -12,7 +12,10 @@ import {
   getGamesSortedByPlaytime,
 } from "../helper/games";
 import { GameContext } from "../context/GameContext";
-import { HEADER_TOTAL_GAMES } from "../helper/storage";
+import {
+  GAMES_PAGINATION_PER_PAGE,
+  HEADER_TOTAL_GAMES,
+} from "../helper/storage";
 
 const PageContainer = styled.div`
   display: flex;
@@ -64,7 +67,9 @@ export default function Games() {
   const moveToPageRightHandler = () => {
     console.log("Moving to Page right");
     if (
-      Math.ceil(localStorage.getItem(HEADER_TOTAL_GAMES) / 25) === gamesPage
+      Math.ceil(
+        localStorage.getItem(HEADER_TOTAL_GAMES) / GAMES_PAGINATION_PER_PAGE
+      ) === gamesPage
     ) {
       setGamesPage((old) => gamesPage);
     } else {

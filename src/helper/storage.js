@@ -3,6 +3,8 @@ export const HEADER_TOTAL_ACHIEVEMENTS = "HEADER_TOTAL_ACHIEVEMENTS";
 export const HEADER_TOTAL_PERFECT_GAMES = "HEADER_TOTAL_PERFECT_GAMES";
 export const HEADER_AVERAGE_COMPLETION = "HEADER_AVERAGE_COMPLETION";
 
+export const GAMES_PAGINATION_PER_PAGE = 25;
+
 export const getCompletionTarget = () => {
   const completionTarget = localStorage.getItem("COMPLETION_TARGET");
   if (completionTarget) return completionTarget;
