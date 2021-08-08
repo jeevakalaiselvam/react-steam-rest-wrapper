@@ -26,6 +26,7 @@ export default function Games() {
       const gamesResponse = await fetchGames();
       if (gamesResponse.status === 200) {
         console.log("GAMES EFFECT -> ", gamesResponse.data);
+        setGames((old) => gamesResponse.data.slice(0, 50));
         setLoading((old) => false);
       } else {
         console.log("ERROR IN GAMES EFFECT");
@@ -42,7 +43,7 @@ export default function Games() {
       <Page
         leftSidebar={<AllPageLeft />}
         rightSidebar={<GamesPageRight />}
-        content={<GamesContent />}
+        content={<GamesContent games={games} />}
         leftSidebarWidth={"180px"}
         rightSidebarWidth={"180px"}
         loading={loading}

@@ -86,7 +86,7 @@ export default function Page(props) {
       {!props.loading && <ContentContainer>{props.content}</ContentContainer>}
       {props.loading && (
         <ContentContainerLoading>
-          <LoadingIcons.ThreeDots />
+          <LoadingIcons.Audio />
         </ContentContainerLoading>
       )}
       <SidebarRightContainer
