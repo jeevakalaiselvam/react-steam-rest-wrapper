@@ -4,10 +4,18 @@ import styled from "styled-components";
 import GameCardSmall from "../components/card/GameCardSmall";
 
 const ContentContainer = styled.div`
-  min-height: 100vh;
   display: flex;
   width: 100%;
   min-height: 100vh;
+  justify-content: flex-start;
+  flex-direction: column;
+  overflow: scroll;
+  flex-wrap: wrap;
+`;
+
+const ContainerInner = styled.div`
+  display: flex;
+  width: 100%;
   justify-content: center;
   overflow: scroll;
   flex-wrap: wrap;
@@ -18,9 +26,11 @@ export default function GamesContent(props) {
 
   return (
     <ContentContainer>
-      {games.map((game) => {
-        return <GameCardSmall game={game} key={game.id} />;
-      })}
+      <ContainerInner>
+        {games.map((game) => {
+          return <GameCardSmall game={game} key={game.id} />;
+        })}
+      </ContainerInner>
     </ContentContainer>
   );
 }

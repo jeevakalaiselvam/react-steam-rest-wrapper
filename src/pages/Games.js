@@ -26,7 +26,7 @@ export default function Games() {
       const gamesResponse = await fetchGames();
       if (gamesResponse.status === 200) {
         console.log("GAMES EFFECT -> ", gamesResponse.data);
-        setGames((old) => gamesResponse.data.slice(0, 50));
+        setGames((old) => gamesResponse.data.slice(0, 10));
         setLoading((old) => false);
       } else {
         console.log("ERROR IN GAMES EFFECT");

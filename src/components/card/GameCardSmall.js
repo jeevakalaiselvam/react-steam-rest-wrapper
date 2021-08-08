@@ -1,3 +1,4 @@
+import { Icon } from "@material-ui/core";
 import React, { useState } from "react";
 import { FaTrophy } from "react-icons/fa";
 import styled from "styled-components";
@@ -46,40 +47,41 @@ const Card = styled.div`
   }
 `;
 
-const InfoContainer = styled.div`
+const IconInner = styled.div`
+  font-size: 1rem;
+  color: #fefefe;
+`;
+
+const InnerContainer = styled.div`
   position: absolute;
-  top: 0;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  bottom: 0;
   left: 0;
+  background-color: rgba(10, 17, 25, 0.6);
+  display: flex;
   width: 100%;
-  background-color: rgba(10, 17, 25, 0.4);
-  opacity: ${(props) => (props.hover ? "1" : "0")};
+  flex-direction: row;
+`;
+
+const AchievementData = styled.div`
+  flex: 1;
+`;
+const ToGet = styled.div`
+  flex: 1;
 `;
 
 export default function GameCardSmall(props) {
   const game = props.game;
 
-  const [hover, setHover] = useState(false);
-
-  const mouseEnterHandler = () => {
-    setHover((old) => true);
-  };
-  const mouseLeaveHandler = () => {
-    setHover((old) => false);
-  };
-
   return (
     <Card image={game.image}>
-      <InfoContainer
-        hover={hover}
-        onMouseEnter={mouseEnterHandler}
-        onMouseLeave={mouseLeaveHandler}
-      >
-        <FaTrophy />
-      </InfoContainer>
+      <InnerContainer>
+        <AchievementData>
+          <IconInner>
+            <FaTrophy />
+          </IconInner>
+        </AchievementData>
+        <ToGet></ToGet>
+      </InnerContainer>
     </Card>
   );
 }
