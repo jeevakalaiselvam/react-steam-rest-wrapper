@@ -50,11 +50,13 @@ export default function Games() {
   const sortHandler = (sortOption) => {
     console.log("Sort Selected -> ", sortOption);
     setSortIndex((old) => sortOption);
+    setGamesPage((old) => 1);
     toggleNavRight();
   };
   const viewHandler = (viewOption) => {
     console.log("View Selected -> ", viewOption);
     setViewIndex((old) => viewOption);
+    setGamesPage((old) => 1);
     toggleNavRight();
   };
 
