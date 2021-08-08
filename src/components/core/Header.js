@@ -5,17 +5,20 @@ import { GameContext } from "../../context/GameContext";
 
 const HeaderContainer = styled.div`
   width: 100%;
-  position: fixed;
   padding: 0.5rem;
   z-index: 1;
   background-color: rgba(10, 17, 25, 1);
-  min-height: 60px;
+  display: flex;
   flex-direction: row;
 
   @media only screen and (max-width: 840px) {
-    display: flex;
+    min-height: 60px;
+    position: fixed;
+    max-height: 60px;
   }
   @media only screen and (min-width: 841px) {
+    min-height: 0px;
+    max-height: 0px;
     display: none;
   }
 `;

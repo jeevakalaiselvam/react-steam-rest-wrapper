@@ -10,6 +10,8 @@ const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100vw;
+  max-height: 100vh;
+  background-image: yellow;
 `;
 
 export default function Games() {

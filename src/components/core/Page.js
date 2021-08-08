@@ -4,19 +4,22 @@ import { GameContext } from "../../context/GameContext";
 
 const PageContainer = styled.div`
   display: flex;
-  margin-top: 60px;
+
   flex-direction: row;
+  background-color: green;
+  min-height: 100vh;
+  max-height: 100vh;
 
   @media only screen and (min-width: 841px) {
-    margin-top: 0px;
+    padding-top: 0px;
   }
 `;
 
 const SidebarLeftContainer = styled.div`
   display: flex;
   width: ${(props) => props.leftSidebarWidth ?? "200px"};
-  min-height: 100%;
-  max-height: 100%;
+  min-height: 100vh;
+  max-height: 100vh;
   background-color: rgba(10, 17, 25, 1);
 
   align-items: center;
@@ -36,8 +39,8 @@ const SidebarLeftContainer = styled.div`
 const SidebarRightContainer = styled.div`
   display: flex;
   width: ${(props) => props.rightSidebarWidth ?? "200px"};
-  min-height: 100%;
-  max-height: 100%;
+  min-height: 100vh;
+  max-height: 100vh;
 
   background-color: rgba(10, 17, 25, 1);
   align-items: center;
@@ -57,8 +60,6 @@ const SidebarRightContainer = styled.div`
 const ContentContainer = styled.div`
   display: flex;
   flex: 1;
-  min-height: 100vh;
-  padding: 0.5rem;
   align-items: center;
   flex-direction: column;
 `;
