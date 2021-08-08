@@ -42,11 +42,6 @@ export default function Games() {
     getAllGames(sortIndex, viewIndex);
   }, [sortIndex, viewIndex, gamesPage]);
 
-  // setLoading((old) => true);
-  // setGames((oldGames) => getGamesSortedByCompletion(games));
-  // setLoading((old) => false);
-  // toggleNavRight();
-
   const sortHandler = (sortOption) => {
     console.log("Sort Selected -> ", sortOption);
     setSortIndex((old) => sortOption);

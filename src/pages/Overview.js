@@ -20,10 +20,10 @@ export default function Overview() {
       <Header games={{}} />
       <Page
         leftSidebar={<AllPageLeft />}
-        rightSidebar={<GamesPageRight />}
+        rightSidebar={<></>}
         content={<OverviewContent />}
         leftSidebarWidth={"180px"}
-        rightSidebarWidth={"180px"}
+        rightSidebarWidth={"0px"}
       />
     </PageContainer>
   );

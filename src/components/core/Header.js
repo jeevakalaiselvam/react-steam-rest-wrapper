@@ -76,9 +76,9 @@ const IconSetGold = styled.div`
   align-items: center;
   text-shadow: 0 0 6px #da8c4a;
   color: #fecc09;
+  text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
   justify-content: center;
   flex-direction: row;
-  text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
 `;
 const IconSetBlue = styled.div`
   display: flex;
@@ -94,8 +94,8 @@ const IconSetGreen = styled.div`
   margin-left: 1.5rem;
   align-items: center;
   color: #a5c93a;
-  justify-content: center;
   text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
+  justify-content: center;
   flex-direction: row;
 `;
 
