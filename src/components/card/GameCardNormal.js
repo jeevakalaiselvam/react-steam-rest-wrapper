@@ -16,28 +16,28 @@ const CardContainer = styled.div`
   cursor: pointer;
 
   @media only screen and (min-width: 1361px) {
-    width: 30%;
-    height: 14vh;
+    width: 45%;
+    height: 20vh;
   }
   @media only screen and (max-width: 1360px) and (min-width: 1201px) {
-    width: 30%;
-    height: 14vh;
+    width: 45%;
+    height: 20vh;
   }
   @media only screen and (max-width: 1200px) and (min-width: 1061px) {
-    width: 30%;
-    height: 14vh;
+    width: 45%;
+    height: 20vh;
   }
   @media only screen and (max-width: 1060px) and (min-width: 961px) {
-    width: 30%;
-    height: 10vh;
+    width: 45%;
+    height: 20vh;
   }
   @media only screen and (max-width: 960px) and (min-width: 769px) {
-    width: 30%;
-    height: 10vh;
+    width: 45%;
+    height: 20vh;
   }
   @media only screen and (max-width: 768px) and (min-width: 631px) {
-    width: 30%;
-    height: 10vh;
+    width: 45%;
+    height: 20vh;
   }
   @media only screen and (max-width: 630px) and (min-width: 481px) {
     width: 96%;
@@ -52,7 +52,8 @@ const CardContainer = styled.div`
 const Title = styled.div`
   width: 100%;
   padding: 0.5rem;
-  background-color: rgba(10, 17, 25, 0.4);
+  background-color: rgba(10, 17, 25, 0.6);
+  color: #fefefe;
   display: flex;
   flex-direction: column;
 `;
@@ -76,7 +77,7 @@ const InnerContainer = styled.div`
   position: absolute;
   bottom: 0;
   left: 0;
-  background-color: rgba(10, 17, 25, 0.4);
+  background-color: rgba(10, 17, 25, 0.8);
   display: flex;
   width: 100%;
   flex-direction: row;

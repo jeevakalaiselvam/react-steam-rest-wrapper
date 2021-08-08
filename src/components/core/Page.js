@@ -85,7 +85,11 @@ export default function Page(props) {
       >
         {props.leftSidebar}
       </SidebarLeftContainer>
-      {!props.loading && <ContentContainer>{props.content}</ContentContainer>}
+      {!props.loading && (
+        <ContentContainer page={props.page} moveToPage={props.moveToPage}>
+          {props.content}
+        </ContentContainer>
+      )}
       {props.loading && (
         <ContentContainerLoading>
           <LoadingIcons.Audio />

@@ -24,6 +24,7 @@ const PageContainer = styled.div`
 export default function Games() {
   const { setNavRightOpen } = useContext(GameContext);
   const [games, setGames] = useState({});
+  const [gamesPage, setGamesPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [viewIndex, setViewIndex] = useState(0);
   const [sortIndex, setSortIndex] = useState(0);
@@ -34,14 +35,14 @@ export default function Games() {
 
   useEffect(() => {
     const getAllGames = async (sortOrder, viewOrder) => {
-      const games = await fetchGames(sortOrder, viewOrder);
+      const games = await fetchGames(sortOrder, viewOrder, gamesPage);
       console.log("EFFECT GAMES PAGE -> ", games);
       setGames((old) => games);
       setLoading((old) => false);
     };
     setLoading((old) => true);
     getAllGames(sortIndex, viewIndex);
-  }, [sortIndex, viewIndex]);
+  }, [sortIndex, viewIndex, gamesPage]);
 
   // setLoading((old) => true);
   // setGames((oldGames) => getGamesSortedByCompletion(games));
@@ -51,10 +52,21 @@ export default function Games() {
   const sortHandler = (sortOption) => {
     console.log("Sort Selected -> ", sortOption);
     setSortIndex((old) => sortOption);
+    toggleNavRight();
   };
   const viewHandler = (viewOption) => {
     console.log("View Selected -> ", viewOption);
     setViewIndex((old) => viewOption);
+    toggleNavRight();
+  };
+
+  const moveToPageRightHandler = () => {
+    console.log("Moving to Page right");
+    setGamesPage((old) => gamesPage + 1);
+  };
+  const moveToPageLeftHandler = () => {
+    console.log("Moving to Page left");
+    setGamesPage((old) => gamesPage - 1);
   };
 
   return (
@@ -65,7 +77,15 @@ export default function Games() {
         rightSidebar={
           <GamesPageRight sortHandler={sortHandler} viewHandler={viewHandler} />
         }
-        content={<GamesContent games={games} viewType={viewIndex} />}
+        content={
+          <GamesContent
+            games={games}
+            viewType={viewIndex}
+            page={gamesPage}
+            moveToPageRight={moveToPageRightHandler}
+            moveToPageLeft={moveToPageLeftHandler}
+          />
+        }
         leftSidebarWidth={"180px"}
         rightSidebarWidth={"180px"}
         loading={loading}
