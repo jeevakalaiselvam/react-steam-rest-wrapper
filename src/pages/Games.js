@@ -8,6 +8,10 @@ import GamesContent from "../content/GamesContent";
 import { useState } from "react";
 import axios from "axios";
 import { fetchGames } from "../action/games";
+import {
+  getGamesSortedByCompletion,
+  getGamesSortedByPlaytime,
+} from "../helper/games";
 
 const PageContainer = styled.div`
   display: flex;
@@ -39,10 +43,16 @@ export default function Games() {
 
   const sortByCompletion = () => {
     console.log("Sorted games by completion");
+    setLoading((old) => true);
+    setGames((oldGames) => getGamesSortedByCompletion(games));
+    setLoading((old) => false);
   };
 
   const sortByPlaytime = () => {
     console.log("Sorted games by playtime");
+    setLoading((old) => true);
+    setGames((oldGames) => getGamesSortedByPlaytime(games));
+    setLoading((old) => false);
   };
 
   return (
