@@ -81,6 +81,7 @@ const ToGet = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 0.9rem;
 `;
 
 const Medal = styled.div`
@@ -94,6 +95,7 @@ const Medal = styled.div`
 
 const AchievementCount = styled.div`
   margin-left: 0.25rem;
+  font-size: 0.9rem;
 `;
 
 export default function GameCardMinimal(props) {

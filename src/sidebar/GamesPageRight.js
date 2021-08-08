@@ -1,5 +1,11 @@
 import React from "react";
-import { FaCheck, FaGripHorizontal, FaHourglass } from "react-icons/fa";
+import {
+  FaCheck,
+  FaGripHorizontal,
+  FaHourglass,
+  FaSortAlphaDown,
+  FaSortAlphaDownAlt,
+} from "react-icons/fa";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -49,26 +55,38 @@ export default function GamesPageRight(props) {
   return (
     <Container>
       <Subheader>SORT OPTIONS</Subheader>
-      <RightMenuItem onClick={props.sortByCompletion}>
+      <RightMenuItem onClick={() => props.sortHandler(0)}>
         <Icon>
           <FaCheck />
         </Icon>
         <Title>Completion</Title>
       </RightMenuItem>
-      <RightMenuItem onClick={props.sortByPlaytime}>
+      <RightMenuItem onClick={() => props.sortHandler(1)}>
         <Icon>
           <FaHourglass />
         </Icon>
         <Title>Playtime</Title>
       </RightMenuItem>
+      <RightMenuItem onClick={() => props.sortHandler(2)}>
+        <Icon>
+          <FaSortAlphaDown />
+        </Icon>
+        <Title>Name A-Z</Title>
+      </RightMenuItem>
+      <RightMenuItem onClick={() => props.sortHandler(3)}>
+        <Icon>
+          <FaSortAlphaDownAlt />
+        </Icon>
+        <Title>Name Z-A</Title>
+      </RightMenuItem>
       <Subheader>VIEW OPTIONS</Subheader>
-      <RightMenuItem onClick={props.sortViewMinimal}>
+      <RightMenuItem onClick={() => props.viewHandler(0)}>
         <Icon>
           <FaGripHorizontal />
         </Icon>
         <Title>Minimal</Title>
       </RightMenuItem>
-      <RightMenuItem onClick={props.sortViewNormal}>
+      <RightMenuItem onClick={() => props.viewHandler(1)}>
         <Icon>
           <FaGripHorizontal />
         </Icon>

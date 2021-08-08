@@ -52,7 +52,7 @@ const CardContainer = styled.div`
 const Title = styled.div`
   width: 100%;
   padding: 0.5rem;
-  background-color: rgba(10, 17, 25, 0.8);
+  background-color: rgba(10, 17, 25, 0.4);
   display: flex;
   flex-direction: column;
 `;
@@ -76,7 +76,7 @@ const InnerContainer = styled.div`
   position: absolute;
   bottom: 0;
   left: 0;
-  background-color: rgba(10, 17, 25, 0.8);
+  background-color: rgba(10, 17, 25, 0.4);
   display: flex;
   width: 100%;
   flex-direction: row;
@@ -96,6 +96,7 @@ const ToGet = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 0.9rem;
 `;
 
 const Medal = styled.div`
@@ -109,6 +110,7 @@ const Medal = styled.div`
 
 const AchievementCount = styled.div`
   margin-left: 0.25rem;
+  font-size: 0.9rem;
 `;
 
 export default function GameCardNormal(props) {

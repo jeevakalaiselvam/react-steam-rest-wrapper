@@ -25,53 +25,36 @@ export default function Games() {
   const { setNavRightOpen } = useContext(GameContext);
   const [games, setGames] = useState({});
   const [loading, setLoading] = useState(true);
-  const [viewType, setViewType] = useState(0);
+  const [viewIndex, setViewIndex] = useState(0);
+  const [sortIndex, setSortIndex] = useState(0);
 
   const toggleNavRight = () => {
     setNavRightOpen((navState) => !navState);
   };
 
   useEffect(() => {
-    const getAllGames = async () => {
-      const games = await fetchGames();
+    const getAllGames = async (sortOrder, viewOrder) => {
+      const games = await fetchGames(sortOrder, viewOrder);
       console.log("EFFECT GAMES PAGE -> ", games);
       setGames((old) => games);
       setLoading((old) => false);
     };
     setLoading((old) => true);
-    getAllGames();
-  }, []);
+    getAllGames(sortIndex, viewIndex);
+  }, [sortIndex, viewIndex]);
 
-  const sortByCompletion = () => {
-    console.log("Sorted games by completion");
-    setLoading((old) => true);
-    setGames((oldGames) => getGamesSortedByCompletion(games));
-    setLoading((old) => false);
-    toggleNavRight();
+  // setLoading((old) => true);
+  // setGames((oldGames) => getGamesSortedByCompletion(games));
+  // setLoading((old) => false);
+  // toggleNavRight();
+
+  const sortHandler = (sortOption) => {
+    console.log("Sort Selected -> ", sortOption);
+    setSortIndex((old) => sortOption);
   };
-
-  const sortByPlaytime = () => {
-    console.log("Sorted games by playtime");
-    setLoading((old) => true);
-    setGames((oldGames) => getGamesSortedByPlaytime(games));
-    setLoading((old) => false);
-    toggleNavRight();
-  };
-
-  const sortViewMinimal = () => {
-    console.log("Sorted view by minimal");
-    setLoading((old) => true);
-    setViewType((old) => 0);
-    setLoading((old) => false);
-    toggleNavRight();
-  };
-
-  const sortViewNormal = () => {
-    console.log("Sorted view by normal");
-    setLoading((old) => true);
-    setViewType((old) => 1);
-    setLoading((old) => false);
-    toggleNavRight();
+  const viewHandler = (viewOption) => {
+    console.log("View Selected -> ", viewOption);
+    setViewIndex((old) => viewOption);
   };
 
   return (
@@ -80,14 +63,9 @@ export default function Games() {
       <Page
         leftSidebar={<AllPageLeft />}
         rightSidebar={
-          <GamesPageRight
-            sortByCompletion={sortByCompletion}
-            sortByPlaytime={sortByPlaytime}
-            sortViewMinimal={sortViewMinimal}
-            sortViewNormal={sortViewNormal}
-          />
+          <GamesPageRight sortHandler={sortHandler} viewHandler={viewHandler} />
         }
-        content={<GamesContent games={games} viewType={viewType} />}
+        content={<GamesContent games={games} viewType={viewIndex} />}
         leftSidebarWidth={"180px"}
         rightSidebarWidth={"180px"}
         loading={loading}
