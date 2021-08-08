@@ -3,10 +3,8 @@ import styled from "styled-components";
 import GameCardNormal from "../components/card/GameCardNormal";
 import GameCardMinimal from "../components/card/GameCardMinimal";
 import { FaBackward, FaForward } from "react-icons/fa";
-import {
-  GAMES_PAGINATION_PER_PAGE,
-  HEADER_TOTAL_GAMES,
-} from "../helper/storage";
+import { STORAGE_HEADER_TOTAL_GAMES } from "../helper/storage";
+import { PAGINATION_GAMES_PER_PAGE } from "../helper/pagination";
 
 const ContentContainer = styled.div`
   display: flex;
@@ -78,7 +76,8 @@ export default function GamesContent(props) {
         <PageCount>
           {props.page} /{" "}
           {Math.ceil(
-            localStorage.getItem(HEADER_TOTAL_GAMES) / GAMES_PAGINATION_PER_PAGE
+            localStorage.getItem(STORAGE_HEADER_TOTAL_GAMES) /
+              PAGINATION_GAMES_PER_PAGE
           )}
         </PageCount>
         <Page onClick={props.moveToPageRight}>

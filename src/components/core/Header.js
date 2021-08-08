@@ -11,10 +11,10 @@ import {
 import { GameContext } from "../../context/GameContext";
 import { fetchGamesInfo } from "../../action/games";
 import {
-  HEADER_AVERAGE_COMPLETION,
-  HEADER_TOTAL_ACHIEVEMENTS,
-  HEADER_TOTAL_GAMES,
-  HEADER_TOTAL_PERFECT_GAMES,
+  STORAGE_HEADER_AVERAGE_COMPLETION,
+  STORAGE_HEADER_TOTAL_ACHIEVEMENTS,
+  STORAGE_HEADER_TOTAL_GAMES,
+  STORAGE_HEADER_TOTAL_PERFECT_GAMES,
 } from "../../helper/storage";
 
 const HeaderContainer = styled.div`
@@ -117,11 +117,13 @@ const Data = styled.div`
 export default function Header(props) {
   //Show initial header info from local storage
   const [gameInfo, setGameInfo] = useState({
-    total_games: localStorage.getItem(HEADER_TOTAL_GAMES) ?? 0,
-    average_completion: localStorage.getItem(HEADER_AVERAGE_COMPLETION) ?? 0,
+    total_games: localStorage.getItem(STORAGE_HEADER_TOTAL_GAMES) ?? 0,
+    average_completion:
+      localStorage.getItem(STORAGE_HEADER_AVERAGE_COMPLETION) ?? 0,
     completed_achievements:
-      localStorage.getItem(HEADER_TOTAL_ACHIEVEMENTS) ?? 0,
-    perfect_games_count: localStorage.getItem(HEADER_TOTAL_PERFECT_GAMES) ?? 0,
+      localStorage.getItem(STORAGE_HEADER_TOTAL_ACHIEVEMENTS) ?? 0,
+    perfect_games_count:
+      localStorage.getItem(STORAGE_HEADER_TOTAL_PERFECT_GAMES) ?? 0,
   });
 
   const { navLeftOpen, setNavLeftOpen, navRightOpen, setNavRightOpen } =
