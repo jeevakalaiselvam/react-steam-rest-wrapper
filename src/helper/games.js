@@ -1,3 +1,5 @@
+import { getCompletionTarget } from "./storage";
+
 export const getGamesSortedByCompletion = (games) => {
   let sortedGames = [];
   sortedGames = games
@@ -18,4 +20,29 @@ export const getGamesSortedByPlaytime = (games) => {
     .slice();
   console.log("PLAYTIME SORTED -> ", sortedGames[0]);
   return sortedGames;
+};
+
+export const getAllUnlockedAchievementsCount = (games) => {
+  let totalAchievements = 0;
+
+  if (games.length) {
+    games.forEach((game) => {
+      totalAchievements += game.completed_achievements_count;
+    });
+  }
+
+  return totalAchievements;
+};
+
+export const getPerfectGamesCount = (games) => {
+  let perfectGames = 0;
+
+  if (games.length) {
+    games.forEach((game) => {
+      game.completion_percentage >= getCompletionTarget() &&
+        (perfectGames += 1);
+    });
+  }
+
+  return perfectGames;
 };

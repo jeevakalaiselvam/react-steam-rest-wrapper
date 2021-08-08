@@ -21,6 +21,7 @@ const SidebarLeftContainer = styled.div`
   min-height: 100vh;
   max-height: 100vh;
   background-color: rgba(10, 17, 25, 1);
+  z-index: 2;
 
   align-items: center;
   flex-direction: column;
@@ -41,6 +42,7 @@ const SidebarRightContainer = styled.div`
   width: ${(props) => props.rightSidebarWidth ?? "200px"};
   min-height: 100vh;
   max-height: 100vh;
+  z-index: 2;
 
   background-color: rgba(10, 17, 25, 1);
   align-items: center;
@@ -74,7 +76,7 @@ const ContentContainerLoading = styled.div`
 
 export default function Page(props) {
   const { navLeftOpen, navRightOpen } = useContext(GameContext);
-  console.log("PAGE IS LOADING -> ", props.loading);
+  console.log("PAGE LOADING -> ", props.loading);
   return (
     <PageContainer>
       <SidebarLeftContainer

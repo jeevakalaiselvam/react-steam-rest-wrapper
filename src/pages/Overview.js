@@ -17,7 +17,7 @@ const PageContainer = styled.div`
 export default function Overview() {
   return (
     <PageContainer>
-      <Header />
+      <Header games={{}} />
       <Page
         leftSidebar={<AllPageLeft />}
         rightSidebar={<GamesPageRight />}

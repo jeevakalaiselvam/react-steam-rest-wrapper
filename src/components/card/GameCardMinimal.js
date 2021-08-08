@@ -1,5 +1,4 @@
-import { Icon } from "@material-ui/core";
-import React, { useState } from "react";
+import React from "react";
 import { FaMedal, FaTrophy } from "react-icons/fa";
 import styled from "styled-components";
 
@@ -97,7 +96,7 @@ const AchievementCount = styled.div`
   margin-left: 0.25rem;
 `;
 
-export default function GameCardSmall(props) {
+export default function GameCardMinimal(props) {
   const {
     image,
     completion_percentage,

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import {
   FaBars,
@@ -9,6 +9,13 @@ import {
   FaTrophy,
 } from "react-icons/fa";
 import { GameContext } from "../../context/GameContext";
+import { fetchGamesInfo } from "../../action/games";
+import {
+  HEADER_AVERAGE_COMPLETION,
+  HEADER_TOTAL_ACHIEVEMENTS,
+  HEADER_TOTAL_GAMES,
+  HEADER_TOTAL_PERFECT_GAMES,
+} from "../../helper/storage";
 
 const HeaderContainer = styled.div`
   width: 100%;
@@ -102,19 +109,40 @@ const Icon = styled.div`
 const Data = styled.div`
   display: flex;
   margin-left: 0.5rem;
-  font-size: 1.5rem;
+  font-size: 1rem;
   align-items: center;
   justify-content: center;
 `;
 
 export default function Header(props) {
+  //Show initial header info from local storage
+  const [gameInfo, setGameInfo] = useState({
+    total_games: localStorage.getItem(HEADER_TOTAL_GAMES) ?? 0,
+    average_completion: localStorage.getItem(HEADER_AVERAGE_COMPLETION) ?? 0,
+    completed_achievements:
+      localStorage.getItem(HEADER_TOTAL_ACHIEVEMENTS) ?? 0,
+    perfect_games_count: localStorage.getItem(HEADER_TOTAL_PERFECT_GAMES) ?? 0,
+  });
+
   const { navLeftOpen, setNavLeftOpen, navRightOpen, setNavRightOpen } =
     useContext(GameContext);
 
+  //When the header is rendered for the first time, Get info from GAMESINFO backend api
+  useEffect(() => {
+    const getAllGamesInfo = async () => {
+      const gameInfoInnerResponse = await fetchGamesInfo();
+      console.log("EFFECT HEADER GOT INFO -> ", gameInfoInnerResponse);
+      setGameInfo((old) => gameInfoInnerResponse);
+    };
+    getAllGamesInfo();
+  }, []);
+
+  //Toggle left navigation drawer state
   const toggleNavLeft = () => {
     setNavLeftOpen((navState) => !navState);
   };
 
+  //Toggle right navigation drawer state
   const toggleNavRight = () => {
     setNavRightOpen((navState) => !navState);
   };
@@ -130,19 +158,19 @@ export default function Header(props) {
           <Icon>
             <FaMedal />
           </Icon>
-          <Data>{props.totalPerfectGames}</Data>
+          <Data>{gameInfo.perfect_games_count}</Data>
         </IconSetGold>
         <IconSetBlue>
           <Icon>
             <FaTrophy />
           </Icon>
-          <Data>{props.totalAchievements}</Data>
+          <Data>{gameInfo.completed_achievements}</Data>
         </IconSetBlue>
         <IconSetGreen>
           <Icon>
             <FaGamepad />
           </Icon>
-          <Data>{props.totalGames}</Data>
+          <Data>{gameInfo.total_games}</Data>
         </IconSetGreen>
       </MiddleNav>
       <RightNav onClick={toggleNavRight}>

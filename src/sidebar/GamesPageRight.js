@@ -1,5 +1,5 @@
 import React from "react";
-import { FaCheck, FaHourglass, FaSort } from "react-icons/fa";
+import { FaCheck, FaGripHorizontal, FaHourglass } from "react-icons/fa";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -60,6 +60,19 @@ export default function GamesPageRight(props) {
           <FaHourglass />
         </Icon>
         <Title>Playtime</Title>
+      </RightMenuItem>
+      <Subheader>VIEW OPTIONS</Subheader>
+      <RightMenuItem onClick={props.sortViewMinimal}>
+        <Icon>
+          <FaGripHorizontal />
+        </Icon>
+        <Title>Minimal</Title>
+      </RightMenuItem>
+      <RightMenuItem onClick={props.sortViewNormal}>
+        <Icon>
+          <FaGripHorizontal />
+        </Icon>
+        <Title>Normal</Title>
       </RightMenuItem>
     </Container>
   );
