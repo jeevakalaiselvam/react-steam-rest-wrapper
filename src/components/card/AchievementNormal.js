@@ -20,22 +20,22 @@ const CardContainer = styled.div`
   }
 
   @media only screen and (min-width: 1361px) {
-    width: 45%;
+    width: 48%;
   }
   @media only screen and (max-width: 1360px) and (min-width: 1201px) {
-    width: 45%;
+    width: 48%;
   }
   @media only screen and (max-width: 1200px) and (min-width: 1061px) {
-    width: 45%;
+    width: 48%;
   }
   @media only screen and (max-width: 1060px) and (min-width: 961px) {
-    width: 45%;
+    width: 48%;
   }
   @media only screen and (max-width: 960px) and (min-width: 769px) {
-    width: 45%;
+    width: 96%;
   }
   @media only screen and (max-width: 768px) and (min-width: 631px) {
-    width: 45%;
+    width: 96%;
   }
   @media only screen and (max-width: 630px) and (min-width: 481px) {
     width: 96%;

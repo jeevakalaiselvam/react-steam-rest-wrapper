@@ -53,6 +53,7 @@ export default function Achievements() {
     };
     setLoading((old) => true);
     getAllAchievements(sortIndex, viewIndex, selectIndex);
+    localStorage.setItem("CURRENT_PAGE", "achievements");
   }, [sortIndex, viewIndex, achievementsPage, selectIndex]);
 
   const sortHandler = (sortOption) => {

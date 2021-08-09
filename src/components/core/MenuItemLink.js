@@ -12,6 +12,9 @@ const MenuItemContainer = styled(Link)`
   align-items: center;
   color: #959da6;
   cursor: pointer;
+  color: ${(props) => (props.selected ? "#55aece" : "#959da6")};
+  background-color: ${(props) =>
+    props.selected ? "rgba(122, 132, 148, 0.26)" : "rgba(122, 132, 148, 0)"};
 
   &:hover {
     background-color: rgba(122, 132, 148, 0.26);
@@ -41,7 +44,11 @@ export default function MenuItemLink(props) {
   };
 
   return (
-    <MenuItemContainer to={props.to} onClick={toggleNavLeft}>
+    <MenuItemContainer
+      to={props.to}
+      onClick={toggleNavLeft}
+      selected={props.selected}
+    >
       <MenuItemIcon>{props.icon}</MenuItemIcon>
       <MenuItemTitle>{props.title}</MenuItemTitle>
     </MenuItemContainer>

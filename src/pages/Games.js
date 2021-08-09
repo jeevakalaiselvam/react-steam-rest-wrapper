@@ -49,6 +49,7 @@ export default function Games() {
     };
     setLoading((old) => true);
     getAllGames(sortIndex, viewIndex, selectIndex);
+    localStorage.setItem("CURRENT_PAGE", "games");
   }, [sortIndex, viewIndex, gamesPage, selectIndex]);
 
   const sortHandler = (sortOption) => {

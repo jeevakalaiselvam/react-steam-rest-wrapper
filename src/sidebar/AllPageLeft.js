@@ -12,14 +12,30 @@ const MainMenu = styled.div`
 export default function AllPageLeft() {
   return (
     <MainMenu>
-      <MenuItemLink icon={<FaGamepad />} title={"Games"} to={"/games"} />
+      <MenuItemLink
+        icon={<FaGamepad />}
+        title={"Games"}
+        to={"/games"}
+        selected={localStorage.getItem("CURRENT_PAGE") === "games"}
+      />
       <MenuItemLink
         icon={<FaTrophy />}
         title={"Achievements"}
         to={"/achievements"}
+        selected={localStorage.getItem("CURRENT_PAGE") === "achievements"}
       />
-      <MenuItemLink icon={<FaChartBar />} title={"History"} to={"/history"} />
-      <MenuItemLink icon={<FaBookOpen />} title={"Backlog"} to={"/backlog"} />
+      <MenuItemLink
+        icon={<FaChartBar />}
+        title={"History"}
+        to={"/history"}
+        selected={false}
+      />
+      <MenuItemLink
+        icon={<FaBookOpen />}
+        title={"Backlog"}
+        to={"/backlog"}
+        selected={false}
+      />
     </MainMenu>
   );
 }
