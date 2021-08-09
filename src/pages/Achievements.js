@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import Page from "../components/core/Page";
 import Header from "../components/core/Header";
 import AllPageLeft from "../sidebar/AllPageLeft";
 import GamesPageRight from "../sidebar/GamesPageRight";
-import AchievementsContent from "../content/AchievementsContent";
+import GamesContent from "../content/GamesContent";
+import { useState } from "react";
+import { fetchAchievements, fetchGames } from "../action/games";
+import { GameContext } from "../context/GameContext";
+import {
+  STORAGE_HEADER_TOTAL_ACHIEVEMENTS,
+  STORAGE_HEADER_TOTAL_GAMES,
+} from "../helper/storage";
+import {
+  PAGINATION_ACHIEVEMENTS_PER_PAGE,
+  PAGINATION_GAMES_PER_PAGE,
+} from "../helper/pagination";
+import AchievementContent from "../content/AchievementContent";
+import AchievementPageRight from "../sidebar/AchievementPageRight";
 
 const PageContainer = styled.div`
   display: flex;
@@ -15,15 +28,90 @@ const PageContainer = styled.div`
 `;
 
 export default function Achievements() {
+  const { setNavRightOpen } = useContext(GameContext);
+  const [achievements, setAchievements] = useState({});
+  const [achievementsPage, setAchievementsPage] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [viewIndex, setViewIndex] = useState(0);
+  const [sortIndex, setSortIndex] = useState(0);
+
+  const toggleNavRight = () => {
+    setNavRightOpen((navState) => !navState);
+  };
+
+  useEffect(() => {
+    const getAllAchievements = async (sortOrder, viewOrder) => {
+      const achievements = await fetchAchievements(
+        sortOrder,
+        viewOrder,
+        achievementsPage
+      );
+      console.log("EFFECT ACHIEVEMENTS PAGE -> ", achievements);
+      setAchievements((old) => achievements);
+      setLoading((old) => false);
+    };
+    setLoading((old) => true);
+    getAllAchievements(sortIndex, viewIndex);
+  }, [sortIndex, viewIndex, achievementsPage]);
+
+  const sortHandler = (sortOption) => {
+    console.log("Sort Selected -> ", sortOption);
+    setSortIndex((old) => sortOption);
+    setAchievementsPage((old) => 1);
+    toggleNavRight();
+  };
+  const viewHandler = (viewOption) => {
+    console.log("View Selected -> ", viewOption);
+    setViewIndex((old) => viewOption);
+    setAchievementsPage((old) => 1);
+    toggleNavRight();
+  };
+
+  const moveToPageRightHandler = () => {
+    console.log("Moving to Page right");
+    if (
+      Math.ceil(
+        localStorage.getItem(STORAGE_HEADER_TOTAL_ACHIEVEMENTS) /
+          PAGINATION_ACHIEVEMENTS_PER_PAGE
+      ) === achievementsPage
+    ) {
+      setAchievementsPage((old) => achievementsPage);
+    } else {
+      setAchievementsPage((old) => achievementsPage + 1);
+    }
+  };
+  const moveToPageLeftHandler = () => {
+    console.log("Moving to Page left");
+    if (achievementsPage === 1) {
+      setAchievementsPage((old) => 1);
+    } else {
+      setAchievementsPage((old) => achievementsPage - 1);
+    }
+  };
+
   return (
     <PageContainer>
       <Header />
       <Page
         leftSidebar={<AllPageLeft />}
-        rightSidebar={<GamesPageRight />}
-        content={<AchievementsContent />}
+        rightSidebar={
+          <AchievementPageRight
+            sortHandler={sortHandler}
+            viewHandler={viewHandler}
+          />
+        }
+        content={
+          <AchievementContent
+            achievements={achievements}
+            viewType={viewIndex}
+            page={achievementsPage}
+            moveToPageRight={moveToPageRightHandler}
+            moveToPageLeft={moveToPageLeftHandler}
+          />
+        }
         leftSidebarWidth={"180px"}
         rightSidebarWidth={"180px"}
+        loading={loading}
       />
     </PageContainer>
   );

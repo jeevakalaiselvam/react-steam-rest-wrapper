@@ -44,6 +44,60 @@ export const fetchGames = async (sortOrder, viewOrder, gamesPage) => {
   return games;
 };
 
+export const fetchAchievements = async (
+  sortOrder,
+  viewOrder,
+  achievementPage
+) => {
+  let achievements = [];
+  switch (sortOrder) {
+    case 0:
+      achievements = (
+        await axios.get(
+          `${process.env.REACT_APP_API_ENDPOINT}achievements?sort=recent&page=${achievementPage}`
+        )
+      ).data;
+      break;
+    case 1:
+      achievements = (
+        await axios.get(
+          `${process.env.REACT_APP_API_ENDPOINT}achievements?sort=rarity&page=${achievementPage}`
+        )
+      ).data;
+      break;
+    case 2:
+      achievements = (
+        await axios.get(
+          `${process.env.REACT_APP_API_ENDPOINT}achievements?sort=games&page=${achievementPage}`
+        )
+      ).data;
+      break;
+    case 3:
+      achievements = (
+        await axios.get(
+          `${process.env.REACT_APP_API_ENDPOINT}achievements?sort=name&order=az&page=${achievementPage}`
+        )
+      ).data;
+      break;
+    case 4:
+      achievements = (
+        await axios.get(
+          `${process.env.REACT_APP_API_ENDPOINT}achievements?sort=name&order=za&page=${achievementPage}`
+        )
+      ).data;
+      break;
+    default:
+      achievements = (
+        await axios.get(
+          `${process.env.REACT_APP_API_ENDPOINT}achievements?sort=recent`
+        )
+      ).data;
+      break;
+  }
+
+  return achievements;
+};
+
 export const fetchGamesInfo = async () => {
   let gamesInfo = {};
   gamesInfo = (
