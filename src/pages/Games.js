@@ -8,7 +8,11 @@ import GamesContent from "../content/GamesContent";
 import { useState } from "react";
 import { fetchGames } from "../action/games";
 import { GameContext } from "../context/GameContext";
-import { STORAGE_HEADER_TOTAL_GAMES } from "../helper/storage";
+import {
+  PAGINATION_TOTAL_COUNT,
+  PAGINATION_TOTAL_OBTAINED,
+  STORAGE_HEADER_TOTAL_GAMES,
+} from "../helper/storage";
 import { PAGINATION_GAMES_PER_PAGE } from "../helper/pagination";
 
 const PageContainer = styled.div`
@@ -71,8 +75,7 @@ export default function Games() {
     console.log("Moving to Page right");
     if (
       Math.ceil(
-        localStorage.getItem(STORAGE_HEADER_TOTAL_GAMES) /
-          PAGINATION_GAMES_PER_PAGE
+        localStorage.getItem(PAGINATION_TOTAL_COUNT) / PAGINATION_GAMES_PER_PAGE
       ) === gamesPage
     ) {
       setGamesPage((old) => gamesPage);

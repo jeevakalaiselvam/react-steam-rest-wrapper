@@ -1,5 +1,9 @@
 import axios from "axios";
-import { storeHeadInfoLocalStorage } from "../helper/storage";
+import {
+  addToLocalStorage,
+  PAGINATION_TOTAL_COUNT,
+  storeHeadInfoLocalStorage,
+} from "../helper/storage";
 import {
   includePageQuery,
   includeSelectQueryGames,
@@ -13,15 +17,16 @@ export const fetchGames = async (
   selectOrder
 ) => {
   let games = [];
+  let gamesResponse = {};
 
   const mainURL = `${process.env.REACT_APP_API_ENDPOINT}games?`;
   const selectedAddedURL = includeSelectQueryGames(mainURL, selectOrder);
   const sortAddedURL = includeSortQueryGames(selectedAddedURL, sortOrder);
   const pageAddedURL = includePageQuery(sortAddedURL, gamesPage);
-  console.log("CONSTRUCT -> ", pageAddedURL);
-  games = (await axios.get(pageAddedURL)).data;
-
-  return games ?? {};
+  gamesResponse = (await axios.get(pageAddedURL)).data;
+  console.log("TOTAL IN PAGINATION COMPLETE -> ", gamesResponse.total);
+  addToLocalStorage(PAGINATION_TOTAL_COUNT, gamesResponse.total);
+  return gamesResponse.games ?? {};
 };
 
 export const fetchAchievements = async (
