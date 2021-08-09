@@ -12,13 +12,11 @@ const CardContainer = styled.div`
   justify-content: center;
   border-radius: 4px;
   margin: 4px;
-  padding: 1rem;
-  min-height: 56px;
-  cursor: pointer;
+  padding: 0.5rem 1rem;
   border: 1px solid #fefefe00;
 
   &:hover {
-    border: 1px solid #ffffff22;
+    border: 1px solid #00000044;
   }
 
   @media only screen and (min-width: 1361px) {
@@ -113,13 +111,13 @@ const GameName = styled.div`
 const Percentage = styled.div`
   color: #959da6;
   margin-left: 0.5rem;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
 `;
 
 const PercentageGold = styled.div`
   color: gold;
   margin-left: 0.5rem;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
 `;
 
 export default function AchievementNormal(props) {
