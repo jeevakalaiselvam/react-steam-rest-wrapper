@@ -139,7 +139,6 @@ export default function Header() {
   useEffect(() => {
     const getAllGamesInfo = async () => {
       const gameInfoInnerResponse = await fetchGamesInfo();
-      console.log("EFFECT HEADER GOT INFO -> ", gameInfoInnerResponse);
       setGameInfo((old) => gameInfoInnerResponse);
     };
     getAllGamesInfo();

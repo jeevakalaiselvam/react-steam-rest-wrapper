@@ -33,9 +33,7 @@ const RightMenuItem = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  background-color: ${(props) =>
-    props.selected ? "rgba(122, 132, 148, 0.26)" : "rgba(122, 132, 148, 0)"};
-  color: ${(props) => (props.selected ? "#f5f5f5" : "#959da6")};
+  color: ${(props) => (props.selected ? "#55aece" : "#959da6")};
 
   &:hover {
     background-color: rgba(122, 132, 148, 0.26);
@@ -56,25 +54,12 @@ const Title = styled.div`
 `;
 
 export default function GamesPageRight(props) {
-  const [sortSelectedItems, setSortSelectedItems] = useState([
-    "sort_completion",
-  ]);
-  const [selectSelectedItems, setSelectSelectedItems] = useState([
-    "select_all",
-  ]);
-  const [viewSelectedItems, setViewSelectedItems] = useState([
-    "select_minimum",
-  ]);
-
   return (
     <Container>
       <Subheader>SELECTION OPTIONS</Subheader>
       <RightMenuItem
-        onClick={() => {
-          props.selectHandler(0);
-          setSelectSelectedItems((old) => ["select_all"]);
-        }}
-        selected={selectSelectedItems.includes("select_all")}
+        onClick={() => props.selectHandler(0)}
+        selected={props.selectIndex === 0}
       >
         <Icon>
           <FaFilter />
@@ -82,11 +67,8 @@ export default function GamesPageRight(props) {
         <Title>All</Title>
       </RightMenuItem>
       <RightMenuItem
-        onClick={() => {
-          props.selectHandler(1);
-          setSelectSelectedItems((old) => ["select_completed"]);
-        }}
-        selected={selectSelectedItems.includes("select_completed")}
+        onClick={() => props.selectHandler(1)}
+        selected={props.selectIndex === 1}
       >
         <Icon>
           <FaFilter />
@@ -94,11 +76,8 @@ export default function GamesPageRight(props) {
         <Title>Completed</Title>
       </RightMenuItem>
       <RightMenuItem
-        onClick={() => {
-          props.selectHandler(2);
-          setSelectSelectedItems((old) => ["select_started"]);
-        }}
-        selected={selectSelectedItems.includes("select_started")}
+        onClick={() => props.selectHandler(2)}
+        selected={props.selectIndex === 2}
       >
         <Icon>
           <FaFilter />
@@ -106,11 +85,8 @@ export default function GamesPageRight(props) {
         <Title>Started</Title>
       </RightMenuItem>
       <RightMenuItem
-        onClick={() => {
-          props.selectHandler(0);
-          setSelectSelectedItems((old) => ["select_notstarted"]);
-        }}
-        selected={selectSelectedItems.includes("select_notstarted")}
+        onClick={() => props.selectHandler(3)}
+        selected={props.selectIndex === 3}
       >
         <Icon>
           <FaFilter />
@@ -119,12 +95,8 @@ export default function GamesPageRight(props) {
       </RightMenuItem>
       <Subheader>SORT OPTIONS</Subheader>
       <RightMenuItem
-        onClick={() => {
-          props.sortHandler(0);
-
-          setSortSelectedItems((old) => ["sort_completion"]);
-        }}
-        selected={sortSelectedItems.includes("sort_completion")}
+        onClick={() => props.sortHandler(0)}
+        selected={props.sortIndex === 0}
       >
         <Icon>
           <FaCheck />
@@ -132,11 +104,8 @@ export default function GamesPageRight(props) {
         <Title>Completion</Title>
       </RightMenuItem>
       <RightMenuItem
-        onClick={() => {
-          props.sortHandler(1);
-          setSortSelectedItems((old) => ["sort_playtime"]);
-        }}
-        selected={sortSelectedItems.includes("sort_playtime")}
+        onClick={() => props.sortHandler(1)}
+        selected={props.sortIndex === 1}
       >
         <Icon>
           <FaHourglass />
@@ -144,11 +113,8 @@ export default function GamesPageRight(props) {
         <Title>Playtime</Title>
       </RightMenuItem>
       <RightMenuItem
-        onClick={() => {
-          props.sortHandler(2);
-          setSortSelectedItems((old) => ["sort_nameaz"]);
-        }}
-        selected={sortSelectedItems.includes("sort_nameaz")}
+        onClick={() => props.sortHandler(2)}
+        selected={props.sortIndex === 2}
       >
         <Icon>
           <FaSortAlphaDown />
@@ -156,11 +122,8 @@ export default function GamesPageRight(props) {
         <Title>Name A-Z</Title>
       </RightMenuItem>
       <RightMenuItem
-        onClick={() => {
-          props.sortHandler(3);
-          setSortSelectedItems((old) => ["sort_nameza"]);
-        }}
-        selected={sortSelectedItems.includes("sort_nameza")}
+        onClick={() => props.sortHandler(3)}
+        selected={props.sortIndex === 3}
       >
         <Icon>
           <FaSortAlphaDownAlt />
@@ -169,11 +132,8 @@ export default function GamesPageRight(props) {
       </RightMenuItem>
       <Subheader>VIEW OPTIONS</Subheader>
       <RightMenuItem
-        onClick={() => {
-          props.viewHandler(0);
-          setViewSelectedItems((old) => ["view_minimal"]);
-        }}
-        selected={viewSelectedItems.includes("view_minimal")}
+        onClick={() => props.viewHandler(0)}
+        selected={props.viewIndex === 0}
       >
         <Icon>
           <FaGripHorizontal />
@@ -181,11 +141,8 @@ export default function GamesPageRight(props) {
         <Title>Minimal</Title>
       </RightMenuItem>
       <RightMenuItem
-        onClick={() => {
-          props.viewHandler(1);
-          setViewSelectedItems((old) => ["view_normal"]);
-        }}
-        selected={viewSelectedItems.includes("view_normal")}
+        onClick={() => props.viewHandler(0)}
+        selected={props.viewIndex === 1}
       >
         <Icon>
           <FaGripHorizontal />

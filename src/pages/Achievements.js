@@ -93,6 +93,8 @@ export default function Achievements() {
           <AchievementPageRight
             sortHandler={sortHandler}
             viewHandler={viewHandler}
+            viewIndex={viewIndex}
+            sortIndex={sortIndex}
           />
         }
         content={

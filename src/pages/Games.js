@@ -96,6 +96,9 @@ export default function Games() {
             sortHandler={sortHandler}
             viewHandler={viewHandler}
             selectHandler={selectedHandler}
+            viewIndex={viewIndex}
+            sortIndex={sortIndex}
+            selectIndex={selectIndex}
           />
         }
         content={

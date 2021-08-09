@@ -24,7 +24,6 @@ export const fetchGames = async (
   const sortAddedURL = includeSortQueryGames(selectedAddedURL, sortOrder);
   const pageAddedURL = includePageQuery(sortAddedURL, gamesPage);
   gamesResponse = (await axios.get(pageAddedURL)).data;
-  console.log("TOTAL IN PAGINATION COMPLETE -> ", gamesResponse.total);
   addToLocalStorage(PAGINATION_TOTAL_COUNT, gamesResponse.total);
   return gamesResponse.games ?? {};
 };

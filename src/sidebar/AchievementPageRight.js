@@ -1,10 +1,14 @@
 import React from "react";
 import {
   FaCheck,
+  FaClock,
+  FaGamepad,
   FaGripHorizontal,
   FaHourglass,
+  FaPercentage,
   FaSortAlphaDown,
   FaSortAlphaDownAlt,
+  FaTimes,
 } from "react-icons/fa";
 import styled from "styled-components";
 
@@ -32,7 +36,9 @@ const RightMenuItem = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  color: #959da6;
+  background-color: ${(props) =>
+    props.selected ? "rgba(122, 132, 148, 0.26)" : "rgba(122, 132, 148, 0)"};
+  color: ${(props) => (props.selected ? "#f5f5f5" : "#959da6")};
 
   &:hover {
     background-color: rgba(122, 132, 148, 0.26);
@@ -55,44 +61,65 @@ export default function AchievementPageRight(props) {
   return (
     <Container>
       <Subheader>SORT OPTIONS</Subheader>
-      <RightMenuItem onClick={() => props.sortHandler(0)}>
+      <RightMenuItem
+        onClick={() => props.sortHandler(0)}
+        selected={props.sortIndex === 0}
+      >
         <Icon>
-          <FaCheck />
+          <FaClock />
         </Icon>
         <Title>Recent</Title>
       </RightMenuItem>
-      <RightMenuItem onClick={() => props.sortHandler(1)}>
+      <RightMenuItem
+        onClick={() => props.sortHandler(1)}
+        selected={props.sortIndex === 1}
+      >
         <Icon>
-          <FaHourglass />
+          <FaPercentage />
         </Icon>
         <Title>Rarity</Title>
       </RightMenuItem>
-      <RightMenuItem onClick={() => props.sortHandler(2)}>
+      <RightMenuItem
+        onClick={() => props.sortHandler(2)}
+        selected={props.sortIndex === 2}
+      >
         <Icon>
-          <FaHourglass />
+          <FaGamepad />
         </Icon>
         <Title>Games</Title>
       </RightMenuItem>
-      <RightMenuItem onClick={() => props.sortHandler(3)}>
+      <RightMenuItem
+        onClick={() => props.sortHandler(3)}
+        selected={props.sortIndex === 3}
+      >
         <Icon>
           <FaSortAlphaDown />
         </Icon>
         <Title>Name A-Z</Title>
       </RightMenuItem>
-      <RightMenuItem onClick={() => props.sortHandler(4)}>
+      <RightMenuItem
+        onClick={() => props.sortHandler(4)}
+        selected={props.sortIndex === 4}
+      >
         <Icon>
           <FaSortAlphaDownAlt />
         </Icon>
         <Title>Name Z-A</Title>
       </RightMenuItem>
       <Subheader>VIEW OPTIONS</Subheader>
-      <RightMenuItem onClick={() => props.viewHandler(0)}>
+      <RightMenuItem
+        onClick={() => props.viewHandler(0)}
+        selected={props.viewIndex === 0}
+      >
         <Icon>
           <FaGripHorizontal />
         </Icon>
         <Title>Minimal</Title>
       </RightMenuItem>
-      <RightMenuItem onClick={() => props.viewHandler(1)}>
+      <RightMenuItem
+        onClick={() => props.viewHandler(1)}
+        selected={props.viewIndex === 1}
+      >
         <Icon>
           <FaGripHorizontal />
         </Icon>

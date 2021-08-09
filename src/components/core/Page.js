@@ -76,7 +76,6 @@ const ContentContainerLoading = styled.div`
 
 export default function Page(props) {
   const { navLeftOpen, navRightOpen } = useContext(GameContext);
-  console.log("PAGE LOADING -> ", props.loading);
   return (
     <PageContainer>
       <SidebarLeftContainer
