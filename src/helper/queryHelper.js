@@ -4,6 +4,12 @@ export const includeSelectQueryGames = (initialUrl, selectOrder) => {
   return `${initialUrl}select=${indexMapper[selectOrder]}`;
 };
 
+export const includeSelectQueryAchievements = (initialUrl, selectOrder) => {
+  const indexMapper = ["all&", "unlocked&"];
+
+  return `${initialUrl}select=${indexMapper[selectOrder]}`;
+};
+
 export const includeSortQueryGames = (initialUrl, sortOrder) => {
   const indexMapper = [
     "completion&",
@@ -15,13 +21,9 @@ export const includeSortQueryGames = (initialUrl, sortOrder) => {
   return `${initialUrl}sort=${indexMapper[sortOrder]}`;
 };
 
-export const includePageQuery = (initialUrl, pageOrder) => {
-  return `${initialUrl}page=${pageOrder}`;
-};
-
 export const includeSortQueryAchievements = (initialUrl, sortOrder) => {
   const indexMapper = [
-    "completion&",
+    "recent&",
     "rarity&",
     "games&",
     "names&order=az&",
@@ -29,4 +31,8 @@ export const includeSortQueryAchievements = (initialUrl, sortOrder) => {
   ];
 
   return `${initialUrl}sort=${indexMapper[sortOrder]}`;
+};
+
+export const includePageQuery = (initialUrl, pageOrder) => {
+  return `${initialUrl}page=${pageOrder}`;
 };

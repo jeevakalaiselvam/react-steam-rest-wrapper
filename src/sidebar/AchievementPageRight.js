@@ -2,6 +2,7 @@ import React from "react";
 import {
   FaCheck,
   FaClock,
+  FaFilter,
   FaGamepad,
   FaGripHorizontal,
   FaHourglass,
@@ -36,9 +37,7 @@ const RightMenuItem = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  background-color: ${(props) =>
-    props.selected ? "rgba(122, 132, 148, 0.26)" : "rgba(122, 132, 148, 0)"};
-  color: ${(props) => (props.selected ? "#f5f5f5" : "#959da6")};
+  color: ${(props) => (props.selected ? "#55aece" : "#959da6")};
 
   &:hover {
     background-color: rgba(122, 132, 148, 0.26);
@@ -60,6 +59,25 @@ const Title = styled.div`
 export default function AchievementPageRight(props) {
   return (
     <Container>
+      <Subheader>SELECT OPTIONS</Subheader>
+      <RightMenuItem
+        onClick={() => props.selectHandler(0)}
+        selected={props.selectIndex === 0}
+      >
+        <Icon>
+          <FaFilter />
+        </Icon>
+        <Title>All</Title>
+      </RightMenuItem>
+      <RightMenuItem
+        onClick={() => props.selectHandler(1)}
+        selected={props.selectIndex === 1}
+      >
+        <Icon>
+          <FaFilter />
+        </Icon>
+        <Title>Unlocked</Title>
+      </RightMenuItem>
       <Subheader>SORT OPTIONS</Subheader>
       <RightMenuItem
         onClick={() => props.sortHandler(0)}

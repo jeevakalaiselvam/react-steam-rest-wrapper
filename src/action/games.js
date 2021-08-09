@@ -6,7 +6,9 @@ import {
 } from "../helper/storage";
 import {
   includePageQuery,
+  includeSelectQueryAchievements,
   includeSelectQueryGames,
+  includeSortQueryAchievements,
   includeSortQueryGames,
 } from "../helper/queryHelper";
 
@@ -31,11 +33,21 @@ export const fetchGames = async (
 export const fetchAchievements = async (
   sortOrder,
   viewOrder,
-  achievementPage
+  achievementPage,
+  selectOrder
 ) => {
-  let achievements = [];
+  let achievementsResponse = {};
 
-  return achievements;
+  const mainURL = `${process.env.REACT_APP_API_ENDPOINT}achievements?`;
+  const selectedAddedURL = includeSelectQueryAchievements(mainURL, selectOrder);
+  const sortAddedURL = includeSortQueryAchievements(
+    selectedAddedURL,
+    sortOrder
+  );
+  const pageAddedURL = includePageQuery(sortAddedURL, achievementPage);
+  achievementsResponse = (await axios.get(pageAddedURL)).data;
+  addToLocalStorage(PAGINATION_TOTAL_COUNT, achievementsResponse.total);
+  return achievementsResponse.achievements ?? {};
 };
 
 export const fetchGamesInfo = async () => {

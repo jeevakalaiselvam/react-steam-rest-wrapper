@@ -20,19 +20,19 @@ const CardContainer = styled.div`
   }
 
   @media only screen and (min-width: 1361px) {
-    width: 32%;
+    width: 45%;
   }
   @media only screen and (max-width: 1360px) and (min-width: 1201px) {
-    width: 30%;
+    width: 45%;
   }
   @media only screen and (max-width: 1200px) and (min-width: 1061px) {
-    width: 30%;
+    width: 45%;
   }
   @media only screen and (max-width: 1060px) and (min-width: 961px) {
-    width: 30%;
+    width: 45%;
   }
   @media only screen and (max-width: 960px) and (min-width: 769px) {
-    width: 30%;
+    width: 45%;
   }
   @media only screen and (max-width: 768px) and (min-width: 631px) {
     width: 45%;
@@ -70,7 +70,6 @@ const Icon = styled.div`
   width: 50px;
   height: 50px;
   border-radius: 2px;
-  background-color: red;
   background-image: url("${(props) => props.image}");
   background-repeat: no-repeat;
   background-size: cover;

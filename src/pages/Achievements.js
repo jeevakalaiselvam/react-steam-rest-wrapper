@@ -34,6 +34,7 @@ export default function Achievements() {
   const [loading, setLoading] = useState(true);
   const [viewIndex, setViewIndex] = useState(1);
   const [sortIndex, setSortIndex] = useState(0);
+  const [selectIndex, setSelectIndex] = useState(0);
 
   const toggleNavRight = () => {
     setNavRightOpen((navState) => !navState);
@@ -44,14 +45,15 @@ export default function Achievements() {
       const achievements = await fetchAchievements(
         sortOrder,
         viewOrder,
-        achievementsPage
+        achievementsPage,
+        selectIndex
       );
       setAchievements((old) => achievements);
       setLoading((old) => false);
     };
     setLoading((old) => true);
-    getAllAchievements(sortIndex, viewIndex);
-  }, [sortIndex, viewIndex, achievementsPage]);
+    getAllAchievements(sortIndex, viewIndex, selectIndex);
+  }, [sortIndex, viewIndex, achievementsPage, selectIndex]);
 
   const sortHandler = (sortOption) => {
     setSortIndex((old) => sortOption);
@@ -60,6 +62,12 @@ export default function Achievements() {
   };
   const viewHandler = (viewOption) => {
     setViewIndex((old) => viewOption);
+    setAchievementsPage((old) => 1);
+    toggleNavRight();
+  };
+
+  const selectHandler = (selectOption) => {
+    setSelectIndex((old) => selectOption);
     setAchievementsPage((old) => 1);
     toggleNavRight();
   };
@@ -93,8 +101,10 @@ export default function Achievements() {
           <AchievementPageRight
             sortHandler={sortHandler}
             viewHandler={viewHandler}
+            selectHandler={selectHandler}
             viewIndex={viewIndex}
             sortIndex={sortIndex}
+            selectIndex={selectIndex}
           />
         }
         content={
