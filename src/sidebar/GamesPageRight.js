@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   FaCheck,
   FaFilter,
@@ -33,13 +33,16 @@ const RightMenuItem = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  color: #959da6;
+  background-color: ${(props) =>
+    props.selected ? "rgba(122, 132, 148, 0.26)" : "rgba(122, 132, 148, 0)"};
+  color: ${(props) => (props.selected ? "#f5f5f5" : "#959da6")};
 
   &:hover {
     background-color: rgba(122, 132, 148, 0.26);
     color: #f5f5f5;
   }
 `;
+
 const Icon = styled.div`
   font-size: 1rem;
   transform: translateY(-1px);
@@ -53,28 +56,57 @@ const Title = styled.div`
 `;
 
 export default function GamesPageRight(props) {
+  const [sortSelectedItems, setSortSelectedItems] = useState([
+    "sort_completion",
+  ]);
+
   return (
     <Container>
       <Subheader>SORT OPTIONS</Subheader>
-      <RightMenuItem onClick={() => props.sortHandler(0)}>
+      <RightMenuItem
+        onClick={() => {
+          props.sortHandler(0);
+
+          setSortSelectedItems((old) => ["sort_completion"]);
+        }}
+        selected={sortSelectedItems.includes("sort_completion")}
+      >
         <Icon>
           <FaCheck />
         </Icon>
         <Title>Completion</Title>
       </RightMenuItem>
-      <RightMenuItem onClick={() => props.sortHandler(1)}>
+      <RightMenuItem
+        onClick={() => {
+          props.sortHandler(1);
+          setSortSelectedItems((old) => ["sort_playtime"]);
+        }}
+        selected={sortSelectedItems.includes("sort_playtime")}
+      >
         <Icon>
           <FaHourglass />
         </Icon>
         <Title>Playtime</Title>
       </RightMenuItem>
-      <RightMenuItem onClick={() => props.sortHandler(2)}>
+      <RightMenuItem
+        onClick={() => {
+          props.sortHandler(2);
+          setSortSelectedItems((old) => ["sort_nameaz"]);
+        }}
+        selected={sortSelectedItems.includes("sort_nameaz")}
+      >
         <Icon>
           <FaSortAlphaDown />
         </Icon>
         <Title>Name A-Z</Title>
       </RightMenuItem>
-      <RightMenuItem onClick={() => props.sortHandler(3)}>
+      <RightMenuItem
+        onClick={() => {
+          props.sortHandler(3);
+          setSortSelectedItems((old) => ["sort_nameza"]);
+        }}
+        selected={sortSelectedItems.includes("sort_nameza")}
+      >
         <Icon>
           <FaSortAlphaDownAlt />
         </Icon>
