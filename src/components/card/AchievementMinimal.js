@@ -2,6 +2,7 @@ import React from "react";
 import { FaMedal, FaTrophy } from "react-icons/fa";
 import styled from "styled-components";
 import BlackToolTip from "../other/BlackToolTip";
+import { STEAM_HEADER_IMAGE } from "../../helper/endpoints";
 
 const Card = styled.div`
   background-color: rgba(10, 17, 25, 0.4);
@@ -49,7 +50,21 @@ const Game = styled.div`
   flex-direction: column;
   align-items: center;
   color: gray;
+  padding: 0.5rem;
   font-size: 0.8rem;
+  justify-content: center;
+`;
+
+const GameImage = styled.div`
+  display: flex;
+  background-image: url("${(props) => props.image}");
+  background-repeat: no-repeat;
+  background-size: cover;
+  flex-direction: column;
+  align-items: center;
+  color: gray;
+  width: 200px;
+  height: 100px;
   justify-content: center;
 `;
 
@@ -65,7 +80,7 @@ const Icon = styled.div`
 `;
 
 export default function AchievementMinimal(props) {
-  const { icon, name, description, game_name } = props.achievement;
+  const { icon, name, description, game_name, game_id } = props.achievement;
 
   const toolTipContent = (
     <ToolTipContent>
@@ -73,6 +88,7 @@ export default function AchievementMinimal(props) {
       <Title>{name}</Title>
       <Desc>{description}</Desc>
       <Game>{game_name}</Game>
+      <GameImage image={STEAM_HEADER_IMAGE(game_id)}></GameImage>
     </ToolTipContent>
   );
 

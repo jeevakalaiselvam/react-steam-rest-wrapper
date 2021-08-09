@@ -16,9 +16,13 @@ const ContentContainer = styled.div`
   flex-direction: column;
   overflow: scroll;
   scrollbar-width: thin;
-  padding-bottom: 3rem;
   align-items: flex-start;
   flex-wrap: wrap;
+  padding-bottom: 1rem;
+
+  @media only screen and (max-width: 840px) {
+    padding-bottom: 0rem;
+  }
 `;
 
 const ContainerInner = styled.div`
@@ -35,13 +39,11 @@ const Pagination = styled.div`
   padding: 0.25rem;
   width: 100%;
   justify-content: center;
-
-  @media only screen and (max-width: 840px) {
-    position: fixed;
-    background-color: rgba(10, 17, 25, 1);
-    padding: 0.25rem 0;
-    bottom: 0;
-  }
+  position: fixed;
+  background-color: rgba(10, 17, 25, 1);
+  padding: 0.25rem 0;
+  bottom: 0;
+  left: 0;
 `;
 
 const Page = styled.div`

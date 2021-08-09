@@ -7,6 +7,7 @@ const Card = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex-grow: 1;
   position: relative;
   justify-content: center;
   margin: 4px;
@@ -17,27 +18,27 @@ const Card = styled.div`
 
   @media only screen and (min-width: 1361px) {
     width: 18%;
-    height: 10vh;
+    height: 12vh;
   }
   @media only screen and (max-width: 1360px) and (min-width: 1201px) {
     width: 22%;
-    height: 10vh;
+    height: 12vh;
   }
   @media only screen and (max-width: 1200px) and (min-width: 1061px) {
     width: 22%;
-    height: 10vh;
+    height: 12vh;
   }
   @media only screen and (max-width: 1060px) and (min-width: 961px) {
     width: 30%;
-    height: 10vh;
+    height: 12vh;
   }
   @media only screen and (max-width: 960px) and (min-width: 769px) {
     width: 30%;
-    height: 10vh;
+    height: 12vh;
   }
   @media only screen and (max-width: 768px) and (min-width: 631px) {
-    width: 30%;
-    height: 10vh;
+    width: 46%;
+    height: 14vh;
   }
   @media only screen and (max-width: 630px) and (min-width: 481px) {
     width: 46%;
