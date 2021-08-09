@@ -44,7 +44,6 @@ export default function Games() {
         gamesPage,
         selectOrder
       );
-      console.log("EFFECT GAMES PAGE -> ", games);
       setGames((old) => games);
       setLoading((old) => false);
     };
@@ -53,26 +52,22 @@ export default function Games() {
   }, [sortIndex, viewIndex, gamesPage, selectIndex]);
 
   const sortHandler = (sortOption) => {
-    console.log("Sort Selected -> ", sortOption);
     setSortIndex((old) => sortOption);
     setGamesPage((old) => 1);
     toggleNavRight();
   };
   const viewHandler = (viewOption) => {
-    console.log("View Selected -> ", viewOption);
     setViewIndex((old) => viewOption);
     setGamesPage((old) => 1);
     toggleNavRight();
   };
   const selectedHandler = (selectOption) => {
-    console.log("Select Selected -> ", selectOption);
     setSelectedIndex((old) => selectOption);
     setGamesPage((old) => 1);
     toggleNavRight();
   };
 
   const moveToPageRightHandler = () => {
-    console.log("Moving to Page right");
     if (
       Math.ceil(
         localStorage.getItem(PAGINATION_TOTAL_COUNT) / PAGINATION_GAMES_PER_PAGE
@@ -84,7 +79,6 @@ export default function Games() {
     }
   };
   const moveToPageLeftHandler = () => {
-    console.log("Moving to Page left");
     if (gamesPage === 1) {
       setGamesPage((old) => 1);
     } else {

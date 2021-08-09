@@ -46,7 +46,6 @@ export default function Achievements() {
         viewOrder,
         achievementsPage
       );
-      console.log("EFFECT ACHIEVEMENTS PAGE -> ", achievements);
       setAchievements((old) => achievements);
       setLoading((old) => false);
     };
@@ -55,20 +54,17 @@ export default function Achievements() {
   }, [sortIndex, viewIndex, achievementsPage]);
 
   const sortHandler = (sortOption) => {
-    console.log("Sort Selected -> ", sortOption);
     setSortIndex((old) => sortOption);
     setAchievementsPage((old) => 1);
     toggleNavRight();
   };
   const viewHandler = (viewOption) => {
-    console.log("View Selected -> ", viewOption);
     setViewIndex((old) => viewOption);
     setAchievementsPage((old) => 1);
     toggleNavRight();
   };
 
   const moveToPageRightHandler = () => {
-    console.log("Moving to Page right");
     if (
       Math.ceil(
         localStorage.getItem(STORAGE_HEADER_TOTAL_ACHIEVEMENTS) /
@@ -81,7 +77,6 @@ export default function Achievements() {
     }
   };
   const moveToPageLeftHandler = () => {
-    console.log("Moving to Page left");
     if (achievementsPage === 1) {
       setAchievementsPage((old) => 1);
     } else {

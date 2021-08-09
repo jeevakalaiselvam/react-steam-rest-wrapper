@@ -59,9 +59,64 @@ export default function GamesPageRight(props) {
   const [sortSelectedItems, setSortSelectedItems] = useState([
     "sort_completion",
   ]);
+  const [selectSelectedItems, setSelectSelectedItems] = useState([
+    "select_all",
+  ]);
+  const [viewSelectedItems, setViewSelectedItems] = useState([
+    "select_minimum",
+  ]);
 
   return (
     <Container>
+      <Subheader>SELECTION OPTIONS</Subheader>
+      <RightMenuItem
+        onClick={() => {
+          props.selectHandler(0);
+          setSelectSelectedItems((old) => ["select_all"]);
+        }}
+        selected={selectSelectedItems.includes("select_all")}
+      >
+        <Icon>
+          <FaFilter />
+        </Icon>
+        <Title>All</Title>
+      </RightMenuItem>
+      <RightMenuItem
+        onClick={() => {
+          props.selectHandler(1);
+          setSelectSelectedItems((old) => ["select_completed"]);
+        }}
+        selected={selectSelectedItems.includes("select_completed")}
+      >
+        <Icon>
+          <FaFilter />
+        </Icon>
+        <Title>Completed</Title>
+      </RightMenuItem>
+      <RightMenuItem
+        onClick={() => {
+          props.selectHandler(2);
+          setSelectSelectedItems((old) => ["select_started"]);
+        }}
+        selected={selectSelectedItems.includes("select_started")}
+      >
+        <Icon>
+          <FaFilter />
+        </Icon>
+        <Title>Started</Title>
+      </RightMenuItem>
+      <RightMenuItem
+        onClick={() => {
+          props.selectHandler(0);
+          setSelectSelectedItems((old) => ["select_notstarted"]);
+        }}
+        selected={selectSelectedItems.includes("select_notstarted")}
+      >
+        <Icon>
+          <FaFilter />
+        </Icon>
+        <Title>Not Started</Title>
+      </RightMenuItem>
       <Subheader>SORT OPTIONS</Subheader>
       <RightMenuItem
         onClick={() => {
@@ -112,39 +167,26 @@ export default function GamesPageRight(props) {
         </Icon>
         <Title>Name Z-A</Title>
       </RightMenuItem>
-      <Subheader>SELECTION OPTIONS</Subheader>
-      <RightMenuItem onClick={() => props.selectHandler(0)}>
-        <Icon>
-          <FaFilter />
-        </Icon>
-        <Title>All</Title>
-      </RightMenuItem>
-      <RightMenuItem onClick={() => props.selectHandler(1)}>
-        <Icon>
-          <FaFilter />
-        </Icon>
-        <Title>Completed</Title>
-      </RightMenuItem>
-      <RightMenuItem onClick={() => props.selectHandler(2)}>
-        <Icon>
-          <FaFilter />
-        </Icon>
-        <Title>Started</Title>
-      </RightMenuItem>
-      <RightMenuItem onClick={() => props.selectHandler(3)}>
-        <Icon>
-          <FaFilter />
-        </Icon>
-        <Title>Not Started</Title>
-      </RightMenuItem>
       <Subheader>VIEW OPTIONS</Subheader>
-      <RightMenuItem onClick={() => props.viewHandler(0)}>
+      <RightMenuItem
+        onClick={() => {
+          props.viewHandler(0);
+          setViewSelectedItems((old) => ["view_minimal"]);
+        }}
+        selected={viewSelectedItems.includes("view_minimal")}
+      >
         <Icon>
           <FaGripHorizontal />
         </Icon>
         <Title>Minimal</Title>
       </RightMenuItem>
-      <RightMenuItem onClick={() => props.viewHandler(1)}>
+      <RightMenuItem
+        onClick={() => {
+          props.viewHandler(1);
+          setViewSelectedItems((old) => ["view_normal"]);
+        }}
+        selected={viewSelectedItems.includes("view_normal")}
+      >
         <Icon>
           <FaGripHorizontal />
         </Icon>
