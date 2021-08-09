@@ -3,7 +3,10 @@ import styled from "styled-components";
 import GameCardNormal from "../components/card/GameCardNormal";
 import GameCardMinimal from "../components/card/GameCardMinimal";
 import { FaBackward, FaForward } from "react-icons/fa";
-import { STORAGE_HEADER_TOTAL_GAMES } from "../helper/storage";
+import {
+  PAGINATION_TOTAL_COUNT,
+  STORAGE_HEADER_TOTAL_GAMES,
+} from "../helper/storage";
 import { PAGINATION_GAMES_PER_PAGE } from "../helper/pagination";
 import AchievementMinimal from "../components/card/AchievementMinimal";
 import AchievementNormal from "../components/card/AchievementNormal";
@@ -89,7 +92,7 @@ export default function AchievementContent(props) {
         <PageCount>
           {props.page} /{" "}
           {Math.ceil(
-            localStorage.getItem(STORAGE_HEADER_TOTAL_GAMES) /
+            localStorage.getItem(PAGINATION_TOTAL_COUNT) /
               PAGINATION_GAMES_PER_PAGE
           )}
         </PageCount>

@@ -1,5 +1,5 @@
 import React from "react";
-import { FaMedal, FaTrophy } from "react-icons/fa";
+import { FaCheck, FaMedal, FaTrophy } from "react-icons/fa";
 import styled from "styled-components";
 
 const Card = styled.div`
@@ -120,7 +120,10 @@ export default function GameCardMinimal(props) {
             <FaTrophy />
           </IconInner>
           <AchievementCount>
-            {completed_achievements_count} / {total_achievements_count}
+            {completion_percentage < 80 &&
+              `${completed_achievements_count} / ${total_achievements_count}`}
+
+            {completion_percentage >= 80 && <FaCheck />}
           </AchievementCount>
         </AchievementData>
         {completion_percentage < 80 && (

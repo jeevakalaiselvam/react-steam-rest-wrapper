@@ -143,7 +143,7 @@ export default function GamesPageRight(props) {
         <Title>Minimal</Title>
       </RightMenuItem>
       <RightMenuItem
-        onClick={() => props.viewHandler(0)}
+        onClick={() => props.viewHandler(1)}
         selected={props.viewIndex === 1}
       >
         <Icon>

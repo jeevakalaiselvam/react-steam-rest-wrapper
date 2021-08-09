@@ -1,5 +1,5 @@
 import React from "react";
-import { FaMedal, FaTrophy } from "react-icons/fa";
+import { FaCheck, FaMedal, FaTrophy } from "react-icons/fa";
 import styled from "styled-components";
 
 const CardContainer = styled.div`
@@ -96,7 +96,9 @@ const ToGet = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
+  margin-right: 0.5rem;
+  justify-self: flex-end;
   font-size: 0.9rem;
 `;
 
@@ -139,7 +141,10 @@ export default function GameCardNormal(props) {
               <FaTrophy />
             </IconInner>
             <AchievementCount>
-              {completed_achievements_count} / {total_achievements_count}
+              {completion_percentage < 80 &&
+                `${completed_achievements_count} / ${total_achievements_count}`}
+
+              {completion_percentage >= 80 && <FaCheck />}
             </AchievementCount>
           </AchievementData>
           {completion_percentage < 80 && (
