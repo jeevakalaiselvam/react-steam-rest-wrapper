@@ -10,7 +10,7 @@ const ContentContainer = styled.div`
   display: flex;
   width: 100%;
   min-height: 100vh;
-  justify-content: flex-start;
+  justify-content: space-between;
   flex-direction: column;
   overflow: scroll;
   scrollbar-width: thin;
@@ -21,7 +21,7 @@ const ContentContainer = styled.div`
 const ContainerInner = styled.div`
   display: flex;
   width: 100%;
-  flex: 1;
+  justify-self: flex-start;
   justify-content: center;
   overflow: scroll;
   flex-wrap: wrap;
