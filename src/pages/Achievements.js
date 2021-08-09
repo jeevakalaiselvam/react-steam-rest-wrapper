@@ -32,7 +32,7 @@ export default function Achievements() {
   const [achievements, setAchievements] = useState({});
   const [achievementsPage, setAchievementsPage] = useState(1);
   const [loading, setLoading] = useState(true);
-  const [viewIndex, setViewIndex] = useState(0);
+  const [viewIndex, setViewIndex] = useState(1);
   const [sortIndex, setSortIndex] = useState(0);
 
   const toggleNavRight = () => {

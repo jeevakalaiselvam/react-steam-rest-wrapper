@@ -44,6 +44,7 @@ const Pagination = styled.div`
   padding: 0.25rem 0;
   bottom: 0;
   left: 0;
+  z-index: 1000;
 `;
 
 const Page = styled.div`

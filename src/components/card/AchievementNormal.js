@@ -4,37 +4,25 @@ import styled from "styled-components";
 import { STEAM_HEADER_IMAGE } from "../../helper/endpoints";
 
 const CardContainer = styled.div`
-  background: url("./images/imgcard.png");
   display: flex;
   flex-direction: row;
   align-items: flex-start;
+  background-color: rgba(10, 17, 25);
   position: relative;
   justify-content: center;
-  border-radius: 3px;
+  border-radius: 4px;
   margin: 4px;
-  padding: 0.5rem;
+  padding: 1rem;
   min-height: 56px;
   cursor: pointer;
-
-  background: linear-gradient(
-    180deg,
-    hsla(0, 0%, 100%, 0.14) 0,
-    hsla(0, 0%, 100%, 0)
-  );
-  -webkit-box-shadow: 5px 5px 22px -2px rgb(0 0 0 / 50%);
-  border-left: 1px solid transparent;
-  border-top: 1px solid transparent;
-  border-color: hsla(0, 0%, 96.1%, 0.3) transparent transparent
-    hsla(0, 0%, 96.1%, 0.3);
-  border-style: solid;
-  border-width: 1px;
+  border: 1px solid #fefefe00;
 
   &:hover {
-    border: 1px solid #fefefe;
+    border: 1px solid #ffffff22;
   }
 
   @media only screen and (min-width: 1361px) {
-    width: 30%;
+    width: 32%;
   }
   @media only screen and (max-width: 1360px) and (min-width: 1201px) {
     width: 30%;
@@ -68,9 +56,22 @@ const InnerContainer = styled.div`
   background-size: cover;
 `;
 
+const InnerContainerBG = styled.div`
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  border-radius: 3px;
+  z-index: 100;
+  background-repeat: no-repeat;
+  background-size: cover;
+`;
+
 const Icon = styled.div`
   width: 50px;
   height: 50px;
+  border-radius: 2px;
   background-color: red;
   background-image: url("${(props) => props.image}");
   background-repeat: no-repeat;
@@ -87,27 +88,62 @@ const Data = styled.div`
 const Misc = styled.div`
   display: flex;
   justify-self: flex-start;
-  flex-direction: column;
+  flex-direction: row;
 `;
 
-const Title = styled.div``;
+const Title = styled.div`
+  font-size: 1rem;
+  color: #f5f5f5;
+  z-index: 101;
+  font-weight: bold;
+  text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
+`;
 const Desc = styled.div`
+  font-size: 0.85rem;
+  color: #d2d2d2;
+  z-index: 101;
+`;
+
+const GameName = styled.div`
+  color: #959da6;
+  z-index: 101;
   font-size: 0.8rem;
 `;
 
+const Percentage = styled.div`
+  color: #959da6;
+  margin-left: 0.5rem;
+  font-size: 0.7rem;
+`;
+
+const PercentageGold = styled.div`
+  color: gold;
+  margin-left: 0.5rem;
+  font-size: 0.7rem;
+`;
+
 export default function AchievementNormal(props) {
-  const { icon, name, description, game_name, game_id } = props.achievement;
+  const { icon, name, description, game_name, game_id, global_percentage } =
+    props.achievement;
 
   return (
     <CardContainer>
+      <InnerContainerBG></InnerContainerBG>
       <InnerContainer image={STEAM_HEADER_IMAGE(game_id)}></InnerContainer>
       <Icon image={icon}></Icon>
       <Data>
         <Title>{name}</Title>
         <Desc>{description}</Desc>
+        <GameName>{game_name}</GameName>
       </Data>
       <Misc>
-        <FaGlobe />
+        <FaGlobe />{" "}
+        {global_percentage > 10 && (
+          <PercentageGold>{global_percentage.toFixed(2)} %</PercentageGold>
+        )}
+        {global_percentage <= 10 && (
+          <Percentage>{global_percentage.toFixed(2)} %</Percentage>
+        )}
       </Misc>
     </CardContainer>
   );

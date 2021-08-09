@@ -26,7 +26,7 @@ import {
 const HeaderContainer = styled.div`
   width: 100%;
   padding: 0.5rem;
-  z-index: 1;
+  z-index: 1000;
   background-color: rgba(10, 17, 25, 1);
   display: flex;
   flex-direction: row;
