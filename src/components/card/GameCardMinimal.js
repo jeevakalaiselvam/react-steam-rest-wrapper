@@ -1,6 +1,7 @@
 import React from "react";
 import { FaCheck, FaMedal, FaTrophy } from "react-icons/fa";
 import styled from "styled-components";
+import { SELECTED_GAME } from "../../helper/storage";
 
 const Card = styled.div`
   background-color: rgba(10, 17, 25, 0.4);
@@ -101,6 +102,7 @@ const AchievementCount = styled.div`
 export default function GameCardMinimal(props) {
   const {
     image,
+    id,
     completion_percentage,
     completed_achievements_count,
     total_achievements_count,
@@ -113,7 +115,14 @@ export default function GameCardMinimal(props) {
   };
 
   return (
-    <Card image={image}>
+    <Card
+      image={image}
+      onClick={() => {
+        console.log(props.game);
+        localStorage.setItem(SELECTED_GAME, JSON.stringify(props.game));
+        window.location.href = "/game";
+      }}
+    >
       <InnerContainer>
         <AchievementData>
           <IconInner>

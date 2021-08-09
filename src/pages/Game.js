@@ -11,9 +11,12 @@ import { GameContext } from "../context/GameContext";
 import {
   PAGINATION_TOTAL_COUNT,
   PAGINATION_TOTAL_OBTAINED,
+  SELECTED_GAME,
   STORAGE_HEADER_TOTAL_GAMES,
 } from "../helper/storage";
 import { PAGINATION_GAMES_PER_PAGE } from "../helper/pagination";
+import GameContent from "../content/GameContent";
+import GamePageRight from "../sidebar/GamePageRight";
 
 const PageContainer = styled.div`
   display: flex;
@@ -23,68 +26,36 @@ const PageContainer = styled.div`
   background-image: yellow;
 `;
 
-export default function Games() {
-  const [games, setGames] = useState({});
-  const [gamesPage, setGamesPage] = useState(1);
+export default function Game(props) {
+  const [game, setGame] = useState({});
   const [loading, setLoading] = useState(true);
   const { setNavRightOpen } = useContext(GameContext);
   const [viewIndex, setViewIndex] = useState(0);
   const [sortIndex, setSortIndex] = useState(0);
   const [selectIndex, setSelectedIndex] = useState(0);
 
+  useEffect(() => {
+    setLoading((old) => true);
+    setGame((old) => JSON.parse(localStorage.getItem(SELECTED_GAME)));
+
+    setLoading((old) => false);
+  }, []);
+
   const toggleNavRight = () => {
     setNavRightOpen((navState) => !navState);
   };
 
-  useEffect(() => {
-    const getAllGames = async (sortOrder, viewOrder, selectOrder) => {
-      const games = await fetchGames(
-        sortOrder,
-        viewOrder,
-        gamesPage,
-        selectOrder
-      );
-      setGames((old) => games);
-      setLoading((old) => false);
-    };
-    setLoading((old) => true);
-    getAllGames(sortIndex, viewIndex, selectIndex);
-    localStorage.setItem("CURRENT_PAGE", "games");
-  }, [sortIndex, viewIndex, gamesPage, selectIndex]);
-
   const sortHandler = (sortOption) => {
     setSortIndex((old) => sortOption);
-    setGamesPage((old) => 1);
     toggleNavRight();
   };
   const viewHandler = (viewOption) => {
     setViewIndex((old) => viewOption);
-    setGamesPage((old) => 1);
     toggleNavRight();
   };
   const selectedHandler = (selectOption) => {
     setSelectedIndex((old) => selectOption);
-    setGamesPage((old) => 1);
     toggleNavRight();
-  };
-
-  const moveToPageRightHandler = () => {
-    if (
-      Math.ceil(
-        localStorage.getItem(PAGINATION_TOTAL_COUNT) / PAGINATION_GAMES_PER_PAGE
-      ) === gamesPage
-    ) {
-      setGamesPage((old) => gamesPage);
-    } else {
-      setGamesPage((old) => gamesPage + 1);
-    }
-  };
-  const moveToPageLeftHandler = () => {
-    if (gamesPage === 1) {
-      setGamesPage((old) => 1);
-    } else {
-      setGamesPage((old) => gamesPage - 1);
-    }
   };
 
   return (
@@ -93,7 +64,7 @@ export default function Games() {
       <Page
         leftSidebar={<AllPageLeft />}
         rightSidebar={
-          <GamesPageRight
+          <GamePageRight
             sortHandler={sortHandler}
             viewHandler={viewHandler}
             selectHandler={selectedHandler}
@@ -102,15 +73,7 @@ export default function Games() {
             selectIndex={selectIndex}
           />
         }
-        content={
-          <GamesContent
-            games={games}
-            viewType={viewIndex}
-            page={gamesPage}
-            moveToPageRight={moveToPageRightHandler}
-            moveToPageLeft={moveToPageLeftHandler}
-          />
-        }
+        content={<GameContent game={game} />}
         leftSidebarWidth={"180px"}
         rightSidebarWidth={"180px"}
         loading={loading}

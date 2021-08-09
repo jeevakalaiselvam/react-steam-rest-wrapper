@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { GameContext } from "./context/GameContext";
 import Achievements from "./pages/Achievements";
 import Backlog from "./pages/Backlog";
+import Game from "./pages/Game";
 import Games from "./pages/Games";
 import History from "./pages/History";
 
@@ -28,6 +29,9 @@ export default function App() {
             </Route>
             <Route exact path='/history'>
               <History />
+            </Route>
+            <Route exact path='/game'>
+              <Game />
             </Route>
             <Route exact path='/backlog'>
               <Backlog />
