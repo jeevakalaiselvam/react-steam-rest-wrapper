@@ -26,21 +26,27 @@ export default function Games() {
   const [loading, setLoading] = useState(true);
   const [viewIndex, setViewIndex] = useState(0);
   const [sortIndex, setSortIndex] = useState(0);
+  const [selectIndex, setSelectedIndex] = useState(0);
 
   const toggleNavRight = () => {
     setNavRightOpen((navState) => !navState);
   };
 
   useEffect(() => {
-    const getAllGames = async (sortOrder, viewOrder) => {
-      const games = await fetchGames(sortOrder, viewOrder, gamesPage);
+    const getAllGames = async (sortOrder, viewOrder, selectOrder) => {
+      const games = await fetchGames(
+        sortOrder,
+        viewOrder,
+        gamesPage,
+        selectOrder
+      );
       console.log("EFFECT GAMES PAGE -> ", games);
       setGames((old) => games);
       setLoading((old) => false);
     };
     setLoading((old) => true);
-    getAllGames(sortIndex, viewIndex);
-  }, [sortIndex, viewIndex, gamesPage]);
+    getAllGames(sortIndex, viewIndex, selectIndex);
+  }, [sortIndex, viewIndex, gamesPage, selectIndex]);
 
   const sortHandler = (sortOption) => {
     console.log("Sort Selected -> ", sortOption);
@@ -51,6 +57,12 @@ export default function Games() {
   const viewHandler = (viewOption) => {
     console.log("View Selected -> ", viewOption);
     setViewIndex((old) => viewOption);
+    setGamesPage((old) => 1);
+    toggleNavRight();
+  };
+  const selectedHandler = (selectOption) => {
+    console.log("Select Selected -> ", selectOption);
+    setSelectedIndex((old) => selectOption);
     setGamesPage((old) => 1);
     toggleNavRight();
   };
@@ -83,7 +95,11 @@ export default function Games() {
       <Page
         leftSidebar={<AllPageLeft />}
         rightSidebar={
-          <GamesPageRight sortHandler={sortHandler} viewHandler={viewHandler} />
+          <GamesPageRight
+            sortHandler={sortHandler}
+            viewHandler={viewHandler}
+            selectHandler={selectedHandler}
+          />
         }
         content={
           <GamesContent

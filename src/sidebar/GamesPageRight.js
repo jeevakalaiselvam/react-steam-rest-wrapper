@@ -1,6 +1,7 @@
 import React from "react";
 import {
   FaCheck,
+  FaFilter,
   FaGripHorizontal,
   FaHourglass,
   FaSortAlphaDown,
@@ -78,6 +79,31 @@ export default function GamesPageRight(props) {
           <FaSortAlphaDownAlt />
         </Icon>
         <Title>Name Z-A</Title>
+      </RightMenuItem>
+      <Subheader>SELECTION OPTIONS</Subheader>
+      <RightMenuItem onClick={() => props.selectHandler(0)}>
+        <Icon>
+          <FaFilter />
+        </Icon>
+        <Title>All</Title>
+      </RightMenuItem>
+      <RightMenuItem onClick={() => props.selectHandler(1)}>
+        <Icon>
+          <FaFilter />
+        </Icon>
+        <Title>Completed</Title>
+      </RightMenuItem>
+      <RightMenuItem onClick={() => props.selectHandler(2)}>
+        <Icon>
+          <FaFilter />
+        </Icon>
+        <Title>Started</Title>
+      </RightMenuItem>
+      <RightMenuItem onClick={() => props.selectHandler(3)}>
+        <Icon>
+          <FaFilter />
+        </Icon>
+        <Title>Not Started</Title>
       </RightMenuItem>
       <Subheader>VIEW OPTIONS</Subheader>
       <RightMenuItem onClick={() => props.viewHandler(0)}>
