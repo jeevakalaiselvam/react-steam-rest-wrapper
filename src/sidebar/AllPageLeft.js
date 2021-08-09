@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  FaBookOpen,
-  FaChartBar,
-  FaGamepad,
-  FaHome,
-  FaTrophy,
-} from "react-icons/fa";
+import { FaBookOpen, FaChartBar, FaGamepad, FaTrophy } from "react-icons/fa";
 import MenuItemLink from "../components/core/MenuItemLink";
 import styled from "styled-components";
 
@@ -18,7 +12,6 @@ const MainMenu = styled.div`
 export default function AllPageLeft() {
   return (
     <MainMenu>
-      <MenuItemLink icon={<FaHome />} title={"Overview"} to={"/overview"} />
       <MenuItemLink icon={<FaGamepad />} title={"Games"} to={"/games"} />
       <MenuItemLink
         icon={<FaTrophy />}

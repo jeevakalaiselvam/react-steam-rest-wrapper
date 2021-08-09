@@ -13,6 +13,7 @@ const ContentContainer = styled.div`
   justify-content: flex-start;
   flex-direction: column;
   overflow: scroll;
+  scrollbar-width: thin;
   align-items: flex-start;
   flex-wrap: wrap;
 `;

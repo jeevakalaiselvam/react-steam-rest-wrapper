@@ -16,11 +16,11 @@ const CardContainer = styled.div`
   cursor: pointer;
 
   @media only screen and (min-width: 1361px) {
-    width: 45%;
+    width: 30%;
     height: 20vh;
   }
   @media only screen and (max-width: 1360px) and (min-width: 1201px) {
-    width: 45%;
+    width: 30%;
     height: 20vh;
   }
   @media only screen and (max-width: 1200px) and (min-width: 1061px) {

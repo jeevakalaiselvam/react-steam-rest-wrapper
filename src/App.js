@@ -4,7 +4,6 @@ import { GameContext } from "./context/GameContext";
 import Achievements from "./pages/Achievements";
 import Backlog from "./pages/Backlog";
 import Games from "./pages/Games";
-import Overview from "./pages/Overview";
 import History from "./pages/History";
 
 export default function App() {
@@ -19,10 +18,7 @@ export default function App() {
         <Router>
           <Switch>
             <Route exact path='/'>
-              <Overview />
-            </Route>
-            <Route exact path='/overview'>
-              <Overview />
+              <Games />
             </Route>
             <Route exact path='/games'>
               <Games />
