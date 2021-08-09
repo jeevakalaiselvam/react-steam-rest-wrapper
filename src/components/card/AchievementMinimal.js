@@ -10,18 +10,19 @@ const Card = styled.div`
   align-items: center;
   position: relative;
   justify-content: center;
-  margin: 4px;
+  margin: 6px;
   background-image: url("${(props) => props.image}");
   background-repeat: no-repeat;
   background-size: cover;
   cursor: pointer;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
 `;
 
 const ToolTipContent = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 1rem;
   align-items: center;
   justify-content: center;
 `;
