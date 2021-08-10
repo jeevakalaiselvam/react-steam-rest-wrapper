@@ -122,6 +122,13 @@ const Icon = styled.div`
   justify-content: center;
 `;
 
+const IconTrophy = styled.div`
+  font-size: 1.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const CompletedIcon = styled.div`
   font-size: 1.5rem;
   display: flex;
@@ -173,9 +180,9 @@ export default function HeaderGameProgress(props) {
       <MiddleNav>
         {remaining > 0 && (
           <IconSetBlue>
-            <Icon>
+            <IconTrophy>
               <FaTrophy />
-            </Icon>
+            </IconTrophy>
             <Data>{remaining}</Data>
           </IconSetBlue>
         )}

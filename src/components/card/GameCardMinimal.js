@@ -1,7 +1,12 @@
 import React from "react";
 import { FaCheck, FaMedal, FaTrophy } from "react-icons/fa";
 import styled from "styled-components";
-import { SELECTED_GAME, _STORAGE_WRITE } from "../../helper/storage";
+import {
+  COMPLETION_TARGET,
+  SELECTED_GAME,
+  _STORAGE_READ,
+  _STORAGE_WRITE,
+} from "../../helper/storage";
 
 const Card = styled.div`
   background-color: rgba(10, 17, 25, 0.4);
@@ -90,6 +95,7 @@ const ToGet = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #55aece;
   font-size: 0.9rem;
 `;
 
@@ -117,7 +123,9 @@ export default function GameCardMinimal(props) {
 
   const getRemainingForTarget = () => {
     return Math.floor(
-      (80 / 100) * total_achievements_count - completed_achievements_count
+      ((_STORAGE_READ(COMPLETION_TARGET) ?? 80) / 100) *
+        total_achievements_count -
+        completed_achievements_count
     );
   };
 
