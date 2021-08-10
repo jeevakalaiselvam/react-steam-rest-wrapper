@@ -1,7 +1,12 @@
 import React from "react";
 import { FaCheck, FaMedal, FaTrophy } from "react-icons/fa";
 import styled from "styled-components";
-import { SELECTED_GAME, _STORAGE_WRITE } from "../../helper/storage";
+import {
+  COMPLETION_TARGET,
+  SELECTED_GAME,
+  _STORAGE_READ,
+  _STORAGE_WRITE,
+} from "../../helper/storage";
 
 const CardContainer = styled.div`
   background-color: rgba(10, 17, 25, 0.4);
@@ -96,6 +101,7 @@ const AchievementData = styled.div`
 const ToGet = styled.div`
   flex: 1;
   display: flex;
+  color: #fff;
   align-items: center;
   justify-content: flex-end;
   margin-right: 0.5rem;
@@ -128,7 +134,9 @@ export default function GameCardNormal(props) {
 
   const getRemainingForTarget = () => {
     return Math.floor(
-      (80 / 100) * total_achievements_count - completed_achievements_count
+      ((_STORAGE_READ(COMPLETION_TARGET) ?? 80) / 100) *
+        total_achievements_count -
+        completed_achievements_count
     );
   };
 
@@ -149,16 +157,25 @@ export default function GameCardNormal(props) {
               <FaTrophy />
             </IconInner>
             <AchievementCount>
-              {completion_percentage < 80 &&
+              {/* {completion_percentage <
+                (_STORAGE_READ(COMPLETION_TARGET) ?? 80) &&
                 `${completed_achievements_count} / ${total_achievements_count}`}
 
-              {completion_percentage >= 80 && <FaCheck />}
+              {completion_percentage >=
+                (_STORAGE_READ(COMPLETION_TARGET) ?? 80) && <FaCheck />} */}
+              {completion_percentage <
+                (_STORAGE_READ(COMPLETION_TARGET) ?? 80) &&
+                getRemainingForTarget()}
+
+              {completion_percentage >=
+                (_STORAGE_READ(COMPLETION_TARGET) ?? 80) && <FaCheck />}
             </AchievementCount>
           </AchievementData>
-          {completion_percentage < 80 && (
+          {/* {completion_percentage < Number(_STORAGE_READ(COMPLETION_TARGET)) && (
             <ToGet>{getRemainingForTarget()} more...</ToGet>
-          )}
-          {completion_percentage >= 80 && (
+          )} */}
+          {completion_percentage >=
+            (_STORAGE_READ(COMPLETION_TARGET) ?? 80) && (
             <Medal>
               <FaMedal />
             </Medal>

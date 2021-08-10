@@ -9,12 +9,16 @@ import { useState } from "react";
 import { fetchGames } from "../action/games";
 import { GameContext } from "../context/GameContext";
 import {
+  GAMEPAGE_SELECT,
+  GAMEPAGE_SORT,
+  GAMEPAGE_VIEW,
   PAGINATION_TOTAL_COUNT,
   PAGINATION_TOTAL_OBTAINED,
   STORAGE_HEADER_TOTAL_GAMES,
+  _STORAGE_READ,
+  _STORAGE_WRITE,
 } from "../helper/storage";
 import { PAGINATION_GAMES_PER_PAGE } from "../helper/pagination";
-import GameContent from "../content/GameContent";
 
 const PageContainer = styled.div`
   display: flex;
@@ -24,32 +28,108 @@ const PageContainer = styled.div`
   background-image: yellow;
 `;
 
-export default function Game() {
-  const { setNavRightOpen } = useContext(GameContext);
-  const [game, setGames] = useState({});
+export default function PageTemplate() {
+  const [games, setGames] = useState({});
   const [gamesPage, setGamesPage] = useState(1);
   const [loading, setLoading] = useState(true);
-  const [viewIndex, setViewIndex] = useState(0);
-  const [sortIndex, setSortIndex] = useState(0);
-  const [selectIndex, setSelectedIndex] = useState(0);
+  const { setNavRightOpen } = useContext(GameContext);
+  const [viewIndex, setViewIndex] = useState(
+    Number(_STORAGE_READ(GAMEPAGE_VIEW))
+  );
+  const [sortIndex, setSortIndex] = useState(
+    Number(_STORAGE_READ(GAMEPAGE_SORT))
+  );
+  const [selectIndex, setSelectedIndex] = useState(
+    Number(_STORAGE_READ(GAMEPAGE_SELECT))
+  );
 
   const toggleNavRight = () => {
     setNavRightOpen((navState) => !navState);
   };
 
   useEffect(() => {
-    setLoading((old) => false);
-  }, []);
+    const getAllGames = async (sortOrder, viewOrder, selectOrder) => {
+      const games = await fetchGames(
+        sortOrder,
+        viewOrder,
+        gamesPage,
+        selectOrder
+      );
+      setGames((old) => games);
+      setLoading((old) => false);
+    };
+    setLoading((old) => true);
+    console.log(
+      `EFFECT getting GAMESPAGE -> SELECT=${selectIndex} SORT=${sortIndex} VIEW=${viewIndex}`
+    );
+    getAllGames(sortIndex, viewIndex, selectIndex);
+    _STORAGE_WRITE("CURRENT_PAGE", "games");
+  }, [sortIndex, viewIndex, gamesPage, selectIndex]);
+
+  const sortHandler = (sortOption) => {
+    _STORAGE_WRITE(GAMEPAGE_SORT, sortOption);
+    setSortIndex((old) => sortOption);
+    setGamesPage((old) => 1);
+    toggleNavRight();
+  };
+  const viewHandler = (viewOption) => {
+    _STORAGE_WRITE(GAMEPAGE_VIEW, viewOption);
+    setViewIndex((old) => viewOption);
+    setGamesPage((old) => 1);
+    toggleNavRight();
+  };
+  const selectedHandler = (selectOption) => {
+    _STORAGE_WRITE(GAMEPAGE_SELECT, selectOption);
+    setSelectedIndex((old) => selectOption);
+    setGamesPage((old) => 1);
+    toggleNavRight();
+  };
+
+  const moveToPageRightHandler = () => {
+    if (
+      Math.ceil(
+        _STORAGE_READ(PAGINATION_TOTAL_COUNT) / PAGINATION_GAMES_PER_PAGE
+      ) === gamesPage
+    ) {
+      setGamesPage((old) => gamesPage);
+    } else {
+      setGamesPage((old) => gamesPage + 1);
+    }
+  };
+  const moveToPageLeftHandler = () => {
+    if (gamesPage === 1) {
+      setGamesPage((old) => 1);
+    } else {
+      setGamesPage((old) => gamesPage - 1);
+    }
+  };
 
   return (
     <PageContainer>
       <Header />
       <Page
         leftSidebar={<AllPageLeft />}
-        rightSidebar={""}
-        content={<GameContent game={game} />}
+        rightSidebar={
+          <GamesPageRight
+            sortHandler={sortHandler}
+            viewHandler={viewHandler}
+            selectHandler={selectedHandler}
+            viewIndex={viewIndex}
+            sortIndex={sortIndex}
+            selectIndex={selectIndex}
+          />
+        }
+        content={
+          <GamesContent
+            games={games}
+            viewIndex={viewIndex}
+            page={gamesPage}
+            moveToPageRight={moveToPageRightHandler}
+            moveToPageLeft={moveToPageLeftHandler}
+          />
+        }
         leftSidebarWidth={"180px"}
-        rightSidebarWidth={"0px"}
+        rightSidebarWidth={"180px"}
         loading={loading}
       />
     </PageContainer>

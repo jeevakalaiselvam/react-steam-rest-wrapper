@@ -92,10 +92,12 @@ const AchievementData = styled.div`
 `;
 const ToGet = styled.div`
   flex: 1;
+  color: #fff;
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: #55aece;
+  justify-content: flex-end;
+  margin-right: 0.5rem;
+  justify-self: flex-end;
   font-size: 0.9rem;
 `;
 
@@ -111,6 +113,9 @@ const Medal = styled.div`
 const AchievementCount = styled.div`
   margin-left: 0.25rem;
   font-size: 0.9rem;
+  align-items: center;
+  justify-content: center;
+  display: flex;
 `;
 
 export default function GameCardMinimal(props) {
@@ -144,16 +149,20 @@ export default function GameCardMinimal(props) {
             <FaTrophy />
           </IconInner>
           <AchievementCount>
-            {completion_percentage < 80 &&
-              `${completed_achievements_count} / ${total_achievements_count}`}
+            {/* {completion_percentage <
+              (_STORAGE_READ(COMPLETION_TARGET) ?? 80.0) &&
+              `${completed_achievements_count} / ${total_achievements_count}`} */}
+            {completion_percentage < (_STORAGE_READ(COMPLETION_TARGET) ?? 80) &&
+              getRemainingForTarget()}
 
-            {completion_percentage >= 80 && <FaCheck />}
+            {completion_percentage >=
+              (_STORAGE_READ(COMPLETION_TARGET) ?? 80) && <FaCheck />}
           </AchievementCount>
         </AchievementData>
-        {completion_percentage < 80 && (
-          <ToGet>{getRemainingForTarget()} more...</ToGet>
-        )}
-        {completion_percentage >= 80 && (
+        {/* {completion_percentage < (_STORAGE_READ(COMPLETION_TARGET) ?? 80) && (
+          <ToGet>{getRemainingForTarget()} more..</ToGet>
+        )} */}
+        {completion_percentage >= (_STORAGE_READ(COMPLETION_TARGET) ?? 80) && (
           <Medal>
             <FaMedal />
           </Medal>

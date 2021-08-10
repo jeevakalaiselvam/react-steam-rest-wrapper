@@ -1,5 +1,11 @@
 import React from "react";
-import { FaBookOpen, FaChartBar, FaGamepad, FaTrophy } from "react-icons/fa";
+import {
+  FaBookOpen,
+  FaChartBar,
+  FaGamepad,
+  FaSlidersH,
+  FaTrophy,
+} from "react-icons/fa";
 import MenuItemLink from "../components/core/MenuItemLink";
 import styled from "styled-components";
 import { _STORAGE_READ } from "../helper/storage";
@@ -38,13 +44,19 @@ export default function AllPageLeft() {
         icon={<FaChartBar />}
         title={"History"}
         to={"/history"}
-        selected={false}
+        selected={_STORAGE_READ("CURRENT_PAGE") === "history"}
       />
       <MenuItemLink
         icon={<FaBookOpen />}
         title={"Backlog"}
         to={"/backlog"}
-        selected={false}
+        selected={_STORAGE_READ("CURRENT_PAGE") === "backlog"}
+      />
+      <MenuItemLink
+        icon={<FaSlidersH />}
+        title={"Settings"}
+        to={"/settings"}
+        selected={_STORAGE_READ("CURRENT_PAGE") === "settings"}
       />
     </MainMenu>
   );
