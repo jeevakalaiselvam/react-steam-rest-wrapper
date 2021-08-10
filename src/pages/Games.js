@@ -9,9 +9,11 @@ import { useState } from "react";
 import { fetchGames } from "../action/games";
 import { GameContext } from "../context/GameContext";
 import {
+  CURRENT_PAGE,
   GAMEPAGE_SELECT,
   GAMEPAGE_SORT,
   GAMEPAGE_VIEW,
+  GAMES_PAGE_INDEX,
   PAGINATION_TOTAL_COUNT,
   PAGINATION_TOTAL_OBTAINED,
   STORAGE_HEADER_TOTAL_GAMES,
@@ -63,7 +65,7 @@ export default function Games() {
       `EFFECT getting GAMESPAGE -> SELECT=${selectIndex} SORT=${sortIndex} VIEW=${viewIndex}`
     );
     getAllGames(sortIndex, viewIndex, selectIndex);
-    _STORAGE_WRITE("CURRENT_PAGE", "games");
+    _STORAGE_WRITE(CURRENT_PAGE, GAMES_PAGE_INDEX);
   }, [sortIndex, viewIndex, gamesPage, selectIndex]);
 
   const sortHandler = (sortOption) => {

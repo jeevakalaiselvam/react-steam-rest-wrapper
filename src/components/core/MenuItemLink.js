@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { GameContext } from "../../context/GameContext";
 
-const MenuItemContainer = styled(Link)`
+const MenuItemContainer = styled.div`
   width: 100%;
   display: flex;
   padding: 0.5rem 1rem;
@@ -41,6 +41,7 @@ export default function MenuItemLink(props) {
 
   const toggleNavLeft = () => {
     setNavLeftOpen((navState) => !navState);
+    props.navItemClicked();
   };
 
   return (

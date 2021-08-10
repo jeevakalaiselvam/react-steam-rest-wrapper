@@ -12,6 +12,8 @@ import {
   ACHIEVEMENTGAMEPAGE_SELECT,
   ACHIEVEMENTGAMEPAGE_SORT,
   ACHIEVEMENTGAMEPAGE_VIEW,
+  ACHIEVEMENTS_PAGE_INDEX,
+  CURRENT_PAGE,
   PAGINATION_TOTAL_COUNT,
   STORAGE_HEADER_TOTAL_ACHIEVEMENTS,
   STORAGE_HEADER_TOTAL_GAMES,
@@ -65,7 +67,7 @@ export default function Achievements() {
     };
     setLoading((old) => true);
     getAllAchievements(sortIndex, viewIndex, selectIndex);
-    _STORAGE_WRITE("CURRENT_PAGE", "achievements");
+    _STORAGE_WRITE(CURRENT_PAGE, ACHIEVEMENTS_PAGE_INDEX);
   }, [sortIndex, viewIndex, achievementsPage, selectIndex]);
 
   const sortHandler = (sortOption) => {

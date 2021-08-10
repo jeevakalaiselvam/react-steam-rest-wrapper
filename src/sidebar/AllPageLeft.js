@@ -8,7 +8,16 @@ import {
 } from "react-icons/fa";
 import MenuItemLink from "../components/core/MenuItemLink";
 import styled from "styled-components";
-import { _STORAGE_READ } from "../helper/storage";
+import {
+  ACHIEVEMENTS_PAGE_INDEX,
+  BACKLOG_PAGE_INDEX,
+  CURRENT_PAGE,
+  GAMES_PAGE_INDEX,
+  HISTORY_PAGE_INDEX,
+  SETTINGS_PAGE_INDEX,
+  _STORAGE_READ,
+  _STORAGE_WRITE,
+} from "../helper/storage";
 
 const MainMenu = styled.div`
   width: 100%;
@@ -32,31 +41,51 @@ export default function AllPageLeft() {
         icon={<FaGamepad />}
         title={"Games"}
         to={"/games"}
-        selected={_STORAGE_READ("CURRENT_PAGE") === "games"}
+        navItemClicked={() => {
+          _STORAGE_WRITE(CURRENT_PAGE, GAMES_PAGE_INDEX);
+          window.location.href = `/${_STORAGE_READ(CURRENT_PAGE)}`;
+        }}
+        selected={_STORAGE_READ(CURRENT_PAGE) === GAMES_PAGE_INDEX}
       />
       <MenuItemLink
         icon={<FaTrophy />}
         title={"Achievements"}
         to={"/achievements"}
-        selected={_STORAGE_READ("CURRENT_PAGE") === "achievements"}
+        navItemClicked={() => {
+          _STORAGE_WRITE(CURRENT_PAGE, ACHIEVEMENTS_PAGE_INDEX);
+          window.location.href = `/${_STORAGE_READ(CURRENT_PAGE)}`;
+        }}
+        selected={_STORAGE_READ(CURRENT_PAGE) === ACHIEVEMENTS_PAGE_INDEX}
       />
       <MenuItemLink
         icon={<FaChartBar />}
         title={"History"}
         to={"/history"}
-        selected={_STORAGE_READ("CURRENT_PAGE") === "history"}
+        navItemClicked={() => {
+          _STORAGE_WRITE(CURRENT_PAGE, HISTORY_PAGE_INDEX);
+          window.location.href = `/${_STORAGE_READ(CURRENT_PAGE)}`;
+        }}
+        selected={_STORAGE_READ(CURRENT_PAGE) === HISTORY_PAGE_INDEX}
       />
       <MenuItemLink
         icon={<FaBookOpen />}
         title={"Backlog"}
         to={"/backlog"}
-        selected={_STORAGE_READ("CURRENT_PAGE") === "backlog"}
+        navItemClicked={() => {
+          _STORAGE_WRITE(CURRENT_PAGE, BACKLOG_PAGE_INDEX);
+          window.location.href = `/${_STORAGE_READ(CURRENT_PAGE)}`;
+        }}
+        selected={_STORAGE_READ(CURRENT_PAGE) === BACKLOG_PAGE_INDEX}
       />
       <MenuItemLink
         icon={<FaSlidersH />}
         title={"Settings"}
         to={"/settings"}
-        selected={_STORAGE_READ("CURRENT_PAGE") === "settings"}
+        navItemClicked={() => {
+          _STORAGE_WRITE(CURRENT_PAGE, SETTINGS_PAGE_INDEX);
+          window.location.href = `/${_STORAGE_READ(CURRENT_PAGE)}`;
+        }}
+        selected={_STORAGE_READ(CURRENT_PAGE) === SETTINGS_PAGE_INDEX}
       />
     </MainMenu>
   );
