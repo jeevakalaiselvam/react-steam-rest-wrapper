@@ -11,6 +11,7 @@ const PageContainer = styled.div`
   padding-top: 64px;
 
   @media only screen and (min-width: 841px) {
+    padding-bottom: 0px;
     padding-top: 0px;
   }
 `;
@@ -64,6 +65,10 @@ const ContentContainer = styled.div`
   flex: 1;
   align-items: center;
   flex-direction: column;
+
+  @media only screen and (max-width: 841px) {
+    padding-bottom: 2rem;
+  }
 `;
 
 const ContentContainerLoading = styled.div`
@@ -76,6 +81,7 @@ const ContentContainerLoading = styled.div`
 
 export default function Page(props) {
   const { navLeftOpen, navRightOpen } = useContext(GameContext);
+  console.log("PAGE LOADING -> ", props.loading);
   return (
     <PageContainer>
       <SidebarLeftContainer

@@ -42,7 +42,6 @@ const ContainerInner = styled.div`
 
 const Pagination = styled.div`
   display: flex;
-  padding: 0.25rem;
   width: 100%;
   justify-content: center;
   position: fixed;
