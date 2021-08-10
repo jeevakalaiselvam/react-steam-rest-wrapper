@@ -16,25 +16,33 @@ const Card = styled.div`
   background-size: cover;
   cursor: pointer;
 
-  @media only screen and (min-width: 1361px) {
+  @media only screen and (min-width: 1451px) {
     width: 18%;
     height: 12vh;
   }
-  @media only screen and (max-width: 1360px) and (min-width: 1201px) {
+  @media only screen and (max-width: 1450px) and (min-width: 1401px) {
     width: 22%;
+    height: 12vh;
+  }
+  @media only screen and (max-width: 1400px) and (min-width: 1361px) {
+    width: 30%;
+    height: 12vh;
+  }
+  @media only screen and (max-width: 1360px) and (min-width: 1201px) {
+    width: 30%;
     height: 12vh;
   }
   @media only screen and (max-width: 1200px) and (min-width: 1061px) {
-    width: 22%;
+    width: 30%;
     height: 12vh;
   }
   @media only screen and (max-width: 1060px) and (min-width: 961px) {
-    width: 30%;
-    height: 12vh;
+    width: 46%;
+    height: 14vh;
   }
   @media only screen and (max-width: 960px) and (min-width: 769px) {
-    width: 30%;
-    height: 12vh;
+    width: 46%;
+    height: 14vh;
   }
   @media only screen and (max-width: 768px) and (min-width: 631px) {
     width: 46%;
