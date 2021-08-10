@@ -33,11 +33,11 @@ const Completion = styled.div`
   z-index: 20;
   display: flex;
   align-items: center;
-  color: #fefefe;
+  color: white;
   justify-content: center;
   width: 100%;
   font-size: 1rem;
-  background-color: rgba(10, 17, 25, 0.4);
+  background-color: rgba(10, 17, 25, 0.6);
   height: 100%;
   opacity: ${(props) => (props.completed ? "1" : "0")};
 `;

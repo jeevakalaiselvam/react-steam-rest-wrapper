@@ -70,13 +70,14 @@ export default function GamesContent(props) {
   return (
     <ContentContainer>
       <ContainerInner>
-        {games.map((game) => {
-          return props.viewType === 0 ? (
+        {console.log("GAMEPAGE VIEW INDEX -> ", props.viewIndex)}
+        {games.map((game) =>
+          props.viewIndex === 0 ? (
             <GameCardMinimal game={game} key={game.id} />
           ) : (
             <GameCardNormal game={game} key={game.id} />
-          );
-        })}
+          )
+        )}
       </ContainerInner>
       <Pagination>
         <Page onClick={props.moveToPageLeft}>

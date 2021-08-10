@@ -1,5 +1,5 @@
 import React from "react";
-import { FaGlobe, FaMedal, FaTrophy } from "react-icons/fa";
+import { FaCheck, FaGlobe, FaMedal, FaTrophy } from "react-icons/fa";
 import styled from "styled-components";
 import { STEAM_HEADER_IMAGE } from "../../helper/endpoints";
 
@@ -119,15 +119,41 @@ const PercentageGold = styled.div`
   font-size: 0.8rem;
 `;
 
+const Completion = styled.div`
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  color: white;
+  justify-content: center;
+  width: 100%;
+  font-size: 1rem;
+  background-color: rgba(10, 17, 25, 0.6);
+  height: 100%;
+  opacity: ${(props) => (props.completed ? "1" : "0")};
+`;
+
 export default function AchievementNormal(props) {
-  const { icon, name, description, game_name, game_id, global_percentage } =
-    props.achievement;
+  const {
+    icon,
+    name,
+    description,
+    game_name,
+    game_id,
+    global_percentage,
+    unlocked,
+  } = props.achievement;
 
   return (
     <CardContainer>
       <InnerContainerBG></InnerContainerBG>
       <InnerContainer image={STEAM_HEADER_IMAGE(game_id)}></InnerContainer>
-      <Icon image={icon}></Icon>
+      <Icon image={icon}>
+        {unlocked === 1 && (
+          <Completion completed={unlocked}>
+            <FaCheck />
+          </Completion>
+        )}
+      </Icon>
       <Data>
         <Title>{name}</Title>
         <Desc>{description}</Desc>

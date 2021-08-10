@@ -9,6 +9,9 @@ import { useState } from "react";
 import { fetchAchievements, fetchGames } from "../action/games";
 import { GameContext } from "../context/GameContext";
 import {
+  ACHIEVEMENTGAMEPAGE_SELECT,
+  ACHIEVEMENTGAMEPAGE_SORT,
+  ACHIEVEMENTGAMEPAGE_VIEW,
   PAGINATION_TOTAL_COUNT,
   STORAGE_HEADER_TOTAL_ACHIEVEMENTS,
   STORAGE_HEADER_TOTAL_GAMES,
@@ -35,9 +38,15 @@ export default function Achievements() {
   const [achievements, setAchievements] = useState({});
   const [achievementsPage, setAchievementsPage] = useState(1);
   const [loading, setLoading] = useState(true);
-  const [viewIndex, setViewIndex] = useState(1);
-  const [sortIndex, setSortIndex] = useState(0);
-  const [selectIndex, setSelectIndex] = useState(0);
+  const [viewIndex, setViewIndex] = useState(
+    Number(_STORAGE_READ(ACHIEVEMENTGAMEPAGE_VIEW))
+  );
+  const [sortIndex, setSortIndex] = useState(
+    Number(_STORAGE_READ(ACHIEVEMENTGAMEPAGE_SORT))
+  );
+  const [selectIndex, setSelectIndex] = useState(
+    Number(_STORAGE_READ(ACHIEVEMENTGAMEPAGE_SELECT))
+  );
 
   const toggleNavRight = () => {
     setNavRightOpen((navState) => !navState);
@@ -60,17 +69,20 @@ export default function Achievements() {
   }, [sortIndex, viewIndex, achievementsPage, selectIndex]);
 
   const sortHandler = (sortOption) => {
+    _STORAGE_WRITE(ACHIEVEMENTGAMEPAGE_SORT, sortOption);
     setSortIndex((old) => sortOption);
     setAchievementsPage((old) => 1);
     toggleNavRight();
   };
   const viewHandler = (viewOption) => {
+    _STORAGE_WRITE(ACHIEVEMENTGAMEPAGE_VIEW, viewOption);
     setViewIndex((old) => viewOption);
     setAchievementsPage((old) => 1);
     toggleNavRight();
   };
 
   const selectHandler = (selectOption) => {
+    _STORAGE_WRITE(ACHIEVEMENTGAMEPAGE_SELECT, selectOption);
     setSelectIndex((old) => selectOption);
     setAchievementsPage((old) => 1);
     toggleNavRight();

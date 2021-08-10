@@ -10,9 +10,18 @@ const MainMenu = styled.div`
   flex-direction: column;
 `;
 
+const Subheader = styled.div`
+  color: #fefefe;
+  font-size: 0.6rem;
+  align-self: flex-start;
+  margin: 0.5rem 1rem;
+  text-align: left;
+`;
+
 export default function AllPageLeft() {
   return (
     <MainMenu>
+      <Subheader>SELECT CATEGORY</Subheader>
       <MenuItemLink
         icon={<FaGamepad />}
         title={"Games"}

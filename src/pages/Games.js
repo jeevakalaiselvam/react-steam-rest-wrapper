@@ -9,6 +9,9 @@ import { useState } from "react";
 import { fetchGames } from "../action/games";
 import { GameContext } from "../context/GameContext";
 import {
+  GAMEPAGE_SELECT,
+  GAMEPAGE_SORT,
+  GAMEPAGE_VIEW,
   PAGINATION_TOTAL_COUNT,
   PAGINATION_TOTAL_OBTAINED,
   STORAGE_HEADER_TOTAL_GAMES,
@@ -30,9 +33,15 @@ export default function Games() {
   const [gamesPage, setGamesPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const { setNavRightOpen } = useContext(GameContext);
-  const [viewIndex, setViewIndex] = useState(0);
-  const [sortIndex, setSortIndex] = useState(0);
-  const [selectIndex, setSelectedIndex] = useState(0);
+  const [viewIndex, setViewIndex] = useState(
+    Number(_STORAGE_READ(GAMEPAGE_VIEW))
+  );
+  const [sortIndex, setSortIndex] = useState(
+    Number(_STORAGE_READ(GAMEPAGE_SORT))
+  );
+  const [selectIndex, setSelectedIndex] = useState(
+    Number(_STORAGE_READ(GAMEPAGE_SELECT))
+  );
 
   const toggleNavRight = () => {
     setNavRightOpen((navState) => !navState);
@@ -50,21 +59,27 @@ export default function Games() {
       setLoading((old) => false);
     };
     setLoading((old) => true);
+    console.log(
+      `EFFECT getting GAMESPAGE -> SELECT=${selectIndex} SORT=${sortIndex} VIEW=${viewIndex}`
+    );
     getAllGames(sortIndex, viewIndex, selectIndex);
     _STORAGE_WRITE("CURRENT_PAGE", "games");
   }, [sortIndex, viewIndex, gamesPage, selectIndex]);
 
   const sortHandler = (sortOption) => {
+    _STORAGE_WRITE(GAMEPAGE_SORT, sortOption);
     setSortIndex((old) => sortOption);
     setGamesPage((old) => 1);
     toggleNavRight();
   };
   const viewHandler = (viewOption) => {
+    _STORAGE_WRITE(GAMEPAGE_VIEW, viewOption);
     setViewIndex((old) => viewOption);
     setGamesPage((old) => 1);
     toggleNavRight();
   };
   const selectedHandler = (selectOption) => {
+    _STORAGE_WRITE(GAMEPAGE_SELECT, selectOption);
     setSelectedIndex((old) => selectOption);
     setGamesPage((old) => 1);
     toggleNavRight();
@@ -107,7 +122,7 @@ export default function Games() {
         content={
           <GamesContent
             games={games}
-            viewType={viewIndex}
+            viewIndex={viewIndex}
             page={gamesPage}
             moveToPageRight={moveToPageRightHandler}
             moveToPageLeft={moveToPageLeftHandler}
