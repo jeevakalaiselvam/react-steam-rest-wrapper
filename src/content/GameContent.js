@@ -1,167 +1,105 @@
 import React from "react";
 import styled from "styled-components";
-import { FaPercent, FaTrophy } from "react-icons/fa";
+import GameCardNormal from "../components/card/GameCardNormal";
+import GameCardMinimal from "../components/card/GameCardMinimal";
+import { FaBackward, FaForward } from "react-icons/fa";
+import {
+  PAGINATION_TOTAL_COUNT,
+  STORAGE_HEADER_TOTAL_GAMES,
+} from "../helper/storage";
+import { PAGINATION_GAMES_PER_PAGE } from "../helper/pagination";
+import AchievementMinimal from "../components/card/AchievementMinimal";
+import AchievementNormal from "../components/card/AchievementNormal";
 
 const ContentContainer = styled.div`
   display: flex;
   width: 100%;
   min-height: 100vh;
-  color: #fefefe;
-  justify-content: flex-start;
+  justify-content: space-between;
   flex-direction: column;
   overflow: scroll;
   scrollbar-width: thin;
   align-items: flex-start;
   flex-wrap: wrap;
+  padding-bottom: 1rem;
+
+  @media only screen and (max-width: 840px) {
+    padding-bottom: 0rem;
+  }
 `;
 
 const ContainerInner = styled.div`
   display: flex;
   width: 100%;
+  justify-self: flex-start;
   justify-content: center;
-  align-self: flex-start;
   overflow: scroll;
-  flex-direction: row;
   flex-wrap: wrap;
 `;
 
-const CardGame = styled.div`
-  margin: 0.5rem;
-  background-color: rgba(10, 17, 25, 0.4);
-  height: 20vh;
+const Pagination = styled.div`
   display: flex;
-  padding: 0.5rem;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-
-  @media only screen and (min-width: 1361px) {
-    width: 48%;
-  }
-  @media only screen and (max-width: 1360px) and (min-width: 1201px) {
-    width: 48%;
-  }
-  @media only screen and (max-width: 1200px) and (min-width: 1061px) {
-    width: 48%;
-  }
-  @media only screen and (max-width: 1060px) and (min-width: 961px) {
-    width: 98%;
-  }
-  @media only screen and (max-width: 960px) and (min-width: 769px) {
-    width: 98%;
-  }
-  @media only screen and (max-width: 768px) and (min-width: 631px) {
-    width: 98%;
-  }
-  @media only screen and (max-width: 630px) and (min-width: 481px) {
-    width: 98%;
-  }
-  @media only screen and (max-width: 480px) {
-    width: 98%;
-  }
-`;
-
-const ImageCard = styled.div`
-  display: flex;
+  padding: 0.25rem;
   width: 100%;
-  flex-direction: column;
-  align-self: center;
   justify-content: center;
+  position: fixed;
+  background-color: rgba(10, 17, 25, 1);
+  padding: 0.25rem 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
 `;
 
-const Image = styled.div`
-  background-image: url("${(props) => props.image}");
-  background-position: center;
-  background-size: cover;
-  width: 200px;
-  align-self: center;
-  height: 100px;
+const Page = styled.div`
+  background-image: url("./images/bgcard.png");
+  padding: 0.25rem 0.75rem;
+  cursor: pointer;
+  margin: 0 1rem;
+  border: 1px solid #ffffff00;
+  &:hover {
+    color: #f5f5f5;
+    border: 1px solid #f5f5f5;
+  }
 `;
-
-const Name = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-self: center;
-  padding: 0.5rem;
-  justify-content: center;
-`;
-
-const DataCard = styled.div`
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-self: center;
-  justify-content: center;
-`;
-
-const DataSet = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-self: center;
-  justify-content: center;
-`;
-
-const Icon = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-self: center;
-  color: ${(props) => props.color};
-  font-size: 3rem;
-  justify-content: center;
-`;
-
-const Data = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-self: center;
-  color: ${(props) => props.color};
-  margin-left: 1rem;
-  font-size: 3rem;
-  justify-content: center;
-`;
-const Sub = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-self: center;
-  margin-left: 1rem;
-  font-size: 1rem;
-  justify-content: center;
+const PageCount = styled.div`
+  padding: 0.25rem 0.75rem;
 `;
 
 export default function GameContent(props) {
-  const game = props.game;
+  const achievements = props.achievements;
 
   return (
     <ContentContainer>
       <ContainerInner>
-        <CardGame>
-          <ImageCard>
-            <Image image={game.image}></Image>
-            <Name>{game.name}</Name>
-          </ImageCard>
-          <DataCard>
-            <DataSet>
-              <Icon color={"gold"}>
-                <FaTrophy />
-              </Icon>
-              <Data>
-                {game.completed_achievements_count} /{" "}
-                {game.total_achievements_count}
-              </Data>
-            </DataSet>
-            <DataSet>
-              <Data color='#a5c93a'>
-                {(
-                  Number(Number(game.completion_percentage).toFixed(2) / 80) *
-                  100
-                ).toFixed(2)}{" "}
-                %
-              </Data>
-            </DataSet>
-          </DataCard>
-        </CardGame>
-        <CardGame></CardGame>
+        {achievements.map((achievement) => {
+          return props.viewType === 0 ? (
+            <AchievementMinimal
+              achievement={achievement}
+              key={achievement.game_id + achievement.id}
+            />
+          ) : (
+            <AchievementNormal
+              achievement={achievement}
+              key={achievement.game_id + achievement.id}
+            />
+          );
+        })}
       </ContainerInner>
+      <Pagination>
+        <Page onClick={props.moveToPageLeft}>
+          <FaBackward />
+        </Page>
+        <PageCount>
+          {props.page} /{" "}
+          {Math.ceil(
+            localStorage.getItem(PAGINATION_TOTAL_COUNT) /
+              PAGINATION_GAMES_PER_PAGE
+          )}
+        </PageCount>
+        <Page onClick={props.moveToPageRight}>
+          <FaForward />
+        </Page>
+      </Pagination>
     </ContentContainer>
   );
 }

@@ -9,6 +9,7 @@ import { useState } from "react";
 import { fetchAchievements, fetchGames } from "../action/games";
 import { GameContext } from "../context/GameContext";
 import {
+  PAGINATION_TOTAL_COUNT,
   STORAGE_HEADER_TOTAL_ACHIEVEMENTS,
   STORAGE_HEADER_TOTAL_GAMES,
 } from "../helper/storage";
@@ -76,7 +77,7 @@ export default function Achievements() {
   const moveToPageRightHandler = () => {
     if (
       Math.ceil(
-        localStorage.getItem(STORAGE_HEADER_TOTAL_ACHIEVEMENTS) /
+        localStorage.getItem(PAGINATION_TOTAL_COUNT) /
           PAGINATION_ACHIEVEMENTS_PER_PAGE
       ) === achievementsPage
     ) {

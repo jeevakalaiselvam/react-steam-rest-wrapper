@@ -119,7 +119,7 @@ export default function GameCardMinimal(props) {
       image={image}
       onClick={() => {
         console.log(props.game);
-        localStorage.setItem(SELECTED_GAME, JSON.stringify(props.game));
+        localStorage.setItem(SELECTED_GAME, props.game.id);
         window.location.href = "/game";
       }}
     >

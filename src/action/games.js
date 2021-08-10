@@ -62,6 +62,27 @@ export const fetchGamesInfo = async () => {
   return gamesInfo;
 };
 
+export const fetchAchievementsForGame = async (
+  sortOrder,
+  viewOrder,
+  achievementPage,
+  selectOrder,
+  gameId
+) => {
+  let achievementsResponse = {};
+
+  const mainURL = `${process.env.REACT_APP_API_ENDPOINT}achievements/game?game=${gameId}&`;
+  const selectedAddedURL = includeSelectQueryAchievements(mainURL, selectOrder);
+  const sortAddedURL = includeSortQueryAchievements(
+    selectedAddedURL,
+    sortOrder
+  );
+  const pageAddedURL = includePageQuery(sortAddedURL, achievementPage);
+  achievementsResponse = (await axios.get(pageAddedURL)).data;
+  addToLocalStorage(PAGINATION_TOTAL_COUNT, achievementsResponse.total);
+  return achievementsResponse.achievements ?? {};
+};
+
 export const fetchOverlayImages = async (
   gamesCount = 10,
   perfectGamesCount = 10,

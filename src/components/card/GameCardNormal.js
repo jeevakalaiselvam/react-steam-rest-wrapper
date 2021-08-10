@@ -1,6 +1,7 @@
 import React from "react";
 import { FaCheck, FaMedal, FaTrophy } from "react-icons/fa";
 import styled from "styled-components";
+import { SELECTED_GAME } from "../../helper/storage";
 
 const CardContainer = styled.div`
   background-color: rgba(10, 17, 25, 0.4);
@@ -132,7 +133,14 @@ export default function GameCardNormal(props) {
   };
 
   return (
-    <CardContainer image={image}>
+    <CardContainer
+      image={image}
+      onClick={() => {
+        console.log(props.game);
+        localStorage.setItem(SELECTED_GAME, props.game.id);
+        window.location.href = "/game";
+      }}
+    >
       <Title>{name}</Title>
       <Card>
         <InnerContainer>
