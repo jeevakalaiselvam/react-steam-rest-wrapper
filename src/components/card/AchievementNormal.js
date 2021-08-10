@@ -161,10 +161,10 @@ export default function AchievementNormal(props) {
       </Data>
       <Misc>
         <FaGlobe />{" "}
-        {global_percentage > 10 && (
+        {global_percentage <= 10 && (
           <PercentageGold>{global_percentage.toFixed(2)} %</PercentageGold>
         )}
-        {global_percentage <= 10 && (
+        {global_percentage > 10 && (
           <Percentage>{global_percentage.toFixed(2)} %</Percentage>
         )}
       </Misc>

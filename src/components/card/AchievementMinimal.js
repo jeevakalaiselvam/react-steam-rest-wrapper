@@ -48,6 +48,7 @@ const Title = styled.div`
   align-items: center;
   font-size: 1rem;
   color: #55aece;
+  margin-top: 0.5rem;
   justify-content: center;
 `;
 

@@ -90,7 +90,30 @@ export const fetchAchievementsForGame = async (
     "ACHIEVEMENT COUNT -> ",
     achievementsResponse.achievements.length
   );
-  return achievementsResponse.achievements ?? {};
+  const hiddenAchievements = (
+    await axios.get(
+      `${process.env.REACT_APP_API_ENDPOINT}achievements/hidden?gameid=${gameId}`
+    )
+  ).data;
+
+  const allAchievements = achievementsResponse.achievements;
+  allAchievements.map((achievement) => {
+    if (achievement.hidden === 1) {
+      const hiddenSelectedAchievement = hiddenAchievements.find(
+        (hiddenAchievement) => {
+          if (
+            hiddenAchievement.name.trim().toLowerCase() ===
+            achievement.name.trim().toLowerCase()
+          )
+            return true;
+          else return false;
+        }
+      );
+      achievement.description = hiddenSelectedAchievement.description;
+    }
+  });
+
+  return allAchievements ?? {};
 };
 
 export const fetchOverlayImages = async (
