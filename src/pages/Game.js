@@ -24,6 +24,8 @@ import {
 } from "../helper/pagination";
 import AchievementContent from "../content/AchievementContent";
 import AchievementPageRight from "../sidebar/AchievementPageRight";
+import GameContent from "../content/GameContent";
+import GamePageRight from "../sidebar/GamePageRight";
 
 const PageContainer = styled.div`
   display: flex;
@@ -105,7 +107,7 @@ export default function Game() {
       <Page
         leftSidebar={<AllPageLeft />}
         rightSidebar={
-          <AchievementPageRight
+          <GamePageRight
             sortHandler={sortHandler}
             viewHandler={viewHandler}
             selectHandler={selectHandler}
@@ -115,7 +117,7 @@ export default function Game() {
           />
         }
         content={
-          <AchievementContent
+          <GameContent
             achievements={achievements}
             viewType={viewIndex}
             page={achievementsPage}

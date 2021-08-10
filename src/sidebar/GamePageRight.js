@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   FaCheck,
+  FaClock,
   FaFilter,
+  FaGamepad,
   FaGripHorizontal,
   FaHourglass,
+  FaPercentage,
   FaSortAlphaDown,
   FaSortAlphaDownAlt,
+  FaTimes,
 } from "react-icons/fa";
 import styled from "styled-components";
 
@@ -42,7 +46,6 @@ const RightMenuItem = styled.div`
     color: #f5f5f5;
   }
 `;
-
 const Icon = styled.div`
   font-size: 1rem;
   transform: translateY(-1px);
@@ -58,7 +61,7 @@ const Title = styled.div`
 export default function GamePageRight(props) {
   return (
     <Container>
-      <Subheader>SELECTION OPTIONS</Subheader>
+      <Subheader>SELECT OPTIONS</Subheader>
       <RightMenuItem
         onClick={() => props.selectHandler(0)}
         selected={props.selectIndex === 0}
@@ -79,21 +82,12 @@ export default function GamePageRight(props) {
       </RightMenuItem>
       <RightMenuItem
         onClick={() => props.selectHandler(2)}
-        selected={props.selectIndex === 2}
+        selected={props.selectIndex === 1}
       >
         <Icon>
           <FaFilter />
         </Icon>
-        <Title>Locked</Title>
-      </RightMenuItem>
-      <RightMenuItem
-        onClick={() => props.selectHandler(3)}
-        selected={props.selectIndex === 3}
-      >
-        <Icon>
-          <FaFilter />
-        </Icon>
-        <Title>Not Started</Title>
+        <Title>Not Unlocked</Title>
       </RightMenuItem>
       <Subheader>SORT OPTIONS</Subheader>
       <RightMenuItem
@@ -101,7 +95,7 @@ export default function GamePageRight(props) {
         selected={props.sortIndex === 0}
       >
         <Icon>
-          <FaCheck />
+          <FaClock />
         </Icon>
         <Title>Recent</Title>
       </RightMenuItem>
@@ -110,13 +104,22 @@ export default function GamePageRight(props) {
         selected={props.sortIndex === 1}
       >
         <Icon>
-          <FaHourglass />
+          <FaPercentage />
         </Icon>
-        <Title>Playtime</Title>
+        <Title>Rarity</Title>
       </RightMenuItem>
       <RightMenuItem
         onClick={() => props.sortHandler(2)}
         selected={props.sortIndex === 2}
+      >
+        <Icon>
+          <FaGamepad />
+        </Icon>
+        <Title>Games</Title>
+      </RightMenuItem>
+      <RightMenuItem
+        onClick={() => props.sortHandler(3)}
+        selected={props.sortIndex === 3}
       >
         <Icon>
           <FaSortAlphaDown />
@@ -124,8 +127,8 @@ export default function GamePageRight(props) {
         <Title>Name A-Z</Title>
       </RightMenuItem>
       <RightMenuItem
-        onClick={() => props.sortHandler(3)}
-        selected={props.sortIndex === 3}
+        onClick={() => props.sortHandler(4)}
+        selected={props.sortIndex === 4}
       >
         <Icon>
           <FaSortAlphaDownAlt />

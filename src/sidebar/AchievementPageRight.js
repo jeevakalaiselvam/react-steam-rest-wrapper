@@ -71,6 +71,7 @@ export default function AchievementPageRight(props) {
         </Icon>
         <Title>All</Title>
       </RightMenuItem>
+
       <RightMenuItem
         onClick={() => props.selectHandler(1)}
         selected={props.selectIndex === 1}
@@ -79,6 +80,15 @@ export default function AchievementPageRight(props) {
           <FaFilter />
         </Icon>
         <Title>Unlocked</Title>
+      </RightMenuItem>
+      <RightMenuItem
+        onClick={() => props.selectHandler(2)}
+        selected={props.selectIndex === 2}
+      >
+        <Icon>
+          <FaFilter />
+        </Icon>
+        <Title>Locked</Title>
       </RightMenuItem>
       <Subheader>SORT OPTIONS</Subheader>
       <RightMenuItem
@@ -97,11 +107,20 @@ export default function AchievementPageRight(props) {
         <Icon>
           <FaPercentage />
         </Icon>
-        <Title>Rarity</Title>
+        <Title>Rarity Easy</Title>
       </RightMenuItem>
       <RightMenuItem
         onClick={() => props.sortHandler(2)}
         selected={props.sortIndex === 2}
+      >
+        <Icon>
+          <FaPercentage />
+        </Icon>
+        <Title>Rarity Hard</Title>
+      </RightMenuItem>
+      <RightMenuItem
+        onClick={() => props.sortHandler(3)}
+        selected={props.sortIndex === 3}
       >
         <Icon>
           <FaGamepad />
@@ -109,8 +128,8 @@ export default function AchievementPageRight(props) {
         <Title>Games</Title>
       </RightMenuItem>
       <RightMenuItem
-        onClick={() => props.sortHandler(3)}
-        selected={props.sortIndex === 3}
+        onClick={() => props.sortHandler(4)}
+        selected={props.sortIndex === 4}
       >
         <Icon>
           <FaSortAlphaDown />
@@ -118,8 +137,8 @@ export default function AchievementPageRight(props) {
         <Title>Name A-Z</Title>
       </RightMenuItem>
       <RightMenuItem
-        onClick={() => props.sortHandler(4)}
-        selected={props.sortIndex === 4}
+        onClick={() => props.sortHandler(5)}
+        selected={props.sortIndex === 5}
       >
         <Icon>
           <FaSortAlphaDownAlt />

@@ -7,7 +7,10 @@ import {
   PAGINATION_TOTAL_COUNT,
   STORAGE_HEADER_TOTAL_GAMES,
 } from "../helper/storage";
-import { PAGINATION_GAMES_PER_PAGE } from "../helper/pagination";
+import {
+  PAGINATION_ACHIEVEMENTS_PER_PAGE,
+  PAGINATION_GAMES_PER_PAGE,
+} from "../helper/pagination";
 import AchievementMinimal from "../components/card/AchievementMinimal";
 import AchievementNormal from "../components/card/AchievementNormal";
 
@@ -93,7 +96,7 @@ export default function AchievementContent(props) {
           {props.page} /{" "}
           {Math.ceil(
             localStorage.getItem(PAGINATION_TOTAL_COUNT) /
-              PAGINATION_GAMES_PER_PAGE
+              PAGINATION_ACHIEVEMENTS_PER_PAGE
           )}
         </PageCount>
         <Page onClick={props.moveToPageRight}>
