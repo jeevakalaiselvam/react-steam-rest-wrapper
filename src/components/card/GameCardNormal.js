@@ -158,16 +158,16 @@ export default function GameCardNormal(props) {
               <FaTrophy />
             </IconInner>
             <AchievementCount>
-              {completion_percentage <
-                (Number(_STORAGE_READ(COMPLETION_TARGET)) ?? 80) &&
+              {+completion_percentage <
+                Number(_STORAGE_READ(COMPLETION_TARGET) ?? 80) &&
                 getRemainingForTarget()}
 
-              {completion_percentage >=
-                (Number(_STORAGE_READ(COMPLETION_TARGET)) ?? 80) && <FaCheck />}
+              {+completion_percentage >=
+                Number(_STORAGE_READ(COMPLETION_TARGET) ?? 80.0) && <FaCheck />}
             </AchievementCount>
           </AchievementData>
-          {completion_percentage >=
-            Number(_STORAGE_READ(COMPLETION_TARGET) ?? 80) && (
+          {+completion_percentage >=
+            Number(_STORAGE_READ(COMPLETION_TARGET) ?? 80.0) && (
             <Medal>
               <FaMedal />
             </Medal>

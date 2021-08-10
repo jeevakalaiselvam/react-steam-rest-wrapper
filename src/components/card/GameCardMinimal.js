@@ -150,15 +150,15 @@ export default function GameCardMinimal(props) {
             <FaTrophy />
           </IconInner>
           <AchievementCount>
-            {completion_percentage <
-              (Number(_STORAGE_READ(COMPLETION_TARGET)) ?? 80) &&
+            {+completion_percentage <
+              Number(_STORAGE_READ(COMPLETION_TARGET) ?? 80) &&
               getRemainingForTarget()}
 
-            {completion_percentage >=
-              (Number(_STORAGE_READ(COMPLETION_TARGET)) ?? 80) && <FaCheck />}
+            {+completion_percentage >=
+              Number(_STORAGE_READ(COMPLETION_TARGET) ?? 80) && <FaCheck />}
           </AchievementCount>
         </AchievementData>
-        {completion_percentage >=
+        {+completion_percentage >=
           Number(_STORAGE_READ(COMPLETION_TARGET) ?? 80) && (
           <Medal>
             <FaMedal />
