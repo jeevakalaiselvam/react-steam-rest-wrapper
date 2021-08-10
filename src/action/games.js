@@ -96,8 +96,8 @@ export const fetchAchievementsForGame = async (
     )
   ).data;
 
-  const allAchievements = achievementsResponse.achievements;
-  allAchievements.map((achievement) => {
+  const allAchievements = achievementsResponse;
+  allAchievements.achievements.map((achievement) => {
     if (achievement.hidden === 1) {
       const hiddenSelectedAchievement = hiddenAchievements.find(
         (hiddenAchievement) => {

@@ -110,7 +110,6 @@ const AchievementCount = styled.div`
 export default function GameCardMinimal(props) {
   const {
     image,
-    id,
     completion_percentage,
     completed_achievements_count,
     total_achievements_count,

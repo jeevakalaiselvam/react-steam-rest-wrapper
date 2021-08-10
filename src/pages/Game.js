@@ -16,6 +16,9 @@ import {
   ACHIEVEMENTGAMEPAGE_SELECT,
   ACHIEVEMENTGAMEPAGE_SORT,
   ACHIEVEMENTGAMEPAGE_VIEW,
+  GAMEPAGE_HEADER_COMPLETED,
+  GAMEPAGE_HEADER_REMAINING,
+  GAMEPAGE_HEADER_TOTAL,
   PAGINATION_TOTAL_COUNT,
   SELECTED_GAME,
   STORAGE_HEADER_TOTAL_ACHIEVEMENTS,
@@ -31,6 +34,7 @@ import AchievementContent from "../content/AchievementContent";
 import AchievementPageRight from "../sidebar/AchievementPageRight";
 import GameContent from "../content/GameContent";
 import GamePageRight from "../sidebar/GamePageRight";
+import HeaderGameProgress from "../components/core/HeaderGameProgress";
 
 const PageContainer = styled.div`
   display: flex;
@@ -61,14 +65,18 @@ export default function Game() {
 
   useEffect(() => {
     const getAllAchievements = async (sortOrder, viewOrder) => {
-      const achievements = await fetchAchievementsForGame(
+      const achievementsResponse = await fetchAchievementsForGame(
         sortOrder,
         viewOrder,
         achievementsPage,
         selectIndex,
         _STORAGE_READ(SELECTED_GAME)
       );
-      setAchievements((old) => achievements);
+
+      _STORAGE_WRITE(GAMEPAGE_HEADER_TOTAL, achievementsResponse.total);
+      _STORAGE_WRITE(GAMEPAGE_HEADER_COMPLETED, achievementsResponse.completed);
+      _STORAGE_WRITE(GAMEPAGE_HEADER_REMAINING, achievementsResponse.remaining);
+      setAchievements((old) => achievementsResponse.achievements);
       setLoading((old) => false);
     };
     setLoading((old) => true);
@@ -116,7 +124,7 @@ export default function Game() {
 
   return (
     <PageContainer>
-      <Header />
+      <HeaderGameProgress achievements={achievements} />
       <Page
         leftSidebar={<AllPageLeft />}
         rightSidebar={

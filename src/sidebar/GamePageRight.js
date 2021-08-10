@@ -136,6 +136,16 @@ export default function GamePageRight(props) {
         </Icon>
         <Title>Name Z-A</Title>
       </RightMenuItem>
+      <RightMenuItem
+        onClick={() => props.sortHandler(5)}
+        selected={props.sortIndex === 5}
+      >
+        <Icon>
+          <FaSortAlphaDownAlt />
+        </Icon>
+        <Title>Hidden</Title>
+      </RightMenuItem>
+
       <Subheader>VIEW OPTIONS</Subheader>
       <RightMenuItem
         onClick={() => props.viewHandler(0)}

@@ -54,6 +54,7 @@ export const includeSortQueryAchievementsForGame = (initialUrl, sortOrder) => {
     "rarity&type=hard&",
     "names&order=az&",
     "names&order=za&",
+    "hidden&",
   ];
 
   return `${initialUrl}sort=${indexMapper[sortOrder]}`;

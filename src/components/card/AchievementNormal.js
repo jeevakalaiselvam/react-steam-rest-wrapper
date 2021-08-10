@@ -90,7 +90,7 @@ const Misc = styled.div`
 
 const Title = styled.div`
   font-size: 1rem;
-  color: #f5f5f5;
+  color: #55aece;
   z-index: 101;
   font-weight: bold;
   text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
