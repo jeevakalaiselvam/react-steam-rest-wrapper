@@ -3,12 +3,15 @@ import {
   addToLocalStorage,
   PAGINATION_TOTAL_COUNT,
   storeHeadInfoLocalStorage,
+  _STORAGE_WRITE,
 } from "../helper/storage";
 import {
   includePageQuery,
   includeSelectQueryAchievements,
+  includeSelectQueryAchievementsForGame,
   includeSelectQueryGames,
   includeSortQueryAchievements,
+  includeSortQueryAchievementsForGame,
   includeSortQueryGames,
 } from "../helper/queryHelper";
 
@@ -26,7 +29,7 @@ export const fetchGames = async (
   const sortAddedURL = includeSortQueryGames(selectedAddedURL, sortOrder);
   const pageAddedURL = includePageQuery(sortAddedURL, gamesPage);
   gamesResponse = (await axios.get(pageAddedURL)).data;
-  addToLocalStorage(PAGINATION_TOTAL_COUNT, gamesResponse.total);
+  _STORAGE_WRITE(PAGINATION_TOTAL_COUNT, gamesResponse.total);
   return gamesResponse.games ?? {};
 };
 
@@ -46,7 +49,7 @@ export const fetchAchievements = async (
   );
   const pageAddedURL = includePageQuery(sortAddedURL, achievementPage);
   achievementsResponse = (await axios.get(pageAddedURL)).data;
-  addToLocalStorage(PAGINATION_TOTAL_COUNT, achievementsResponse.total);
+  _STORAGE_WRITE(PAGINATION_TOTAL_COUNT, achievementsResponse.total);
   return achievementsResponse.achievements ?? {};
 };
 
@@ -72,14 +75,17 @@ export const fetchAchievementsForGame = async (
   let achievementsResponse = {};
 
   const mainURL = `${process.env.REACT_APP_API_ENDPOINT}achievements/game?game=${gameId}&`;
-  const selectedAddedURL = includeSelectQueryAchievements(mainURL, selectOrder);
-  const sortAddedURL = includeSortQueryAchievements(
+  const selectedAddedURL = includeSelectQueryAchievementsForGame(
+    mainURL,
+    selectOrder
+  );
+  const sortAddedURL = includeSortQueryAchievementsForGame(
     selectedAddedURL,
     sortOrder
   );
   const pageAddedURL = includePageQuery(sortAddedURL, achievementPage);
   achievementsResponse = (await axios.get(pageAddedURL)).data;
-  addToLocalStorage(PAGINATION_TOTAL_COUNT, achievementsResponse.total);
+  _STORAGE_WRITE(PAGINATION_TOTAL_COUNT, achievementsResponse.total);
   return achievementsResponse.achievements ?? {};
 };
 

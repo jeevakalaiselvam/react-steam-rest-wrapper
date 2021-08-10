@@ -37,3 +37,24 @@ export const includeSortQueryAchievements = (initialUrl, sortOrder) => {
 
   return `${initialUrl}sort=${indexMapper[sortOrder]}`;
 };
+
+export const includeSelectQueryAchievementsForGame = (
+  initialUrl,
+  selectOrder
+) => {
+  const indexMapper = ["all&", "unlocked&", "locked&"];
+
+  return `${initialUrl}select=${indexMapper[selectOrder]}`;
+};
+
+export const includeSortQueryAchievementsForGame = (initialUrl, sortOrder) => {
+  const indexMapper = [
+    "recent&",
+    "rarity&type=easy&",
+    "rarity&type=hard&",
+    "names&order=az&",
+    "names&order=za&",
+  ];
+
+  return `${initialUrl}sort=${indexMapper[sortOrder]}`;
+};

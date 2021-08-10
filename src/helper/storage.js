@@ -4,11 +4,29 @@ export const STORAGE_HEADER_TOTAL_PERFECT_GAMES = "HEADER_TOTAL_PERFECT_GAMES";
 export const STORAGE_HEADER_AVERAGE_COMPLETION = "HEADER_AVERAGE_COMPLETION";
 export const PAGINATION_TOTAL_COUNT = "PAGINATION_TOTAL_COUNT";
 export const SELECTED_GAME = "SELECTED_GAME";
+export const GAMEPAGE_SELECT = "GAMEPAGE_SELECT";
+export const GAMEPAGE_SORT = "GAMEPAGE_SORT";
+export const GAMEPAGE_VIEW = "GAMEPAGE_VIEW";
+export const ACHIEVEMENTSPAGE_SELECT = "ACHIEVEMENTSPAGE_SELECT";
+export const ACHIEVEMENTSPAGE_SORT = "ACHIEVEMENTSPAGE_SORT";
+export const ACHIEVEMENTSPAGE_VIEW = "ACHIEVEMENTSPAGE_VIEW";
+export const ACHIEVEMENTGAMEPAGE_SELECT = "ACHIEVEMENTGAMEPAGE_SELECT";
+export const ACHIEVEMENTGAMEPAGE_SORT = "ACHIEVEMENTGAMEPAGE_SORT";
+export const ACHIEVEMENTGAMEPAGE_VIEW = "ACHIEVEMENTGAMEPAGE_VIEW";
+
+///ALL STORAGE RELATED FUNCTIONS
 
 export const getCompletionTarget = () => {
-  const completionTarget = localStorage.getItem("COMPLETION_TARGET");
+  const completionTarget = _STORAGE_READ("COMPLETION_TARGET");
   if (completionTarget) return completionTarget;
   else return 80;
+};
+
+export const _STORAGE_READ = (key) => {
+  return localStorage.getItem(key);
+};
+export const _STORAGE_WRITE = (key, data) => {
+  localStorage.setItem(key, data);
 };
 
 export const storeHeadInfoLocalStorage = (gamesInfo) => {
@@ -19,15 +37,12 @@ export const storeHeadInfoLocalStorage = (gamesInfo) => {
     average_completion,
   } = gamesInfo;
 
-  localStorage.setItem(STORAGE_HEADER_TOTAL_GAMES, total_games);
-  localStorage.setItem(
-    STORAGE_HEADER_TOTAL_ACHIEVEMENTS,
-    completed_achievements
-  );
-  localStorage.setItem(STORAGE_HEADER_TOTAL_PERFECT_GAMES, perfect_games_count);
-  localStorage.setItem(STORAGE_HEADER_AVERAGE_COMPLETION, average_completion);
+  _STORAGE_WRITE(STORAGE_HEADER_TOTAL_GAMES, total_games);
+  _STORAGE_WRITE(STORAGE_HEADER_TOTAL_ACHIEVEMENTS, completed_achievements);
+  _STORAGE_WRITE(STORAGE_HEADER_TOTAL_PERFECT_GAMES, perfect_games_count);
+  _STORAGE_WRITE(STORAGE_HEADER_AVERAGE_COMPLETION, average_completion);
 };
 
 export const addToLocalStorage = (key, data) => {
-  localStorage.setItem(key, data);
+  _STORAGE_WRITE(key, data);
 };

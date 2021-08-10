@@ -15,6 +15,7 @@ import {
   STORAGE_HEADER_TOTAL_ACHIEVEMENTS,
   STORAGE_HEADER_TOTAL_GAMES,
   STORAGE_HEADER_TOTAL_PERFECT_GAMES,
+  _STORAGE_WRITE,
 } from "../../helper/storage";
 
 // background-image: linear-gradient(
@@ -123,13 +124,12 @@ const Data = styled.div`
 export default function Header() {
   //Show initial header info from local storage
   const [gameInfo, setGameInfo] = useState({
-    total_games: localStorage.getItem(STORAGE_HEADER_TOTAL_GAMES) ?? 0,
-    average_completion:
-      localStorage.getItem(STORAGE_HEADER_AVERAGE_COMPLETION) ?? 0,
+    total_games: _STORAGE_WRITE(STORAGE_HEADER_TOTAL_GAMES) ?? 0,
+    average_completion: _STORAGE_WRITE(STORAGE_HEADER_AVERAGE_COMPLETION) ?? 0,
     completed_achievements:
-      localStorage.getItem(STORAGE_HEADER_TOTAL_ACHIEVEMENTS) ?? 0,
+      _STORAGE_WRITE(STORAGE_HEADER_TOTAL_ACHIEVEMENTS) ?? 0,
     perfect_games_count:
-      localStorage.getItem(STORAGE_HEADER_TOTAL_PERFECT_GAMES) ?? 0,
+      _STORAGE_WRITE(STORAGE_HEADER_TOTAL_PERFECT_GAMES) ?? 0,
   });
 
   const { navLeftOpen, setNavLeftOpen, navRightOpen, setNavRightOpen } =

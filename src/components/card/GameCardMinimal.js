@@ -1,7 +1,7 @@
 import React from "react";
 import { FaCheck, FaMedal, FaTrophy } from "react-icons/fa";
 import styled from "styled-components";
-import { SELECTED_GAME } from "../../helper/storage";
+import { SELECTED_GAME, _STORAGE_WRITE } from "../../helper/storage";
 
 const Card = styled.div`
   background-color: rgba(10, 17, 25, 0.4);
@@ -119,7 +119,7 @@ export default function GameCardMinimal(props) {
       image={image}
       onClick={() => {
         console.log(props.game);
-        localStorage.setItem(SELECTED_GAME, props.game.id);
+        _STORAGE_WRITE(SELECTED_GAME, props.game.id);
         window.location.href = "/game";
       }}
     >

@@ -12,6 +12,8 @@ import {
   PAGINATION_TOTAL_COUNT,
   STORAGE_HEADER_TOTAL_ACHIEVEMENTS,
   STORAGE_HEADER_TOTAL_GAMES,
+  _STORAGE_READ,
+  _STORAGE_WRITE,
 } from "../helper/storage";
 import {
   PAGINATION_ACHIEVEMENTS_PER_PAGE,
@@ -54,7 +56,7 @@ export default function Achievements() {
     };
     setLoading((old) => true);
     getAllAchievements(sortIndex, viewIndex, selectIndex);
-    localStorage.setItem("CURRENT_PAGE", "achievements");
+    _STORAGE_WRITE("CURRENT_PAGE", "achievements");
   }, [sortIndex, viewIndex, achievementsPage, selectIndex]);
 
   const sortHandler = (sortOption) => {
@@ -77,8 +79,7 @@ export default function Achievements() {
   const moveToPageRightHandler = () => {
     if (
       Math.ceil(
-        localStorage.getItem(PAGINATION_TOTAL_COUNT) /
-          PAGINATION_ACHIEVEMENTS_PER_PAGE
+        _STORAGE_READ(PAGINATION_TOTAL_COUNT) / PAGINATION_ACHIEVEMENTS_PER_PAGE
       ) === achievementsPage
     ) {
       setAchievementsPage((old) => achievementsPage);

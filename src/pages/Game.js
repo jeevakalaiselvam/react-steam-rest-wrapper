@@ -17,6 +17,7 @@ import {
   SELECTED_GAME,
   STORAGE_HEADER_TOTAL_ACHIEVEMENTS,
   STORAGE_HEADER_TOTAL_GAMES,
+  _STORAGE_READ,
 } from "../helper/storage";
 import {
   PAGINATION_ACHIEVEMENTS_PER_PAGE,
@@ -55,7 +56,7 @@ export default function Game() {
         viewOrder,
         achievementsPage,
         selectIndex,
-        localStorage.getItem(SELECTED_GAME)
+        _STORAGE_READ(SELECTED_GAME)
       );
       setAchievements((old) => achievements);
       setLoading((old) => false);
@@ -84,8 +85,7 @@ export default function Game() {
   const moveToPageRightHandler = () => {
     if (
       Math.ceil(
-        localStorage.getItem(PAGINATION_TOTAL_COUNT) /
-          PAGINATION_ACHIEVEMENTS_PER_PAGE
+        _STORAGE_READ(PAGINATION_TOTAL_COUNT) / PAGINATION_ACHIEVEMENTS_PER_PAGE
       ) === achievementsPage
     ) {
       setAchievementsPage((old) => achievementsPage);

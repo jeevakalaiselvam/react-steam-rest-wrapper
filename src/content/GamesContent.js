@@ -6,6 +6,7 @@ import { FaBackward, FaForward } from "react-icons/fa";
 import {
   PAGINATION_TOTAL_COUNT,
   STORAGE_HEADER_TOTAL_GAMES,
+  _STORAGE_READ,
 } from "../helper/storage";
 import { PAGINATION_GAMES_PER_PAGE } from "../helper/pagination";
 
@@ -84,8 +85,7 @@ export default function GamesContent(props) {
         <PageCount>
           {props.page} /{" "}
           {Math.ceil(
-            localStorage.getItem(PAGINATION_TOTAL_COUNT) /
-              PAGINATION_GAMES_PER_PAGE
+            _STORAGE_READ(PAGINATION_TOTAL_COUNT) / PAGINATION_GAMES_PER_PAGE
           )}
         </PageCount>
         <Page onClick={props.moveToPageRight}>

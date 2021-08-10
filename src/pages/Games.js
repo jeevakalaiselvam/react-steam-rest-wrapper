@@ -12,6 +12,8 @@ import {
   PAGINATION_TOTAL_COUNT,
   PAGINATION_TOTAL_OBTAINED,
   STORAGE_HEADER_TOTAL_GAMES,
+  _STORAGE_READ,
+  _STORAGE_WRITE,
 } from "../helper/storage";
 import { PAGINATION_GAMES_PER_PAGE } from "../helper/pagination";
 
@@ -49,7 +51,7 @@ export default function Games() {
     };
     setLoading((old) => true);
     getAllGames(sortIndex, viewIndex, selectIndex);
-    localStorage.setItem("CURRENT_PAGE", "games");
+    _STORAGE_WRITE("CURRENT_PAGE", "games");
   }, [sortIndex, viewIndex, gamesPage, selectIndex]);
 
   const sortHandler = (sortOption) => {
@@ -71,7 +73,7 @@ export default function Games() {
   const moveToPageRightHandler = () => {
     if (
       Math.ceil(
-        localStorage.getItem(PAGINATION_TOTAL_COUNT) / PAGINATION_GAMES_PER_PAGE
+        _STORAGE_READ(PAGINATION_TOTAL_COUNT) / PAGINATION_GAMES_PER_PAGE
       ) === gamesPage
     ) {
       setGamesPage((old) => gamesPage);

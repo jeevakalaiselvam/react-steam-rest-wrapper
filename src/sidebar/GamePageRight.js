@@ -82,7 +82,7 @@ export default function GamePageRight(props) {
       </RightMenuItem>
       <RightMenuItem
         onClick={() => props.selectHandler(2)}
-        selected={props.selectIndex === 1}
+        selected={props.selectIndex === 2}
       >
         <Icon>
           <FaFilter />
@@ -106,17 +106,18 @@ export default function GamePageRight(props) {
         <Icon>
           <FaPercentage />
         </Icon>
-        <Title>Rarity</Title>
+        <Title>Rarity Easy</Title>
       </RightMenuItem>
       <RightMenuItem
         onClick={() => props.sortHandler(2)}
         selected={props.sortIndex === 2}
       >
         <Icon>
-          <FaGamepad />
+          <FaPercentage />
         </Icon>
-        <Title>Games</Title>
+        <Title>Rarity Hard</Title>
       </RightMenuItem>
+
       <RightMenuItem
         onClick={() => props.sortHandler(3)}
         selected={props.sortIndex === 3}

@@ -1,5 +1,5 @@
 import React from "react";
-import { FaMedal, FaTrophy } from "react-icons/fa";
+import { FaCheck, FaMedal, FaTrophy } from "react-icons/fa";
 import styled from "styled-components";
 import BlackToolTip from "../other/BlackToolTip";
 import { STEAM_HEADER_IMAGE } from "../../helper/endpoints";
@@ -22,10 +22,24 @@ const Card = styled.div`
 
 const ToolTipContent = styled.div`
   display: flex;
+  position: relative;
   flex-direction: column;
   padding: 1rem;
   align-items: center;
   justify-content: center;
+`;
+
+const Completion = styled.div`
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  color: #fefefe;
+  justify-content: center;
+  width: 100%;
+  font-size: 1rem;
+  background-color: rgba(10, 17, 25, 0.4);
+  height: 100%;
+  opacity: ${(props) => (props.completed ? "1" : "0")};
 `;
 
 const Title = styled.div`
@@ -80,7 +94,8 @@ const Icon = styled.div`
 `;
 
 export default function AchievementMinimal(props) {
-  const { icon, name, description, game_name, game_id } = props.achievement;
+  const { icon, name, description, game_name, game_id, unlocked } =
+    props.achievement;
 
   const toolTipContent = (
     <ToolTipContent>
@@ -94,7 +109,13 @@ export default function AchievementMinimal(props) {
 
   return (
     <BlackToolTip content={toolTipContent}>
-      <Card image={icon}></Card>
+      <Card image={icon}>
+        {unlocked === 1 && (
+          <Completion completed={unlocked}>
+            <FaCheck />
+          </Completion>
+        )}
+      </Card>
     </BlackToolTip>
   );
 }
