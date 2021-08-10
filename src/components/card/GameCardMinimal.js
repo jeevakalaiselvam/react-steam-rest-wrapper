@@ -127,9 +127,10 @@ export default function GameCardMinimal(props) {
   } = props.game;
 
   const getRemainingForTarget = () => {
+    const completionTarget = _STORAGE_READ(COMPLETION_TARGET) ?? 80;
+
     return Math.floor(
-      ((_STORAGE_READ(COMPLETION_TARGET) ?? 80) / 100) *
-        total_achievements_count -
+      (completionTarget / 100) * total_achievements_count -
         completed_achievements_count
     );
   };
@@ -149,20 +150,16 @@ export default function GameCardMinimal(props) {
             <FaTrophy />
           </IconInner>
           <AchievementCount>
-            {/* {completion_percentage <
-              (_STORAGE_READ(COMPLETION_TARGET) ?? 80.0) &&
-              `${completed_achievements_count} / ${total_achievements_count}`} */}
-            {completion_percentage < (_STORAGE_READ(COMPLETION_TARGET) ?? 80) &&
+            {completion_percentage <
+              (Number(_STORAGE_READ(COMPLETION_TARGET)) ?? 80) &&
               getRemainingForTarget()}
 
             {completion_percentage >=
-              (_STORAGE_READ(COMPLETION_TARGET) ?? 80) && <FaCheck />}
+              (Number(_STORAGE_READ(COMPLETION_TARGET)) ?? 80) && <FaCheck />}
           </AchievementCount>
         </AchievementData>
-        {/* {completion_percentage < (_STORAGE_READ(COMPLETION_TARGET) ?? 80) && (
-          <ToGet>{getRemainingForTarget()} more..</ToGet>
-        )} */}
-        {completion_percentage >= (_STORAGE_READ(COMPLETION_TARGET) ?? 80) && (
+        {completion_percentage >=
+          Number(_STORAGE_READ(COMPLETION_TARGET) ?? 80) && (
           <Medal>
             <FaMedal />
           </Medal>
