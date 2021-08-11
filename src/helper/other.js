@@ -67,7 +67,16 @@ export const getDescForDate = (date) => {
 export const getAllAchievementsObtainedForDate = (achievements, date) => {
   const achivementsObtainedInSaidDate = [];
   achievements.map((achievement) => {
-    console.log(achievement);
+    if (achievement.unlocked_time_desc.includes(date)) {
+      achivementsObtainedInSaidDate.push(achievement);
+    }
   });
-  return achievements;
+
+  const sortedAchievementsByRecent = achivementsObtainedInSaidDate.sort(
+    (ach1, ach2) => {
+      return ach2.unlocked_time - ach1.unlocked_time;
+    }
+  );
+
+  return sortedAchievementsByRecent;
 };

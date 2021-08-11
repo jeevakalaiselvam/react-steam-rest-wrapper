@@ -6,12 +6,13 @@ import AchievementSidebar from "../components/card/AchievementSidebarNormal";
 
 const AchievementContainer = styled.div`
   width: 100%;
-  height: 100%;
   overflow: scroll;
+  max-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  padding-bottom: 4rem;
+  justify-content: flex-start;
 `;
 
 export default function HistoryPageRight(props) {

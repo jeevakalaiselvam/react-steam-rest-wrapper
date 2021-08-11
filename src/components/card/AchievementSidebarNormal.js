@@ -6,8 +6,9 @@ import { STEAM_HEADER_IMAGE } from "../../helper/endpoints";
 const CardContainer = styled.div`
   display: flex;
   flex-direction: row;
+  margin-top: 1rem;
   align-items: flex-start;
-  background-color: rgba(10, 17, 25);
+  background-color: rgba(10, 17, 25, 0.4);
   position: relative;
   justify-content: center;
   border-radius: 4px;
