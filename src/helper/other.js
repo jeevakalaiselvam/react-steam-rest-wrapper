@@ -103,11 +103,12 @@ export const getMedalCompletedGames = (gameInfo) => {
   const { total_games, completed_achievements, game_percentages } = gameInfo;
   let totalMedals = 0;
 
-  game_percentages.forEach((percentage) => {
-    if (percentage >= 80) {
-      totalMedals++;
-    }
-  });
+  game_percentages &&
+    game_percentages.forEach((percentage) => {
+      if (percentage >= Number(_STORAGE_READ(COMPLETION_TARGET) ?? 80)) {
+        totalMedals++;
+      }
+    });
   return totalMedals;
 };
 

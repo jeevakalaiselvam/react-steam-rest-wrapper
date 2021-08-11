@@ -96,7 +96,6 @@ export default function AllPageLeft() {
   useEffect(() => {
     const getAllGamesInfo = async () => {
       const gameInfoInnerResponse = await fetchGamesInfo();
-      console.log(gameInfoInnerResponse);
       setGameInfo((old) => gameInfoInnerResponse);
     };
     getAllGamesInfo();

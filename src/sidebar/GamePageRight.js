@@ -123,20 +123,29 @@ export default function GamePageRight(props) {
 
   return (
     <Container>
-      <ToGet>
-        <IconAndText>
-          <Trophy>
-            <FaTrophy />
-          </Trophy>
-          <Data>{toGet}</Data>
-        </IconAndText>
-        <Arrow>
-          <FaArrowRight />
-        </Arrow>
-        <Medal>
-          <FaMedal />
-        </Medal>
-      </ToGet>
+      {toGet > 0 && (
+        <ToGet>
+          <IconAndText>
+            <Trophy>
+              <FaTrophy />
+            </Trophy>
+            <Data>{toGet}</Data>
+          </IconAndText>
+          <Arrow>
+            <FaArrowRight />
+          </Arrow>
+          <Medal>
+            <FaMedal />
+          </Medal>
+        </ToGet>
+      )}
+      {toGet <= 0 && (
+        <ToGet>
+          <Medal>
+            <FaMedal />
+          </Medal>
+        </ToGet>
+      )}
       <Subheader>SELECT OPTIONS</Subheader>
       <RightMenuItem
         onClick={() => props.selectHandler(0)}
