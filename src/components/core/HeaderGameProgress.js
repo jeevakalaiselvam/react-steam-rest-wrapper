@@ -214,12 +214,6 @@ export default function HeaderGameProgress(props) {
           </Icon>
           <Data></Data>
         </IconSetGold>
-        {/* <IconSetGreen>
-          <Icon>
-            <FaGamepad />
-          </Icon>
-          <Data>{_STORAGE_READ(GAMEPAGE_HEADER_TOTAL)}</Data>
-        </IconSetGreen> */}
       </MiddleNav>
       <RightNav onClick={toggleNavRight}>
         {!navRightOpen && <FaEllipsisV />}

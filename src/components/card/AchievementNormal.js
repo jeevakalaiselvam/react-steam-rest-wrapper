@@ -126,9 +126,10 @@ const Completion = styled.div`
   color: white;
   justify-content: center;
   width: 100%;
-  font-size: 1rem;
-  background-color: rgba(10, 17, 25, 0.6);
+  color: #ffffff;
   height: 100%;
+  font-size: 1rem;
+  background-color: rgba(10, 17, 25, 0.5);
   opacity: ${(props) => (props.completed ? "1" : "0")};
 `;
 
