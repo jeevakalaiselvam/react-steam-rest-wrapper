@@ -20,7 +20,7 @@ const CardContainer = styled.div`
   }
 
   @media only screen and (min-width: 1361px) {
-    width: 48%;
+    width: 32%;
   }
   @media only screen and (max-width: 1360px) and (min-width: 1201px) {
     width: 48%;

@@ -126,7 +126,7 @@ export default function History() {
           />
         }
         leftSidebarWidth={"180px"}
-        rightSidebarWidth={achievements.length > 0 ? "400px" : "0px"}
+        rightSidebarWidth={"400px"}
         loading={loading}
       />
     </PageContainer>
