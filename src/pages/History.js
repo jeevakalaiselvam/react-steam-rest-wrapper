@@ -29,6 +29,7 @@ import { PAGINATION_GAMES_PER_PAGE } from "../helper/pagination";
 import HistoryContent from "../content/HistoryContent";
 import HistoryPageRight from "../sidebar/HistoryPageRight";
 import HeaderHistory from "../components/core/HeaderHistory";
+import { getAllAchievementsObtainedForDate } from "../helper/other";
 
 const PageContainer = styled.div`
   display: flex;
@@ -43,6 +44,7 @@ export default function History() {
   const [achievementsYear, setAchievementsYear] = useState(
     new Date().getFullYear()
   );
+  const [rightNavAchievements, setRightNavAchievements] = useState({});
   const [loading, setLoading] = useState(true);
   const { navRightOpen, setNavRightOpen } = useContext(GameContext);
   const [viewIndex, setViewIndex] = useState(
@@ -85,7 +87,19 @@ export default function History() {
 
   const showAchievementsForDate = (date) => {
     console.log(date);
-    openNavRight();
+    const achievementObtainedInDate = getAllAchievementsObtainedForDate(
+      achievements,
+      date
+    );
+    if (achievementObtainedInDate.length !== 0) {
+      console.log(
+        "SETTING STATE ACHIEVEMENTS RIGHT",
+        achievementObtainedInDate
+      );
+      setRightNavAchievements((old) => achievementObtainedInDate);
+      openNavRight();
+    } else {
+    }
   };
 
   return (
@@ -97,7 +111,11 @@ export default function History() {
       <Page
         leftSidebar={<AllPageLeft />}
         rightSidebar={
-          <HistoryPageRight viewHandler={viewHandler} viewIndex={viewIndex} />
+          <HistoryPageRight
+            viewHandler={viewHandler}
+            viewIndex={viewIndex}
+            achievements={rightNavAchievements}
+          />
         }
         content={
           <HistoryContent
@@ -108,7 +126,7 @@ export default function History() {
           />
         }
         leftSidebarWidth={"180px"}
-        rightSidebarWidth={achievements.length > 0 ? "300px" : "0px"}
+        rightSidebarWidth={achievements.length > 0 ? "400px" : "0px"}
         loading={loading}
       />
     </PageContainer>

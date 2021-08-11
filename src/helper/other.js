@@ -63,3 +63,11 @@ export const getDescForDate = (date) => {
   const items = date.split("-");
   return `${items[2]} ${month[items[1] - 1]}, ${items[0]}`;
 };
+
+export const getAllAchievementsObtainedForDate = (achievements, date) => {
+  const achivementsObtainedInSaidDate = [];
+  achievements.map((achievement) => {
+    console.log(achievement);
+  });
+  return achievements;
+};
