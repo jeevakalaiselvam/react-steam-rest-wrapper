@@ -9,12 +9,11 @@ const AchievementContainer = styled.div`
   overflow: scroll;
   display: flex;
   max-height: 100vh;
-  padding: 0rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   padding-bottom: 4rem;
-  justify-content: center;
+  justify-content: flex-start;
 `;
 
 export default function HistoryPageRight(props) {
