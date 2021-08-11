@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import GameCardNormal from "../components/card/GameCardNormal";
 import GameCardMinimal from "../components/card/GameCardMinimal";
-import { FaBackward, FaForward } from "react-icons/fa";
+import { FaBackward, FaForward, FaTrophy } from "react-icons/fa";
 import {
   HISTORY_PAGE_YEAR_SELECTED,
   PAGINATION_TOTAL_COUNT,
@@ -22,6 +22,8 @@ import {
   recent10Years,
   transformAchievementsToDate,
 } from "../helper/other";
+import BlackToolTip from "../components/other/BlackToolTip";
+import { Tooltip } from "@material-ui/core/Tooltip";
 
 const ContentContainer = styled.div`
   display: flex;
@@ -85,6 +87,7 @@ const YearSelect = styled.select`
 const DateBox = styled.div`
   width: 30px;
   height: 30px;
+  cursor: pointer;
   margin: 0.25rem;
 
   display: flex;
@@ -93,15 +96,63 @@ const DateBox = styled.div`
   background-color: rgba(10, 17, 25, 0.8);
 `;
 
+const TrophyCount = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const TrophyCountContainer = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+`;
+
+const Length = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin-left: 0.5rem;
+  justify-content: center;
+`;
+
+const Date = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin-left: 0.5rem;
+  justify-content: center;
+`;
+
+const NoData = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  color: #959da6;
+  justify-content: center;
+`;
+
+const Icon = styled.div`
+  display: flex;
+  color: #55aece;
+  font-size: 1.5rem;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+`;
+
 export default function HistoryContent(props) {
   const achievements = props.achievements;
   const yearProp = props.year;
 
-  const allDatesInYear = getDatesBetweenDates(yearProp);
+  const allDatesInYear = getDatesBetweenDates(yearProp).reverse();
   const achievementsForDate = transformAchievementsToDate(
     achievements,
     allDatesInYear
   );
+
   return (
     <ContentContainer>
       <YearContainer>
@@ -121,10 +172,29 @@ export default function HistoryContent(props) {
       <AchievementsContainer>
         {allDatesInYear.map((date) => {
           return (
-            <DateBox key={date.toString()}>
-              {achievementsForDate[date] && achievementsForDate[date].length}
-              {!achievementsForDate[date] && "0"}
-            </DateBox>
+            <BlackToolTip
+              content={
+                <TrophyCount>
+                  <Date>{date}</Date>
+                  {achievementsForDate[date] && (
+                    <TrophyCountContainer>
+                      <Icon>
+                        <FaTrophy />
+                      </Icon>
+                      <Length>{achievementsForDate[date].length}</Length>
+                    </TrophyCountContainer>
+                  )}
+                  {!achievementsForDate[date] && (
+                    <NoData>No Achievements</NoData>
+                  )}
+                </TrophyCount>
+              }
+            >
+              <DateBox key={date.toString()}>
+                {achievementsForDate[date] && achievementsForDate[date].length}
+                {!achievementsForDate[date] && "0"}
+              </DateBox>
+            </BlackToolTip>
           );
         })}
       </AchievementsContainer>

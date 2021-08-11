@@ -18,7 +18,7 @@ export const getDatesBetweenDates = (year = new Date().getFullYear()) => {
   let dates = [];
   //to avoid modifying the original date
   const theDate = startDate;
-  while (theDate <= endDate) {
+  while (theDate <= endDate && theDate <= new Date()) {
     let date = new Date(theDate);
     let day = "" + date.getDate();
     if (day.length === 1) day = `0${day}`;
