@@ -43,6 +43,7 @@ const Subheader = styled.div`
 const IconSetContainer = styled.div`
   display: flex;
   flex-direction: row;
+  opacity: ${(props) => (props.visible ? "1" : "0")};
   padding: 0.5rem;
   align-items: center;
   justify-content: center;
@@ -92,11 +93,14 @@ export default function AllPageLeft() {
       _STORAGE_READ(STORAGE_HEADER_TOTAL_ACHIEVEMENTS) ?? 0,
     perfect_games_count: _STORAGE_READ(STORAGE_HEADER_TOTAL_PERFECT_GAMES) ?? 0,
   });
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const getAllGamesInfo = async () => {
+      setLoading((old) => true);
       const gameInfoInnerResponse = await fetchGamesInfo();
       setGameInfo((old) => gameInfoInnerResponse);
+      setLoading((old) => false);
     };
     getAllGamesInfo();
   }, []);
@@ -106,7 +110,7 @@ export default function AllPageLeft() {
 
   return (
     <MainMenu>
-      <IconSetContainer>
+      <IconSetContainer visible={!loading}>
         <IconSetMedal>
           <DataMedal>{totalMedals}</DataMedal>
           <FaMedal />

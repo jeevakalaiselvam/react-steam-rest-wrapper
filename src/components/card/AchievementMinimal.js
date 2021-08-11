@@ -110,7 +110,15 @@ export default function AchievementMinimal(props) {
 
   return (
     <BlackToolTip content={toolTipContent}>
-      <Card image={icon}>
+      <Card
+        image={icon}
+        onClick={() => {
+          window.open(
+            `https://www.google.com/search?q=${game_name}+${name}+achievement`,
+            "_blank"
+          );
+        }}
+      >
         {unlocked === 1 && (
           <Completion completed={unlocked}>
             <FaCheck />

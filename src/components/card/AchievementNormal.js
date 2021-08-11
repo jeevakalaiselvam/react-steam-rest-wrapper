@@ -69,6 +69,7 @@ const InnerContainerBG = styled.div`
 const Icon = styled.div`
   width: 50px;
   height: 50px;
+  cursor: pointer;
   border-radius: 2px;
   background-image: url("${(props) => props.image}");
   background-repeat: no-repeat;
@@ -145,7 +146,14 @@ export default function AchievementNormal(props) {
   } = props.achievement;
 
   return (
-    <CardContainer>
+    <CardContainer
+      onClick={() => {
+        window.open(
+          `https://www.google.com/search?q=${game_name}+${name}+achievement`,
+          "_blank"
+        );
+      }}
+    >
       <InnerContainerBG></InnerContainerBG>
       <InnerContainer image={STEAM_HEADER_IMAGE(game_id)}></InnerContainer>
       <Icon image={icon}>
