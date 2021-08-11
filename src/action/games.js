@@ -128,3 +128,9 @@ export const fetchOverlayImages = async (
   ).data;
   return allImages;
 };
+
+export const fetAchievementsForYearRecentSorted = async (year) => {
+  const achievements = [];
+
+  return achievements;
+};

@@ -104,6 +104,10 @@ const Button = styled.button`
   }
 `;
 
+const Per = styled.div`
+  margin-left: 0.5rem;
+`;
+
 const Row = styled.div`
   width: 100%;
   padding: 2rem;
@@ -170,6 +174,7 @@ export default function SettingsContent(props) {
               }}
               placeholder={_STORAGE_READ(COMPLETION_TARGET) ?? 80}
             />
+            <Per>%</Per>
           </Column>
           <Column>
             <Button
