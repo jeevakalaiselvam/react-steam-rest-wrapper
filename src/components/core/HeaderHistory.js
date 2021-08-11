@@ -106,6 +106,7 @@ export default function HeaderHistory(props) {
     ((_STORAGE_READ(COMPLETION_TARGET) ?? 80) / 100) * total - completed
   );
   const yearProp = props.year;
+  const [loading, setLoading] = useState(false);
 
   const { navLeftOpen, setNavLeftOpen, navRightOpen, setNavRightOpen } =
     useContext(GameContext);

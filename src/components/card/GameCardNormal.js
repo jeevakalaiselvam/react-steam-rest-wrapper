@@ -138,7 +138,7 @@ export default function GameCardNormal(props) {
   const getRemainingForTarget = () => {
     const completionTarget = _STORAGE_READ(COMPLETION_TARGET) ?? 80;
 
-    return Math.floor(
+    return Math.ceil(
       (completionTarget / 100) * total_achievements_count -
         completed_achievements_count
     );

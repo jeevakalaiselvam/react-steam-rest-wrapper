@@ -123,7 +123,7 @@ const Icon = styled.div`
 `;
 
 const IconTrophy = styled.div`
-  font-size: 1.7rem;
+  font-size: 1.6rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -150,6 +150,9 @@ export default function HeaderGameProgress(props) {
   const completed = _STORAGE_READ(GAMEPAGE_HEADER_COMPLETED);
   const remaining = Math.ceil(
     ((_STORAGE_READ(COMPLETION_TARGET) ?? 80) / 100) * total - completed
+  );
+  console.log(
+    `TOTAL -> ${total} COMPLETED ${completed} REMAINING -> ${remaining}`
   );
 
   const { navLeftOpen, setNavLeftOpen, navRightOpen, setNavRightOpen } =
