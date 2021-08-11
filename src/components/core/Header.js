@@ -135,6 +135,7 @@ export default function Header() {
       _STORAGE_READ(STORAGE_HEADER_TOTAL_ACHIEVEMENTS) ?? 0,
     perfect_games_count: _STORAGE_READ(STORAGE_HEADER_TOTAL_PERFECT_GAMES) ?? 0,
   });
+  const [loading, setLoading] = useState(false);
 
   const { navLeftOpen, setNavLeftOpen, navRightOpen, setNavRightOpen } =
     useContext(GameContext);
@@ -142,8 +143,10 @@ export default function Header() {
   //When the header is rendered for the first time, Get info from GAMESINFO backend api
   useEffect(() => {
     const getAllGamesInfo = async () => {
+      setLoading((old) => true);
       const gameInfoInnerResponse = await fetchGamesInfo();
       setGameInfo((old) => gameInfoInnerResponse);
+      setLoading((old) => false);
     };
     getAllGamesInfo();
   }, []);
@@ -168,24 +171,28 @@ export default function Header() {
         {navLeftOpen && <FaTimes />}
       </LeftNav>
       <MiddleNav>
-        <IconSetGold>
-          <Icon>
-            <FaMedal />
-          </Icon>
-          <Data>{totalMedals}</Data>
-        </IconSetGold>
-        <IconSetBlue>
-          <Icon>
-            <FaTrophy />
-          </Icon>
-          <Data>{totalAchievements}</Data>
-        </IconSetBlue>
-        <IconSetGreen>
-          <Icon>
-            <FaGamepad />
-          </Icon>
-          <Data>{gameInfo.total_games}</Data>
-        </IconSetGreen>
+        {!loading && (
+          <>
+            <IconSetGold>
+              <Icon>
+                <FaMedal />
+              </Icon>
+              <Data>{totalMedals}</Data>
+            </IconSetGold>
+            <IconSetBlue>
+              <Icon>
+                <FaTrophy />
+              </Icon>
+              <Data>{totalAchievements}</Data>
+            </IconSetBlue>
+            <IconSetGreen>
+              <Icon>
+                <FaGamepad />
+              </Icon>
+              <Data>{gameInfo.total_games}</Data>
+            </IconSetGreen>
+          </>
+        )}
       </MiddleNav>
       <RightNav onClick={toggleNavRight}>
         {!navRightOpen && <FaEllipsisV />}
