@@ -7,10 +7,11 @@ const CardContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin-top: 1rem;
-  align-items: flex-start;
-  background-color: rgba(10, 17, 25, 0.4);
+  align-items: center;
+  background-color: rgba(122, 132, 148, 0.05);
   position: relative;
   justify-content: center;
+  align-self: center;
   border-radius: 4px;
   margin: 4px;
   padding: 0.5rem 1rem;
@@ -19,8 +20,7 @@ const CardContainer = styled.div`
   &:hover {
     border: 1px solid #00000044;
   }
-
-  width: 96%;
+  width: 100%;
 `;
 
 const InnerContainer = styled.div`
@@ -108,6 +108,7 @@ const Completion = styled.div`
   background-color: rgba(10, 17, 25, 0.6);
   height: 100%;
   opacity: ${(props) => (props.completed ? "1" : "0")};
+  opacity: 0;
 `;
 
 export default function AchievementSidebarNormal(props) {
