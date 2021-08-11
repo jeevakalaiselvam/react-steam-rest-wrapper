@@ -86,10 +86,7 @@ export const fetchAchievementsForGame = async (
   const pageAddedURL = includePageQuery(sortAddedURL, achievementPage);
   achievementsResponse = (await axios.get(pageAddedURL)).data;
   _STORAGE_WRITE(PAGINATION_TOTAL_COUNT, achievementsResponse.total);
-  console.log(
-    "ACHIEVEMENT COUNT -> ",
-    achievementsResponse.achievements.length
-  );
+
   const hiddenAchievements = (
     await axios.get(
       `${process.env.REACT_APP_API_ENDPOINT}achievements/hidden?gameid=${gameId}`
@@ -130,7 +127,11 @@ export const fetchOverlayImages = async (
 };
 
 export const fetAchievementsForYearRecentSorted = async (year) => {
-  const achievements = [];
+  const allAchievementsForYear = (
+    await axios.get(
+      `${process.env.REACT_APP_API_ENDPOINT}achievements/history?year=${year}`
+    )
+  ).data;
 
-  return achievements;
+  return allAchievementsForYear;
 };

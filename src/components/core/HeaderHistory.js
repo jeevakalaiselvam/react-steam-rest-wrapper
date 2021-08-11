@@ -25,6 +25,7 @@ import {
   _STORAGE_READ,
   _STORAGE_WRITE,
 } from "../../helper/storage";
+import { recent10Years } from "../../helper/other";
 
 // background-image: linear-gradient(
 //   180deg,
@@ -86,71 +87,24 @@ const MiddleNav = styled.div`
   flex-direction: row;
 `;
 
-const IconSetGold = styled.div`
-  display: flex;
-  align-items: center;
-  text-shadow: 0 0 6px #da8c4a;
-  color: #fecc09;
-  text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
-  justify-content: center;
-  flex-direction: row;
+const YearSelect = styled.select`
+  width: 100px;
+  background-color: rgba(10, 17, 25, 0.2);
+  outline: none;
+  padding: 0.5rem;
+  border: none;
+  color: #fefefe;
+  justify-self: flex-end;
 `;
-const IconSetBlue = styled.div`
-  display: flex;
-  margin-left: 1.5rem;
-  color: #55aece;
-  margin-right: 1.5rem;
-  text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-`;
-const IconSetGreen = styled.div`
-  display: flex;
-  align-items: center;
-  color: #a5c93a;
-  margin-right: 1.5rem;
-  text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
-  justify-content: center;
-  flex-direction: row;
-`;
+const YearOption = styled.option``;
 
-const Icon = styled.div`
-  font-size: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const IconTrophy = styled.div`
-  font-size: 1.7rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const CompletedIcon = styled.div`
-  font-size: 1.5rem;
-  display: flex;
-  margin-left: 1rem;
-  align-items: center;
-  justify-content: center;
-`;
-
-const Data = styled.div`
-  display: flex;
-  margin-left: 0.5rem;
-  font-size: 1rem;
-  align-items: center;
-  justify-content: center;
-`;
-
-export default function HeaderGameProgress(props) {
+export default function HeaderHistory(props) {
   const total = _STORAGE_READ(GAMEPAGE_HEADER_TOTAL);
   const completed = _STORAGE_READ(GAMEPAGE_HEADER_COMPLETED);
   const remaining = Math.ceil(
     ((_STORAGE_READ(COMPLETION_TARGET) ?? 80) / 100) * total - completed
   );
+  const yearProp = props.year;
 
   const { navLeftOpen, setNavLeftOpen, navRightOpen, setNavRightOpen } =
     useContext(GameContext);
@@ -175,33 +129,17 @@ export default function HeaderGameProgress(props) {
         {navLeftOpen && <FaTimes />}
       </LeftNav>
       <MiddleNav>
-        {remaining > 0 && (
-          <IconSetBlue>
-            <IconTrophy>
-              <FaTrophy />
-            </IconTrophy>
-            <Data>{remaining}</Data>
-          </IconSetBlue>
-        )}
-        {remaining > 0 && (
-          <IconSetGreen>
-            <Icon>
-              <FaLongArrowAltRight />
-            </Icon>
-          </IconSetGreen>
-        )}
-        <IconSetGold>
-          <Icon>
-            <FaMedal />
-          </Icon>
-          <Data></Data>
-        </IconSetGold>
-        {/* <IconSetGreen>
-          <Icon>
-            <FaGamepad />
-          </Icon>
-          <Data>{_STORAGE_READ(GAMEPAGE_HEADER_TOTAL)}</Data>
-        </IconSetGreen> */}
+        <YearSelect onChange={(e) => props.yearChangedHandler(e.target.value)}>
+          {recent10Years().map((year) => (
+            <option
+              key={year}
+              value={year}
+              selected={year === +yearProp ? "selected" : ""}
+            >
+              {year}
+            </option>
+          ))}
+        </YearSelect>
       </MiddleNav>
       <RightNav onClick={toggleNavRight}>
         {!navRightOpen && <FaEllipsisV />}

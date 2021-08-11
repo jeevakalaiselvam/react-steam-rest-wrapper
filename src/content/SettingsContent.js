@@ -180,7 +180,6 @@ export default function SettingsContent(props) {
             <Button
               onClick={(e) => {
                 _STORAGE_WRITE(COMPLETION_TARGET, targetPercentage);
-                console.log("SETTING COMPLETION -> ", targetPercentage);
               }}
             >
               SAVE

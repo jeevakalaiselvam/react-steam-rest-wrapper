@@ -28,6 +28,7 @@ import {
 import { PAGINATION_GAMES_PER_PAGE } from "../helper/pagination";
 import HistoryContent from "../content/HistoryContent";
 import HistoryPageRight from "../sidebar/HistoryPageRight";
+import HeaderHistory from "../components/core/HeaderHistory";
 
 const PageContainer = styled.div`
   display: flex;
@@ -40,7 +41,7 @@ const PageContainer = styled.div`
 export default function History() {
   const [achievements, setAchievements] = useState({});
   const [achievementsYear, setAchievementsYear] = useState(
-    new Date().getFullYear()
+    new Date().getFullYear().toString()
   );
   const [loading, setLoading] = useState(true);
   const { setNavRightOpen } = useContext(GameContext);
@@ -53,15 +54,14 @@ export default function History() {
   };
 
   useEffect(() => {
-    const getAllAchievementsInYearSortedRecent = async (achievementsYear) => {
+    const getAllAchievementsInYearSortedRecent = async (year) => {
       const achievementsForSaidYear = await fetAchievementsForYearRecentSorted(
-        achievementsYear
+        year
       );
       setAchievements((old) => achievementsForSaidYear);
       setLoading((old) => false);
     };
     setLoading((old) => true);
-    console.log(`EFFECT getting HISTORYPAGE -> YEAR ${achievementsYear}`);
     getAllAchievementsInYearSortedRecent(achievementsYear);
     _STORAGE_WRITE(CURRENT_PAGE, HISTORY_PAGE_INDEX);
   }, [achievementsYear, viewIndex]);
@@ -72,17 +72,31 @@ export default function History() {
     toggleNavRight();
   };
 
+  const yearChangedHandler = (year) => {
+    setAchievementsYear((old) => year);
+    console.log("YEAR");
+  };
+
   return (
     <PageContainer>
-      <Header />
+      <HeaderHistory
+        yearChangedHandler={yearChangedHandler}
+        year={achievementsYear}
+      />
       <Page
         leftSidebar={<AllPageLeft />}
         rightSidebar={
           <HistoryPageRight viewHandler={viewHandler} viewIndex={viewIndex} />
         }
-        content={<HistoryContent achievements={achievements} />}
+        content={
+          <HistoryContent
+            year={achievementsYear}
+            achievements={achievements}
+            yearChangedHandler={yearChangedHandler}
+          />
+        }
         leftSidebarWidth={"180px"}
-        rightSidebarWidth={"180px"}
+        rightSidebarWidth={achievements.length > 0 ? "180px" : "0px"}
         loading={loading}
       />
     </PageContainer>

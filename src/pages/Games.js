@@ -61,9 +61,7 @@ export default function Games() {
       setLoading((old) => false);
     };
     setLoading((old) => true);
-    console.log(
-      `EFFECT getting GAMESPAGE -> SELECT=${selectIndex} SORT=${sortIndex} VIEW=${viewIndex}`
-    );
+
     getAllGames(sortIndex, viewIndex, selectIndex);
     _STORAGE_WRITE(CURRENT_PAGE, GAMES_PAGE_INDEX);
   }, [sortIndex, viewIndex, gamesPage, selectIndex]);

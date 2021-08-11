@@ -139,7 +139,6 @@ export default function GameCardMinimal(props) {
     <Card
       image={image}
       onClick={() => {
-        console.log(props.game);
         _STORAGE_WRITE(SELECTED_GAME, props.game.id);
         window.location.href = "/game";
       }}

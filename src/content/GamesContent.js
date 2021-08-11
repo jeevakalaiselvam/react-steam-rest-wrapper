@@ -70,7 +70,6 @@ export default function GamesContent(props) {
   return (
     <ContentContainer>
       <ContainerInner>
-        {console.log("GAMEPAGE VIEW INDEX -> ", props.viewIndex)}
         {games.map((game) =>
           props.viewIndex === 0 ? (
             <GameCardMinimal game={game} key={game.id} />
