@@ -7,6 +7,7 @@ import Game from "./pages/Game";
 import Games from "./pages/Games";
 import History from "./pages/History";
 import Settings from "./pages/Settings";
+import Milestone from "./pages/Milestone";
 
 export default function App() {
   const [navLeftOpen, setNavLeftOpen] = useState(false);
@@ -36,6 +37,9 @@ export default function App() {
             </Route>
             <Route exact path='/backlog'>
               <Backlog />
+            </Route>
+            <Route exact path='/milestone'>
+              <Milestone />
             </Route>
             <Route exact path='/settings'>
               <Settings />

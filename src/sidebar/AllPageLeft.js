@@ -5,6 +5,7 @@ import {
   FaGamepad,
   FaMedal,
   FaSlidersH,
+  FaStar,
   FaTrophy,
 } from "react-icons/fa";
 import MenuItemLink from "../components/core/MenuItemLink";
@@ -15,6 +16,7 @@ import {
   CURRENT_PAGE,
   GAMES_PAGE_INDEX,
   HISTORY_PAGE_INDEX,
+  MILESTONE_PAGE_INDEX,
   SETTINGS_PAGE_INDEX,
   STORAGE_HEADER_AVERAGE_COMPLETION,
   STORAGE_HEADER_TOTAL_ACHIEVEMENTS,
@@ -160,6 +162,16 @@ export default function AllPageLeft() {
           window.location.href = `/${_STORAGE_READ(CURRENT_PAGE)}`;
         }}
         selected={_STORAGE_READ(CURRENT_PAGE) === BACKLOG_PAGE_INDEX}
+      />
+      <MenuItemLink
+        icon={<FaStar />}
+        title={"Milestones"}
+        to={"/milestone"}
+        navItemClicked={() => {
+          _STORAGE_WRITE(CURRENT_PAGE, MILESTONE_PAGE_INDEX);
+          window.location.href = `/${_STORAGE_READ(CURRENT_PAGE)}`;
+        }}
+        selected={_STORAGE_READ(CURRENT_PAGE) === MILESTONE_PAGE_INDEX}
       />
       <MenuItemLink
         icon={<FaSlidersH />}
