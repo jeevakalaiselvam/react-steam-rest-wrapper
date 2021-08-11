@@ -44,10 +44,16 @@ export default function History() {
     new Date().getFullYear()
   );
   const [loading, setLoading] = useState(true);
-  const { setNavRightOpen } = useContext(GameContext);
+  const { navRightOpen, setNavRightOpen } = useContext(GameContext);
   const [viewIndex, setViewIndex] = useState(
     Number(_STORAGE_READ(HISTORYPAGE_VIEW))
   );
+
+  const openNavRight = () => {
+    if (!navRightOpen) {
+      setNavRightOpen((old) => true);
+    }
+  };
 
   const toggleNavRight = () => {
     setNavRightOpen((navState) => !navState);
@@ -77,6 +83,11 @@ export default function History() {
     console.log("YEAR");
   };
 
+  const showAchievementsForDate = (date) => {
+    console.log(date);
+    openNavRight();
+  };
+
   return (
     <PageContainer>
       <HeaderHistory
@@ -93,10 +104,11 @@ export default function History() {
             achievements={achievements}
             yearChangedHandler={yearChangedHandler}
             year={achievementsYear}
+            showAchievementsForDate={showAchievementsForDate}
           />
         }
         leftSidebarWidth={"180px"}
-        rightSidebarWidth={achievements.length > 0 ? "400px" : "0px"}
+        rightSidebarWidth={achievements.length > 0 ? "300px" : "0px"}
         loading={loading}
       />
     </PageContainer>

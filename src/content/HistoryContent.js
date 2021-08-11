@@ -98,6 +98,7 @@ const DateBox = styled.div`
 
 const TrophyCount = styled.div`
   display: flex;
+  padding: 0.5rem;
   align-items: center;
   flex-direction: column;
   justify-content: center;
@@ -105,6 +106,7 @@ const TrophyCount = styled.div`
 
 const TrophyCountContainer = styled.div`
   display: flex;
+  margin-top: 0.5rem;
   align-items: center;
   flex-direction: row;
   justify-content: center;
@@ -181,6 +183,7 @@ export default function HistoryContent(props) {
         {allDatesInYear.map((date) => {
           return (
             <BlackToolTip
+              key={date.toString()}
               content={
                 <TrophyCount>
                   <Date>{getDescForDate(date)}</Date>
@@ -198,7 +201,12 @@ export default function HistoryContent(props) {
                 </TrophyCount>
               }
             >
-              <DateBox key={date.toString()}>
+              <DateBox
+                key={date.toString()}
+                onClick={() => {
+                  props.showAchievementsForDate(date);
+                }}
+              >
                 {achievementsForDate[date] && (
                   <NotZero>{achievementsForDate[date].length}</NotZero>
                 )}
