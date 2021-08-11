@@ -41,7 +41,6 @@ export const transformAchievementsToDate = (achievements, dates) => {
     }
     allDateObjects[achievement.unlocked_time_desc].push(achievement);
   });
-  console.log(allDateObjects);
 
   return allDateObjects;
 };

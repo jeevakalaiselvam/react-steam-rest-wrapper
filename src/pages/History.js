@@ -41,7 +41,7 @@ const PageContainer = styled.div`
 export default function History() {
   const [achievements, setAchievements] = useState({});
   const [achievementsYear, setAchievementsYear] = useState(
-    new Date().getFullYear().toString()
+    new Date().getFullYear()
   );
   const [loading, setLoading] = useState(true);
   const { setNavRightOpen } = useContext(GameContext);
@@ -90,13 +90,13 @@ export default function History() {
         }
         content={
           <HistoryContent
-            year={achievementsYear}
             achievements={achievements}
             yearChangedHandler={yearChangedHandler}
+            year={achievementsYear}
           />
         }
         leftSidebarWidth={"180px"}
-        rightSidebarWidth={achievements.length > 0 ? "180px" : "0px"}
+        rightSidebarWidth={achievements.length > 0 ? "400px" : "0px"}
         loading={loading}
       />
     </PageContainer>

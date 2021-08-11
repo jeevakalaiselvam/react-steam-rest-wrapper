@@ -27,6 +27,8 @@ export const SETTINGS_PAGE_INDEX = "settings";
 export const BACKLOG_PAGE_INDEX = "backlog";
 export const HISTORY_PAGE_INDEX = "history";
 
+export const HISTORY_PAGE_YEAR_SELECTED = "HISTORY_PAGE_YEAR_SELECTED";
+
 ///ALL STORAGE RELATED FUNCTIONS
 
 export const getCompletionTarget = () => {

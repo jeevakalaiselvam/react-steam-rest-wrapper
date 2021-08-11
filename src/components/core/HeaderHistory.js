@@ -18,6 +18,7 @@ import {
   GAMEPAGE_HEADER_COMPLETED,
   GAMEPAGE_HEADER_REMAINING,
   GAMEPAGE_HEADER_TOTAL,
+  HISTORY_PAGE_YEAR_SELECTED,
   STORAGE_HEADER_AVERAGE_COMPLETION,
   STORAGE_HEADER_TOTAL_ACHIEVEMENTS,
   STORAGE_HEADER_TOTAL_GAMES,
@@ -129,13 +130,14 @@ export default function HeaderHistory(props) {
         {navLeftOpen && <FaTimes />}
       </LeftNav>
       <MiddleNav>
-        <YearSelect onChange={(e) => props.yearChangedHandler(e.target.value)}>
+        <YearSelect
+          onChange={(e) => {
+            props.yearChangedHandler(e.target.value);
+          }}
+          defaultValue={yearProp}
+        >
           {recent10Years().map((year) => (
-            <option
-              key={year}
-              value={year}
-              defaultValue={year === +yearProp ? "selected" : ""}
-            >
+            <option key={year} value={year}>
               {year}
             </option>
           ))}

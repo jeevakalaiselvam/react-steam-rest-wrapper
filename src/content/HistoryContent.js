@@ -4,9 +4,11 @@ import GameCardNormal from "../components/card/GameCardNormal";
 import GameCardMinimal from "../components/card/GameCardMinimal";
 import { FaBackward, FaForward } from "react-icons/fa";
 import {
+  HISTORY_PAGE_YEAR_SELECTED,
   PAGINATION_TOTAL_COUNT,
   STORAGE_HEADER_TOTAL_GAMES,
   _STORAGE_READ,
+  _STORAGE_WRITE,
 } from "../helper/storage";
 import {
   PAGINATION_ACHIEVEMENTS_PER_PAGE,
@@ -26,10 +28,8 @@ const ContentContainer = styled.div`
   width: 100%;
   justify-content: flex-start;
   flex-direction: column;
-  overflow: scroll;
   scrollbar-width: thin;
   align-items: flex-start;
-  flex-wrap: wrap;
   padding-bottom: 1rem;
 
   @media only screen and (max-width: 840px) {
@@ -41,7 +41,7 @@ const ContainerInner = styled.div`
   display: flex;
   width: 100%;
   justify-self: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
   overflow: scroll;
   height: 100vh;
   flex-direction: column;
@@ -49,8 +49,9 @@ const ContainerInner = styled.div`
 `;
 
 const YearContainer = styled.div`
-  width: 100%;
   padding: 1rem;
+  width: 100%;
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -58,6 +59,17 @@ const YearContainer = styled.div`
   @media only screen and (max-width: 840px) {
     display: none;
   }
+`;
+
+const AchievementsContainer = styled.div`
+  padding: 0.5rem;
+  display: flex;
+  width: 100%;
+  flex: 1;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 `;
 
 const YearSelect = styled.select`
@@ -69,21 +81,15 @@ const YearSelect = styled.select`
   color: #fefefe;
   justify-self: flex-end;
 `;
-const AchievementsContainer = styled.div`
-  flex: 1;
-  padding: 0.5rem;
-  display: flex;
-  height: 100%;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-`;
 
 const DateBox = styled.div`
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   margin: 0.25rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: rgba(10, 17, 25, 0.8);
 `;
 
@@ -91,43 +97,37 @@ export default function HistoryContent(props) {
   const achievements = props.achievements;
   const yearProp = props.year;
 
-  const allDatesInYear = getDatesBetweenDates();
+  const allDatesInYear = getDatesBetweenDates(yearProp);
   const achievementsForDate = transformAchievementsToDate(
     achievements,
     allDatesInYear
   );
-  console.log("DATES -> ", allDatesInYear);
-  console.log("ACHIEVEMENTS -> ", achievementsForDate);
-
   return (
     <ContentContainer>
-      <ContainerInner>
-        <YearContainer>
-          <YearSelect
-            onChange={(e) => props.yearChangedHandler(e.target.value)}
-          >
-            {recent10Years().map((year) => (
-              <option
-                key={year}
-                value={year}
-                defaultValue={year === +yearProp ? "selected" : ""}
-              >
-                {year}
-              </option>
-            ))}
-          </YearSelect>
-        </YearContainer>
-        <AchievementsContainer>
-          {allDatesInYear.map((date) => {
-            return (
-              <DateBox key={date.toString()}>
-                {achievementsForDate[date] && achievementsForDate[date].length}
-                {!achievementsForDate[date] && "0"}
-              </DateBox>
-            );
-          })}
-        </AchievementsContainer>
-      </ContainerInner>
+      <YearContainer>
+        <YearSelect
+          onChange={(e) => {
+            props.yearChangedHandler(e.target.value);
+          }}
+          defaultValue={yearProp}
+        >
+          {recent10Years().map((year) => (
+            <option key={year} value={year}>
+              {year}
+            </option>
+          ))}
+        </YearSelect>
+      </YearContainer>
+      <AchievementsContainer>
+        {allDatesInYear.map((date) => {
+          return (
+            <DateBox key={date.toString()}>
+              {achievementsForDate[date] && achievementsForDate[date].length}
+              {!achievementsForDate[date] && "0"}
+            </DateBox>
+          );
+        })}
+      </AchievementsContainer>
     </ContentContainer>
   );
 }
