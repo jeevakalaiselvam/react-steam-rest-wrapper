@@ -67,6 +67,32 @@ export const fetchGamesInfo = async () => {
   return gamesInfo;
 };
 
+export const fetchGameInfo = async (gameId) => {
+  let gamesInfo = {};
+  gamesInfo = (
+    await axios.get(
+      `${process.env.REACT_APP_API_ENDPOINT}game/info?gameid=${gameId}`
+    )
+  ).data;
+
+  //Store data in local storage
+  storeHeadInfoLocalStorage(gamesInfo);
+
+  return gamesInfo;
+};
+
+export const fetchRemainingForGame = async () => {
+  let gamesInfo = {};
+  gamesInfo = (
+    await axios.get(`${process.env.REACT_APP_API_ENDPOINT}games/info`)
+  ).data;
+
+  //Store data in local storage
+  storeHeadInfoLocalStorage(gamesInfo);
+
+  return gamesInfo;
+};
+
 export const fetchAchievementsBacklog = async (
   sortOrder,
   viewOrder,

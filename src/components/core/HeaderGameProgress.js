@@ -12,12 +12,13 @@ import {
   FaTrophy,
 } from "react-icons/fa";
 import { GameContext } from "../../context/GameContext";
-import { fetchGamesInfo } from "../../action/games";
+import { fetchGameInfo, fetchGamesInfo } from "../../action/games";
 import {
   COMPLETION_TARGET,
   GAMEPAGE_HEADER_COMPLETED,
   GAMEPAGE_HEADER_REMAINING,
   GAMEPAGE_HEADER_TOTAL,
+  SELECTED_GAME,
   STORAGE_HEADER_AVERAGE_COMPLETION,
   STORAGE_HEADER_TOTAL_ACHIEVEMENTS,
   STORAGE_HEADER_TOTAL_GAMES,
@@ -146,20 +147,28 @@ const Data = styled.div`
 `;
 
 export default function HeaderGameProgress(props) {
-  const total = _STORAGE_READ(GAMEPAGE_HEADER_TOTAL);
-  const completed = _STORAGE_READ(GAMEPAGE_HEADER_COMPLETED);
-  const remaining = Math.ceil(
-    ((_STORAGE_READ(COMPLETION_TARGET) ?? 80) / 100) * total - completed
-  );
-  console.log(
-    `TOTAL -> ${total} COMPLETED ${completed} REMAINING -> ${remaining}`
-  );
-
+  const [gameInfo, setGameInfo] = useState({
+    playtime_minutes: 0,
+    total_achievements_count: 0,
+    completed_achievements_count: 0,
+    completion_percentage: 0,
+  });
+  const [loading, setLoading] = useState(false);
   const { navLeftOpen, setNavLeftOpen, navRightOpen, setNavRightOpen } =
     useContext(GameContext);
 
   //When the header is rendered for the first time, Get info from GAMESINFO backend api
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const getGameInfo = async () => {
+      setLoading((old) => true);
+      const gameInfoInnerResponse = await fetchGameInfo(
+        _STORAGE_READ(SELECTED_GAME)
+      );
+      setGameInfo((old) => gameInfoInnerResponse);
+      setLoading((old) => false);
+    };
+    getGameInfo();
+  }, []);
 
   //Toggle left navigation drawer state
   const toggleNavLeft = () => {
@@ -170,6 +179,12 @@ export default function HeaderGameProgress(props) {
   const toggleNavRight = () => {
     setNavRightOpen((navState) => !navState);
   };
+
+  const remaining = Math.ceil(
+    (_STORAGE_READ(COMPLETION_TARGET) / 100) *
+      gameInfo.total_achievements_count -
+      gameInfo.completed_achievements_count
+  );
 
   return (
     <HeaderContainer>
