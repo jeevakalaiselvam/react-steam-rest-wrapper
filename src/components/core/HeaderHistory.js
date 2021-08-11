@@ -134,7 +134,7 @@ export default function HeaderHistory(props) {
             <option
               key={year}
               value={year}
-              selected={year === +yearProp ? "selected" : ""}
+              defaultValue={year === +yearProp ? "selected" : ""}
             >
               {year}
             </option>

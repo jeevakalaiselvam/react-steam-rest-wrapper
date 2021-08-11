@@ -14,13 +14,17 @@ import {
 } from "../helper/pagination";
 import AchievementMinimal from "../components/card/AchievementMinimal";
 import AchievementNormal from "../components/card/AchievementNormal";
-import { recent10Years } from "../helper/other";
+import {
+  generateDatesInAYear,
+  getDatesBetweenDates,
+  recent10Years,
+  transformAchievementsToDate,
+} from "../helper/other";
 
 const ContentContainer = styled.div`
   display: flex;
   width: 100%;
-  min-height: 100vh;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-direction: column;
   overflow: scroll;
   scrollbar-width: thin;
@@ -39,6 +43,7 @@ const ContainerInner = styled.div`
   justify-self: flex-start;
   justify-content: center;
   overflow: scroll;
+  height: 100vh;
   flex-direction: column;
   flex-wrap: wrap;
 `;
@@ -66,13 +71,31 @@ const YearSelect = styled.select`
 `;
 const AchievementsContainer = styled.div`
   flex: 1;
-  background-color: gray;
+  padding: 0.5rem;
+  display: flex;
+  height: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+`;
+
+const DateBox = styled.div`
+  width: 20px;
+  height: 20px;
+  margin: 0.25rem;
+  background-color: rgba(10, 17, 25, 0.8);
 `;
 
 export default function HistoryContent(props) {
   const achievements = props.achievements;
   const yearProp = props.year;
-  console.log(yearProp);
+
+  const allDatesInYear = getDatesBetweenDates();
+  const achievementsTransformedForEachDate = transformAchievementsToDate(
+    achievements,
+    allDatesInYear
+  );
 
   return (
     <ContentContainer>
@@ -85,14 +108,25 @@ export default function HistoryContent(props) {
               <option
                 key={year}
                 value={year}
-                selected={year === +yearProp ? "selected" : ""}
+                defaultValue={year === +yearProp ? "selected" : ""}
               >
                 {year}
               </option>
             ))}
           </YearSelect>
         </YearContainer>
-        <AchievementsContainer></AchievementsContainer>
+        <AchievementsContainer>
+          {/* {allDatesInYear.map((date) => {
+            const day = `${date.getFullYear()}-${
+              date.getMonth() + 1
+            }-${date.getDate()}`;
+            return (
+              <DateBox key={date.toString()}>
+                {getTotalCountForDate(achievements)}
+              </DateBox>
+            );
+          })} */}
+        </AchievementsContainer>
       </ContainerInner>
     </ContentContainer>
   );
