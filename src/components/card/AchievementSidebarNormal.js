@@ -62,6 +62,7 @@ const Data = styled.div`
 `;
 const Misc = styled.div`
   display: flex;
+  align-self: flex-start;
   justify-self: flex-start;
   flex-direction: row;
 `;
