@@ -92,10 +92,12 @@ export default function HistoryContent(props) {
   const yearProp = props.year;
 
   const allDatesInYear = getDatesBetweenDates();
-  const achievementsTransformedForEachDate = transformAchievementsToDate(
+  const achievementsForDate = transformAchievementsToDate(
     achievements,
     allDatesInYear
   );
+  console.log("DATES -> ", allDatesInYear);
+  console.log("ACHIEVEMENTS -> ", achievementsForDate);
 
   return (
     <ContentContainer>
@@ -116,16 +118,14 @@ export default function HistoryContent(props) {
           </YearSelect>
         </YearContainer>
         <AchievementsContainer>
-          {/* {allDatesInYear.map((date) => {
-            const day = `${date.getFullYear()}-${
-              date.getMonth() + 1
-            }-${date.getDate()}`;
+          {allDatesInYear.map((date) => {
             return (
               <DateBox key={date.toString()}>
-                {getTotalCountForDate(achievements)}
+                {achievementsForDate[date] && achievementsForDate[date].length}
+                {!achievementsForDate[date] && "0"}
               </DateBox>
             );
-          })} */}
+          })}
         </AchievementsContainer>
       </ContainerInner>
     </ContentContainer>

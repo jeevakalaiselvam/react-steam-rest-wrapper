@@ -19,20 +19,22 @@ export const getDatesBetweenDates = (year = new Date().getFullYear()) => {
   //to avoid modifying the original date
   const theDate = startDate;
   while (theDate <= endDate) {
-    const date = new Date(theDate);
-    dates = [
-      ...dates,
-      `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`,
-    ];
+    let date = new Date(theDate);
+    let day = "" + date.getDate();
+    if (day.length === 1) day = `0${day}`;
+    let month = "" + (date.getMonth() + 1);
+    if (month.length === 1) month = `0${month}`;
+    let year = date.getFullYear();
+    dates = [...dates, `${year}-${month}-${day}`];
     theDate.setDate(theDate.getDate() + 1);
   }
+
   return dates;
 };
 
 export const transformAchievementsToDate = (achievements, dates) => {
   let allDateObjects = {};
 
-  console.log("ALL DATES -> ", allDateObjects);
   achievements.forEach((achievement) => {
     if (!allDateObjects[achievement.unlocked_time_desc]) {
       allDateObjects[achievement.unlocked_time_desc] = [];
