@@ -19,6 +19,7 @@ import AchievementNormal from "../components/card/AchievementNormal";
 import {
   generateDatesInAYear,
   getDatesBetweenDates,
+  getDescForDate,
   recent10Years,
   transformAchievementsToDate,
 } from "../helper/other";
@@ -89,7 +90,6 @@ const DateBox = styled.div`
   height: 30px;
   cursor: pointer;
   margin: 0.25rem;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -143,6 +143,14 @@ const Icon = styled.div`
   justify-content: center;
 `;
 
+const Zero = styled.div`
+  color: #333;
+`;
+
+const NotZero = styled.div`
+  color: #f5f5f5;
+`;
+
 export default function HistoryContent(props) {
   const achievements = props.achievements;
   const yearProp = props.year;
@@ -175,7 +183,7 @@ export default function HistoryContent(props) {
             <BlackToolTip
               content={
                 <TrophyCount>
-                  <Date>{date}</Date>
+                  <Date>{getDescForDate(date)}</Date>
                   {achievementsForDate[date] && (
                     <TrophyCountContainer>
                       <Icon>
@@ -191,8 +199,10 @@ export default function HistoryContent(props) {
               }
             >
               <DateBox key={date.toString()}>
-                {achievementsForDate[date] && achievementsForDate[date].length}
-                {!achievementsForDate[date] && "0"}
+                {achievementsForDate[date] && (
+                  <NotZero>{achievementsForDate[date].length}</NotZero>
+                )}
+                {!achievementsForDate[date] && <Zero></Zero>}
               </DateBox>
             </BlackToolTip>
           );

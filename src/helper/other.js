@@ -44,3 +44,22 @@ export const transformAchievementsToDate = (achievements, dates) => {
 
   return allDateObjects;
 };
+
+export const getDescForDate = (date) => {
+  const month = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "Septembet",
+    "October",
+    "November",
+    "December",
+  ];
+  const items = date.split("-");
+  return `${items[2]} ${month[items[1] - 1]}, ${items[0]}`;
+};
