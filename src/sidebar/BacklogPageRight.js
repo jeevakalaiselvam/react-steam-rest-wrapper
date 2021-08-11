@@ -1,21 +1,17 @@
 import React from "react";
 import {
-  FaArrowRight,
   FaCheck,
   FaClock,
   FaFilter,
   FaGamepad,
   FaGripHorizontal,
   FaHourglass,
-  FaMedal,
   FaPercentage,
   FaSortAlphaDown,
   FaSortAlphaDownAlt,
   FaTimes,
-  FaTrophy,
 } from "react-icons/fa";
 import styled from "styled-components";
-import { getModeAchivementsToAttainTarget } from "../helper/other";
 
 const Container = styled.div`
   width: 100%;
@@ -62,109 +58,9 @@ const Title = styled.div`
   flex-direction: row;
 `;
 
-const ToGet = styled.div`
-  padding: 1rem;
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-`;
-
-const IconAndText = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex: 1;
-  align-items: center;
-  color: #55aece;
-`;
-
-const Data = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-left: 0.5rem;
-  font-size: 1.1rem;
-  align-items: center;
-`;
-
-const Arrow = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin-left: 0.5rem;
-  justify-content: center;
-  color: #a5c93a;
-  flex: 1;
-  align-items: center;
-`;
-
-const Trophy = styled.div`
-  display: flex;
-  flex-direction: row;
-  font-size: 1.35rem;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Medal = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex: 1;
-  color: gold;
-  margin-left: 0.5rem;
-  justify-content: center;
-  align-items: center;
-`;
-
-export default function GamePageRight(props) {
-  const achievements = props.achievements;
-  const toGet = getModeAchivementsToAttainTarget(achievements);
-
+export default function BacklogPageRight(props) {
   return (
     <Container>
-      <ToGet>
-        <IconAndText>
-          <Trophy>
-            <FaTrophy />
-          </Trophy>
-          <Data>{toGet}</Data>
-        </IconAndText>
-        <Arrow>
-          <FaArrowRight />
-        </Arrow>
-        <Medal>
-          <FaMedal />
-        </Medal>
-      </ToGet>
-      <Subheader>SELECT OPTIONS</Subheader>
-      <RightMenuItem
-        onClick={() => props.selectHandler(0)}
-        selected={props.selectIndex === 0}
-      >
-        <Icon>
-          <FaFilter />
-        </Icon>
-        <Title>All</Title>
-      </RightMenuItem>
-      <RightMenuItem
-        onClick={() => props.selectHandler(1)}
-        selected={props.selectIndex === 1}
-      >
-        <Icon>
-          <FaFilter />
-        </Icon>
-        <Title>Unlocked</Title>
-      </RightMenuItem>
-      <RightMenuItem
-        onClick={() => props.selectHandler(2)}
-        selected={props.selectIndex === 2}
-      >
-        <Icon>
-          <FaFilter />
-        </Icon>
-        <Title>Not Unlocked</Title>
-      </RightMenuItem>
       <Subheader>SORT OPTIONS</Subheader>
       <RightMenuItem
         onClick={() => props.sortHandler(0)}
@@ -193,24 +89,23 @@ export default function GamePageRight(props) {
         </Icon>
         <Title>Rarity Hard</Title>
       </RightMenuItem>
-
       <RightMenuItem
         onClick={() => props.sortHandler(3)}
         selected={props.sortIndex === 3}
       >
         <Icon>
-          <FaSortAlphaDown />
+          <FaGamepad />
         </Icon>
-        <Title>Name A-Z</Title>
+        <Title>Games</Title>
       </RightMenuItem>
       <RightMenuItem
         onClick={() => props.sortHandler(4)}
         selected={props.sortIndex === 4}
       >
         <Icon>
-          <FaSortAlphaDownAlt />
+          <FaSortAlphaDown />
         </Icon>
-        <Title>Name Z-A</Title>
+        <Title>Name A-Z</Title>
       </RightMenuItem>
       <RightMenuItem
         onClick={() => props.sortHandler(5)}
@@ -219,9 +114,8 @@ export default function GamePageRight(props) {
         <Icon>
           <FaSortAlphaDownAlt />
         </Icon>
-        <Title>Hidden</Title>
+        <Title>Name Z-A</Title>
       </RightMenuItem>
-
       <Subheader>VIEW OPTIONS</Subheader>
       <RightMenuItem
         onClick={() => props.viewHandler(0)}

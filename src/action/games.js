@@ -1,8 +1,10 @@
 import axios from "axios";
 import {
   addToLocalStorage,
+  COMPLETION_TARGET,
   PAGINATION_TOTAL_COUNT,
   storeHeadInfoLocalStorage,
+  _STORAGE_READ,
   _STORAGE_WRITE,
 } from "../helper/storage";
 import {
@@ -63,6 +65,41 @@ export const fetchGamesInfo = async () => {
   storeHeadInfoLocalStorage(gamesInfo);
 
   return gamesInfo;
+};
+
+export const fetchAchievementsBacklog = async (
+  sortOrder,
+  viewOrder,
+  achievementPage,
+  selectOrder = 2
+) => {
+  let achievementsResponse = {};
+
+  const mainURL = `${process.env.REACT_APP_API_ENDPOINT}backlog?`;
+  const selectedAddedURL = includeSelectQueryAchievements(mainURL, selectOrder);
+  const sortAddedURL = includeSortQueryAchievements(
+    selectedAddedURL,
+    sortOrder
+  );
+  const pageAddedURL = includePageQuery(sortAddedURL, achievementPage);
+  achievementsResponse = (await axios.get(pageAddedURL)).data;
+  _STORAGE_WRITE(PAGINATION_TOTAL_COUNT, achievementsResponse.total);
+
+  console.log(_STORAGE_READ(COMPLETION_TARGET));
+
+  const completionFilteredAchievements =
+    achievementsResponse.achievements.filter((achievement) => {
+      if (
+        achievement.game_completion <
+        Number(_STORAGE_READ(COMPLETION_TARGET) ?? 80)
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+
+  return completionFilteredAchievements ?? {};
 };
 
 export const fetchAchievementsForGame = async (

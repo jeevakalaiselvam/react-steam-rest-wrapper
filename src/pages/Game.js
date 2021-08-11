@@ -135,6 +135,7 @@ export default function Game() {
             viewIndex={viewIndex}
             sortIndex={sortIndex}
             selectIndex={selectIndex}
+            achievements={achievements}
           />
         }
         content={

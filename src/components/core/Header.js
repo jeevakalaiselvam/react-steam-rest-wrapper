@@ -15,8 +15,13 @@ import {
   STORAGE_HEADER_TOTAL_ACHIEVEMENTS,
   STORAGE_HEADER_TOTAL_GAMES,
   STORAGE_HEADER_TOTAL_PERFECT_GAMES,
+  _STORAGE_READ,
   _STORAGE_WRITE,
 } from "../../helper/storage";
+import {
+  getMedalCompletedGames,
+  getTotalAchievements,
+} from "../../helper/other";
 
 // background-image: linear-gradient(
 //   180deg,
@@ -124,12 +129,11 @@ const Data = styled.div`
 export default function Header() {
   //Show initial header info from local storage
   const [gameInfo, setGameInfo] = useState({
-    total_games: _STORAGE_WRITE(STORAGE_HEADER_TOTAL_GAMES) ?? 0,
-    average_completion: _STORAGE_WRITE(STORAGE_HEADER_AVERAGE_COMPLETION) ?? 0,
+    total_games: _STORAGE_READ(STORAGE_HEADER_TOTAL_GAMES) ?? 0,
+    average_completion: _STORAGE_READ(STORAGE_HEADER_AVERAGE_COMPLETION) ?? 0,
     completed_achievements:
-      _STORAGE_WRITE(STORAGE_HEADER_TOTAL_ACHIEVEMENTS) ?? 0,
-    perfect_games_count:
-      _STORAGE_WRITE(STORAGE_HEADER_TOTAL_PERFECT_GAMES) ?? 0,
+      _STORAGE_READ(STORAGE_HEADER_TOTAL_ACHIEVEMENTS) ?? 0,
+    perfect_games_count: _STORAGE_READ(STORAGE_HEADER_TOTAL_PERFECT_GAMES) ?? 0,
   });
 
   const { navLeftOpen, setNavLeftOpen, navRightOpen, setNavRightOpen } =
@@ -154,6 +158,9 @@ export default function Header() {
     setNavRightOpen((navState) => !navState);
   };
 
+  const totalMedals = getMedalCompletedGames(gameInfo);
+  const totalAchievements = getTotalAchievements(gameInfo);
+
   return (
     <HeaderContainer>
       <LeftNav onClick={toggleNavLeft}>
@@ -165,13 +172,13 @@ export default function Header() {
           <Icon>
             <FaMedal />
           </Icon>
-          <Data>{gameInfo.perfect_games_count}</Data>
+          <Data>{totalMedals}</Data>
         </IconSetGold>
         <IconSetBlue>
           <Icon>
             <FaTrophy />
           </Icon>
-          <Data>{gameInfo.completed_achievements}</Data>
+          <Data>{totalAchievements}</Data>
         </IconSetBlue>
         <IconSetGreen>
           <Icon>

@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   FaBookOpen,
   FaChartBar,
   FaGamepad,
+  FaMedal,
   FaSlidersH,
   FaTrophy,
 } from "react-icons/fa";
@@ -15,9 +16,15 @@ import {
   GAMES_PAGE_INDEX,
   HISTORY_PAGE_INDEX,
   SETTINGS_PAGE_INDEX,
+  STORAGE_HEADER_AVERAGE_COMPLETION,
+  STORAGE_HEADER_TOTAL_ACHIEVEMENTS,
+  STORAGE_HEADER_TOTAL_GAMES,
+  STORAGE_HEADER_TOTAL_PERFECT_GAMES,
   _STORAGE_READ,
   _STORAGE_WRITE,
 } from "../helper/storage";
+import { fetchGamesInfo } from "../action/games";
+import { getMedalCompletedGames, getTotalAchievements } from "../helper/other";
 
 const MainMenu = styled.div`
   width: 100%;
@@ -33,9 +40,83 @@ const Subheader = styled.div`
   text-align: left;
 `;
 
+const IconSetContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  padding: 0.5rem;
+  align-items: center;
+  justify-content: center;
+`;
+
+const IconSetMedal = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: #fecc09;
+  flex: 1;
+  justify-content: center;
+`;
+
+const IconSetTrophy = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: 1;
+  font-size: 1.2rem;
+  color: #55aece;
+  justify-content: center;
+`;
+
+const DataMedal = styled.div`
+  display: flex;
+  flex-direction: row;
+  font-size: 1.3rem;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.5rem;
+`;
+
+const DataTotal = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.5rem;
+`;
+
 export default function AllPageLeft() {
+  const [gameInfo, setGameInfo] = useState({
+    total_games: _STORAGE_READ(STORAGE_HEADER_TOTAL_GAMES) ?? 0,
+    average_completion: _STORAGE_READ(STORAGE_HEADER_AVERAGE_COMPLETION) ?? 0,
+    completed_achievements:
+      _STORAGE_READ(STORAGE_HEADER_TOTAL_ACHIEVEMENTS) ?? 0,
+    perfect_games_count: _STORAGE_READ(STORAGE_HEADER_TOTAL_PERFECT_GAMES) ?? 0,
+  });
+
+  useEffect(() => {
+    const getAllGamesInfo = async () => {
+      const gameInfoInnerResponse = await fetchGamesInfo();
+      console.log(gameInfoInnerResponse);
+      setGameInfo((old) => gameInfoInnerResponse);
+    };
+    getAllGamesInfo();
+  }, []);
+
+  const totalMedals = getMedalCompletedGames(gameInfo);
+  const totalAchievements = getTotalAchievements(gameInfo);
+
   return (
     <MainMenu>
+      <IconSetContainer>
+        <IconSetMedal>
+          <DataMedal>{totalMedals}</DataMedal>
+          <FaMedal />
+        </IconSetMedal>
+        <IconSetTrophy>
+          <DataTotal>{totalAchievements}</DataTotal>
+          <FaTrophy />
+        </IconSetTrophy>
+      </IconSetContainer>
       <Subheader>SELECT CATEGORY</Subheader>
       <MenuItemLink
         icon={<FaGamepad />}

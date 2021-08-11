@@ -1,4 +1,11 @@
 import { end } from "@popperjs/core";
+import {
+  COMPLETION_TARGET,
+  SELECTED_GAME_COMPLETED,
+  SELECTED_GAME_COMPLETED_PERCETAGE,
+  SELECTED_GAME_TOTAL,
+  _STORAGE_READ,
+} from "./storage";
 
 export const recent10Years = (currentYear = new Date().getFullYear()) => {
   let recentYears = [];
@@ -79,4 +86,34 @@ export const getAllAchievementsObtainedForDate = (achievements, date) => {
   );
 
   return sortedAchievementsByRecent;
+};
+
+export const getModeAchivementsToAttainTarget = (achievements) => {
+  const target = _STORAGE_READ(COMPLETION_TARGET) ?? 80;
+  const completed = _STORAGE_READ(SELECTED_GAME_COMPLETED);
+  const total = _STORAGE_READ(SELECTED_GAME_TOTAL);
+  const toGet = Math.ceil((target / 100) * total) - completed;
+  console.log(
+    `TARGET: ${target} COMPLETED: ${completed} TOTAL: ${total} TOGET: ${toGet}`
+  );
+  return toGet;
+};
+
+export const getMedalCompletedGames = (gameInfo) => {
+  const { total_games, completed_achievements, game_percentages } = gameInfo;
+  let totalMedals = 0;
+
+  game_percentages.forEach((percentage) => {
+    if (percentage >= 80) {
+      totalMedals++;
+    }
+  });
+  return totalMedals;
+};
+
+export const getTotalAchievements = (gameInfo) => {
+  const { total_games, completed_achievements, game_percentages } = gameInfo;
+  let totalMedals = 0;
+
+  return completed_achievements;
 };

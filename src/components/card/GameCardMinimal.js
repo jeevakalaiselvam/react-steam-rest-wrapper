@@ -4,6 +4,9 @@ import styled from "styled-components";
 import {
   COMPLETION_TARGET,
   SELECTED_GAME,
+  SELECTED_GAME_COMPLETED,
+  SELECTED_GAME_COMPLETED_PERCETAGE,
+  SELECTED_GAME_TOTAL,
   _STORAGE_READ,
   _STORAGE_WRITE,
 } from "../../helper/storage";
@@ -140,6 +143,18 @@ export default function GameCardMinimal(props) {
       image={image}
       onClick={() => {
         _STORAGE_WRITE(SELECTED_GAME, props.game.id);
+        _STORAGE_WRITE(
+          SELECTED_GAME_COMPLETED_PERCETAGE,
+          props.game.completion_percentage
+        );
+        _STORAGE_WRITE(
+          SELECTED_GAME_TOTAL,
+          props.game.total_achievements_count
+        );
+        _STORAGE_WRITE(
+          SELECTED_GAME_COMPLETED,
+          props.game.completed_achievements_count
+        );
         window.location.href = "/game";
       }}
     >
