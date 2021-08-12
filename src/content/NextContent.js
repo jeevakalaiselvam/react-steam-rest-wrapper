@@ -20,11 +20,11 @@ const ContentContainer = styled.div`
   display: flex;
   width: 100%;
   min-height: 100vh;
-  justify-content: space-between;
+  justify-content: center;
   flex-direction: column;
   overflow: scroll;
   scrollbar-width: thin;
-  align-items: flex-start;
+  align-items: center;
   flex-wrap: wrap;
   padding-bottom: 1rem;
 
@@ -44,11 +44,8 @@ const ContainerInner = styled.div`
 
 const Pagination = styled.div`
   display: flex;
-  padding: 0.25rem 0;
   width: 100%;
   justify-content: center;
-  position: fixed;
-  background-color: rgba(10, 17, 25, 1);
   padding: 0.25rem 0;
   bottom: 0;
   left: 0;

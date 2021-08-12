@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
+  FaBinoculars,
   FaBookOpen,
   FaChartBar,
   FaGamepad,
@@ -126,7 +127,7 @@ export default function AllPageLeft() {
       </IconSetContainer>
       <Subheader>SELECT CATEGORY</Subheader>
       <MenuItemLink
-        icon={<FaProjectDiagram />}
+        icon={<FaBinoculars />}
         title={"Next"}
         to={"/next"}
         navItemClicked={() => {
