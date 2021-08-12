@@ -129,6 +129,17 @@ export const fetchAchievementsBacklog = async (
   return completionFilteredAchievements ?? {};
 };
 
+export const fetchAchievementsNext = async (achievementPage) => {
+  let achievementsResponse = {};
+
+  const mainURL = `${process.env.REACT_APP_API_ENDPOINT}next?`;
+  const pageAddedURL = includePageQuery(mainURL, achievementPage);
+  achievementsResponse = (await axios.get(pageAddedURL)).data;
+  _STORAGE_WRITE(PAGINATION_TOTAL_COUNT, achievementsResponse.total);
+
+  return achievementsResponse.achievements ?? {};
+};
+
 export const fetchAchievementsForGame = async (
   sortOrder,
   viewOrder,
