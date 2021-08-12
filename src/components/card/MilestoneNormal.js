@@ -11,7 +11,7 @@ const CardContainer = styled.div`
   position: relative;
   border-radius: 4px;
   margin: 4px;
-  padding: 0%.5rem;
+  padding: 1rem 0.5rem;
   border: 1px solid #fefefe00;
 
   &:hover {
