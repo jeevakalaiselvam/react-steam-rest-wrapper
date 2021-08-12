@@ -63,6 +63,15 @@ export default function BacklogPageRight(props) {
     <Container>
       <Subheader>SORT OPTIONS</Subheader>
       <RightMenuItem
+        onClick={() => props.sortHandler(3)}
+        selected={props.sortIndex === 3}
+      >
+        <Icon>
+          <FaGamepad />
+        </Icon>
+        <Title>Games</Title>
+      </RightMenuItem>
+      {/* <RightMenuItem
         onClick={() => props.sortHandler(0)}
         selected={props.sortIndex === 0}
       >
@@ -70,7 +79,7 @@ export default function BacklogPageRight(props) {
           <FaClock />
         </Icon>
         <Title>Recent</Title>
-      </RightMenuItem>
+      </RightMenuItem> */}
       <RightMenuItem
         onClick={() => props.sortHandler(1)}
         selected={props.sortIndex === 1}
@@ -89,15 +98,7 @@ export default function BacklogPageRight(props) {
         </Icon>
         <Title>Rarity Hard</Title>
       </RightMenuItem>
-      <RightMenuItem
-        onClick={() => props.sortHandler(3)}
-        selected={props.sortIndex === 3}
-      >
-        <Icon>
-          <FaGamepad />
-        </Icon>
-        <Title>Games</Title>
-      </RightMenuItem>
+
       <RightMenuItem
         onClick={() => props.sortHandler(4)}
         selected={props.sortIndex === 4}

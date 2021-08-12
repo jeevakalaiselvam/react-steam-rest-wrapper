@@ -2,6 +2,7 @@ import React from "react";
 import { FaCheck, FaGlobe, FaMedal, FaTrophy } from "react-icons/fa";
 import styled from "styled-components";
 import { STEAM_HEADER_IMAGE } from "../../helper/endpoints";
+import { _STORAGE_READ, COMPLETION_TARGET } from "../../helper/storage";
 
 const CardContainer = styled.div`
   display: flex;
@@ -134,6 +135,35 @@ const Completion = styled.div`
   opacity: ${(props) => (props.completed ? "1" : "0")};
 `;
 
+const RemainingAchievements = styled.div`
+  position: absolute;
+  bottom: 0;
+  font-size: 0.8rem;
+  padding: 0.5rem;
+  right: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(10, 17, 25, 0.4);
+`;
+
+const RemainingIcon = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: #959da6;
+  margin-right: 0.25rem;
+`;
+const RemainingData = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  color: #959da6;
+  justify-content: center;
+`;
+
 export default function AchievementNormal(props) {
   const {
     icon,
@@ -143,6 +173,9 @@ export default function AchievementNormal(props) {
     game_id,
     global_percentage,
     unlocked,
+    game_completion,
+    game_completed_count,
+    game_total_count,
   } = props.achievement;
 
   return (
@@ -179,6 +212,17 @@ export default function AchievementNormal(props) {
           <Percentage>{Number(global_percentage).toFixed(2)} %</Percentage>
         )}
       </Misc>
+      <RemainingAchievements>
+        <RemainingIcon>
+          <FaTrophy />
+        </RemainingIcon>
+        <RemainingData>
+          {Math.ceil(
+            (_STORAGE_READ(COMPLETION_TARGET) ?? 50 / 100) * game_total_count -
+              game_completed_count
+          )}
+        </RemainingData>
+      </RemainingAchievements>
     </CardContainer>
   );
 }
