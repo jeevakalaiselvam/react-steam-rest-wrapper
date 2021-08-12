@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { FaSyncAlt } from "react-icons/fa";
 import styled from "styled-components";
 import {
   COMPLETION_TARGET,
@@ -105,8 +106,67 @@ const Button = styled.button`
   }
 `;
 
+const ButtonRefresh = styled.button`
+  font-size: 1.2rem;
+  border: none;
+  padding: 1rem;
+  height: 10px;
+  align-self: center;
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #55aece;
+  border: 1px solid #55aeae;
+  color: #fefefe;
+  transform: all 0.5s;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
+`;
+
 const Per = styled.div`
   margin-left: 0.5rem;
+`;
+
+const IconRefreshRotate = styled.div`
+  margin: 0;
+  padding: 0;
+  margin-left: 1rem;
+  font-size: 1rem;
+  transform-origin: 50% 50%;
+  animation: 0.5s linear infinite running spin;
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+`;
+
+const IconRefresh = styled.div`
+  margin: 0;
+  padding: 0;
+  margin-left: 1rem;
+  font-size: 1rem;
+  transform-origin: 50% 50%;
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 `;
 
 const Row = styled.div`
@@ -154,6 +214,12 @@ const Column = styled.div`
 
 export default function SettingsContent(props) {
   let targetPercentage = 80;
+  const [rotate, setRotate] = useState(false);
+
+  const refreshDatabase = () => {
+    setRotate((old) => true);
+    props.refreshDatabase();
+  };
 
   return (
     <ContentContainer>
@@ -189,6 +255,25 @@ export default function SettingsContent(props) {
             </Button>
           </Column>
         </Row>
+
+        <ButtonRefresh
+          onClick={(e) => {
+            refreshDatabase();
+          }}
+        >
+          {!rotate && "Sync Database"}
+          {rotate && "Syncing Database, Please wait..."}
+          {rotate && (
+            <IconRefreshRotate>
+              <FaSyncAlt />
+            </IconRefreshRotate>
+          )}
+          {!rotate && (
+            <IconRefresh>
+              <FaSyncAlt />
+            </IconRefresh>
+          )}
+        </ButtonRefresh>
       </ContainerInner>
     </ContentContainer>
   );

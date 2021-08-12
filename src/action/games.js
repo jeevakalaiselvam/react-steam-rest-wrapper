@@ -36,6 +36,17 @@ export const fetchGames = async (
   return gamesResponse.games ?? {};
 };
 
+export const refreshDatabaseInBackend = async () => {
+  let refreshInfo = "";
+  refreshInfo = (
+    await axios.get(`${process.env.REACT_APP_API_ENDPOINT}refresh`)
+  ).data.status;
+
+  if (refreshInfo === "success") {
+    return true;
+  }
+};
+
 export const fetchAchievements = async (
   sortOrder,
   viewOrder,

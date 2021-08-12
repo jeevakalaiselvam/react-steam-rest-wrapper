@@ -6,7 +6,7 @@ import AllPageLeft from "../sidebar/AllPageLeft";
 import GamesPageRight from "../sidebar/GamesPageRight";
 import GamesContent from "../content/GamesContent";
 import { useState } from "react";
-import { fetchGames } from "../action/games";
+import { fetchGames, refreshDatabaseInBackend } from "../action/games";
 import { GameContext } from "../context/GameContext";
 import {
   CURRENT_PAGE,
@@ -35,13 +35,23 @@ export default function Settings() {
     _STORAGE_WRITE(CURRENT_PAGE, SETTINGS_PAGE_INDEX);
   }, []);
 
+  const refreshDatabase = async () => {
+    console.log("Refreshing Database");
+    const response = await refreshDatabaseInBackend();
+    if (response) {
+      setTimeout(() => {
+        window.location.href = "/games";
+      }, 4000);
+    }
+  };
+
   return (
     <PageContainer>
       <Header />
       <Page
         leftSidebar={<AllPageLeft />}
         rightSidebar={""}
-        content={<SettingsContent />}
+        content={<SettingsContent refreshDatabase={refreshDatabase} />}
         leftSidebarWidth={"180px"}
         rightSidebarWidth={"0px"}
       />
