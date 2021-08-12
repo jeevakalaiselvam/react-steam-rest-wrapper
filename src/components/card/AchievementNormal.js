@@ -67,8 +67,8 @@ const InnerContainerBG = styled.div`
 `;
 
 const Icon = styled.div`
-  width: 50px;
-  height: 50px;
+  width: 55px;
+  height: 55px;
   cursor: pointer;
   border-radius: 2px;
   background-image: url("${(props) => props.image}");
