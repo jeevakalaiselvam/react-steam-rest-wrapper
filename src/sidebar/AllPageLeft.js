@@ -187,7 +187,7 @@ export default function AllPageLeft() {
         }}
         selected={_STORAGE_READ(CURRENT_PAGE) === SETTINGS_PAGE_INDEX}
       />
-      <MenuItemLink
+      {/* <MenuItemLink
         icon={<FaBinoculars />}
         title={"Next Achievement"}
         to={"/next"}
@@ -196,7 +196,7 @@ export default function AllPageLeft() {
           window.location.href = `/${_STORAGE_READ(CURRENT_PAGE)}`;
         }}
         selected={_STORAGE_READ(CURRENT_PAGE) === NEXT_PAGE_INDEX}
-      />
+      /> */}
     </MainMenu>
   );
 }

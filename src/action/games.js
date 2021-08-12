@@ -102,7 +102,9 @@ export const fetchAchievementsBacklog = async (
 ) => {
   let achievementsResponse = {};
 
-  const mainURL = `${process.env.REACT_APP_API_ENDPOINT}backlog?`;
+  const mainURL = `${process.env.REACT_APP_API_ENDPOINT}backlog?${
+    _STORAGE_READ(COMPLETION_TARGET) ?? TARGET_DEFAULT_COMPLETION
+  }&`;
   const selectedAddedURL = includeSelectQueryAchievements(mainURL, selectOrder);
   const sortAddedURL = includeSortQueryAchievements(
     selectedAddedURL,
