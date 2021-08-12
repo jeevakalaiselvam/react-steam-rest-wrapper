@@ -23,7 +23,7 @@ const ContentContainer = styled.div`
   padding-bottom: 1rem;
 
   @media only screen and (max-width: 840px) {
-    padding-bottom: 0rem;
+    padding-bottom: 3rem;
   }
 `;
 

@@ -198,3 +198,13 @@ export const fetAchievementsForYearRecentSorted = async (year) => {
 
   return allAchievementsForYear;
 };
+
+export const fetchAchievementMilestones = async (year) => {
+  const achievementsMilestones = (
+    await axios.get(
+      `${process.env.REACT_APP_API_ENDPOINT}achievements/milestones`
+    )
+  ).data;
+
+  return achievementsMilestones;
+};

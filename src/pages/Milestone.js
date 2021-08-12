@@ -8,6 +8,7 @@ import GamesContent from "../content/GamesContent";
 import { useState } from "react";
 import {
   fetAchievementsForYearRecentSorted,
+  fetchAchievementMilestones,
   fetchGames,
 } from "../action/games";
 import { GameContext } from "../context/GameContext";
@@ -31,6 +32,8 @@ import HistoryContent from "../content/HistoryContent";
 import HistoryPageRight from "../sidebar/HistoryPageRight";
 import HeaderHistory from "../components/core/HeaderHistory";
 import { getAllAchievementsObtainedForDate } from "../helper/other";
+import MilestoneContent from "../content/MilestoneContent";
+import MilestoneRightPage from "../sidebar/MilestoneRightPage";
 
 const PageContainer = styled.div`
   display: flex;
@@ -42,10 +45,6 @@ const PageContainer = styled.div`
 
 export default function Milestone() {
   const [achievements, setAchievements] = useState({});
-  const [achievementsYear, setAchievementsYear] = useState(
-    new Date().getFullYear()
-  );
-  const [rightNavAchievements, setRightNavAchievements] = useState({});
   const [loading, setLoading] = useState(true);
   const { navRightOpen, setNavRightOpen } = useContext(GameContext);
   const [viewIndex, setViewIndex] = useState(
@@ -63,17 +62,16 @@ export default function Milestone() {
   };
 
   useEffect(() => {
-    const getAllAchievementsInYearSortedRecent = async (year) => {
-      const achievementsForSaidYear = await fetAchievementsForYearRecentSorted(
-        year
-      );
-      setAchievements((old) => achievementsForSaidYear);
+    const getAchievementsMilestones = async (year) => {
+      const achievementMilestones = await fetchAchievementMilestones(year);
+      console.log(achievementMilestones);
+      setAchievements((old) => achievementMilestones);
       setLoading((old) => false);
     };
     setLoading((old) => true);
-    getAllAchievementsInYearSortedRecent(achievementsYear);
+    getAchievementsMilestones();
     _STORAGE_WRITE(CURRENT_PAGE, MILESTONE_PAGE_INDEX);
-  }, [achievementsYear, viewIndex]);
+  }, [viewIndex]);
 
   const viewHandler = (viewOption) => {
     _STORAGE_WRITE(HISTORYPAGE_VIEW, viewOption);
@@ -81,53 +79,17 @@ export default function Milestone() {
     toggleNavRight();
   };
 
-  const yearChangedHandler = (year) => {
-    setAchievementsYear((old) => year);
-    console.log("YEAR");
-  };
-
-  const showAchievementsForDate = (date) => {
-    console.log(date);
-    const achievementObtainedInDate = getAllAchievementsObtainedForDate(
-      achievements,
-      date
-    );
-    if (achievementObtainedInDate.length !== 0) {
-      console.log(
-        "SETTING STATE ACHIEVEMENTS RIGHT",
-        achievementObtainedInDate
-      );
-      setRightNavAchievements((old) => achievementObtainedInDate);
-      openNavRight();
-    } else {
-    }
-  };
-
   return (
     <PageContainer>
-      <HeaderHistory
-        yearChangedHandler={yearChangedHandler}
-        year={achievementsYear}
-      />
+      <HeaderHistory />
       <Page
         leftSidebar={<AllPageLeft />}
         rightSidebar={
-          <HistoryPageRight
-            viewHandler={viewHandler}
-            viewIndex={viewIndex}
-            achievements={rightNavAchievements}
-          />
+          <MilestoneRightPage viewHandler={viewHandler} viewIndex={viewIndex} />
         }
-        content={
-          <HistoryContent
-            achievements={achievements}
-            yearChangedHandler={yearChangedHandler}
-            year={achievementsYear}
-            showAchievementsForDate={showAchievementsForDate}
-          />
-        }
+        content={<MilestoneContent achievements={achievements} />}
         leftSidebarWidth={"180px"}
-        rightSidebarWidth={"400px"}
+        rightSidebarWidth={"0px"}
         loading={loading}
       />
     </PageContainer>
