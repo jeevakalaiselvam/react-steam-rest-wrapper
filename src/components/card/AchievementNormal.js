@@ -218,8 +218,9 @@ export default function AchievementNormal(props) {
         </RemainingIcon>
         <RemainingData>
           {Math.ceil(
-            (_STORAGE_READ(COMPLETION_TARGET) ?? 50 / 100) * game_total_count -
-              game_completed_count
+            (Number(_STORAGE_READ(COMPLETION_TARGET)) / 100) *
+              Number(game_total_count) -
+              Number(game_completed_count)
           )}
         </RemainingData>
       </RemainingAchievements>
