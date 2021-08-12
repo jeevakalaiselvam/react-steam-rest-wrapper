@@ -4,6 +4,7 @@ import {
   SELECTED_GAME_COMPLETED,
   SELECTED_GAME_COMPLETED_PERCETAGE,
   SELECTED_GAME_TOTAL,
+  TARGET_DEFAULT_COMPLETION,
   _STORAGE_READ,
 } from "./storage";
 
@@ -89,7 +90,7 @@ export const getAllAchievementsObtainedForDate = (achievements, date) => {
 };
 
 export const getModeAchivementsToAttainTarget = (achievements) => {
-  const target = _STORAGE_READ(COMPLETION_TARGET) ?? 80;
+  const target = _STORAGE_READ(COMPLETION_TARGET) ?? TARGET_DEFAULT_COMPLETION;
   const completed = _STORAGE_READ(SELECTED_GAME_COMPLETED);
   const total = _STORAGE_READ(SELECTED_GAME_TOTAL);
   const toGet = Math.ceil((target / 100) * total) - completed;
@@ -105,7 +106,10 @@ export const getMedalCompletedGames = (gameInfo) => {
 
   game_percentages &&
     game_percentages.forEach((percentage) => {
-      if (percentage >= Number(_STORAGE_READ(COMPLETION_TARGET) ?? 80)) {
+      if (
+        percentage >=
+        Number(_STORAGE_READ(COMPLETION_TARGET) ?? TARGET_DEFAULT_COMPLETION)
+      ) {
         totalMedals++;
       }
     });

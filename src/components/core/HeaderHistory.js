@@ -23,6 +23,7 @@ import {
   STORAGE_HEADER_TOTAL_ACHIEVEMENTS,
   STORAGE_HEADER_TOTAL_GAMES,
   STORAGE_HEADER_TOTAL_PERFECT_GAMES,
+  TARGET_DEFAULT_COMPLETION,
   _STORAGE_READ,
   _STORAGE_WRITE,
 } from "../../helper/storage";
@@ -103,7 +104,9 @@ export default function HeaderHistory(props) {
   const total = _STORAGE_READ(GAMEPAGE_HEADER_TOTAL);
   const completed = _STORAGE_READ(GAMEPAGE_HEADER_COMPLETED);
   const remaining = Math.ceil(
-    ((_STORAGE_READ(COMPLETION_TARGET) ?? 80) / 100) * total - completed
+    ((_STORAGE_READ(COMPLETION_TARGET) ?? TARGET_DEFAULT_COMPLETION) / 100) *
+      total -
+      completed
   );
   const yearProp = props.year;
   const [loading, setLoading] = useState(false);

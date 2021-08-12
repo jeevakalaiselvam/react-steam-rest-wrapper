@@ -4,6 +4,7 @@ import {
   COMPLETION_TARGET,
   PAGINATION_TOTAL_COUNT,
   storeHeadInfoLocalStorage,
+  TARGET_DEFAULT_COMPLETION,
   _STORAGE_READ,
   _STORAGE_WRITE,
 } from "../helper/storage";
@@ -117,7 +118,7 @@ export const fetchAchievementsBacklog = async (
     achievementsResponse.achievements.filter((achievement) => {
       if (
         achievement.game_completion <
-        Number(_STORAGE_READ(COMPLETION_TARGET) ?? 80)
+        Number(_STORAGE_READ(COMPLETION_TARGET) ?? TARGET_DEFAULT_COMPLETION)
       ) {
         return true;
       } else {

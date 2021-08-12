@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import {
   COMPLETION_TARGET,
+  TARGET_DEFAULT_COMPLETION,
   _STORAGE_READ,
   _STORAGE_WRITE,
 } from "../helper/storage";
@@ -172,7 +173,9 @@ export default function SettingsContent(props) {
               onChange={(e) => {
                 targetPercentage = e.target.value;
               }}
-              placeholder={_STORAGE_READ(COMPLETION_TARGET) ?? 80}
+              placeholder={
+                _STORAGE_READ(COMPLETION_TARGET) ?? TARGET_DEFAULT_COMPLETION
+              }
             />
             <Per>%</Per>
           </Column>
