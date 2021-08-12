@@ -126,16 +126,7 @@ export default function AllPageLeft() {
         </IconSetTrophy>
       </IconSetContainer>
       <Subheader>SELECT CATEGORY</Subheader>
-      <MenuItemLink
-        icon={<FaBinoculars />}
-        title={"Next"}
-        to={"/next"}
-        navItemClicked={() => {
-          _STORAGE_WRITE(CURRENT_PAGE, NEXT_PAGE_INDEX);
-          window.location.href = `/${_STORAGE_READ(CURRENT_PAGE)}`;
-        }}
-        selected={_STORAGE_READ(CURRENT_PAGE) === NEXT_PAGE_INDEX}
-      />
+
       <MenuItemLink
         icon={<FaGamepad />}
         title={"Games"}
@@ -195,6 +186,16 @@ export default function AllPageLeft() {
           window.location.href = `/${_STORAGE_READ(CURRENT_PAGE)}`;
         }}
         selected={_STORAGE_READ(CURRENT_PAGE) === SETTINGS_PAGE_INDEX}
+      />
+      <MenuItemLink
+        icon={<FaBinoculars />}
+        title={"Queue"}
+        to={"/next"}
+        navItemClicked={() => {
+          _STORAGE_WRITE(CURRENT_PAGE, NEXT_PAGE_INDEX);
+          window.location.href = `/${_STORAGE_READ(CURRENT_PAGE)}`;
+        }}
+        selected={_STORAGE_READ(CURRENT_PAGE) === NEXT_PAGE_INDEX}
       />
     </MainMenu>
   );

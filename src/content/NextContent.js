@@ -15,6 +15,7 @@ import {
 } from "../helper/pagination";
 import AchievementMinimal from "../components/card/AchievementMinimal";
 import AchievementNormal from "../components/card/AchievementNormal";
+import AchievementNext from "../components/card/AchievementNext";
 
 const ContentContainer = styled.div`
   display: flex;
@@ -73,15 +74,9 @@ export default function NextContent(props) {
   return (
     <ContentContainer>
       <ContainerInner>
-        {console.log("NEXT COUNT", achievements.length)}
         {achievements.map((achievement) => {
-          return props.viewType === 0 ? (
-            <AchievementMinimal
-              achievement={achievement}
-              key={achievement.game_id + achievement.id}
-            />
-          ) : (
-            <AchievementNormal
+          return (
+            <AchievementNext
               achievement={achievement}
               key={achievement.game_id + achievement.id}
             />
