@@ -189,7 +189,7 @@ export default function AllPageLeft() {
       />
       <MenuItemLink
         icon={<FaBinoculars />}
-        title={"Queue"}
+        title={"Next Achievement"}
         to={"/next"}
         navItemClicked={() => {
           _STORAGE_WRITE(CURRENT_PAGE, NEXT_PAGE_INDEX);
