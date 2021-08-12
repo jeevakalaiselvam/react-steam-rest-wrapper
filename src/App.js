@@ -8,6 +8,7 @@ import Games from "./pages/Games";
 import History from "./pages/History";
 import Settings from "./pages/Settings";
 import Milestone from "./pages/Milestone";
+import Next from "./pages/Next";
 
 export default function App() {
   const [navLeftOpen, setNavLeftOpen] = useState(false);
@@ -43,6 +44,9 @@ export default function App() {
             </Route>
             <Route exact path='/settings'>
               <Settings />
+            </Route>
+            <Route exact path='/next'>
+              <Next />
             </Route>
           </Switch>
         </Router>
