@@ -4,7 +4,7 @@ Simple Tracker application for Steam Achievements using React and Node.
 
 # Screens
 
-![Screenshot](screens/screen8.webp)
+![Screenshot](screens/screen.webp)
 ![Screenshot](screens/screen1.webp)
 ![Screenshot](screens/screen2.webp)
 ![Screenshot](screens/screen3.webp)
