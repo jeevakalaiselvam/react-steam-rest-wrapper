@@ -177,6 +177,17 @@ export default function AllPageLeft() {
         }}
         selected={_STORAGE_READ(CURRENT_PAGE) === MILESTONE_PAGE_INDEX}
       />
+
+      <MenuItemLink
+        icon={<FaBinoculars />}
+        title={"What's Next"}
+        to={"/next"}
+        navItemClicked={() => {
+          _STORAGE_WRITE(CURRENT_PAGE, NEXT_PAGE_INDEX);
+          window.location.href = `/${_STORAGE_READ(CURRENT_PAGE)}`;
+        }}
+        selected={_STORAGE_READ(CURRENT_PAGE) === NEXT_PAGE_INDEX}
+      />
       <MenuItemLink
         icon={<FaSlidersH />}
         title={"Settings"}
@@ -187,16 +198,6 @@ export default function AllPageLeft() {
         }}
         selected={_STORAGE_READ(CURRENT_PAGE) === SETTINGS_PAGE_INDEX}
       />
-      {/* <MenuItemLink
-        icon={<FaBinoculars />}
-        title={"Next Achievement"}
-        to={"/next"}
-        navItemClicked={() => {
-          _STORAGE_WRITE(CURRENT_PAGE, NEXT_PAGE_INDEX);
-          window.location.href = `/${_STORAGE_READ(CURRENT_PAGE)}`;
-        }}
-        selected={_STORAGE_READ(CURRENT_PAGE) === NEXT_PAGE_INDEX}
-      /> */}
     </MainMenu>
   );
 }

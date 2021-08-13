@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaCheck, FaGlobe, FaMedal, FaTrophy } from "react-icons/fa";
 import styled from "styled-components";
 import { STEAM_HEADER_IMAGE } from "../../helper/endpoints";
@@ -144,6 +144,10 @@ export default function AchievementNext(props) {
     global_percentage,
     unlocked,
   } = props.achievement;
+
+  useEffect(() => {
+    console.log("USE EFFECT RUNNING");
+  }, []);
 
   return (
     <MainContainer>
