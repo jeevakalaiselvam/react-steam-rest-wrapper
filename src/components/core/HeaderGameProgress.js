@@ -1,30 +1,19 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import {
-  FaAlignRight,
   FaBars,
-  FaCheck,
   FaEllipsisV,
-  FaGamepad,
   FaLongArrowAltRight,
   FaMedal,
   FaTimes,
   FaTrophy,
 } from "react-icons/fa";
 import { GameContext } from "../../context/GameContext";
-import { fetchGameInfo, fetchGamesInfo } from "../../action/games";
+import { fetchGameInfo } from "../../action/games";
 import {
   COMPLETION_TARGET,
-  GAMEPAGE_HEADER_COMPLETED,
-  GAMEPAGE_HEADER_REMAINING,
-  GAMEPAGE_HEADER_TOTAL,
   SELECTED_GAME,
-  STORAGE_HEADER_AVERAGE_COMPLETION,
-  STORAGE_HEADER_TOTAL_ACHIEVEMENTS,
-  STORAGE_HEADER_TOTAL_GAMES,
-  STORAGE_HEADER_TOTAL_PERFECT_GAMES,
   _STORAGE_READ,
-  _STORAGE_WRITE,
 } from "../../helper/storage";
 
 // background-image: linear-gradient(
@@ -130,14 +119,6 @@ const IconTrophy = styled.div`
   justify-content: center;
 `;
 
-const CompletedIcon = styled.div`
-  font-size: 1.5rem;
-  display: flex;
-  margin-left: 1rem;
-  align-items: center;
-  justify-content: center;
-`;
-
 const Data = styled.div`
   display: flex;
   margin-left: 0.5rem;
@@ -153,19 +134,16 @@ export default function HeaderGameProgress(props) {
     completed_achievements_count: 0,
     completion_percentage: 0,
   });
-  const [loading, setLoading] = useState(false);
   const { navLeftOpen, setNavLeftOpen, navRightOpen, setNavRightOpen } =
     useContext(GameContext);
 
   //When the header is rendered for the first time, Get info from GAMESINFO backend api
   useEffect(() => {
     const getGameInfo = async () => {
-      setLoading((old) => true);
       const gameInfoInnerResponse = await fetchGameInfo(
         _STORAGE_READ(SELECTED_GAME)
       );
       setGameInfo((old) => gameInfoInnerResponse);
-      setLoading((old) => false);
     };
     getGameInfo();
   }, []);

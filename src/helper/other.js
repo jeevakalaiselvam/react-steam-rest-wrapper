@@ -1,8 +1,6 @@
-import { end } from "@popperjs/core";
 import {
   COMPLETION_TARGET,
   SELECTED_GAME_COMPLETED,
-  SELECTED_GAME_COMPLETED_PERCETAGE,
   SELECTED_GAME_TOTAL,
   TARGET_DEFAULT_COMPLETION,
   _STORAGE_READ,
@@ -74,7 +72,7 @@ export const getDescForDate = (date) => {
 
 export const getAllAchievementsObtainedForDate = (achievements, date) => {
   const achivementsObtainedInSaidDate = [];
-  achievements.map((achievement) => {
+  achievements.forEach((achievement) => {
     if (achievement.unlocked_time_desc.includes(date)) {
       achivementsObtainedInSaidDate.push(achievement);
     }
@@ -101,7 +99,7 @@ export const getModeAchivementsToAttainTarget = (achievements) => {
 };
 
 export const getMedalCompletedGames = (gameInfo) => {
-  const { total_games, completed_achievements, game_percentages } = gameInfo;
+  const { game_percentages } = gameInfo;
   let totalMedals = 0;
 
   game_percentages &&
@@ -117,8 +115,6 @@ export const getMedalCompletedGames = (gameInfo) => {
 };
 
 export const getTotalAchievements = (gameInfo) => {
-  const { total_games, completed_achievements, game_percentages } = gameInfo;
-  let totalMedals = 0;
-
+  const { completed_achievements } = gameInfo;
   return completed_achievements;
 };

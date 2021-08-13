@@ -94,16 +94,6 @@ const AchievementData = styled.div`
   justify-content: flex-start;
   padding: 0.25rem 0.5rem;
 `;
-const ToGet = styled.div`
-  flex: 1;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  margin-right: 0.5rem;
-  justify-self: flex-end;
-  font-size: 0.9rem;
-`;
 
 const Medal = styled.div`
   flex: 1;

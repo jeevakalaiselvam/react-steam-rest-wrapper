@@ -39,24 +39,12 @@ const MainTitle = styled.div`
   text-align: center;
 `;
 
-const Section = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-`;
-
 const Label = styled.div`
   font-size: 1.5rem;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
   justify-content: center;
-`;
-
-const Top = styled.div`
-  font-size: 1.2rem;
-  color: #fefefe;
 `;
 
 const Bottom = styled.div`

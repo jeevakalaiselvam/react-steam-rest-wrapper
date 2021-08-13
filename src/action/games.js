@@ -1,6 +1,5 @@
 import axios from "axios";
 import {
-  addToLocalStorage,
   COMPLETION_TARGET,
   PAGINATION_TOTAL_COUNT,
   storeHeadInfoLocalStorage,
@@ -24,7 +23,6 @@ export const fetchGames = async (
   gamesPage,
   selectOrder
 ) => {
-  let games = [];
   let gamesResponse = {};
 
   const mainURL = `${process.env.REACT_APP_API_ENDPOINT}games?`;
@@ -182,7 +180,7 @@ export const fetchAchievementsForGame = async (
   ).data;
 
   const allAchievements = achievementsResponse;
-  allAchievements.achievements.map((achievement) => {
+  allAchievements.achievements.forEach((achievement) => {
     if (achievement.hidden === 1) {
       const hiddenSelectedAchievement = hiddenAchievements.find(
         (hiddenAchievement) => {

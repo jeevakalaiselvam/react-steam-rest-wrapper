@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { FaCheck, FaGlobe, FaMedal, FaTrophy } from "react-icons/fa";
+import { FaCheck, FaGlobe } from "react-icons/fa";
 import styled from "styled-components";
 import { STEAM_HEADER_IMAGE } from "../../helper/endpoints";
 

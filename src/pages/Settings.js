@@ -1,26 +1,14 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import Page from "../components/core/Page";
 import Header from "../components/core/Header";
 import AllPageLeft from "../sidebar/AllPageLeft";
-import GamesPageRight from "../sidebar/GamesPageRight";
-import GamesContent from "../content/GamesContent";
-import { useState } from "react";
-import { fetchGames, refreshDatabaseInBackend } from "../action/games";
-import { GameContext } from "../context/GameContext";
+import { refreshDatabaseInBackend } from "../action/games";
 import {
   CURRENT_PAGE,
-  GAMEPAGE_SELECT,
-  GAMEPAGE_SORT,
-  GAMEPAGE_VIEW,
-  PAGINATION_TOTAL_COUNT,
-  PAGINATION_TOTAL_OBTAINED,
   SETTINGS_PAGE_INDEX,
-  STORAGE_HEADER_TOTAL_GAMES,
-  _STORAGE_READ,
   _STORAGE_WRITE,
 } from "../helper/storage";
-import { PAGINATION_GAMES_PER_PAGE } from "../helper/pagination";
 import SettingsContent from "../content/SettingsContent";
 
 const PageContainer = styled.div`

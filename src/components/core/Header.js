@@ -16,7 +16,6 @@ import {
   STORAGE_HEADER_TOTAL_GAMES,
   STORAGE_HEADER_TOTAL_PERFECT_GAMES,
   _STORAGE_READ,
-  _STORAGE_WRITE,
 } from "../../helper/storage";
 import {
   getMedalCompletedGames,

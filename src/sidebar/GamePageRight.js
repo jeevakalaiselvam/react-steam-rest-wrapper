@@ -1,17 +1,13 @@
 import React from "react";
 import {
   FaArrowRight,
-  FaCheck,
   FaClock,
   FaFilter,
-  FaGamepad,
   FaGripHorizontal,
-  FaHourglass,
   FaMedal,
   FaPercentage,
   FaSortAlphaDown,
   FaSortAlphaDownAlt,
-  FaTimes,
   FaTrophy,
 } from "react-icons/fa";
 import styled from "styled-components";

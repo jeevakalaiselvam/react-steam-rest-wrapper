@@ -1,7 +1,6 @@
 import React from "react";
-import { FaCheck, FaGlobe, FaMedal, FaStar, FaTrophy } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
 import styled from "styled-components";
-import { STEAM_HEADER_IMAGE } from "../../helper/endpoints";
 import { getDescForDate } from "../../helper/other";
 
 const CardContainer = styled.div`
@@ -122,16 +121,8 @@ const DataContainer = styled.div`
 `;
 
 export default function MilestoneNormal(props) {
-  const {
-    icon,
-    name,
-    description,
-    game_name,
-    game_id,
-    global_percentage,
-    unlocked_time_desc,
-    unlocked,
-  } = props.achievement;
+  const { icon, name, description, game_name, unlocked_time_desc } =
+    props.achievement;
 
   return (
     <CardContainer>

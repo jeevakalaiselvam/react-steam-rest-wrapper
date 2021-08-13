@@ -3,11 +3,7 @@ import styled from "styled-components";
 import GameCardNormal from "../components/card/GameCardNormal";
 import GameCardMinimal from "../components/card/GameCardMinimal";
 import { FaBackward, FaForward } from "react-icons/fa";
-import {
-  PAGINATION_TOTAL_COUNT,
-  STORAGE_HEADER_TOTAL_GAMES,
-  _STORAGE_READ,
-} from "../helper/storage";
+import { PAGINATION_TOTAL_COUNT, _STORAGE_READ } from "../helper/storage";
 import { PAGINATION_GAMES_PER_PAGE } from "../helper/pagination";
 
 const ContentContainer = styled.div`

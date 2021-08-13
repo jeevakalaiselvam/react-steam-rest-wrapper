@@ -1,4 +1,3 @@
-import { Card } from "@material-ui/core";
 import React from "react";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
@@ -47,7 +46,6 @@ export default function AllGamesOverlay(props) {
 
   const getRandomImages = (images, count) => {
     let randomImages = [];
-    let start = count;
     while (count > 0) {
       randomImages.push(images[Math.floor(Math.random() * images.length)]);
       count--;

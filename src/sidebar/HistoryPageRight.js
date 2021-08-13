@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import AchievementNormal from "../components/card/AchievementNormal";
 import AchievementSidebarNormal from "../components/card/AchievementSidebarNormal";
-import AchievementSidebar from "../components/card/AchievementSidebarNormal";
 
 const AchievementContainer = styled.div`
   width: 100%;

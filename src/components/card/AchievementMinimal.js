@@ -1,5 +1,5 @@
 import React from "react";
-import { FaCheck, FaMedal, FaTrophy } from "react-icons/fa";
+import { FaCheck } from "react-icons/fa";
 import styled from "styled-components";
 import BlackToolTip from "../other/BlackToolTip";
 import { STEAM_HEADER_IMAGE } from "../../helper/endpoints";

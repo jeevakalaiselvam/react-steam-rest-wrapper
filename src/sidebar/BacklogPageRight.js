@@ -1,15 +1,10 @@
 import React from "react";
 import {
-  FaCheck,
-  FaClock,
-  FaFilter,
   FaGamepad,
   FaGripHorizontal,
-  FaHourglass,
   FaPercentage,
   FaSortAlphaDown,
   FaSortAlphaDownAlt,
-  FaTimes,
 } from "react-icons/fa";
 import styled from "styled-components";
 

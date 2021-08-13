@@ -3,36 +3,19 @@ import styled from "styled-components";
 import Page from "../components/core/Page";
 import Header from "../components/core/Header";
 import AllPageLeft from "../sidebar/AllPageLeft";
-import GamesPageRight from "../sidebar/GamesPageRight";
-import GamesContent from "../content/GamesContent";
 import { useState } from "react";
-import {
-  fetchAchievements,
-  fetchAchievementsBacklog,
-  fetchGames,
-} from "../action/games";
+import { fetchAchievementsBacklog } from "../action/games";
 import { GameContext } from "../context/GameContext";
 import {
-  ACHIEVEMENTGAMEPAGE_SELECT,
-  ACHIEVEMENTGAMEPAGE_SORT,
-  ACHIEVEMENTGAMEPAGE_VIEW,
-  ACHIEVEMENTS_PAGE_INDEX,
   BACKLOGPAGE_SORT,
   BACKLOGPAGE_VIEW,
   BACKLOG_PAGE_INDEX,
   CURRENT_PAGE,
   PAGINATION_TOTAL_COUNT,
-  STORAGE_HEADER_TOTAL_ACHIEVEMENTS,
-  STORAGE_HEADER_TOTAL_GAMES,
   _STORAGE_READ,
   _STORAGE_WRITE,
 } from "../helper/storage";
-import {
-  PAGINATION_ACHIEVEMENTS_PER_PAGE,
-  PAGINATION_GAMES_PER_PAGE,
-} from "../helper/pagination";
-import AchievementContent from "../content/AchievementContent";
-import AchievementPageRight from "../sidebar/AchievementPageRight";
+import { PAGINATION_ACHIEVEMENTS_PER_PAGE } from "../helper/pagination";
 import BacklogContent from "../content/BacklogContent";
 import BacklogPageRight from "../sidebar/BacklogPageRight";
 

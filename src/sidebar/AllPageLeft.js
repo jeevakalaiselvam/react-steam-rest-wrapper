@@ -5,7 +5,6 @@ import {
   FaChartBar,
   FaGamepad,
   FaMedal,
-  FaProjectDiagram,
   FaSlidersH,
   FaStar,
   FaTrophy,

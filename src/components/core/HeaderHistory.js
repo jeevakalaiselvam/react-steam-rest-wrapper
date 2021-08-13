@@ -1,32 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
-import {
-  FaAlignRight,
-  FaBars,
-  FaCheck,
-  FaEllipsisV,
-  FaGamepad,
-  FaLongArrowAltRight,
-  FaMedal,
-  FaTimes,
-  FaTrophy,
-} from "react-icons/fa";
+import { FaBars, FaEllipsisV, FaTimes } from "react-icons/fa";
 import { GameContext } from "../../context/GameContext";
-import { fetchGamesInfo } from "../../action/games";
-import {
-  COMPLETION_TARGET,
-  GAMEPAGE_HEADER_COMPLETED,
-  GAMEPAGE_HEADER_REMAINING,
-  GAMEPAGE_HEADER_TOTAL,
-  HISTORY_PAGE_YEAR_SELECTED,
-  STORAGE_HEADER_AVERAGE_COMPLETION,
-  STORAGE_HEADER_TOTAL_ACHIEVEMENTS,
-  STORAGE_HEADER_TOTAL_GAMES,
-  STORAGE_HEADER_TOTAL_PERFECT_GAMES,
-  TARGET_DEFAULT_COMPLETION,
-  _STORAGE_READ,
-  _STORAGE_WRITE,
-} from "../../helper/storage";
+
 import { recent10Years } from "../../helper/other";
 
 // background-image: linear-gradient(
@@ -98,18 +74,9 @@ const YearSelect = styled.select`
   color: #fefefe;
   justify-self: flex-end;
 `;
-const YearOption = styled.option``;
 
 export default function HeaderHistory(props) {
-  const total = _STORAGE_READ(GAMEPAGE_HEADER_TOTAL);
-  const completed = _STORAGE_READ(GAMEPAGE_HEADER_COMPLETED);
-  const remaining = Math.ceil(
-    ((_STORAGE_READ(COMPLETION_TARGET) ?? TARGET_DEFAULT_COMPLETION) / 100) *
-      total -
-      completed
-  );
   const yearProp = props.year;
-  const [loading, setLoading] = useState(false);
 
   const { navLeftOpen, setNavLeftOpen, navRightOpen, setNavRightOpen } =
     useContext(GameContext);

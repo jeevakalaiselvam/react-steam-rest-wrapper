@@ -1,19 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import GameCardNormal from "../components/card/GameCardNormal";
-import GameCardMinimal from "../components/card/GameCardMinimal";
-import { FaBackward, FaForward } from "react-icons/fa";
-import {
-  PAGINATION_TOTAL_COUNT,
-  STORAGE_HEADER_TOTAL_GAMES,
-  _STORAGE_READ,
-} from "../helper/storage";
-import {
-  PAGINATION_ACHIEVEMENTS_PER_PAGE,
-  PAGINATION_GAMES_PER_PAGE,
-} from "../helper/pagination";
-import AchievementMinimal from "../components/card/AchievementMinimal";
-import AchievementNormal from "../components/card/AchievementNormal";
 import MilestoneNormal from "../components/card/MilestoneNormal";
 
 const ContentContainer = styled.div`

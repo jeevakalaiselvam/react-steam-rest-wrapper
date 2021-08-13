@@ -1,5 +1,5 @@
 import React from "react";
-import { FaCheck, FaGlobe, FaMedal, FaTrophy } from "react-icons/fa";
+import { FaCheck, FaGlobe, FaTrophy } from "react-icons/fa";
 import styled from "styled-components";
 import { STEAM_HEADER_IMAGE } from "../../helper/endpoints";
 import { _STORAGE_READ, COMPLETION_TARGET } from "../../helper/storage";
@@ -173,7 +173,6 @@ export default function AchievementNormal(props) {
     game_id,
     global_percentage,
     unlocked,
-    game_completion,
     game_completed_count,
     game_total_count,
   } = props.achievement;
