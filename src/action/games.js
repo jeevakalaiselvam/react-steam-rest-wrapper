@@ -151,6 +151,15 @@ export const fetchAchievementsNext = async (achievementPage) => {
   return achievementsResponse.achievements ?? {};
 };
 
+export const fetchGameRandom = async () => {
+  let gameResponse = {};
+
+  const mainURL = `${process.env.REACT_APP_API_ENDPOINT}random`;
+  gameResponse = (await axios.get(mainURL)).data;
+
+  return gameResponse ?? {};
+};
+
 export const fetchAchievementsForGame = async (
   sortOrder,
   viewOrder,

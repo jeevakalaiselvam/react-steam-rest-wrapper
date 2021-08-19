@@ -36,6 +36,7 @@ export const HISTORYPAGE_VIEW = "HISTORYPAGE_VIEW";
 export const GAMES_PAGE_INDEX = "games";
 export const ACHIEVEMENTS_PAGE_INDEX = "achievements";
 export const NEXT_PAGE_INDEX = "next";
+export const RANDOM_PAGE_INDEX = "random";
 export const SETTINGS_PAGE_INDEX = "settings";
 export const BACKLOG_PAGE_INDEX = "backlog";
 export const MILESTONE_PAGE_INDEX = "milestone";

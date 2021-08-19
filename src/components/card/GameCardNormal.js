@@ -134,7 +134,7 @@ export default function GameCardNormal(props) {
     completion_percentage,
     completed_achievements_count,
     total_achievements_count,
-  } = props.game;
+  } = props.game.game;
 
   const getRemainingForTarget = () => {
     const completionTarget =

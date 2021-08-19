@@ -9,6 +9,7 @@ import History from "./pages/History";
 import Settings from "./pages/Settings";
 import Milestone from "./pages/Milestone";
 import Next from "./pages/Next";
+import Random from "./pages/Random";
 
 export default function App() {
   const [navLeftOpen, setNavLeftOpen] = useState(false);
@@ -47,6 +48,9 @@ export default function App() {
             </Route>
             <Route exact path='/next'>
               <Next />
+            </Route>
+            <Route exact path='/random'>
+              <Random />
             </Route>
           </Switch>
         </Router>
