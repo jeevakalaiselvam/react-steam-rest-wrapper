@@ -117,6 +117,7 @@ const IconStarted = styled.div`
   display: flex;
   align-items: center;
   color: #fefefe;
+  font-size: 0.8rem;
   justify-content: flex-end;
   margin-right: 0.5rem;
 `;
