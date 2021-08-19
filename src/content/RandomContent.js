@@ -6,9 +6,10 @@ const ContentContainer = styled.div`
   display: flex;
   width: 100%;
   min-height: 100vh;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
   overflow: scroll;
+  padding: 1rem;
   scrollbar-width: thin;
   align-items: center;
   flex-wrap: wrap;
