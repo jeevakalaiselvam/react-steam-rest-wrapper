@@ -1,5 +1,6 @@
+import { _STORAGE_READ, COMPLETION_TARGET } from "./storage";
+
 export const includePageQuery = (initialUrl, pageOrder) => {
-  import { _STORAGE_READ, COMPLETION_TARGET } from "./storage";
   return `${initialUrl}page=${pageOrder}`;
 };
 
