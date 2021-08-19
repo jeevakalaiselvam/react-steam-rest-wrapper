@@ -1,5 +1,5 @@
 import React from "react";
-import { FaCheck, FaMedal, FaTrophy } from "react-icons/fa";
+import { FaCheck, FaHourglass, FaMedal, FaTrophy } from "react-icons/fa";
 import styled from "styled-components";
 import {
   COMPLETION_TARGET,
@@ -104,6 +104,15 @@ const Medal = styled.div`
   margin-right: 0.5rem;
 `;
 
+const IconStarted = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  color: #fefefe;
+  justify-content: flex-end;
+  margin-right: 0.5rem;
+`;
+
 const AchievementCount = styled.div`
   margin-left: 0.25rem;
   font-size: 0.9rem;
@@ -175,6 +184,15 @@ export default function GameCardMinimal(props) {
             <FaMedal />
           </Medal>
         )}
+        {+completion_percentage <
+          Number(
+            _STORAGE_READ(COMPLETION_TARGET) ?? TARGET_DEFAULT_COMPLETION
+          ) &&
+          +completion_percentage > 0 && (
+            <IconStarted>
+              <FaHourglass />
+            </IconStarted>
+          )}
       </InnerContainer>
     </Card>
   );
