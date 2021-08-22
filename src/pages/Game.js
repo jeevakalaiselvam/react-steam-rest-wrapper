@@ -14,6 +14,7 @@ import {
   GAMEPAGE_HEADER_TOTAL,
   PAGINATION_TOTAL_COUNT,
   SELECTED_GAME,
+  _STORAGE_CHECK_ARRAY,
   _STORAGE_READ,
   _STORAGE_WRITE,
 } from "../helper/storage";
@@ -61,7 +62,23 @@ export default function Game() {
       _STORAGE_WRITE(GAMEPAGE_HEADER_TOTAL, achievementsResponse.total);
       _STORAGE_WRITE(GAMEPAGE_HEADER_COMPLETED, achievementsResponse.completed);
       _STORAGE_WRITE(GAMEPAGE_HEADER_REMAINING, achievementsResponse.remaining);
-      setAchievements((old) => achievementsResponse.achievements);
+      if (selectIndex === 3) {
+        const pinnedAchievements = [];
+        achievementsResponse.achievements.forEach((achievement) => {
+          if (
+            _STORAGE_CHECK_ARRAY(
+              `${achievement.game_id}_pinned`,
+              `${achievement.game_id}_${achievement.name}`
+            )
+          ) {
+            pinnedAchievements.push(achievement);
+          }
+        });
+        setAchievements((old) => pinnedAchievements);
+      } else {
+        setAchievements((old) => achievementsResponse.achievements);
+      }
+
       setLoading((old) => false);
     };
     setLoading((old) => true);

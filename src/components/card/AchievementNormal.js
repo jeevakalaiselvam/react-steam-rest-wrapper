@@ -99,10 +99,10 @@ const PinIcon = styled.div`
   width: 20px;
   height: 20px;
   z-index: 1000;
-  color: ${(props) => (props.color ? "green" : "#959da6")};
+  color: ${(props) => (props.iconColor ? "#3EB595" : "#333")};
 
   &:hover {
-    color: ${(props) => (props.color ? "#959da6" : "green")};
+    color: ${(props) => (props.iconColor ? "#333" : "#3EB595")};
     cursor: pointer;
   }
 `;
@@ -221,7 +221,7 @@ export default function AchievementNormal(props) {
           )}
         </Icon>
         <PinIcon
-          color={_STORAGE_CHECK_ARRAY(
+          iconColor={_STORAGE_CHECK_ARRAY(
             `${game_id}_pinned`,
             `${game_id}_${name}`
           )}
@@ -233,6 +233,7 @@ export default function AchievementNormal(props) {
             } else {
               _STORAGE_APPEND_ARRAY(`${game_id}_pinned`, `${game_id}_${name}`);
             }
+            props.refreshViewWithoutFetch && props.refreshViewWithoutFetch();
           }}
         >
           <FaThumbtack style={{ cursor: "pointer" }} />

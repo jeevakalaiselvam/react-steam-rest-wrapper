@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { FaBackward, FaForward } from "react-icons/fa";
 import { PAGINATION_TOTAL_COUNT, _STORAGE_READ } from "../helper/storage";
@@ -61,6 +61,11 @@ const PageCount = styled.div`
 
 export default function GameContent(props) {
   const achievements = props.achievements;
+  const [refresh, setRefresh] = useState(true);
+
+  const refreshViewWithoutFetch = () => {
+    setRefresh((old) => !old);
+  };
 
   return (
     <ContentContainer>
@@ -73,6 +78,7 @@ export default function GameContent(props) {
             />
           ) : (
             <AchievementNormal
+              refreshViewWithoutFetch={refreshViewWithoutFetch}
               achievement={achievement}
               key={achievement.game_id + achievement.id}
             />
