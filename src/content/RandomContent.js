@@ -29,6 +29,25 @@ const ContainerInner = styled.div`
   flex-wrap: wrap;
 `;
 
+const ResetButton = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  color: #fefefe;
+  z-index: 100;
+  background-color: green;
+
+  &:hover {
+    transform: scale(0.95);
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
+`;
+
 export default function RandomContent(props) {
   const game = props.game;
 
@@ -37,6 +56,13 @@ export default function RandomContent(props) {
       <ContainerInner>
         <GameCardNormal game={game} />
       </ContainerInner>
+      <ResetButton
+        onClick={() => {
+          props.hardResetGame();
+        }}
+      >
+        SKIP TO ANOTHER
+      </ResetButton>
     </ContentContainer>
   );
 }

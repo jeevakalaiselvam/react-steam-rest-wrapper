@@ -22,18 +22,24 @@ const PageContainer = styled.div`
 export default function Random() {
   const [game, setGame] = useState({});
   const [loading, setLoading] = useState(true);
+  const [hardReset, setHardReset] = useState(false);
+  const [resetNeeded, setResetNeeded] = useState(false);
 
   useEffect(() => {
     const getGame = async () => {
-      const game = await fetchGameRandom();
-      console.log(game);
+      const game = await fetchGameRandom(hardReset);
       setGame((old) => game);
       setLoading((old) => false);
     };
     setLoading((old) => true);
     getGame();
     _STORAGE_WRITE(CURRENT_PAGE, GAMES_PAGE_INDEX);
-  }, []);
+  }, [resetNeeded, hardReset]);
+
+  const hardResetGame = () => {
+    setHardReset((old) => true);
+    setResetNeeded((old) => !resetNeeded);
+  };
 
   return (
     <PageContainer>
@@ -41,7 +47,7 @@ export default function Random() {
       <Page
         leftSidebar={<AllPageLeft />}
         rightSidebar={<></>}
-        content={<RandomContent game={game} />}
+        content={<RandomContent game={game} hardResetGame={hardResetGame} />}
         leftSidebarWidth={"180px"}
         rightSidebarWidth={"0px"}
         loading={loading}

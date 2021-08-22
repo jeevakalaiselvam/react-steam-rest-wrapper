@@ -157,6 +157,7 @@ export const fetchGameRandom = async (force = false) => {
   const mainURL = `${
     process.env.REACT_APP_API_ENDPOINT
   }random?force=${force}&target=${_STORAGE_READ(COMPLETION_TARGET)}`;
+  console.log(mainURL);
   gameResponse = (await axios.get(mainURL)).data;
 
   return gameResponse ?? {};
