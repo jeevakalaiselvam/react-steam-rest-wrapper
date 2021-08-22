@@ -61,6 +61,7 @@ const PageCount = styled.div`
 
 export default function GameContent(props) {
   const achievements = props.achievements;
+
   const [refresh, setRefresh] = useState(true);
 
   const refreshViewWithoutFetch = () => {
