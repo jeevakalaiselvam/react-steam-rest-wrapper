@@ -265,7 +265,7 @@ export default function AchievementNormal(props) {
       </Misc>
       <RemainingAchievements>
         <RemainingIcon>
-          <FaTrophy />
+          <FaThumbtack />
         </RemainingIcon>
         <RemainingData>
           {Math.ceil(
