@@ -63,17 +63,9 @@ export default function Game() {
       _STORAGE_WRITE(GAMEPAGE_HEADER_COMPLETED, achievementsResponse.completed);
       _STORAGE_WRITE(GAMEPAGE_HEADER_REMAINING, achievementsResponse.remaining);
       if (selectIndex === 3) {
-        const pinnedAchievements = [];
-        achievementsResponse.achievements.forEach((achievement) => {
-          if (
-            _STORAGE_CHECK_ARRAY(
-              `${achievement.game_id}_pinned`,
-              `${achievement.game_id}_${achievement.name}`
-            )
-          ) {
-            pinnedAchievements.push(achievement);
-          }
-        });
+        const pinnedAchievements = getPinnedAchievements(
+          achievementsResponse.achievements
+        );
         setAchievements((old) => pinnedAchievements);
       } else {
         setAchievements((old) => achievementsResponse.achievements);
@@ -124,6 +116,26 @@ export default function Game() {
     }
   };
 
+  const getPinnedAchievements = (tmpAchievements) => {
+    const pinnedAchievements = [];
+
+    tmpAchievements.forEach((achievement) => {
+      if (
+        _STORAGE_CHECK_ARRAY(
+          `${achievement.game_id}_pinned`,
+          `${achievement.game_id}_${achievement.name}`
+        )
+      ) {
+        pinnedAchievements.push(achievement);
+      }
+    });
+    return pinnedAchievements;
+  };
+
+  const updatePinnedCount = () => {
+    setAchievements((old) => old.slice());
+  };
+
   return (
     <PageContainer>
       <HeaderGameProgress achievements={achievements} />
@@ -145,6 +157,7 @@ export default function Game() {
             achievements={achievements}
             viewType={viewIndex}
             page={achievementsPage}
+            updatePinnedCount={updatePinnedCount}
             moveToPageRight={moveToPageRightHandler}
             moveToPageLeft={moveToPageLeftHandler}
           />

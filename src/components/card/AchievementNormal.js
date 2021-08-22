@@ -101,7 +101,6 @@ const PinIcon = styled.div`
   color: ${(props) => (props.iconColor ? "#3EB595" : "#333")};
 
   &:hover {
-    color: ${(props) => (props.iconColor ? "#333" : "#3EB595")};
     cursor: pointer;
   }
 `;
@@ -123,6 +122,7 @@ const Misc = styled.div`
 const Title = styled.div`
   font-size: 1rem;
   color: #55aece;
+  cursor: pointer;
   z-index: 101;
   font-weight: bold;
   text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);

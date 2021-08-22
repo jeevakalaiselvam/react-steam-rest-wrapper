@@ -66,6 +66,7 @@ export default function GameContent(props) {
 
   const refreshViewWithoutFetch = () => {
     setRefresh((old) => !refresh);
+    props.updatePinnedCount();
   };
 
   return (

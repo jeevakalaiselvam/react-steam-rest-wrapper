@@ -8,10 +8,12 @@ import {
   FaPercentage,
   FaSortAlphaDown,
   FaSortAlphaDownAlt,
+  FaThumbtack,
   FaTrophy,
 } from "react-icons/fa";
 import styled from "styled-components";
 import { getModeAchivementsToAttainTarget } from "../helper/other";
+import { _STORAGE_CHECK_ARRAY } from "../helper/storage";
 
 const Container = styled.div`
   width: 100%;
@@ -103,6 +105,14 @@ const Trophy = styled.div`
   align-items: center;
 `;
 
+const Pin = styled.div`
+  display: flex;
+  flex-direction: row;
+  font-size: 1rem;
+  justify-content: center;
+  align-items: center;
+`;
+
 const Medal = styled.div`
   display: flex;
   flex-direction: row;
@@ -116,6 +126,25 @@ const Medal = styled.div`
 export default function GamePageRight(props) {
   const achievements = props.achievements;
   const toGet = getModeAchivementsToAttainTarget(achievements);
+
+  const getPinnedAchievementsCount = (tmpAchievements) => {
+    const pinnedAchievements = [];
+
+    tmpAchievements.length &&
+      tmpAchievements.forEach((achievement) => {
+        if (
+          _STORAGE_CHECK_ARRAY(
+            `${achievement.game_id}_pinned`,
+            `${achievement.game_id}_${achievement.name}`
+          )
+        ) {
+          pinnedAchievements.push(achievement);
+        }
+      });
+    return pinnedAchievements.length;
+  };
+
+  const pinnedCount = getPinnedAchievementsCount(achievements);
 
   return (
     <Container>
@@ -142,6 +171,27 @@ export default function GamePageRight(props) {
           </Medal>
         </ToGet>
       )}
+      {pinnedCount > 0 && (
+        <ToGet>
+          <IconAndText>
+            <Trophy>
+              <FaTrophy />
+            </Trophy>
+            <Data>{pinnedCount}</Data>
+          </IconAndText>
+        </ToGet>
+      )}
+      {pinnedCount <= 0 && (
+        <ToGet>
+          <IconAndText>
+            <Pin>
+              <FaThumbtack />
+            </Pin>
+            <Data>{pinnedCount}</Data>
+          </IconAndText>
+        </ToGet>
+      )}
+
       <Subheader>SELECT OPTIONS</Subheader>
       <RightMenuItem
         onClick={() => props.selectHandler(0)}
