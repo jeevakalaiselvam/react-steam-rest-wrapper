@@ -65,7 +65,7 @@ export default function GameContent(props) {
   const [refresh, setRefresh] = useState(true);
 
   const refreshViewWithoutFetch = () => {
-    setRefresh((old) => !old);
+    setRefresh((old) => !refresh);
   };
 
   return (
