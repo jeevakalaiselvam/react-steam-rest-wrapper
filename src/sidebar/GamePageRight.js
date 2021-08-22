@@ -105,14 +105,6 @@ const Trophy = styled.div`
   align-items: center;
 `;
 
-const Pin = styled.div`
-  display: flex;
-  flex-direction: row;
-  font-size: 1rem;
-  justify-content: center;
-  align-items: center;
-`;
-
 const Medal = styled.div`
   display: flex;
   flex-direction: row;
