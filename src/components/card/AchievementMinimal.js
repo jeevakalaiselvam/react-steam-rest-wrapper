@@ -37,7 +37,7 @@ const Completion = styled.div`
   justify-content: center;
   width: 100%;
   font-size: 1rem;
-  background-color: rgba(10, 17, 25, 0.6);
+  background-color: rgba(10, 17, 25, 0.85);
   height: 100%;
   opacity: ${(props) => (props.completed ? "1" : "0")};
 `;
