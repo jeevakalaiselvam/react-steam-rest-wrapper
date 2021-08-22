@@ -170,6 +170,7 @@ export const fetchAchievementsForGame = async (
   let achievementsResponse = {};
 
   const mainURL = `${process.env.REACT_APP_API_ENDPOINT}achievements/game?game=${gameId}&`;
+
   const selectedAddedURL = includeSelectQueryAchievementsForGame(
     mainURL,
     selectOrder

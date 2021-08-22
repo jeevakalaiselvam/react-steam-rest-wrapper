@@ -63,6 +63,38 @@ export const _STORAGE_WRITE = (key, data) => {
   localStorage.setItem(key, data);
 };
 
+export const _STORAGE_APPEND_ARRAY = (key, newItem) => {
+  const arrayStored = JSON.parse(localStorage.getItem(key));
+  if (arrayStored) {
+    arrayStored.push(newItem);
+    const newArray = JSON.stringify(arrayStored);
+    localStorage.setItem(key, newArray);
+  }
+};
+
+export const _STORAGE_REMOVE_ARRAY = (key, itemToRemove) => {
+  const arrayStored = JSON.parse(localStorage.getItem(key));
+  if (arrayStored) {
+    const removedArray = arrayStored.filter((item) => item !== itemToRemove);
+    const newArray = JSON.stringify(removedArray);
+    localStorage.setItem(key, newArray);
+  }
+};
+
+export const _STORAGE_CHECK_ARRAY = (key, item) => {
+  const arrayStored = JSON.parse(localStorage.getItem(key));
+  if (!arrayStored) {
+    const tmp = [];
+    tmp.push(item);
+    _STORAGE_WRITE(key, JSON.stringify(tmp));
+  }
+  if (arrayStored && arrayStored.includes(item)) {
+    return true;
+  }
+
+  return false;
+};
+
 export const storeHeadInfoLocalStorage = (gamesInfo) => {
   const {
     total_games,

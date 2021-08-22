@@ -170,6 +170,15 @@ export default function GamePageRight(props) {
         </Icon>
         <Title>Not Unlocked</Title>
       </RightMenuItem>
+      <RightMenuItem
+        onClick={() => props.selectHandler(3)}
+        selected={props.selectIndex === 3}
+      >
+        <Icon>
+          <FaFilter />
+        </Icon>
+        <Title>Pinned</Title>
+      </RightMenuItem>
       <Subheader>SORT OPTIONS</Subheader>
       <RightMenuItem
         onClick={() => props.sortHandler(0)}

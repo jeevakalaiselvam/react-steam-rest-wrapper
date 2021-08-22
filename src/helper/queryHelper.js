@@ -44,7 +44,7 @@ export const includeSelectQueryAchievementsForGame = (
   initialUrl,
   selectOrder
 ) => {
-  const indexMapper = ["all&", "unlocked&", "locked&"];
+  const indexMapper = ["all&", "unlocked&", "locked&", "all&"];
 
   return `${initialUrl}select=${indexMapper[selectOrder]}`;
 };

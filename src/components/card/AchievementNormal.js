@@ -1,8 +1,15 @@
 import React from "react";
-import { FaCheck, FaGlobe, FaTrophy } from "react-icons/fa";
+import { FaCheck, FaGlobe, FaThumbtack, FaTrophy } from "react-icons/fa";
 import styled from "styled-components";
 import { STEAM_HEADER_IMAGE } from "../../helper/endpoints";
-import { _STORAGE_READ, COMPLETION_TARGET } from "../../helper/storage";
+import {
+  _STORAGE_READ,
+  COMPLETION_TARGET,
+  _STORAGE_WRITE,
+  _STORAGE_CHECK_ARRAY,
+  _STORAGE_REMOVE_ARRAY,
+  _STORAGE_APPEND_ARRAY,
+} from "../../helper/storage";
 
 const CardContainer = styled.div`
   display: flex;
@@ -67,6 +74,17 @@ const InnerContainerBG = styled.div`
   background-size: cover;
 `;
 
+const IconContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
 const Icon = styled.div`
   width: 55px;
   height: 55px;
@@ -76,6 +94,19 @@ const Icon = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
 `;
+
+const PinIcon = styled.div`
+  width: 20px;
+  height: 20px;
+  z-index: 1000;
+  color: ${(props) => (props.color ? "green" : "#959da6")};
+
+  &:hover {
+    color: ${(props) => (props.color ? "#959da6" : "green")};
+    cursor: pointer;
+  }
+`;
+
 const Data = styled.div`
   flex: 1;
   display: flex;
@@ -178,25 +209,46 @@ export default function AchievementNormal(props) {
   } = props.achievement;
 
   return (
-    <CardContainer
-      onClick={() => {
-        window.open(
-          `https://www.google.com/search?q=${game_name}+${name}+achievement`,
-          "_blank"
-        );
-      }}
-    >
+    <CardContainer>
       <InnerContainerBG></InnerContainerBG>
       <InnerContainer image={STEAM_HEADER_IMAGE(game_id)}></InnerContainer>
-      <Icon image={icon}>
-        {unlocked === 1 && (
-          <Completion completed={unlocked}>
-            <FaCheck />
-          </Completion>
-        )}
-      </Icon>
+      <IconContainer>
+        <Icon image={icon}>
+          {unlocked === 1 && (
+            <Completion completed={unlocked}>
+              <FaCheck />
+            </Completion>
+          )}
+        </Icon>
+        <PinIcon
+          color={_STORAGE_CHECK_ARRAY(
+            `${game_id}_pinned`,
+            `${game_id}_${name}`
+          )}
+          onClick={() => {
+            if (
+              _STORAGE_CHECK_ARRAY(`${game_id}_pinned`, `${game_id}_${name}`)
+            ) {
+              _STORAGE_REMOVE_ARRAY(`${game_id}_pinned`, `${game_id}_${name}`);
+            } else {
+              _STORAGE_APPEND_ARRAY(`${game_id}_pinned`, `${game_id}_${name}`);
+            }
+          }}
+        >
+          <FaThumbtack style={{ cursor: "pointer" }} />
+        </PinIcon>
+      </IconContainer>
       <Data>
-        <Title>{name}</Title>
+        <Title
+          onClick={() => {
+            window.open(
+              `https://www.google.com/search?q=${game_name}+${name}+achievement`,
+              "_blank"
+            );
+          }}
+        >
+          {name}
+        </Title>
         <Desc>{description}</Desc>
         <GameName>{game_name}</GameName>
       </Data>
