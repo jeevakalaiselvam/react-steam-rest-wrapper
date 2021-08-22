@@ -175,7 +175,7 @@ export default function GamePageRight(props) {
         <ToGet>
           <IconAndText>
             <Trophy>
-              <FaTrophy />
+              <FaThumbtack />
             </Trophy>
             <Data>{pinnedCount}</Data>
           </IconAndText>

@@ -161,7 +161,7 @@ const Completion = styled.div`
   color: #ffffff;
   height: 100%;
   font-size: 1rem;
-  background-color: rgba(10, 17, 25, 0.8);
+  background-color: rgba(10, 17, 25, 0.95);
   opacity: ${(props) => (props.completed ? "1" : "0")};
 `;
 
