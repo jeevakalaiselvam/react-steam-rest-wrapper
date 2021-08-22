@@ -1,5 +1,5 @@
 import React from "react";
-import { FaCheck, FaGlobe, FaThumbtack, FaTrophy } from "react-icons/fa";
+import { FaCheck, FaGlobe, FaThumbtack } from "react-icons/fa";
 import styled from "styled-components";
 import { STEAM_HEADER_IMAGE } from "../../helper/endpoints";
 import {
