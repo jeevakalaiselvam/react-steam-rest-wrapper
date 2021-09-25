@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { FaSyncAlt } from "react-icons/fa";
-import styled from "styled-components";
+import React, { useState } from 'react';
+import { FaSyncAlt } from 'react-icons/fa';
+import styled from 'styled-components';
 import {
   COMPLETION_TARGET,
   TARGET_DEFAULT_COMPLETION,
   _STORAGE_READ,
   _STORAGE_WRITE,
-} from "../helper/storage";
+} from '../helper/storage';
 
 const ContentContainer = styled.div`
   display: flex;
@@ -98,7 +98,6 @@ const ButtonRefresh = styled.button`
   font-size: 1.2rem;
   border: none;
   padding: 1rem;
-  height: 10px;
   align-self: center;
   justify-self: center;
   display: flex;
@@ -249,8 +248,8 @@ export default function SettingsContent(props) {
             refreshDatabase();
           }}
         >
-          {!rotate && "Sync Database"}
-          {rotate && "Syncing Database, Please wait..."}
+          {!rotate && 'Sync Database'}
+          {rotate && 'Syncing Database, Please wait...'}
           {rotate && (
             <IconRefreshRotate>
               <FaSyncAlt />

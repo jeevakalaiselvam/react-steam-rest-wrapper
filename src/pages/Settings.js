@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
-import styled from "styled-components";
-import Page from "../components/core/Page";
-import Header from "../components/core/Header";
-import AllPageLeft from "../sidebar/AllPageLeft";
-import { refreshDatabaseInBackend } from "../action/games";
+import React, { useEffect } from 'react';
+import styled from 'styled-components';
+import Page from '../components/core/Page';
+import Header from '../components/core/Header';
+import AllPageLeft from '../sidebar/AllPageLeft';
+import { refreshDatabaseInBackend } from '../action/games';
 import {
   CURRENT_PAGE,
   SETTINGS_PAGE_INDEX,
   _STORAGE_WRITE,
-} from "../helper/storage";
-import SettingsContent from "../content/SettingsContent";
+} from '../helper/storage';
+import SettingsContent from '../content/SettingsContent';
 
 const PageContainer = styled.div`
   display: flex;
@@ -24,12 +24,12 @@ export default function Settings() {
   }, []);
 
   const refreshDatabase = async () => {
-    console.log("Refreshing Database");
+    console.log('Refreshing Database');
     const response = await refreshDatabaseInBackend();
     if (response) {
       setTimeout(() => {
-        window.location.href = "/games";
-      }, 4000);
+        window.location.href = '/games';
+      }, 8000);
     }
   };
 
@@ -38,10 +38,10 @@ export default function Settings() {
       <Header />
       <Page
         leftSidebar={<AllPageLeft />}
-        rightSidebar={""}
+        rightSidebar={''}
         content={<SettingsContent refreshDatabase={refreshDatabase} />}
-        leftSidebarWidth={"180px"}
-        rightSidebarWidth={"0px"}
+        leftSidebarWidth={'180px'}
+        rightSidebarWidth={'0px'}
       />
     </PageContainer>
   );
