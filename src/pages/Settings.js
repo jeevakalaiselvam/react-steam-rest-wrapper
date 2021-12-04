@@ -29,7 +29,7 @@ export default function Settings() {
     if (response) {
       setTimeout(() => {
         window.location.href = '/games';
-      }, 8000);
+      }, 5000);
     }
   };
 

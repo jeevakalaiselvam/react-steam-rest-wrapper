@@ -69,7 +69,7 @@ const Card = styled.div`
 
 const IconInner = styled.div`
   font-size: 1rem;
-  color: #fefefe;
+  color: ${props => props.color};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -95,14 +95,45 @@ const AchievementData = styled.div`
   padding: 0.25rem 0.5rem;
 `;
 
-const Medal = styled.div`
+const GoldMedal = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
-  color: gold;
+  color: #fecc09;
   justify-content: flex-end;
   margin-right: 0.5rem;
 `;
+
+
+const PurpleMedal = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  color: #b666d2;
+  justify-content: flex-end;
+  margin-right: 0.5rem;
+`;
+
+
+const GreenMedal = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  color: #a6ff00;
+  justify-content: flex-end;
+  margin-right: 0.5rem;
+`;
+
+const BronzeMedal = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  color: #CD7F32;
+  justify-content: flex-end;
+  margin-right: 0.5rem;
+`;
+
+
 
 const IconStarted = styled.div`
   flex: 1;
@@ -122,6 +153,12 @@ const AchievementCount = styled.div`
   display: flex;
 `;
 
+const AchivementCountData = styled.div`
+  display: flex;
+`;
+
+
+
 export default function GameCardMinimal(props) {
   const {
     image,
@@ -131,13 +168,28 @@ export default function GameCardMinimal(props) {
   } = props.game;
 
   const getRemainingForTarget = () => {
-    const completionTarget =
-      _STORAGE_READ(COMPLETION_TARGET) ?? TARGET_DEFAULT_COMPLETION;
+    // const completionTarget =
+    //   _STORAGE_READ(COMPLETION_TARGET) ?? TARGET_DEFAULT_COMPLETION;
 
-    return Math.ceil(
-      (completionTarget / 100) * total_achievements_count -
-        completed_achievements_count
-    );
+    return {
+      toGold:Math.ceil(
+        (100 / 100) * total_achievements_count -
+          completed_achievements_count
+      ),
+      toPurple:Math.ceil(
+        (80 / 100) * total_achievements_count -
+          completed_achievements_count
+      ),
+      toGreen:Math.ceil(
+        (50 / 100) * total_achievements_count -
+          completed_achievements_count
+      ),
+      toBronze:Math.ceil(
+        (20 / 100) * total_achievements_count -
+          completed_achievements_count
+      )
+    };
+    //return `${completed_achievements_count}/${total_achievements_count}`
   };
 
   return (
@@ -161,31 +213,74 @@ export default function GameCardMinimal(props) {
       }}
     >
       <InnerContainer>
-        <AchievementData>
-          <IconInner>
-            <FaTrophy />
-          </IconInner>
-          <AchievementCount>
-            {+completion_percentage <
-              Number(
-                _STORAGE_READ(COMPLETION_TARGET) ?? TARGET_DEFAULT_COMPLETION
-              ) && getRemainingForTarget()}
-
-            {+completion_percentage >=
-              Number(
-                _STORAGE_READ(COMPLETION_TARGET) ?? TARGET_DEFAULT_COMPLETION
-              ) && <FaCheck />}
-          </AchievementCount>
-        </AchievementData>
-        {+completion_percentage >=
-          Number(
-            _STORAGE_READ(COMPLETION_TARGET) ?? TARGET_DEFAULT_COMPLETION
-          ) && (
-          <Medal>
+        
+        <AchivementCountData>
+          {getRemainingForTarget().toGold > 0 && <AchievementData>
+            <IconInner color="#fecc09">
+              <FaTrophy />
+            </IconInner>
+            <AchievementCount>
+              { getRemainingForTarget().toGold}
+            </AchievementCount>
+          </AchievementData>}
+          {getRemainingForTarget().toPurple > 0 && <AchievementData>
+            <IconInner color="#b666d2">
+              <FaTrophy />
+            </IconInner>
+            <AchievementCount>
+              { getRemainingForTarget().toPurple}
+            </AchievementCount>
+          </AchievementData>}
+          {getRemainingForTarget().toGreen > 0 && <AchievementData>
+            <IconInner color="#a6ff00">
+              <FaTrophy />
+            </IconInner>
+            <AchievementCount>
+              { getRemainingForTarget().toGreen}
+            </AchievementCount>
+          </AchievementData>}
+          {getRemainingForTarget().toBronze > 0 && <AchievementData>
+            <IconInner color="#CD7F32">
+              <FaTrophy />
+            </IconInner>
+            <AchievementCount>
+              { getRemainingForTarget().toBronze}
+            </AchievementCount>
+          </AchievementData>}
+        </AchivementCountData>
+        
+        
+        {+completion_percentage === 100
+           && (
+          <GoldMedal>
             <FaMedal />
-          </Medal>
+          </GoldMedal>
         )}
-        {+completion_percentage <
+        {+completion_percentage < 100 && +completion_percentage >= 80
+           && (
+          <PurpleMedal>
+            <FaMedal />
+          </PurpleMedal>
+        )}
+        {+completion_percentage < 80 && +completion_percentage >= 50
+           && (
+          <GreenMedal>
+            <FaMedal />
+          </GreenMedal>
+        )}
+        {+completion_percentage < 50 && +completion_percentage >= 20
+           && (
+          <BronzeMedal>
+            <FaMedal />
+          </BronzeMedal>
+        )}
+        {+completion_percentage === 0
+           && (
+          <IconStarted>
+            <FaHourglass />
+          </IconStarted>
+        )}
+        {/* {+completion_percentage <
           Number(
             _STORAGE_READ(COMPLETION_TARGET) ?? TARGET_DEFAULT_COMPLETION
           ) &&
@@ -193,7 +288,7 @@ export default function GameCardMinimal(props) {
             <IconStarted>
               <FaHourglass />
             </IconStarted>
-          )}
+          )} */}
       </InnerContainer>
     </Card>
   );

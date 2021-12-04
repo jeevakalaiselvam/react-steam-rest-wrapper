@@ -34,6 +34,7 @@ import { getMedalCompletedGames, getTotalAchievements } from "../helper/other";
 
 const MainMenu = styled.div`
   width: 100%;
+  zindex: 10000;
   display: flex;
   flex-direction: column;
 `;
@@ -57,9 +58,9 @@ const IconSetContainer = styled.div`
 
 const IconSetMedal = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  color: #fecc09;
+  color: ${props => props.color};
   flex: 1;
   justify-content: center;
 `;
@@ -79,8 +80,8 @@ const DataMedal = styled.div`
   flex-direction: row;
   font-size: 1.3rem;
   align-items: center;
+  text-align:center
   justify-content: center;
-  margin-right: 0.5rem;
 `;
 
 const DataTotal = styled.div`
@@ -117,14 +118,27 @@ export default function AllPageLeft() {
   return (
     <MainMenu>
       <IconSetContainer visible={!loading}>
-        <IconSetMedal>
-          <DataMedal>{totalMedals}</DataMedal>
+        <IconSetMedal color="#fecc09">
+          <DataMedal>{totalMedals.gold}</DataMedal>
           <FaMedal />
         </IconSetMedal>
-        <IconSetTrophy>
+        <IconSetMedal color="#b666d2">
+          <DataMedal>{totalMedals.purple}</DataMedal>
+          <FaMedal />
+        </IconSetMedal>
+        <IconSetMedal color="#a6ff00">
+          <DataMedal>{totalMedals.green}</DataMedal>
+          <FaMedal />
+        </IconSetMedal>
+        <IconSetMedal color="#CD7F32">
+          <DataMedal>{totalMedals.bronze}</DataMedal>
+          <FaMedal />
+        </IconSetMedal>
+       
+        {/* <IconSetTrophy>
           <DataTotal>{totalAchievements}</DataTotal>
           <FaTrophy />
-        </IconSetTrophy>
+        </IconSetTrophy> */}
       </IconSetContainer>
       <Subheader>SELECT CATEGORY</Subheader>
 

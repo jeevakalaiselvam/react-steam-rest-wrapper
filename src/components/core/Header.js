@@ -176,14 +176,14 @@ export default function Header() {
               <Icon>
                 <FaMedal />
               </Icon>
-              <Data>{totalMedals}</Data>
+              <Data>{totalMedals.gold}</Data>
             </IconSetGold>
-            <IconSetBlue>
+            {/* <IconSetBlue>
               <Icon>
                 <FaTrophy />
               </Icon>
               <Data>{totalAchievements}</Data>
-            </IconSetBlue>
+            </IconSetBlue> */}
             <IconSetGreen>
               <Icon>
                 <FaGamepad />

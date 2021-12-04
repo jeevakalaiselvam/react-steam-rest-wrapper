@@ -91,24 +91,39 @@ export const getModeAchivementsToAttainTarget = (achievements) => {
   const target = _STORAGE_READ(COMPLETION_TARGET) ?? TARGET_DEFAULT_COMPLETION;
   const completed = _STORAGE_READ(SELECTED_GAME_COMPLETED);
   const total = _STORAGE_READ(SELECTED_GAME_TOTAL);
-  const toGet = Math.ceil((target / 100) * total) - completed;
-  console.log(
-    `TARGET: ${target} COMPLETED: ${completed} TOTAL: ${total} TOGET: ${toGet}`
-  );
-  return toGet;
+  const toGetGold = Math.ceil((100 / 100) * total) - completed;
+  const toGetPurple = Math.ceil((80 / 100) * total) - completed;
+  const toGetGreen = Math.ceil((50 / 100) * total) - completed;
+  const toGetBronze = Math.ceil((20 / 100) * total) - completed;
+  
+  return {toGetGold,toGetPurple,toGetGreen,toGetBronze};
 };
 
 export const getMedalCompletedGames = (gameInfo) => {
   const { game_percentages } = gameInfo;
-  let totalMedals = 0;
+  let totalMedals = {
+    gold: 0,
+    purple: 0,
+    green: 0,
+    bronze: 0,
+  };
 
   game_percentages &&
     game_percentages.forEach((percentage) => {
       if (
-        percentage >=
-        Number(_STORAGE_READ(COMPLETION_TARGET) ?? TARGET_DEFAULT_COMPLETION)
+        percentage == 100
+        
       ) {
-        totalMedals++;
+        totalMedals.gold++;
+      }
+      if(percentage < 100 && percentage >= 80){
+        totalMedals.purple++;
+      }
+      if(percentage < 80 && percentage >= 50){
+        totalMedals.green++;
+      }
+      if(percentage < 50 && percentage >= 20){
+        totalMedals.bronze++;
       }
     });
   return totalMedals;
