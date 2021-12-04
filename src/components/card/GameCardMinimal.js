@@ -58,15 +58,22 @@ const Card = styled.div`
     height: 14vh;
   }
   @media only screen and (max-width: 630px) and (min-width: 481px) {
-    width: 46%;
-    height: 14vh;
+    width: 96%;
+    height: 26vh;
   }
   @media only screen and (max-width: 480px) {
-    width: 46%;
-    height: 13vh;
+    width: 96%;
+    height: 26vh;
   }
 `;
 
+const IconInner = styled.div`
+  font-size: 1rem;
+  color: ${props => props.color};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 const InnerContainer = styled.div`
   position: absolute;
@@ -76,6 +83,16 @@ const InnerContainer = styled.div`
   display: flex;
   width: 100%;
   flex-direction: row;
+`;
+
+const AchievementData = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  color: #fefefe;
+  justify-content: flex-start;
+  padding: 0.25rem 0.5rem;
 `;
 
 const GoldMedal = styled.div`
@@ -116,14 +133,6 @@ const BronzeMedal = styled.div`
   margin-right: 0.5rem;
 `;
 
-const IconInner = styled.div`
-  font-size: 1rem;
-  color: ${props => props.color};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 0.5rem;
-`;
 
 
 const IconStarted = styled.div`
@@ -136,17 +145,8 @@ const IconStarted = styled.div`
   margin-right: 0.5rem;
 `;
 
-const AchievementData = styled.div`
-  flex: 1;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  color: #fefefe;
-  justify-content: flex-start;
-  padding: 0.5rem 0.5rem;
-`;
-
 const AchievementCount = styled.div`
+  margin-left: 0.25rem;
   font-size: 0.9rem;
   align-items: center;
   justify-content: center;
