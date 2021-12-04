@@ -89,10 +89,10 @@ const AchievementData = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
-  flex-direction: row;
+  flex-direction: column;
   color: #fefefe;
   justify-content: flex-start;
-  padding: 0.25rem 0.5rem;
+  padding: 0.5rem 0.5rem;
 `;
 
 const GoldMedal = styled.div`
@@ -146,7 +146,6 @@ const IconStarted = styled.div`
 `;
 
 const AchievementCount = styled.div`
-  margin-left: 0.25rem;
   font-size: 0.9rem;
   align-items: center;
   justify-content: center;
