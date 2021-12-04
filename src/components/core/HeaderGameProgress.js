@@ -84,6 +84,7 @@ const IconSetGold = styled.div`
   justify-content: center;
   flex-direction: row;
   margin-right: 1rem;
+  margin-left: 1rem;
 `;
 const IconSetPurple = styled.div`
   display: flex;
