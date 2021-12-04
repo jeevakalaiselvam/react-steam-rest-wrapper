@@ -263,7 +263,7 @@ export default function AchievementNormal(props) {
           <Percentage>{Number(global_percentage).toFixed(2)} %</Percentage>
         )}
       </Misc>
-      <RemainingAchievements>
+      {/* <RemainingAchievements>
         <RemainingIcon>
           <FaThumbtack />
         </RemainingIcon>
@@ -274,7 +274,7 @@ export default function AchievementNormal(props) {
               Number(game_completed_count)
           )}
         </RemainingData>
-      </RemainingAchievements>
+      </RemainingAchievements> */}
     </CardContainer>
   );
 }
