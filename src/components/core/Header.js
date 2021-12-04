@@ -91,10 +91,10 @@ const IconSetGold = styled.div`
   justify-content: center;
   flex-direction: row;
 `;
-const IconSetBlue = styled.div`
+const IconSetPurple = styled.div`
   display: flex;
   margin-left: 1.5rem;
-  color: #55aece;
+  color: #b666d2;
   text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
   align-items: center;
   justify-content: center;
@@ -104,7 +104,16 @@ const IconSetGreen = styled.div`
   display: flex;
   margin-left: 1.5rem;
   align-items: center;
-  color: #a5c93a;
+  color: #a6ff00;
+  text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
+  justify-content: center;
+  flex-direction: row;
+`;
+const IconSetBronze = styled.div`
+  display: flex;
+  margin-left: 1.5rem;
+  align-items: center;
+  color: #CD7F32;
   text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
   justify-content: center;
   flex-direction: row;
@@ -178,18 +187,24 @@ export default function Header() {
               </Icon>
               <Data>{totalMedals.gold}</Data>
             </IconSetGold>
-            {/* <IconSetBlue>
+            <IconSetPurple>
               <Icon>
-                <FaTrophy />
+                <FaMedal />
               </Icon>
-              <Data>{totalAchievements}</Data>
-            </IconSetBlue> */}
+              <Data>{totalMedals.purple}</Data>
+            </IconSetPurple>
             <IconSetGreen>
               <Icon>
-                <FaGamepad />
+                <FaMedal />
               </Icon>
-              <Data>{gameInfo.total_games}</Data>
+              <Data>{totalMedals.green}</Data>
             </IconSetGreen>
+            <IconSetBronze>
+              <Icon>
+                <FaMedal />
+              </Icon>
+              <Data>{totalMedals.bronze}</Data>
+            </IconSetBronze>
           </>
         )}
       </MiddleNav>
