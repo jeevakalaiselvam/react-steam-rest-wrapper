@@ -79,30 +79,38 @@ const MiddleNav = styled.div`
 const IconSetGold = styled.div`
   display: flex;
   align-items: center;
-  text-shadow: 0 0 6px #da8c4a;
   color: #fecc09;
   text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
   justify-content: center;
   flex-direction: row;
+  margin-right: 1rem;
 `;
-const IconSetBlue = styled.div`
+const IconSetPurple = styled.div`
   display: flex;
-  margin-left: 1.5rem;
-  color: #55aece;
-  margin-right: 1.5rem;
-  text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
   align-items: center;
+  color: #b666d2;
+  text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
   justify-content: center;
   flex-direction: row;
+  margin-right: 1rem;
 `;
 const IconSetGreen = styled.div`
   display: flex;
   align-items: center;
-  color: #a5c93a;
-  margin-right: 1.5rem;
+  color: #a6ff00;
   text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
   justify-content: center;
   flex-direction: row;
+  margin-right: 1rem;
+`;
+const IconSetBronze = styled.div`
+  display: flex;
+  align-items: center;
+  color: #CD7F32;
+  text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
+  justify-content: center;
+  flex-direction: row;
+  margin-right: 1rem;
 `;
 
 const Icon = styled.div`
@@ -158,8 +166,26 @@ export default function HeaderGameProgress(props) {
     setNavRightOpen((navState) => !navState);
   };
 
-  const remaining = Math.ceil(
-    (_STORAGE_READ(COMPLETION_TARGET) / 100) *
+  const toGold = Math.ceil(
+    (100 / 100) *
+      gameInfo.total_achievements_count -
+      gameInfo.completed_achievements_count
+  );
+
+  const toPurple = Math.ceil(
+    (80 / 100) *
+      gameInfo.total_achievements_count -
+      gameInfo.completed_achievements_count
+  );
+
+  const toGreen = Math.ceil(
+    (50 / 100) *
+      gameInfo.total_achievements_count -
+      gameInfo.completed_achievements_count
+  );
+
+  const toBronze = Math.ceil(
+    (20 / 100) *
       gameInfo.total_achievements_count -
       gameInfo.completed_achievements_count
   );
@@ -171,27 +197,38 @@ export default function HeaderGameProgress(props) {
         {navLeftOpen && <FaTimes />}
       </LeftNav>
       <MiddleNav>
-        {remaining > 0 && (
-          <IconSetBlue>
+        {toGold > 0 && (
+          <IconSetGold>
             <IconTrophy>
               <FaTrophy />
             </IconTrophy>
-            <Data>{remaining}</Data>
-          </IconSetBlue>
+            <Data>{toGold}</Data>
+          </IconSetGold>
         )}
-        {remaining > 0 && (
+        {toPurple > 0 && (
+          <IconSetPurple>
+            <IconTrophy>
+              <FaTrophy />
+            </IconTrophy>
+            <Data>{toPurple}</Data>
+          </IconSetPurple>
+        )}
+        {toGreen > 0 && (
           <IconSetGreen>
-            <Icon>
-              <FaLongArrowAltRight />
-            </Icon>
+            <IconTrophy>
+              <FaTrophy />
+            </IconTrophy>
+            <Data>{toGreen}</Data>
           </IconSetGreen>
         )}
-        <IconSetGold>
-          <Icon>
-            <FaMedal />
-          </Icon>
-          <Data></Data>
-        </IconSetGold>
+        {toBronze > 0 && (
+          <IconSetBronze>
+            <IconTrophy>
+              <FaTrophy />
+            </IconTrophy>
+            <Data>{toBronze}</Data>
+          </IconSetBronze>
+        )}
       </MiddleNav>
       <RightNav onClick={toggleNavRight}>
         {!navRightOpen && <FaEllipsisV />}
