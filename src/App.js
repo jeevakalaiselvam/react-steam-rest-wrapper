@@ -10,6 +10,7 @@ import Settings from "./pages/Settings";
 import Milestone from "./pages/Milestone";
 import Next from "./pages/Next";
 import Random from "./pages/Random";
+import CurrentGame from "./pages/CurrentGame";
 
 export default function App() {
   const [navLeftOpen, setNavLeftOpen] = useState(false);
@@ -23,7 +24,10 @@ export default function App() {
         <Router>
           <Switch>
             <Route exact path='/'>
-              <Games />
+              <CurrentGame />
+            </Route>
+            <Route exact path='/currentGame'>
+              <CurrentGame />
             </Route>
             <Route exact path='/games'>
               <Games />

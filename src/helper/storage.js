@@ -33,6 +33,7 @@ export const GAMEPAGE_HEADER_REMAINING = "GAMEPAGE_HEADER_REMAINING";
 export const HISTORYPAGE_VIEW = "HISTORYPAGE_VIEW";
 
 //PAGE INDEXES
+export const CURRENT_GAME_PAGE_INDEX = "currentGame";
 export const GAMES_PAGE_INDEX = "games";
 export const ACHIEVEMENTS_PAGE_INDEX = "achievements";
 export const NEXT_PAGE_INDEX = "next";

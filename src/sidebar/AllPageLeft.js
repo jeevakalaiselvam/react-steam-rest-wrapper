@@ -20,7 +20,7 @@ import {
   HISTORY_PAGE_INDEX,
   MILESTONE_PAGE_INDEX,
   NEXT_PAGE_INDEX,
-  RANDOM_PAGE_INDEX,
+  RANDOM_PAGE_INDEX,CURRENT_GAME_PAGE_INDEX,
   SETTINGS_PAGE_INDEX,
   STORAGE_HEADER_AVERAGE_COMPLETION,
   STORAGE_HEADER_TOTAL_ACHIEVEMENTS,
@@ -141,7 +141,16 @@ export default function AllPageLeft() {
         </IconSetTrophy> */}
       </IconSetContainer>
       <Subheader>SELECT CATEGORY</Subheader>
-
+      <MenuItemLink
+        icon={<FaGamepad />}
+        title={"Ongoing"}
+        to={"/currentGame"}
+        navItemClicked={() => {
+          _STORAGE_WRITE(CURRENT_PAGE, CURRENT_GAME_PAGE_INDEX);
+          window.location.href = `/${_STORAGE_READ(CURRENT_PAGE)}`;
+        }}
+        selected={_STORAGE_READ(CURRENT_PAGE) === CURRENT_GAME_PAGE_INDEX}
+      />
       <MenuItemLink
         icon={<FaGamepad />}
         title={"Games"}
