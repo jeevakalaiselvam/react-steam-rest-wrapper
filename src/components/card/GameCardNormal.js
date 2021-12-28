@@ -50,12 +50,12 @@ const CardContainer = styled.div`
     height: 20vh;
   }
   @media only screen and (max-width: 630px) and (min-width: 481px) {
-    width: 96%;
-    height: 25vh;
+    width: 45%;
+    height: 20vh;
   }
   @media only screen and (max-width: 480px) {
-    width: 96%;
-    height: 25vh;
+    width: 45%;
+    height: 20vh;
   }
 `;
 

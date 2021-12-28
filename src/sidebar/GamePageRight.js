@@ -63,7 +63,7 @@ const Title = styled.div`
 `;
 
 const ToGet = styled.div`
-  padding: 1rem;
+  padding: 0.25rem 1rem;
   display: flex;
   width: 100%;
   flex-direction: row;
@@ -75,16 +75,26 @@ const IconAndText = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  flex: 1;
+  flex: 2;
   align-items: center;
   color: #55aece;
+  padding: 0rem 0.25rem;
+`;
+
+const Trophy = styled.div`
+  display: flex;
+  flex-direction: row;
+  font-size: 1.35rem;
+  justify-content: center;
+  flex:1;
+  align-items: center;
 `;
 
 const Data = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-left: 0.5rem;
+  flex:1;
   font-size: 1.1rem;
   align-items: center;
 `;
@@ -96,14 +106,6 @@ const Arrow = styled.div`
   justify-content: center;
   color: #a5c93a;
   flex: 1;
-  align-items: center;
-`;
-
-const Trophy = styled.div`
-  display: flex;
-  flex-direction: row;
-  font-size: 1.35rem;
-  justify-content: center;
   align-items: center;
 `;
 
@@ -172,90 +174,7 @@ export default function GamePageRight(props) {
 
   return (
     <Container>
-      {/* {toGet.toGetGold > 0 && (
-        <ToGet>
-          <IconAndText>
-            <Trophy>
-              <FaTrophy />
-            </Trophy>
-            <Data>{toGet.toGetGold}</Data>
-          </IconAndText>
-          <Arrow>
-            <FaArrowRight />
-          </Arrow>
-          <MedalGold>
-            <FaMedal />
-          </MedalGold>
-        </ToGet>
-      )}
-      {toGet.toGetPurple > 0 && (
-        <ToGet>
-          <IconAndText>
-            <Trophy>
-              <FaTrophy />
-            </Trophy>
-            <Data>{toGet.toGetPurple}</Data>
-          </IconAndText>
-          <Arrow>
-            <FaArrowRight />
-          </Arrow>
-          <MedalPurple>
-            <FaMedal />
-          </MedalPurple>
-        </ToGet>
-      )}
-      {toGet.toGetGreen > 0 && (
-        <ToGet>
-          <IconAndText>
-            <Trophy>
-              <FaTrophy />
-            </Trophy>
-            <Data>{toGet.toGetGreen}</Data>
-          </IconAndText>
-          <Arrow>
-            <FaArrowRight />
-          </Arrow>
-          <MedalGreen>
-            <FaMedal />
-          </MedalGreen>
-        </ToGet>
-      )}
-      {toGet.toGetBronze > 0 && (
-        <ToGet>
-          <IconAndText>
-            <Trophy>
-              <FaTrophy />
-            </Trophy>
-            <Data>{toGet.toGetBronze}</Data>
-          </IconAndText>
-          <Arrow>
-            <FaArrowRight />
-          </Arrow>
-          <MedalBronze>
-            <FaMedal />
-          </MedalBronze>
-        </ToGet>
-      )} */}
-      {pinnedCount > 0 && (
-        <ToGet>
-          <IconAndText>
-            <Trophy>
-              <FaThumbtack />
-            </Trophy>
-            <Data>{pinnedCount}</Data>
-          </IconAndText>
-        </ToGet>
-      )}
-      {pinnedCount <= 0 && (
-        <ToGet>
-          <IconAndText>
-            <Trophy>
-              <FaThumbtack />
-            </Trophy>
-            <Data>{pinnedCount}</Data>
-          </IconAndText>
-        </ToGet>
-      )}
+     
 
        <Subheader>VIEW OPTIONS</Subheader>
       <RightMenuItem
@@ -371,7 +290,94 @@ export default function GamePageRight(props) {
         <Title>Hidden</Title>
       </RightMenuItem>
 
-     
+       
+      {pinnedCount > 0 && (
+        <ToGet>
+          <IconAndText>
+            <Trophy>
+              <FaThumbtack />
+            </Trophy>
+            <Data>{pinnedCount}</Data>
+          </IconAndText>
+        </ToGet>
+      )}
+      {pinnedCount <= 0 && (
+        <ToGet>
+          <IconAndText>
+            <Trophy>
+              <FaThumbtack />
+            </Trophy>
+            <Data>{pinnedCount}</Data>
+          </IconAndText>
+        </ToGet>
+      )}
+      {toGet.toGetGold > 0 && (
+        <ToGet>
+          <IconAndText>
+            <Trophy>
+              <FaTrophy />
+            </Trophy>
+            <Data>{toGet.toGetGold}</Data>
+          </IconAndText>
+          <Arrow>
+            <FaArrowRight />
+          </Arrow>
+          <MedalGold>
+            <FaMedal />
+          </MedalGold>
+        </ToGet>
+      )}
+
+
+
+      {toGet.toGetPurple > 0 && (
+        <ToGet>
+          <IconAndText>
+            <Trophy>
+              <FaTrophy />
+            </Trophy>
+            <Data>{toGet.toGetPurple}</Data>
+          </IconAndText>
+          <Arrow>
+            <FaArrowRight />
+          </Arrow>
+          <MedalPurple>
+            <FaMedal />
+          </MedalPurple>
+        </ToGet>
+      )}
+      {toGet.toGetGreen > 0 && (
+        <ToGet>
+          <IconAndText>
+            <Trophy>
+              <FaTrophy />
+            </Trophy>
+            <Data>{toGet.toGetGreen}</Data>
+          </IconAndText>
+          <Arrow>
+            <FaArrowRight />
+          </Arrow>
+          <MedalGreen>
+            <FaMedal />
+          </MedalGreen>
+        </ToGet>
+      )}
+      {toGet.toGetBronze > 0 && (
+        <ToGet>
+          <IconAndText>
+            <Trophy>
+              <FaTrophy />
+            </Trophy>
+            <Data>{toGet.toGetBronze}</Data>
+          </IconAndText>
+          <Arrow>
+            <FaArrowRight />
+          </Arrow>
+          <MedalBronze>
+            <FaMedal />
+          </MedalBronze>
+        </ToGet>
+      )}
     </Container>
   );
 }

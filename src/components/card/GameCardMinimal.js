@@ -58,12 +58,12 @@ const Card = styled.div`
     height: 14vh;
   }
   @media only screen and (max-width: 630px) and (min-width: 481px) {
-    width: 96%;
-    height: 26vh;
+    width: 46%;
+    height: 14vh;
   }
   @media only screen and (max-width: 480px) {
-    width: 96%;
-    height: 26vh;
+    width: 46%;
+    height: 14vh;
   }
 `;
 
@@ -77,12 +77,15 @@ const IconInner = styled.div`
 
 const InnerContainer = styled.div`
   position: absolute;
-  bottom: 0;
-  left: 0;
+  top: 0;
+  right: 0;
   background-color: rgba(10, 17, 25, 0.8);
   display: flex;
-  width: 100%;
+  padding: 0.5rem;
   flex-direction: row;
+  align-items:center;
+  justify-content: center;
+  align-self: center;
 `;
 
 const AchievementData = styled.div`
@@ -101,7 +104,6 @@ const GoldMedal = styled.div`
   align-items: center;
   color: #fecc09;
   justify-content: flex-end;
-  margin-right: 0.5rem;
 `;
 
 
@@ -111,7 +113,6 @@ const PurpleMedal = styled.div`
   align-items: center;
   color: #b666d2;
   justify-content: flex-end;
-  margin-right: 0.5rem;
 `;
 
 
@@ -121,7 +122,6 @@ const GreenMedal = styled.div`
   align-items: center;
   color: #a6ff00;
   justify-content: flex-end;
-  margin-right: 0.5rem;
 `;
 
 const BronzeMedal = styled.div`
@@ -130,7 +130,6 @@ const BronzeMedal = styled.div`
   align-items: center;
   color: #CD7F32;
   justify-content: flex-end;
-  margin-right: 0.5rem;
 `;
 
 
@@ -214,7 +213,7 @@ export default function GameCardMinimal(props) {
     >
       <InnerContainer>
         
-        <AchivementCountData>
+        {/* <AchivementCountData>
           {getRemainingForTarget().toGold > 0 && <AchievementData>
             <IconInner color="#fecc09">
               <FaTrophy />
@@ -247,7 +246,7 @@ export default function GameCardMinimal(props) {
               { getRemainingForTarget().toBronze}
             </AchievementCount>
           </AchievementData>}
-        </AchivementCountData>
+        </AchivementCountData> */}
         
         
         {+completion_percentage === 100
