@@ -18,6 +18,8 @@ import { _STORAGE_CHECK_ARRAY } from "../helper/storage";
 const Container = styled.div`
   width: 100%;
   display: flex;
+  height: 100%;
+  position: relative;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
@@ -170,7 +172,7 @@ export default function GamePageRight(props) {
 
   return (
     <Container>
-      {toGet.toGetGold > 0 && (
+      {/* {toGet.toGetGold > 0 && (
         <ToGet>
           <IconAndText>
             <Trophy>
@@ -233,7 +235,7 @@ export default function GamePageRight(props) {
             <FaMedal />
           </MedalBronze>
         </ToGet>
-      )}
+      )} */}
       {pinnedCount > 0 && (
         <ToGet>
           <IconAndText>
@@ -254,6 +256,26 @@ export default function GamePageRight(props) {
           </IconAndText>
         </ToGet>
       )}
+
+       <Subheader>VIEW OPTIONS</Subheader>
+      <RightMenuItem
+        onClick={() => props.viewHandler(0)}
+        selected={props.viewIndex === 0}
+      >
+        <Icon>
+          <FaGripHorizontal />
+        </Icon>
+        <Title>Minimal</Title>
+      </RightMenuItem>
+      <RightMenuItem
+        onClick={() => props.viewHandler(1)}
+        selected={props.viewIndex === 1}
+      >
+        <Icon>
+          <FaGripHorizontal />
+        </Icon>
+        <Title>Normal</Title>
+      </RightMenuItem>
 
       <Subheader>SELECT OPTIONS</Subheader>
       <RightMenuItem
@@ -349,25 +371,7 @@ export default function GamePageRight(props) {
         <Title>Hidden</Title>
       </RightMenuItem>
 
-      <Subheader>VIEW OPTIONS</Subheader>
-      <RightMenuItem
-        onClick={() => props.viewHandler(0)}
-        selected={props.viewIndex === 0}
-      >
-        <Icon>
-          <FaGripHorizontal />
-        </Icon>
-        <Title>Minimal</Title>
-      </RightMenuItem>
-      <RightMenuItem
-        onClick={() => props.viewHandler(1)}
-        selected={props.viewIndex === 1}
-      >
-        <Icon>
-          <FaGripHorizontal />
-        </Icon>
-        <Title>Normal</Title>
-      </RightMenuItem>
+     
     </Container>
   );
 }
