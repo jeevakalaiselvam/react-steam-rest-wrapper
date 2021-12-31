@@ -1,6 +1,7 @@
 import React from "react";
 import { FaCheck, FaHourglass, FaMedal, FaTrophy } from "react-icons/fa";
 import styled from "styled-components";
+import { PERCENTAGE_BRONZE, PERCENTAGE_GOLD, PERCENTAGE_GREEN, PERCENTAGE_PURPLE } from "../../constants/percentage";
 import {
   COMPLETION_TARGET,
   SELECTED_GAME,
@@ -172,19 +173,19 @@ export default function GameCardMinimal(props) {
 
     return {
       toGold:Math.ceil(
-        (100 / 100) * total_achievements_count -
+        (PERCENTAGE_GOLD / 100) * total_achievements_count -
           completed_achievements_count
       ),
       toPurple:Math.ceil(
-        (75 / 100) * total_achievements_count -
+        (PERCENTAGE_PURPLE / 100) * total_achievements_count -
           completed_achievements_count
       ),
       toGreen:Math.ceil(
-        (50 / 100) * total_achievements_count -
+        (PERCENTAGE_GREEN / 100) * total_achievements_count -
           completed_achievements_count
       ),
       toBronze:Math.ceil(
-        (25 / 100) * total_achievements_count -
+        (PERCENTAGE_BRONZE / 100) * total_achievements_count -
           completed_achievements_count
       )
     };
@@ -255,19 +256,19 @@ export default function GameCardMinimal(props) {
             <FaMedal />
           </GoldMedal>
         )}
-        {+completion_percentage < 100 && +completion_percentage >= 80
+        {+completion_percentage < PERCENTAGE_GOLD && +completion_percentage >= PERCENTAGE_PURPLE
            && (
           <PurpleMedal>
             <FaMedal />
           </PurpleMedal>
         )}
-        {+completion_percentage < 80 && +completion_percentage >= 50
+        {+completion_percentage < PERCENTAGE_PURPLE && +completion_percentage >= PERCENTAGE_GREEN
            && (
           <GreenMedal>
             <FaMedal />
           </GreenMedal>
         )}
-        {+completion_percentage < 50 && +completion_percentage >= 20
+        {+completion_percentage < PERCENTAGE_GREEN && +completion_percentage >= PERCENTAGE_BRONZE
            && (
           <BronzeMedal>
             <FaMedal />

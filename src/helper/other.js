@@ -1,3 +1,4 @@
+import { PERCENTAGE_BRONZE, PERCENTAGE_GOLD, PERCENTAGE_GREEN, PERCENTAGE_PURPLE } from "../constants/percentage";
 import {
   COMPLETION_TARGET,
   SELECTED_GAME_COMPLETED,
@@ -91,10 +92,10 @@ export const getModeAchivementsToAttainTarget = (achievements) => {
   const target = _STORAGE_READ(COMPLETION_TARGET) ?? TARGET_DEFAULT_COMPLETION;
   const completed = _STORAGE_READ(SELECTED_GAME_COMPLETED);
   const total = _STORAGE_READ(SELECTED_GAME_TOTAL);
-  const toGetGold = Math.ceil(((100 / 100) * total) - completed);
-  const toGetPurple = Math.ceil(((75 / 100) * total) - completed);
-  const toGetGreen = Math.ceil(((50 / 100) * total) - completed);
-  const toGetBronze = Math.ceil(((25 / 100) * total) - completed);
+  const toGetGold = Math.ceil(((PERCENTAGE_GOLD / 100) * total) - completed);
+  const toGetPurple = Math.ceil(((PERCENTAGE_PURPLE / 100) * total) - completed);
+  const toGetGreen = Math.ceil(((PERCENTAGE_GREEN / 100) * total) - completed);
+  const toGetBronze = Math.ceil(((PERCENTAGE_BRONZE / 100) * total) - completed);
   
   return {toGetGold,toGetPurple,toGetGreen,toGetBronze};
 };

@@ -15,6 +15,7 @@ import {
   SELECTED_GAME,
   _STORAGE_READ,
 } from "../../helper/storage";
+import { PERCENTAGE_BRONZE, PERCENTAGE_GOLD, PERCENTAGE_GREEN, PERCENTAGE_PURPLE } from "../../constants/percentage";
 
 // background-image: linear-gradient(
 //   180deg,
@@ -168,25 +169,25 @@ export default function HeaderGameProgress(props) {
   };
 
   const toGold = Math.ceil(
-    (100 / 100) *
+    (PERCENTAGE_GOLD / 100) *
       gameInfo.total_achievements_count -
       gameInfo.completed_achievements_count
   );
 
   const toPurple = Math.ceil(
-    (80 / 100) *
+    (PERCENTAGE_PURPLE / 100) *
       gameInfo.total_achievements_count -
       gameInfo.completed_achievements_count
   );
 
   const toGreen = Math.ceil(
-    (50 / 100) *
+    (PERCENTAGE_GREEN / 100) *
       gameInfo.total_achievements_count -
       gameInfo.completed_achievements_count
   );
 
   const toBronze = Math.ceil(
-    (20 / 100) *
+    (PERCENTAGE_BRONZE / 100) *
       gameInfo.total_achievements_count -
       gameInfo.completed_achievements_count
   );
