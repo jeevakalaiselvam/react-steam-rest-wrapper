@@ -26,6 +26,9 @@ export default function App() {
             <Route exact path='/'>
               <Games />
             </Route>
+            <Route exact path='/currentGame'>
+              <CurrentGame />
+            </Route>
             <Route exact path='/games'>
               <Games />
             </Route>
