@@ -16,6 +16,7 @@ import HistoryContent from "../content/HistoryContent";
 import HistoryPageRight from "../sidebar/HistoryPageRight";
 import HeaderHistory from "../components/core/HeaderHistory";
 import { getAllAchievementsObtainedForDate } from "../helper/other";
+import { LEFTSIDEBAR_WIDTH, RIGHTSIDEBAR_WIDTH } from "../constants/dimensions";
 
 const PageContainer = styled.div`
   display: flex;
@@ -110,8 +111,8 @@ export default function History() {
             showAchievementsForDate={showAchievementsForDate}
           />
         }
-        leftSidebarWidth={"180px"}
-        rightSidebarWidth={"400px"}
+        leftSidebarWidth={LEFTSIDEBAR_WIDTH}
+        rightSidebarWidth={RIGHTSIDEBAR_WIDTH}
         loading={loading}
       />
     </PageContainer>

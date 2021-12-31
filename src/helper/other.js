@@ -1,4 +1,4 @@
-import { PERCENTAGE_BRONZE, PERCENTAGE_GOLD, PERCENTAGE_GREEN, PERCENTAGE_PURPLE } from "../constants/percentage";
+import { PERCENTAGE_BRONZE, PERCENTAGE_COPPER, PERCENTAGE_GOLD, PERCENTAGE_GREEN, PERCENTAGE_PURPLE } from "../constants/percentage";
 import {
   COMPLETION_TARGET,
   SELECTED_GAME_COMPLETED,
@@ -96,8 +96,9 @@ export const getModeAchivementsToAttainTarget = (achievements) => {
   const toGetPurple = Math.ceil(((PERCENTAGE_PURPLE / 100) * total) - completed);
   const toGetGreen = Math.ceil(((PERCENTAGE_GREEN / 100) * total) - completed);
   const toGetBronze = Math.ceil(((PERCENTAGE_BRONZE / 100) * total) - completed);
+  const toGetCopper = Math.ceil(((PERCENTAGE_COPPER / 100) * total) - completed);
   
-  return {toGetGold,toGetPurple,toGetGreen,toGetBronze};
+  return {toGetGold,toGetPurple,toGetGreen,toGetBronze,toGetCopper};
 };
 
 export const getMedalCompletedGames = (gameInfo) => {
@@ -107,24 +108,28 @@ export const getMedalCompletedGames = (gameInfo) => {
     purple: 0,
     green: 0,
     bronze: 0,
+    copper:0,
   };
 
   game_percentages &&
     game_percentages.forEach((percentage) => {
       if (
-        percentage == 100
+        percentage == PERCENTAGE_GOLD
         
       ) {
         totalMedals.gold++;
       }
-      if(percentage < 100 && percentage >= 75){
+      if(percentage < PERCENTAGE_GOLD && percentage >= PERCENTAGE_PURPLE){
         totalMedals.purple++;
       }
-      if(percentage < 75 && percentage >= 50){
+      if(percentage < PERCENTAGE_PURPLE && percentage >= PERCENTAGE_GREEN){
         totalMedals.green++;
       }
-      if(percentage < 50 && percentage >= 25){
+      if(percentage < PERCENTAGE_GREEN && percentage >= PERCENTAGE_BRONZE){
         totalMedals.bronze++;
+      }
+      if(percentage < PERCENTAGE_BRONZE && percentage >= PERCENTAGE_COPPER){
+        totalMedals.copper++;
       }
     });
   return totalMedals;

@@ -12,6 +12,7 @@ import {
 import HeaderHistory from "../components/core/HeaderHistory";
 import MilestoneContent from "../content/MilestoneContent";
 import MilestoneRightPage from "../sidebar/MilestoneRightPage";
+import { LEFTSIDEBAR_WIDTH } from "../constants/dimensions";
 
 const PageContainer = styled.div`
   display: flex;
@@ -43,7 +44,7 @@ export default function Milestone() {
         leftSidebar={<AllPageLeft />}
         rightSidebar={<MilestoneRightPage />}
         content={<MilestoneContent achievements={achievements} />}
-        leftSidebarWidth={"180px"}
+        leftSidebarWidth={LEFTSIDEBAR_WIDTH}
         rightSidebarWidth={"0px"}
         loading={loading}
       />

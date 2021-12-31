@@ -15,7 +15,7 @@ import {
   SELECTED_GAME,
   _STORAGE_READ,
 } from "../../helper/storage";
-import { PERCENTAGE_BRONZE, PERCENTAGE_GOLD, PERCENTAGE_GREEN, PERCENTAGE_PURPLE } from "../../constants/percentage";
+import { PERCENTAGE_BRONZE, PERCENTAGE_GOLD, PERCENTAGE_GREEN, PERCENTAGE_PURPLE, PERCENTAGE_COPPER } from "../../constants/percentage";
 
 // background-image: linear-gradient(
 //   180deg,
@@ -115,6 +115,16 @@ const IconSetBronze = styled.div`
   margin-right: 1rem;
 `;
 
+const IconSetCopper = styled.div`
+  display: flex;
+  align-items: center;
+  color: #D0D0D0;
+  text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
+  justify-content: center;
+  flex-direction: row;
+  margin-right: 1rem;
+`;
+
 const Icon = styled.div`
   font-size: 1.5rem;
   display: flex;
@@ -192,6 +202,12 @@ export default function HeaderGameProgress(props) {
       gameInfo.completed_achievements_count
   );
 
+  const toCopper = Math.ceil(
+    (PERCENTAGE_COPPER / 100) *
+      gameInfo.total_achievements_count -
+      gameInfo.completed_achievements_count
+  );
+
   return (
     <HeaderContainer>
       <LeftNav onClick={toggleNavLeft}>
@@ -230,6 +246,14 @@ export default function HeaderGameProgress(props) {
             </IconTrophy>
             <Data>{toBronze}</Data>
           </IconSetBronze>
+        )}
+         {toCopper > 0 && (
+          <IconSetCopper>
+            <IconTrophy>
+              <FaTrophy />
+            </IconTrophy>
+            <Data>{toCopper}</Data>
+          </IconSetCopper>
         )}
       </MiddleNav>
       <RightNav onClick={toggleNavRight}>

@@ -119,6 +119,16 @@ const IconSetBronze = styled.div`
   flex-direction: row;
 `;
 
+const IconSetCopper = styled.div`
+  display: flex;
+  margin-left: 1.5rem;
+  align-items: center;
+  color: #D0D0D0;
+  text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
+  justify-content: center;
+  flex-direction: row;
+`;
+
 const Icon = styled.div`
   font-size: 1.5rem;
   display: flex;
@@ -205,6 +215,12 @@ export default function Header() {
               </Icon>
               <Data>{totalMedals.bronze}</Data>
             </IconSetBronze>
+            <IconSetCopper>
+              <Icon>
+                <FaMedal />
+              </Icon>
+              <Data>{totalMedals.copper}</Data>
+            </IconSetCopper>
           </>
         )}
       </MiddleNav>

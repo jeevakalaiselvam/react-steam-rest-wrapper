@@ -10,6 +10,7 @@ import {
   _STORAGE_WRITE,
 } from '../helper/storage';
 import SettingsContent from '../content/SettingsContent';
+import { LEFTSIDEBAR_WIDTH } from '../constants/dimensions';
 
 const PageContainer = styled.div`
   display: flex;
@@ -40,8 +41,8 @@ export default function Settings() {
         leftSidebar={<AllPageLeft />}
         rightSidebar={''}
         content={<SettingsContent refreshDatabase={refreshDatabase} />}
-        leftSidebarWidth={'180px'}
-        rightSidebarWidth={'0px'}
+        leftSidebarWidth={LEFTSIDEBAR_WIDTH}
+        rightSidebarWidth={"0px"}
       />
     </PageContainer>
   );

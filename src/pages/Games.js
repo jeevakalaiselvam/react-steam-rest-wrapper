@@ -19,6 +19,7 @@ import {
   _STORAGE_WRITE,
 } from "../helper/storage";
 import { PAGINATION_GAMES_PER_PAGE } from "../helper/pagination";
+import { LEFTSIDEBAR_WIDTH, RIGHTSIDEBAR_WIDTH } from "../constants/dimensions";
 
 const PageContainer = styled.div`
   display: flex;
@@ -126,8 +127,8 @@ export default function Games() {
             moveToPageLeft={moveToPageLeftHandler}
           />
         }
-        leftSidebarWidth={"180px"}
-        rightSidebarWidth={"180px"}
+        leftSidebarWidth={LEFTSIDEBAR_WIDTH}
+        rightSidebarWidth={RIGHTSIDEBAR_WIDTH}
         loading={loading}
       />
     </PageContainer>

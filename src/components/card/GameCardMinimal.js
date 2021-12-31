@@ -1,7 +1,7 @@
 import React from "react";
 import { FaCheck, FaHourglass, FaMedal, FaTrophy } from "react-icons/fa";
 import styled from "styled-components";
-import { PERCENTAGE_BRONZE, PERCENTAGE_GOLD, PERCENTAGE_GREEN, PERCENTAGE_PURPLE } from "../../constants/percentage";
+import { PERCENTAGE_BRONZE, PERCENTAGE_COPPER, PERCENTAGE_GOLD, PERCENTAGE_GREEN, PERCENTAGE_PURPLE } from "../../constants/percentage";
 import {
   COMPLETION_TARGET,
   SELECTED_GAME,
@@ -134,6 +134,16 @@ const BronzeMedal = styled.div`
 `;
 
 
+const CopperMedal = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  color: #D0D0D0;
+  justify-content: flex-end;
+`;
+
+
+
 
 const IconStarted = styled.div`
   flex: 1;
@@ -142,7 +152,6 @@ const IconStarted = styled.div`
   color: #fefefe;
   font-size: 0.8rem;
   justify-content: flex-end;
-  margin-right: 0.5rem;
 `;
 
 const AchievementCount = styled.div`
@@ -186,6 +195,10 @@ export default function GameCardMinimal(props) {
       ),
       toBronze:Math.ceil(
         (PERCENTAGE_BRONZE / 100) * total_achievements_count -
+          completed_achievements_count
+      ),
+      toCopper:Math.ceil(
+        (PERCENTAGE_COPPER / 100) * total_achievements_count -
           completed_achievements_count
       )
     };
@@ -273,6 +286,12 @@ export default function GameCardMinimal(props) {
           <BronzeMedal>
             <FaMedal />
           </BronzeMedal>
+        )}
+         {+completion_percentage < PERCENTAGE_BRONZE && +completion_percentage >= PERCENTAGE_COPPER
+           && (
+          <CopperMedal>
+            <FaMedal />
+          </CopperMedal>
         )}
         {+completion_percentage === 0
            && (

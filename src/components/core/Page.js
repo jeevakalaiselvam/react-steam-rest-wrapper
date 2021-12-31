@@ -18,7 +18,7 @@ const PageContainer = styled.div`
 
 const SidebarLeftContainer = styled.div`
   display: flex;
-  width: ${(props) => props.leftSidebarWidth ?? "200px"};
+  width: ${(props) => props.leftSidebarWidth ?? "250px"};
   min-height: 100vh;
   max-height: 100vh;
   background-color: rgba(10, 17, 25, 1);

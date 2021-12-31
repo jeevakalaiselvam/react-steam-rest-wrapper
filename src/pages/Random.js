@@ -11,6 +11,7 @@ import {
   _STORAGE_WRITE,
 } from "../helper/storage";
 import RandomContent from "../content/RandomContent";
+import { LEFTSIDEBAR_WIDTH, RIGHTSIDEBAR_WIDTH } from "../constants/dimensions";
 
 const PageContainer = styled.div`
   display: flex;
@@ -48,8 +49,8 @@ export default function Random() {
         leftSidebar={<AllPageLeft />}
         rightSidebar={<></>}
         content={<RandomContent game={game} hardResetGame={hardResetGame} />}
-        leftSidebarWidth={"180px"}
-        rightSidebarWidth={"0px"}
+        leftSidebarWidth={LEFTSIDEBAR_WIDTH}
+        rightSidebarWidth={RIGHTSIDEBAR_WIDTH}
         loading={loading}
       />
     </PageContainer>

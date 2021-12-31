@@ -18,6 +18,7 @@ import {
 import { PAGINATION_ACHIEVEMENTS_PER_PAGE } from "../helper/pagination";
 import BacklogContent from "../content/BacklogContent";
 import BacklogPageRight from "../sidebar/BacklogPageRight";
+import { LEFTSIDEBAR_WIDTH, RIGHTSIDEBAR_WIDTH } from "../constants/dimensions";
 
 const PageContainer = styled.div`
   display: flex;
@@ -111,8 +112,8 @@ export default function Backlog() {
             moveToPageLeft={moveToPageLeftHandler}
           />
         }
-        leftSidebarWidth={"180px"}
-        rightSidebarWidth={"180px"}
+        leftSidebarWidth={LEFTSIDEBAR_WIDTH}
+        rightSidebarWidth={RIGHTSIDEBAR_WIDTH}
         loading={loading}
       />
     </PageContainer>

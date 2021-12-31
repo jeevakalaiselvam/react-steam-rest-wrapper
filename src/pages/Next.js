@@ -14,6 +14,7 @@ import {
 } from "../helper/storage";
 import { PAGINATION_ACHIEVEMENTS_PER_PAGE_NEXT } from "../helper/pagination";
 import NextContent from "../content/NextContent";
+import { LEFTSIDEBAR_WIDTH } from "../constants/dimensions";
 
 const PageContainer = styled.div`
   display: flex;
@@ -72,7 +73,7 @@ export default function Next() {
             moveToPageLeft={moveToPageLeftHandler}
           />
         }
-        leftSidebarWidth={"180px"}
+        leftSidebarWidth={LEFTSIDEBAR_WIDTH}
         rightSidebarWidth={"0px"}
         loading={loading}
       />
