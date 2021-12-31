@@ -24,10 +24,7 @@ export default function App() {
         <Router>
           <Switch>
             <Route exact path='/'>
-              <CurrentGame />
-            </Route>
-            <Route exact path='/games'>
-              <CurrentGame />
+              <Games />
             </Route>
             <Route exact path='/games'>
               <Games />
