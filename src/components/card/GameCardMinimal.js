@@ -176,7 +176,7 @@ export default function GameCardMinimal(props) {
           completed_achievements_count
       ),
       toPurple:Math.ceil(
-        (80 / 100) * total_achievements_count -
+        (75 / 100) * total_achievements_count -
           completed_achievements_count
       ),
       toGreen:Math.ceil(
@@ -184,7 +184,7 @@ export default function GameCardMinimal(props) {
           completed_achievements_count
       ),
       toBronze:Math.ceil(
-        (20 / 100) * total_achievements_count -
+        (25 / 100) * total_achievements_count -
           completed_achievements_count
       )
     };

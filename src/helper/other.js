@@ -92,9 +92,9 @@ export const getModeAchivementsToAttainTarget = (achievements) => {
   const completed = _STORAGE_READ(SELECTED_GAME_COMPLETED);
   const total = _STORAGE_READ(SELECTED_GAME_TOTAL);
   const toGetGold = Math.ceil(((100 / 100) * total) - completed);
-  const toGetPurple = Math.ceil(((80 / 100) * total) - completed);
+  const toGetPurple = Math.ceil(((75 / 100) * total) - completed);
   const toGetGreen = Math.ceil(((50 / 100) * total) - completed);
-  const toGetBronze = Math.ceil(((20 / 100) * total) - completed);
+  const toGetBronze = Math.ceil(((25 / 100) * total) - completed);
   
   return {toGetGold,toGetPurple,toGetGreen,toGetBronze};
 };
