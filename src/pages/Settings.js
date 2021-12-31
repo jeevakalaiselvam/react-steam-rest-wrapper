@@ -28,7 +28,7 @@ export default function Settings() {
     const response = await refreshDatabaseInBackend();
     if (response) {
       setTimeout(() => {
-        window.location.href = '/games';
+        window.location.href = '/currentGame';
       }, 5000);
     }
   };

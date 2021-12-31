@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Page from "../components/core/Page";
 import AllPageLeft from "../sidebar/AllPageLeft";
 import { useState } from "react";
-import { fetchAchievementsForGame } from "../action/games";
+import { fetchAchievementsForGame, refreshDatabaseInBackend } from "../action/games";
 import { GameContext } from "../context/GameContext";
 import {
   ACHIEVEMENTGAMEPAGE_SELECT,
