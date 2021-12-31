@@ -116,13 +116,13 @@ export const getMedalCompletedGames = (gameInfo) => {
       ) {
         totalMedals.gold++;
       }
-      if(percentage < 100 && percentage >= 80){
+      if(percentage < 100 && percentage >= 75){
         totalMedals.purple++;
       }
-      if(percentage < 80 && percentage >= 50){
+      if(percentage < 75 && percentage >= 50){
         totalMedals.green++;
       }
-      if(percentage < 50 && percentage >= 20){
+      if(percentage < 50 && percentage >= 25){
         totalMedals.bronze++;
       }
     });
