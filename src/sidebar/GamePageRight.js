@@ -153,7 +153,7 @@ const MedalCopper = styled.div`
   display: flex;
   flex-direction: row;
   flex: 1;
-  color: #CD7F32;
+  color: #812F33;
   margin-left: 0.5rem;
   justify-content: center;
   align-items: center;
@@ -386,6 +386,22 @@ export default function GamePageRight(props) {
           <MedalBronze>
             <FaMedal />
           </MedalBronze>
+        </ToGet>
+      )}
+      {toGet.toGetCopper > 0 && (
+        <ToGet>
+          <IconAndText>
+            <Trophy>
+              <FaTrophy />
+            </Trophy>
+            <Data>{toGet.toGetCopper}</Data>
+          </IconAndText>
+          <Arrow>
+            <FaArrowRight />
+          </Arrow>
+          <MedalCopper>
+            <FaMedal />
+          </MedalCopper>
         </ToGet>
       )}
     </Container>
