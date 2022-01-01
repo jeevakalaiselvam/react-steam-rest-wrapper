@@ -1,5 +1,5 @@
 import React from "react";
-import { FaCheck, FaHourglass, FaMedal, FaTrophy } from "react-icons/fa";
+import { FaCheck, FaClock, FaHourglass, FaMedal, FaTrophy } from "react-icons/fa";
 import styled from "styled-components";
 import { PERCENTAGE_BRONZE, PERCENTAGE_COPPER, PERCENTAGE_GOLD, PERCENTAGE_GREEN, PERCENTAGE_PURPLE } from "../../constants/percentage";
 import {
@@ -138,10 +138,9 @@ const CopperMedal = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
-  color: #D0D0D0;
+  color: #812F33;
   justify-content: flex-end;
 `;
-
 
 
 
@@ -150,7 +149,7 @@ const IconStarted = styled.div`
   display: flex;
   align-items: center;
   color: #fefefe;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   justify-content: flex-end;
 `;
 
@@ -292,6 +291,12 @@ export default function GameCardMinimal(props) {
           <CopperMedal>
             <FaMedal />
           </CopperMedal>
+        )}
+        {+completion_percentage < PERCENTAGE_COPPER && +completion_percentage !== 0
+           && (
+          <IconStarted>
+            <FaClock />
+          </IconStarted>
         )}
         {+completion_percentage === 0
            && (

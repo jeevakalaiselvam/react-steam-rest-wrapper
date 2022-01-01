@@ -149,6 +149,16 @@ const MedalBronze = styled.div`
   align-items: center;
 `;
 
+const MedalCopper = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  color: #CD7F32;
+  margin-left: 0.5rem;
+  justify-content: center;
+  align-items: center;
+`;
+
 export default function GamePageRight(props) {
   const achievements = props.achievements;
   const toGet = getModeAchivementsToAttainTarget(achievements);

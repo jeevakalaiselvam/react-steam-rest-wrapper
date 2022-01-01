@@ -134,7 +134,7 @@ export default function AllPageLeft() {
           <DataMedal>{totalMedals.bronze}</DataMedal>
           <FaMedal />
         </IconSetMedal>
-        <IconSetMedal color="#D0D0D0">
+        <IconSetMedal color="#812F33">
           <DataMedal>{totalMedals.copper}</DataMedal>
           <FaMedal />
         </IconSetMedal>

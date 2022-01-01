@@ -118,7 +118,7 @@ const IconSetBronze = styled.div`
 const IconSetCopper = styled.div`
   display: flex;
   align-items: center;
-  color: #D0D0D0;
+  color: #812F33;
   text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
   justify-content: center;
   flex-direction: row;
