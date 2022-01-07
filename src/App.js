@@ -23,37 +23,37 @@ export default function App() {
       <GameContext.Provider value={data}>
         <Router>
           <Switch>
-            <Route exact path='/'>
-              <Games />
-            </Route>
-            <Route exact path='/currentGame'>
-              <CurrentGame />
-            </Route>
-            <Route exact path='/games'>
-              <Games />
-            </Route>
-            <Route exact path='/achievements'>
-              <Achievements />
-            </Route>
-            <Route exact path='/history'>
-              <History />
-            </Route>
-            <Route exact path='/game'>
-              <Game />
-            </Route>
-            <Route exact path='/backlog'>
-              <Backlog />
-            </Route>
-            <Route exact path='/milestone'>
-              <Milestone />
-            </Route>
-            <Route exact path='/settings'>
+            <Route exact path="/">
               <Settings />
             </Route>
-            <Route exact path='/next'>
+            <Route exact path="/currentGame">
+              <CurrentGame />
+            </Route>
+            <Route exact path="/games">
+              <Games />
+            </Route>
+            <Route exact path="/achievements">
+              <Achievements />
+            </Route>
+            <Route exact path="/history">
+              <History />
+            </Route>
+            <Route exact path="/game">
+              <Game />
+            </Route>
+            <Route exact path="/backlog">
+              <Backlog />
+            </Route>
+            <Route exact path="/milestone">
+              <Milestone />
+            </Route>
+            <Route exact path="/settings">
+              <Settings />
+            </Route>
+            <Route exact path="/next">
               <Next />
             </Route>
-            <Route exact path='/random'>
+            <Route exact path="/random">
               <Random />
             </Route>
           </Switch>
