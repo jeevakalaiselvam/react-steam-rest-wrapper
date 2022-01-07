@@ -29,7 +29,7 @@ export default function Settings() {
     const response = await refreshDatabaseInBackend();
     if (response) {
       setTimeout(() => {
-        window.location.href = "/ongoing";
+        window.location.href = "/currentGame";
       }, 3000);
     }
   };
@@ -45,5 +45,5 @@ export default function Settings() {
         rightSidebarWidth={"0px"}
       />
     </PageContainer>
-  );
+  ); 
 }
