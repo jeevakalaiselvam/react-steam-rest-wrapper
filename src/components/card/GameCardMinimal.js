@@ -99,7 +99,7 @@ const InnerContainer = styled.div`
   align-items: center;
   justify-content: center;
   align-self: center;
-  font-size: 1.25rem;
+  font-size: 1rem;
 `;
 
 const AchievementData = styled.div`
