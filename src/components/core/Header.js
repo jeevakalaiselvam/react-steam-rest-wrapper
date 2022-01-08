@@ -93,7 +93,7 @@ const IconSetGold = styled.div`
 `;
 const IconSetPurple = styled.div`
   display: flex;
-  margin-left: 1.5rem;
+  margin-left: 1rem;
   color: #b666d2;
   text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
   align-items: center;
@@ -102,7 +102,7 @@ const IconSetPurple = styled.div`
 `;
 const IconSetGreen = styled.div`
   display: flex;
-  margin-left: 1.5rem;
+  margin-left: 1rem;
   align-items: center;
   color: #a6ff00;
   text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
@@ -111,9 +111,9 @@ const IconSetGreen = styled.div`
 `;
 const IconSetBronze = styled.div`
   display: flex;
-  margin-left: 1.5rem;
+  margin-left: 1rem;
   align-items: center;
-  color: #cd7f32;
+  color: #c0c0c0;
   text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
   justify-content: center;
   flex-direction: row;
@@ -121,9 +121,9 @@ const IconSetBronze = styled.div`
 
 const IconSetCopper = styled.div`
   display: flex;
-  margin-left: 1.5rem;
+  margin-left: 1rem;
   align-items: center;
-  color: #812f33;
+  color: #cd7f32;
   text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
   justify-content: center;
   flex-direction: row;

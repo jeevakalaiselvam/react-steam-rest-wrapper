@@ -1,7 +1,19 @@
 import React from "react";
-import { FaCheck, FaClock, FaHourglass, FaMedal, FaTrophy } from "react-icons/fa";
+import {
+  FaCheck,
+  FaClock,
+  FaHourglass,
+  FaMedal,
+  FaTrophy,
+} from "react-icons/fa";
 import styled from "styled-components";
-import { PERCENTAGE_BRONZE, PERCENTAGE_COPPER, PERCENTAGE_GOLD, PERCENTAGE_GREEN, PERCENTAGE_PURPLE } from "../../constants/percentage";
+import {
+  PERCENTAGE_BRONZE,
+  PERCENTAGE_COPPER,
+  PERCENTAGE_GOLD,
+  PERCENTAGE_GREEN,
+  PERCENTAGE_PURPLE,
+} from "../../constants/percentage";
 import {
   COMPLETION_TARGET,
   SELECTED_GAME,
@@ -70,7 +82,7 @@ const Card = styled.div`
 
 const IconInner = styled.div`
   font-size: 1rem;
-  color: ${props => props.color};
+  color: ${(props) => props.color};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -84,9 +96,10 @@ const InnerContainer = styled.div`
   display: flex;
   padding: 0.5rem;
   flex-direction: row;
-  align-items:center;
+  align-items: center;
   justify-content: center;
   align-self: center;
+  font-size: 1.25rem;
 `;
 
 const AchievementData = styled.div`
@@ -107,7 +120,6 @@ const GoldMedal = styled.div`
   justify-content: flex-end;
 `;
 
-
 const PurpleMedal = styled.div`
   flex: 1;
   display: flex;
@@ -115,7 +127,6 @@ const PurpleMedal = styled.div`
   color: #b666d2;
   justify-content: flex-end;
 `;
-
 
 const GreenMedal = styled.div`
   flex: 1;
@@ -129,20 +140,17 @@ const BronzeMedal = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
-  color: #CD7F32;
+  color: #c0c0c0;
   justify-content: flex-end;
 `;
-
 
 const CopperMedal = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
-  color: #812F33;
+  color: #cd7f32;
   justify-content: flex-end;
 `;
-
-
 
 const IconStarted = styled.div`
   flex: 1;
@@ -165,8 +173,6 @@ const AchivementCountData = styled.div`
   display: flex;
 `;
 
-
-
 export default function GameCardMinimal(props) {
   const {
     image,
@@ -180,26 +186,26 @@ export default function GameCardMinimal(props) {
     //   _STORAGE_READ(COMPLETION_TARGET) ?? TARGET_DEFAULT_COMPLETION;
 
     return {
-      toGold:Math.ceil(
+      toGold: Math.ceil(
         (PERCENTAGE_GOLD / 100) * total_achievements_count -
           completed_achievements_count
       ),
-      toPurple:Math.ceil(
+      toPurple: Math.ceil(
         (PERCENTAGE_PURPLE / 100) * total_achievements_count -
           completed_achievements_count
       ),
-      toGreen:Math.ceil(
+      toGreen: Math.ceil(
         (PERCENTAGE_GREEN / 100) * total_achievements_count -
           completed_achievements_count
       ),
-      toBronze:Math.ceil(
+      toBronze: Math.ceil(
         (PERCENTAGE_BRONZE / 100) * total_achievements_count -
           completed_achievements_count
       ),
-      toCopper:Math.ceil(
+      toCopper: Math.ceil(
         (PERCENTAGE_COPPER / 100) * total_achievements_count -
           completed_achievements_count
-      )
+      ),
     };
     //return `${completed_achievements_count}/${total_achievements_count}`
   };
@@ -225,7 +231,6 @@ export default function GameCardMinimal(props) {
       }}
     >
       <InnerContainer>
-        
         {/* <AchivementCountData>
           {getRemainingForTarget().toGold > 0 && <AchievementData>
             <IconInner color="#fecc09">
@@ -260,46 +265,43 @@ export default function GameCardMinimal(props) {
             </AchievementCount>
           </AchievementData>}
         </AchivementCountData> */}
-        
-        
-        {+completion_percentage === 100
-           && (
+
+        {+completion_percentage === 100 && (
           <GoldMedal>
             <FaMedal />
           </GoldMedal>
         )}
-        {+completion_percentage < PERCENTAGE_GOLD && +completion_percentage >= PERCENTAGE_PURPLE
-           && (
-          <PurpleMedal>
-            <FaMedal />
-          </PurpleMedal>
-        )}
-        {+completion_percentage < PERCENTAGE_PURPLE && +completion_percentage >= PERCENTAGE_GREEN
-           && (
-          <GreenMedal>
-            <FaMedal />
-          </GreenMedal>
-        )}
-        {+completion_percentage < PERCENTAGE_GREEN && +completion_percentage >= PERCENTAGE_BRONZE
-           && (
-          <BronzeMedal>
-            <FaMedal />
-          </BronzeMedal>
-        )}
-         {+completion_percentage < PERCENTAGE_BRONZE && +completion_percentage >= PERCENTAGE_COPPER
-           && (
-          <CopperMedal>
-            <FaMedal />
-          </CopperMedal>
-        )}
-        {+completion_percentage < PERCENTAGE_COPPER && +completion_percentage !== 0
-           && (
-          <IconStarted>
-            <FaClock />
-          </IconStarted>
-        )}
-        {+completion_percentage === 0
-           && (
+        {+completion_percentage < PERCENTAGE_GOLD &&
+          +completion_percentage >= PERCENTAGE_PURPLE && (
+            <PurpleMedal>
+              <FaMedal />
+            </PurpleMedal>
+          )}
+        {+completion_percentage < PERCENTAGE_PURPLE &&
+          +completion_percentage >= PERCENTAGE_GREEN && (
+            <GreenMedal>
+              <FaMedal />
+            </GreenMedal>
+          )}
+        {+completion_percentage < PERCENTAGE_GREEN &&
+          +completion_percentage >= PERCENTAGE_BRONZE && (
+            <BronzeMedal>
+              <FaMedal />
+            </BronzeMedal>
+          )}
+        {+completion_percentage < PERCENTAGE_BRONZE &&
+          +completion_percentage >= PERCENTAGE_COPPER && (
+            <CopperMedal>
+              <FaMedal />
+            </CopperMedal>
+          )}
+        {+completion_percentage < PERCENTAGE_COPPER &&
+          +completion_percentage !== 0 && (
+            <IconStarted>
+              <FaClock />
+            </IconStarted>
+          )}
+        {+completion_percentage === 0 && (
           <IconStarted>
             <FaHourglass />
           </IconStarted>

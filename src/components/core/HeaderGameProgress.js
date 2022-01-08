@@ -15,7 +15,13 @@ import {
   SELECTED_GAME,
   _STORAGE_READ,
 } from "../../helper/storage";
-import { PERCENTAGE_BRONZE, PERCENTAGE_GOLD, PERCENTAGE_GREEN, PERCENTAGE_PURPLE, PERCENTAGE_COPPER } from "../../constants/percentage";
+import {
+  PERCENTAGE_BRONZE,
+  PERCENTAGE_GOLD,
+  PERCENTAGE_GREEN,
+  PERCENTAGE_PURPLE,
+  PERCENTAGE_COPPER,
+} from "../../constants/percentage";
 
 // background-image: linear-gradient(
 //   180deg,
@@ -84,7 +90,7 @@ const IconSetGold = styled.div`
   text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
   justify-content: center;
   flex-direction: row;
-  margin-right: 1rem;
+  margin-right: 0.75rem;
   margin-left: 1rem;
 `;
 const IconSetPurple = styled.div`
@@ -94,7 +100,7 @@ const IconSetPurple = styled.div`
   text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
   justify-content: center;
   flex-direction: row;
-  margin-right: 1rem;
+  margin-right: 0.75rem;
 `;
 const IconSetGreen = styled.div`
   display: flex;
@@ -103,26 +109,26 @@ const IconSetGreen = styled.div`
   text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
   justify-content: center;
   flex-direction: row;
-  margin-right: 1rem;
+  margin-right: 0.75rem;
 `;
 const IconSetBronze = styled.div`
   display: flex;
   align-items: center;
-  color: #CD7F32;
+  color: #c0c0c0;
   text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
   justify-content: center;
   flex-direction: row;
-  margin-right: 1rem;
+  margin-right: 0.75rem;
 `;
 
 const IconSetCopper = styled.div`
   display: flex;
   align-items: center;
-  color: #812F33;
+  color: #cd7f32;
   text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
   justify-content: center;
   flex-direction: row;
-  margin-right: 1rem;
+  margin-right: 0.75rem;
 `;
 
 const Icon = styled.div`
@@ -179,32 +185,27 @@ export default function HeaderGameProgress(props) {
   };
 
   const toGold = Math.ceil(
-    (PERCENTAGE_GOLD / 100) *
-      gameInfo.total_achievements_count -
+    (PERCENTAGE_GOLD / 100) * gameInfo.total_achievements_count -
       gameInfo.completed_achievements_count
   );
 
   const toPurple = Math.ceil(
-    (PERCENTAGE_PURPLE / 100) *
-      gameInfo.total_achievements_count -
+    (PERCENTAGE_PURPLE / 100) * gameInfo.total_achievements_count -
       gameInfo.completed_achievements_count
   );
 
   const toGreen = Math.ceil(
-    (PERCENTAGE_GREEN / 100) *
-      gameInfo.total_achievements_count -
+    (PERCENTAGE_GREEN / 100) * gameInfo.total_achievements_count -
       gameInfo.completed_achievements_count
   );
 
   const toBronze = Math.ceil(
-    (PERCENTAGE_BRONZE / 100) *
-      gameInfo.total_achievements_count -
+    (PERCENTAGE_BRONZE / 100) * gameInfo.total_achievements_count -
       gameInfo.completed_achievements_count
   );
 
   const toCopper = Math.ceil(
-    (PERCENTAGE_COPPER / 100) *
-      gameInfo.total_achievements_count -
+    (PERCENTAGE_COPPER / 100) * gameInfo.total_achievements_count -
       gameInfo.completed_achievements_count
   );
 
@@ -247,7 +248,7 @@ export default function HeaderGameProgress(props) {
             <Data>{toBronze}</Data>
           </IconSetBronze>
         )}
-         {toCopper > 0 && (
+        {toCopper > 0 && (
           <IconSetCopper>
             <IconTrophy>
               <FaTrophy />

@@ -143,7 +143,7 @@ const MedalBronze = styled.div`
   display: flex;
   flex-direction: row;
   flex: 1;
-  color: #cd7f32;
+  color: #c0c0c0;
   margin-left: 0.5rem;
   justify-content: center;
   align-items: center;
@@ -153,7 +153,7 @@ const MedalCopper = styled.div`
   display: flex;
   flex-direction: row;
   flex: 1;
-  color: #812f33;
+  color: #cd7f32;
   margin-left: 0.5rem;
   justify-content: center;
   align-items: center;

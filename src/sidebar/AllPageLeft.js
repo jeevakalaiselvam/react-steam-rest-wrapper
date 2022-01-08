@@ -20,7 +20,8 @@ import {
   HISTORY_PAGE_INDEX,
   MILESTONE_PAGE_INDEX,
   NEXT_PAGE_INDEX,
-  RANDOM_PAGE_INDEX,CURRENT_GAME_PAGE_INDEX,
+  RANDOM_PAGE_INDEX,
+  CURRENT_GAME_PAGE_INDEX,
   SETTINGS_PAGE_INDEX,
   STORAGE_HEADER_AVERAGE_COMPLETION,
   STORAGE_HEADER_TOTAL_ACHIEVEMENTS,
@@ -60,7 +61,7 @@ const IconSetMedal = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: ${props => props.color};
+  color: ${(props) => props.color};
   flex: 1;
   justify-content: center;
 `;
@@ -130,15 +131,15 @@ export default function AllPageLeft() {
           <DataMedal>{totalMedals.green}</DataMedal>
           <FaMedal />
         </IconSetMedal>
-        <IconSetMedal color="#CD7F32">
+        <IconSetMedal color="#C0C0C0">
           <DataMedal>{totalMedals.bronze}</DataMedal>
           <FaMedal />
         </IconSetMedal>
-        <IconSetMedal color="#812F33">
+        <IconSetMedal color="#cd7f32">
           <DataMedal>{totalMedals.copper}</DataMedal>
           <FaMedal />
         </IconSetMedal>
-       
+
         {/* <IconSetTrophy>
           <DataTotal>{totalAchievements}</DataTotal>
           <FaTrophy />
