@@ -1,6 +1,24 @@
-import React from "react";
-import { FaCheck, FaGlobe, FaThumbtack } from "react-icons/fa";
+import React, { useState } from "react";
+import {
+  FaBinoculars,
+  FaCheck,
+  FaCheckDouble,
+  FaClock,
+  FaFistRaised,
+  FaGlobe,
+  FaSkull,
+  FaThumbtack,
+  FaWifi,
+} from "react-icons/fa";
 import styled from "styled-components";
+import {
+  COLLECTIBLE,
+  GRIND,
+  HARD,
+  MISSABLE,
+  MULTIPLAYER,
+  UNMISSABLE,
+} from "../../constants/achievement";
 import { STEAM_HEADER_IMAGE } from "../../helper/endpoints";
 import {
   _STORAGE_READ,
@@ -8,6 +26,7 @@ import {
   _STORAGE_CHECK_ARRAY,
   _STORAGE_REMOVE_ARRAY,
   _STORAGE_APPEND_ARRAY,
+  _STORAGE_WRITE,
 } from "../../helper/storage";
 
 const CardContainer = styled.div`
@@ -20,6 +39,7 @@ const CardContainer = styled.div`
   border-radius: 4px;
   margin: 4px;
   padding: 0.5rem 1rem;
+  padding-bottom: 1rem;
   border: 1px solid #fefefe00;
 
   &:hover {
@@ -165,33 +185,39 @@ const Completion = styled.div`
   opacity: ${(props) => (props.completed ? "1" : "0")};
 `;
 
-const RemainingAchievements = styled.div`
+const AchivementType = styled.div`
   position: absolute;
+  z-index: 100;
   bottom: 0;
   font-size: 0.8rem;
   padding: 0.5rem;
   right: 0;
+  margin-top: 1rem;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   background-color: rgba(10, 17, 25, 0.4);
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
-const RemainingIcon = styled.div`
+const AchivementTypeData = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  margin-right: 0.5rem;
   font-size: 1rem;
-  color: #959da6;
-  margin-right: 0.25rem;
-`;
-const RemainingData = styled.div`
-  display: flex;
-  align-items: center;
-  font-size: 1rem;
-  color: #959da6;
+  color: #fefefe;
   justify-content: center;
+  padding: 0.25rem 0.5rem;
+  border-radius: 5px;
+  color: ${(props) => (props.active ? "#55aece" : "#959da6")};
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export default function AchievementNormal(props) {
@@ -206,6 +232,10 @@ export default function AchievementNormal(props) {
     game_completed_count,
     game_total_count,
   } = props.achievement;
+
+  const [achievementType, setAchievementType] = useState(
+    _STORAGE_READ(`${game_id}_${name}`) || UNMISSABLE
+  );
 
   return (
     <CardContainer>
@@ -250,7 +280,7 @@ export default function AchievementNormal(props) {
           {name}
         </Title>
         <Desc>{description}</Desc>
-        <GameName>{game_name}</GameName>
+        {/* <GameName>{game_name}</GameName> */}
       </Data>
       <Misc>
         <FaGlobe />{" "}
@@ -263,18 +293,63 @@ export default function AchievementNormal(props) {
           <Percentage>{Number(global_percentage).toFixed(2)} %</Percentage>
         )}
       </Misc>
-      {/* <RemainingAchievements>
-        <RemainingIcon>
-          <FaThumbtack />
-        </RemainingIcon>
-        <RemainingData>
-          {Math.ceil(
-            (Number(_STORAGE_READ(COMPLETION_TARGET)) / 100) *
-              Number(game_total_count) -
-              Number(game_completed_count)
-          )}
-        </RemainingData>
-      </RemainingAchievements> */}
+      <AchivementType>
+        <AchivementTypeData active={achievementType === UNMISSABLE}>
+          <FaCheckDouble
+            onClick={() => {
+              _STORAGE_WRITE(`${game_id}_${name}`, UNMISSABLE);
+              setAchievementType((old) => UNMISSABLE);
+            }}
+          />
+        </AchivementTypeData>
+        <AchivementTypeData active={achievementType === MISSABLE}>
+          <FaSkull
+            onClick={() => {
+              _STORAGE_WRITE(`${game_id}_${name}`, MISSABLE);
+              setAchievementType((old) => MISSABLE);
+            }}
+          />
+        </AchivementTypeData>
+        <AchivementTypeData active={achievementType === COLLECTIBLE}>
+          <FaBinoculars
+            onClick={() => {
+              _STORAGE_WRITE(`${game_id}_${name}`, COLLECTIBLE);
+              setAchievementType((old) => COLLECTIBLE);
+            }}
+          />
+        </AchivementTypeData>
+        <AchivementTypeData active={achievementType === HARD}>
+          <FaFistRaised
+            onClick={() => {
+              _STORAGE_WRITE(`${game_id}_${name}`, HARD);
+              setAchievementType((old) => HARD);
+            }}
+          />
+        </AchivementTypeData>
+        <AchivementTypeData active={achievementType === GRIND}>
+          <FaClock
+            onClick={() => {
+              _STORAGE_WRITE(`${game_id}_${name}`, GRIND);
+              setAchievementType((old) => GRIND);
+            }}
+          />
+        </AchivementTypeData>
+        <AchivementTypeData active={achievementType === MULTIPLAYER}>
+          <FaWifi
+            onClick={() => {
+              _STORAGE_WRITE(`${game_id}_${name}`, MULTIPLAYER);
+              setAchievementType((old) => MULTIPLAYER);
+            }}
+          />
+        </AchivementTypeData>
+      </AchivementType>
     </CardContainer>
   );
 }
+
+// export const UNMISSABLE = "UNMISSABLE";
+// export const MISSABLE = "MISSABLE";
+// export const GRIND = "GRIND";
+// export const MULTIPLAYER = "MULTIPLAYER";
+// export const COLLECTIBLE = "COLLECTIBLE";
+// export const HARD = "HARD";
