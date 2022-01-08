@@ -1,4 +1,16 @@
-import { getCompletionTarget } from "./storage";
+import {
+  COLLECTIBLE,
+  GRIND,
+  HARD,
+  MISSABLE,
+  MULTIPLAYER,
+  UNMISSABLE,
+} from "../constants/achievement";
+import {
+  ACHIEVEMENTGAMEPAGE_FILTER,
+  getCompletionTarget,
+  _STORAGE_READ,
+} from "./storage";
 
 export const getGamesSortedByCompletion = (games) => {
   let sortedGames = [];
@@ -43,4 +55,29 @@ export const getPerfectGamesCount = (games) => {
   }
 
   return perfectGames;
+};
+
+export const filterAchievementsByType = (achievements, gameId) => {
+  const mapperType = [
+    UNMISSABLE,
+    UNMISSABLE,
+    MISSABLE,
+    COLLECTIBLE,
+    HARD,
+    GRIND,
+    MULTIPLAYER,
+  ];
+  const newAchievements = achievements.filter((achievement) => {
+    if (
+      (_STORAGE_READ(`${gameId}_${achievement.id}`) || UNMISSABLE).trim() ===
+      (
+        mapperType[+_STORAGE_READ(ACHIEVEMENTGAMEPAGE_FILTER)] || UNMISSABLE
+      ).trim()
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+  return newAchievements;
 };

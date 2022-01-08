@@ -192,7 +192,7 @@ export default function GamePageRight(props) {
         <Icon>
           <FaGripHorizontal />
         </Icon>
-        <Title>Unmissable</Title>
+        <Title>All</Title>
       </RightMenuItem>
       <RightMenuItem
         onClick={() => props.filterHandler(1)}
@@ -201,7 +201,7 @@ export default function GamePageRight(props) {
         <Icon>
           <FaGripHorizontal />
         </Icon>
-        <Title>Missable</Title>
+        <Title>Unmissable</Title>
       </RightMenuItem>
       <RightMenuItem
         onClick={() => props.filterHandler(2)}
@@ -210,7 +210,7 @@ export default function GamePageRight(props) {
         <Icon>
           <FaGripHorizontal />
         </Icon>
-        <Title>Collectible</Title>
+        <Title>Missable</Title>
       </RightMenuItem>
       <RightMenuItem
         onClick={() => props.filterHandler(3)}
@@ -219,7 +219,7 @@ export default function GamePageRight(props) {
         <Icon>
           <FaGripHorizontal />
         </Icon>
-        <Title>Hard</Title>
+        <Title>Collectible</Title>
       </RightMenuItem>
       <RightMenuItem
         onClick={() => props.filterHandler(4)}
@@ -228,11 +228,20 @@ export default function GamePageRight(props) {
         <Icon>
           <FaGripHorizontal />
         </Icon>
-        <Title>Grind</Title>
+        <Title>Hard</Title>
       </RightMenuItem>
       <RightMenuItem
         onClick={() => props.filterHandler(5)}
         selected={props.filterIndex === 5}
+      >
+        <Icon>
+          <FaGripHorizontal />
+        </Icon>
+        <Title>Grind</Title>
+      </RightMenuItem>
+      <RightMenuItem
+        onClick={() => props.filterHandler(6)}
+        selected={props.filterIndex === 6}
       >
         <Icon>
           <FaGripHorizontal />

@@ -1,10 +1,17 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { FaBackward, FaForward } from "react-icons/fa";
-import { PAGINATION_TOTAL_COUNT, _STORAGE_READ } from "../helper/storage";
+import {
+  ACHIEVEMENTGAMEPAGE_FILTER,
+  PAGINATION_TOTAL_COUNT,
+  SELECTED_GAME,
+  _STORAGE_READ,
+} from "../helper/storage";
 import { PAGINATION_ACHIEVEMENTS_PER_PAGE } from "../helper/pagination";
 import AchievementMinimal from "../components/card/AchievementMinimal";
 import AchievementNormal from "../components/card/AchievementNormal";
+import { filterAchievementsByType } from "../helper/games";
+import { UNMISSABLE } from "../constants/achievement";
 
 const ContentContainer = styled.div`
   display: flex;
@@ -61,6 +68,10 @@ const PageCount = styled.div`
 
 export default function GameContent(props) {
   const achievements = props.achievements;
+  const filteredAchievements = filterAchievementsByType(
+    achievements,
+    _STORAGE_READ(SELECTED_GAME)
+  );
 
   const [refresh, setRefresh] = useState(true);
 
@@ -72,7 +83,7 @@ export default function GameContent(props) {
   return (
     <ContentContainer>
       <ContainerInner>
-        {achievements.map((achievement) => {
+        {filteredAchievements.map((achievement) => {
           return props.viewType === 0 ? (
             <AchievementMinimal
               achievement={achievement}

@@ -223,6 +223,7 @@ const AchivementTypeData = styled.div`
 export default function AchievementNormal(props) {
   const {
     icon,
+    id,
     name,
     description,
     game_name,
@@ -234,7 +235,7 @@ export default function AchievementNormal(props) {
   } = props.achievement;
 
   const [achievementType, setAchievementType] = useState(
-    _STORAGE_READ(`${game_id}_${name}`) || UNMISSABLE
+    _STORAGE_READ(`${game_id}_${id}`) || UNMISSABLE
   );
 
   return (
@@ -297,7 +298,7 @@ export default function AchievementNormal(props) {
         <AchivementTypeData active={achievementType === UNMISSABLE}>
           <FaCheckDouble
             onClick={() => {
-              _STORAGE_WRITE(`${game_id}_${name}`, UNMISSABLE);
+              _STORAGE_WRITE(`${game_id}_${id}`, UNMISSABLE);
               setAchievementType((old) => UNMISSABLE);
             }}
           />
@@ -305,7 +306,7 @@ export default function AchievementNormal(props) {
         <AchivementTypeData active={achievementType === MISSABLE}>
           <FaSkull
             onClick={() => {
-              _STORAGE_WRITE(`${game_id}_${name}`, MISSABLE);
+              _STORAGE_WRITE(`${game_id}_${id}`, MISSABLE);
               setAchievementType((old) => MISSABLE);
             }}
           />
@@ -313,7 +314,7 @@ export default function AchievementNormal(props) {
         <AchivementTypeData active={achievementType === COLLECTIBLE}>
           <FaBinoculars
             onClick={() => {
-              _STORAGE_WRITE(`${game_id}_${name}`, COLLECTIBLE);
+              _STORAGE_WRITE(`${game_id}_${id}`, COLLECTIBLE);
               setAchievementType((old) => COLLECTIBLE);
             }}
           />
@@ -321,7 +322,7 @@ export default function AchievementNormal(props) {
         <AchivementTypeData active={achievementType === HARD}>
           <FaFistRaised
             onClick={() => {
-              _STORAGE_WRITE(`${game_id}_${name}`, HARD);
+              _STORAGE_WRITE(`${game_id}_${id}`, HARD);
               setAchievementType((old) => HARD);
             }}
           />
@@ -329,7 +330,7 @@ export default function AchievementNormal(props) {
         <AchivementTypeData active={achievementType === GRIND}>
           <FaClock
             onClick={() => {
-              _STORAGE_WRITE(`${game_id}_${name}`, GRIND);
+              _STORAGE_WRITE(`${game_id}_${id}`, GRIND);
               setAchievementType((old) => GRIND);
             }}
           />

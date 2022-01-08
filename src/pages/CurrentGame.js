@@ -86,7 +86,7 @@ export default function CurrentGame() {
     setLoading((old) => true);
     getAllAchievements(sortIndex, viewIndex, selectIndex);
     _STORAGE_WRITE(CURRENT_PAGE, CURRENT_GAME_PAGE_INDEX);
-  }, [sortIndex, viewIndex, achievementsPage, selectIndex]);
+  }, [sortIndex, viewIndex, achievementsPage, selectIndex, filterIndex]);
 
   const sortHandler = (sortOption) => {
     _STORAGE_WRITE(ACHIEVEMENTGAMEPAGE_SORT, sortOption);
@@ -168,6 +168,7 @@ export default function CurrentGame() {
             viewIndex={viewIndex}
             sortIndex={sortIndex}
             selectIndex={selectIndex}
+            filterIndex={filterIndex}
             achievements={achievements}
           />
         }
