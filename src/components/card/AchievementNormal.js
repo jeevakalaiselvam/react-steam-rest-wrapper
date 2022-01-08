@@ -39,7 +39,7 @@ const CardContainer = styled.div`
   border-radius: 4px;
   margin: 4px;
   padding: 0.5rem 1rem;
-  padding-bottom: 1rem;
+  padding-bottom: ${(props) => (props.length < 40 ? "1rem" : "2rem")};
   border: 1px solid #fefefe00;
 
   &:hover {
@@ -238,7 +238,7 @@ export default function AchievementNormal(props) {
   );
 
   return (
-    <CardContainer>
+    <CardContainer length={description.length}>
       <InnerContainerBG></InnerContainerBG>
       <InnerContainer image={STEAM_HEADER_IMAGE(game_id)}></InnerContainer>
       <IconContainer>

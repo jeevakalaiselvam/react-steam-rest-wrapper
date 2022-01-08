@@ -6,6 +6,7 @@ import { useState } from "react";
 import { fetchAchievementsForGame } from "../action/games";
 import { GameContext } from "../context/GameContext";
 import {
+  ACHIEVEMENTGAMEPAGE_FILTER,
   ACHIEVEMENTGAMEPAGE_SELECT,
   ACHIEVEMENTGAMEPAGE_SORT,
   ACHIEVEMENTGAMEPAGE_VIEW,
@@ -44,6 +45,9 @@ export default function Game() {
   );
   const [selectIndex, setSelectIndex] = useState(
     Number(_STORAGE_READ(ACHIEVEMENTGAMEPAGE_SELECT))
+  );
+  const [filterIndex, setFilterIndex] = useState(
+    Number(_STORAGE_READ(ACHIEVEMENTGAMEPAGE_FILTER))
   );
 
   const toggleNavRight = () => {
@@ -98,6 +102,13 @@ export default function Game() {
     toggleNavRight();
   };
 
+  const filterHandler = (filterOption) => {
+    _STORAGE_WRITE(ACHIEVEMENTGAMEPAGE_FILTER, filterOption);
+    setFilterIndex((old) => filterOption);
+    setAchievementsPage((old) => 1);
+    toggleNavRight();
+  };
+
   const moveToPageRightHandler = () => {
     if (
       Math.ceil(
@@ -144,6 +155,7 @@ export default function Game() {
         leftSidebar={<AllPageLeft />}
         rightSidebar={
           <GamePageRight
+            filterHandler={filterHandler}
             sortHandler={sortHandler}
             viewHandler={viewHandler}
             selectHandler={selectHandler}

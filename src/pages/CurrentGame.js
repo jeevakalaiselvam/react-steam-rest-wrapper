@@ -3,12 +3,18 @@ import styled from "styled-components";
 import Page from "../components/core/Page";
 import AllPageLeft from "../sidebar/AllPageLeft";
 import { useState } from "react";
-import { fetchAchievementsForGame, refreshDatabaseInBackend } from "../action/games";
+import {
+  fetchAchievementsForGame,
+  refreshDatabaseInBackend,
+} from "../action/games";
 import { GameContext } from "../context/GameContext";
 import {
+  ACHIEVEMENTGAMEPAGE_FILTER,
   ACHIEVEMENTGAMEPAGE_SELECT,
   ACHIEVEMENTGAMEPAGE_SORT,
   ACHIEVEMENTGAMEPAGE_VIEW,
+  CURRENT_GAME_PAGE_INDEX,
+  CURRENT_PAGE,
   GAMEPAGE_HEADER_COMPLETED,
   GAMEPAGE_HEADER_REMAINING,
   GAMEPAGE_HEADER_TOTAL,
@@ -45,6 +51,9 @@ export default function CurrentGame() {
   const [selectIndex, setSelectIndex] = useState(
     Number(_STORAGE_READ(ACHIEVEMENTGAMEPAGE_SELECT))
   );
+  const [filterIndex, setFilterIndex] = useState(
+    Number(_STORAGE_READ(ACHIEVEMENTGAMEPAGE_FILTER))
+  );
 
   const toggleNavRight = () => {
     setNavRightOpen((navState) => !navState);
@@ -76,6 +85,7 @@ export default function CurrentGame() {
     };
     setLoading((old) => true);
     getAllAchievements(sortIndex, viewIndex, selectIndex);
+    _STORAGE_WRITE(CURRENT_PAGE, CURRENT_GAME_PAGE_INDEX);
   }, [sortIndex, viewIndex, achievementsPage, selectIndex]);
 
   const sortHandler = (sortOption) => {
@@ -94,6 +104,13 @@ export default function CurrentGame() {
   const selectHandler = (selectOption) => {
     _STORAGE_WRITE(ACHIEVEMENTGAMEPAGE_SELECT, selectOption);
     setSelectIndex((old) => selectOption);
+    setAchievementsPage((old) => 1);
+    toggleNavRight();
+  };
+
+  const filterHandler = (filterOption) => {
+    _STORAGE_WRITE(ACHIEVEMENTGAMEPAGE_FILTER, filterOption);
+    setFilterIndex((old) => filterOption);
     setAchievementsPage((old) => 1);
     toggleNavRight();
   };
@@ -144,6 +161,7 @@ export default function CurrentGame() {
         leftSidebar={<AllPageLeft />}
         rightSidebar={
           <GamePageRight
+            filterHandler={filterHandler}
             sortHandler={sortHandler}
             viewHandler={viewHandler}
             selectHandler={selectHandler}

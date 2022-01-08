@@ -86,7 +86,7 @@ const Trophy = styled.div`
   flex-direction: row;
   font-size: 1.35rem;
   justify-content: center;
-  flex:1;
+  flex: 1;
   align-items: center;
 `;
 
@@ -94,7 +94,7 @@ const Data = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  flex:1;
+  flex: 1;
   font-size: 1.1rem;
   align-items: center;
 `;
@@ -143,7 +143,7 @@ const MedalBronze = styled.div`
   display: flex;
   flex-direction: row;
   flex: 1;
-  color: #CD7F32;
+  color: #cd7f32;
   margin-left: 0.5rem;
   justify-content: center;
   align-items: center;
@@ -153,7 +153,7 @@ const MedalCopper = styled.div`
   display: flex;
   flex-direction: row;
   flex: 1;
-  color: #812F33;
+  color: #812f33;
   margin-left: 0.5rem;
   justify-content: center;
   align-items: center;
@@ -184,9 +184,63 @@ export default function GamePageRight(props) {
 
   return (
     <Container>
-     
+      <Subheader>FILTER OPTIONS</Subheader>
+      <RightMenuItem
+        onClick={() => props.filterHandler(0)}
+        selected={props.filterIndex === 0}
+      >
+        <Icon>
+          <FaGripHorizontal />
+        </Icon>
+        <Title>Unmissable</Title>
+      </RightMenuItem>
+      <RightMenuItem
+        onClick={() => props.filterHandler(1)}
+        selected={props.filterIndex === 1}
+      >
+        <Icon>
+          <FaGripHorizontal />
+        </Icon>
+        <Title>Missable</Title>
+      </RightMenuItem>
+      <RightMenuItem
+        onClick={() => props.filterHandler(2)}
+        selected={props.filterIndex === 2}
+      >
+        <Icon>
+          <FaGripHorizontal />
+        </Icon>
+        <Title>Collectible</Title>
+      </RightMenuItem>
+      <RightMenuItem
+        onClick={() => props.filterHandler(3)}
+        selected={props.filterIndex === 3}
+      >
+        <Icon>
+          <FaGripHorizontal />
+        </Icon>
+        <Title>Hard</Title>
+      </RightMenuItem>
+      <RightMenuItem
+        onClick={() => props.filterHandler(4)}
+        selected={props.filterIndex === 4}
+      >
+        <Icon>
+          <FaGripHorizontal />
+        </Icon>
+        <Title>Grind</Title>
+      </RightMenuItem>
+      <RightMenuItem
+        onClick={() => props.filterHandler(5)}
+        selected={props.filterIndex === 5}
+      >
+        <Icon>
+          <FaGripHorizontal />
+        </Icon>
+        <Title>Multiplayer</Title>
+      </RightMenuItem>
 
-       <Subheader>VIEW OPTIONS</Subheader>
+      <Subheader>VIEW OPTIONS</Subheader>
       <RightMenuItem
         onClick={() => props.viewHandler(0)}
         selected={props.viewIndex === 0}
@@ -300,7 +354,6 @@ export default function GamePageRight(props) {
         <Title>Hidden</Title>
       </RightMenuItem>
 
-       
       {pinnedCount > 0 && (
         <ToGet>
           <IconAndText>
@@ -337,8 +390,6 @@ export default function GamePageRight(props) {
           </MedalGold>
         </ToGet>
       )}
-
-
 
       {toGet.toGetPurple > 0 && (
         <ToGet>
