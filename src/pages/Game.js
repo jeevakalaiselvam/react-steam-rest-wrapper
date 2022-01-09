@@ -49,6 +49,7 @@ export default function Game() {
   const [filterIndex, setFilterIndex] = useState(
     Number(_STORAGE_READ(ACHIEVEMENTGAMEPAGE_FILTER))
   );
+  const [journalOpen, setJournalOpen] = useState(true);
 
   const toggleNavRight = () => {
     setNavRightOpen((navState) => !navState);
@@ -163,6 +164,8 @@ export default function Game() {
             sortIndex={sortIndex}
             selectIndex={selectIndex}
             achievements={achievements}
+            closeJournal={closeJournal}
+            journalOpen={journalOpen}
           />
         }
         content={
@@ -173,6 +176,7 @@ export default function Game() {
             updatePinnedCount={updatePinnedCount}
             moveToPageRight={moveToPageRightHandler}
             moveToPageLeft={moveToPageLeftHandler}
+            journalOpen={journalOpen}
           />
         }
         leftSidebarWidth={LEFTSIDEBAR_WIDTH}
