@@ -228,6 +228,19 @@ const AchivementTypeData = styled.div`
   }
 `;
 
+const JournalInput = styled.div`
+  & > textarea {
+    width: 100%;
+    color: #bbbbbb;
+    background-color: rgba(10, 17, 25, 1);
+    padding: 1rem;
+    border: none;
+    outline: none;
+    height: 100vh;
+    font-size: 0.9rem;
+  }
+`;
+
 export default function AchievementNormal(props) {
   const {
     icon,
@@ -245,6 +258,10 @@ export default function AchievementNormal(props) {
   const [achievementType, setAchievementType] = useState(
     _STORAGE_READ(`${game_id}_${id}`) || UNTAGGED
   );
+
+  const [journalData, setJournalData] = useState("No Entry Found!");
+
+  const journalDataChanged = (e) => {};
 
   return (
     <CardContainer

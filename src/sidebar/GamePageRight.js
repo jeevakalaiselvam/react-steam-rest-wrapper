@@ -165,7 +165,7 @@ const TitleContainer = styled.div`
   margin-left: 1rem;
   flex: 1;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: row;
 `;
 

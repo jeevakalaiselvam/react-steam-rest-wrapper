@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { FaBackward, FaForward } from "react-icons/fa";
 import {
@@ -13,7 +13,6 @@ import AchievementMinimal from "../components/card/AchievementMinimal";
 import AchievementNormal from "../components/card/AchievementNormal";
 import { filterAchievementsByType } from "../helper/games";
 import { UNMISSABLE } from "../constants/achievement";
-import { useEffect } from "react";
 
 const MainContainer = styled.div`
   display: flex;
@@ -21,7 +20,7 @@ const MainContainer = styled.div`
   min-height: 100vh;
   justify-content: space-between;
   flex-direction: column;
-  overflow: none;
+  overflow: scroll;
   scrollbar-width: thin;
   align-items: flex-start;
   flex-wrap: wrap;
@@ -34,14 +33,12 @@ const MainContainer = styled.div`
 
 const ContentContainer = styled.div`
   width: 70%;
-  height: 100%;
-  overflow: scroll;
+  min-height: 100vh;
 `;
 
 const JournalContainer = styled.div`
   width: 30%;
-  height: 100%;
-  overflow: none;
+  min-height: 100vh;
 `;
 
 const ContainerInner = styled.div`
@@ -49,6 +46,7 @@ const ContainerInner = styled.div`
   width: 100%;
   justify-self: flex-start;
   justify-content: center;
+  overflow: scroll;
   flex-wrap: wrap;
   padding-bottom: 1.5rem;
 `;
@@ -110,17 +108,18 @@ export default function GameContent(props) {
   };
 
   const achievementSelectedHandler = (achievementStorageJournalKey) => {
-    setAchievementSelected(achievementStorageJournalKey);
+    setAchievementSelected((old) => achievementStorageJournalKey);
   };
 
   const journalEntryChanged = (e) => {
-    _STORAGE_WRITE(achievementSelected, e.target.value);
+    _STORAGE_WRITE(`${achievementSelected}_JOURNAL`, e.target.value);
     setJournalData((old) => e.target.value);
   };
 
   useEffect(() => {
     setJournalData(
-      (old) => _STORAGE_READ(achievementSelected) || "No Entry Found!"
+      (old) =>
+        _STORAGE_READ(`${achievementSelected}_JOURNAL`) || "No Entry Found!"
     );
   }, [achievementSelected]);
 
