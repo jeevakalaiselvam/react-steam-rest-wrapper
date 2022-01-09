@@ -68,24 +68,30 @@ export const filterAchievementsByType = (achievements, gameId) => {
     GRIND,
     MULTIPLAYER,
   ];
-  const newAchievements = achievements.filter((achievement) => {
-    if (
-      (_STORAGE_READ(`${gameId}_${achievement.id}`) || UNTAGGED).trim() ===
-      (
-        mapperType[+_STORAGE_READ(ACHIEVEMENTGAMEPAGE_FILTER)] || UNTAGGED
-      ).trim()
-    ) {
-      return true;
-    } else {
-      return false;
-    }
-  });
-  return newAchievements;
+
+  if (+_STORAGE_READ(ACHIEVEMENTGAMEPAGE_FILTER) === 0) {
+    return achievements;
+  } else {
+    const newAchievements = achievements.filter((achievement) => {
+      if (
+        (_STORAGE_READ(`${gameId}_${achievement.id}`) || UNTAGGED).trim() ===
+        (
+          mapperType[+_STORAGE_READ(ACHIEVEMENTGAMEPAGE_FILTER)] || UNTAGGED
+        ).trim()
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    return newAchievements;
+  }
 };
 
 //Get Count for achievements
 export const getCountForAchievements = (achievements) => {
-  let unTaggedCount = 0,
+  let allCount = 0,
+    unTaggedCount = 0,
     unMissableCount = 0,
     missableCount = 0,
     collectibleCount = 0,
@@ -95,6 +101,7 @@ export const getCountForAchievements = (achievements) => {
 
   achievements.length &&
     achievements.forEach((achievement) => {
+      allCount++;
       const type = (
         _STORAGE_READ(`${achievement.game_id}_${achievement.id}`) || UNTAGGED
       ).trim();
@@ -126,6 +133,7 @@ export const getCountForAchievements = (achievements) => {
     });
 
   return {
+    allCount,
     unTaggedCount,
     unMissableCount,
     missableCount,

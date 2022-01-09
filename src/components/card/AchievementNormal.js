@@ -308,6 +308,7 @@ export default function AchievementNormal(props) {
             onClick={() => {
               _STORAGE_WRITE(`${game_id}_${id}`, UNMISSABLE);
               setAchievementType((old) => UNMISSABLE);
+              props.refreshViewWithoutFetch();
             }}
           />
         </AchivementTypeData>
@@ -316,6 +317,7 @@ export default function AchievementNormal(props) {
             onClick={() => {
               _STORAGE_WRITE(`${game_id}_${id}`, MISSABLE);
               setAchievementType((old) => MISSABLE);
+              props.refreshViewWithoutFetch();
             }}
           />
         </AchivementTypeData>
@@ -324,6 +326,7 @@ export default function AchievementNormal(props) {
             onClick={() => {
               _STORAGE_WRITE(`${game_id}_${id}`, COLLECTIBLE);
               setAchievementType((old) => COLLECTIBLE);
+              props.refreshViewWithoutFetch();
             }}
           />
         </AchivementTypeData>
@@ -332,6 +335,7 @@ export default function AchievementNormal(props) {
             onClick={() => {
               _STORAGE_WRITE(`${game_id}_${id}`, HARD);
               setAchievementType((old) => HARD);
+              props.refreshViewWithoutFetch();
             }}
           />
         </AchivementTypeData>
@@ -340,6 +344,7 @@ export default function AchievementNormal(props) {
             onClick={() => {
               _STORAGE_WRITE(`${game_id}_${id}`, GRIND);
               setAchievementType((old) => GRIND);
+              props.refreshViewWithoutFetch();
             }}
           />
         </AchivementTypeData>
@@ -348,6 +353,7 @@ export default function AchievementNormal(props) {
             onClick={() => {
               _STORAGE_WRITE(`${game_id}_${name}`, MULTIPLAYER);
               setAchievementType((old) => MULTIPLAYER);
+              props.refreshViewWithoutFetch();
             }}
           />
         </AchivementTypeData>

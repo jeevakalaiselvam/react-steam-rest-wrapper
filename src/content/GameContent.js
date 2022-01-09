@@ -88,6 +88,7 @@ export default function GameContent(props) {
             <AchievementMinimal
               achievement={achievement}
               key={achievement.game_id + achievement.id}
+              refreshViewWithoutFetch={refreshViewWithoutFetch}
             />
           ) : (
             <AchievementNormal

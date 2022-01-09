@@ -187,6 +187,7 @@ export default function GamePageRight(props) {
   const achievements = props.achievements;
   const toGet = getModeAchivementsToAttainTarget(achievements);
   const {
+    allCount,
     unTaggedCount,
     unMissableCount,
     missableCount,
@@ -226,13 +227,25 @@ export default function GamePageRight(props) {
           <FaGripHorizontal />
         </Icon>
         <TitleContainer>
-          <Title>Untagged</Title>
-          <TitleCount>{unTaggedCount}</TitleCount>
+          <Title>All</Title>
+          <TitleCount>{allCount}</TitleCount>
         </TitleContainer>
       </RightMenuItem>
       <RightMenuItem
         onClick={() => props.filterHandler(1)}
         selected={props.filterIndex === 1}
+      >
+        <Icon>
+          <FaGripHorizontal />
+        </Icon>
+        <TitleContainer>
+          <Title>Untagged</Title>
+          <TitleCount>{unTaggedCount}</TitleCount>
+        </TitleContainer>
+      </RightMenuItem>
+      <RightMenuItem
+        onClick={() => props.filterHandler(2)}
+        selected={props.filterIndex === 2}
       >
         <Icon>
           <FaCheckDouble />
@@ -243,8 +256,8 @@ export default function GamePageRight(props) {
         </TitleContainer>
       </RightMenuItem>
       <RightMenuItem
-        onClick={() => props.filterHandler(2)}
-        selected={props.filterIndex === 2}
+        onClick={() => props.filterHandler(3)}
+        selected={props.filterIndex === 3}
       >
         <Icon>
           <FaSkull />
@@ -255,8 +268,8 @@ export default function GamePageRight(props) {
         </TitleContainer>
       </RightMenuItem>
       <RightMenuItem
-        onClick={() => props.filterHandler(3)}
-        selected={props.filterIndex === 3}
+        onClick={() => props.filterHandler(4)}
+        selected={props.filterIndex === 4}
       >
         <Icon>
           <FaBinoculars />
@@ -267,8 +280,8 @@ export default function GamePageRight(props) {
         </TitleContainer>
       </RightMenuItem>
       <RightMenuItem
-        onClick={() => props.filterHandler(4)}
-        selected={props.filterIndex === 4}
+        onClick={() => props.filterHandler(5)}
+        selected={props.filterIndex === 5}
       >
         <Icon>
           <FaFistRaised />
@@ -279,8 +292,8 @@ export default function GamePageRight(props) {
         </TitleContainer>
       </RightMenuItem>
       <RightMenuItem
-        onClick={() => props.filterHandler(5)}
-        selected={props.filterIndex === 5}
+        onClick={() => props.filterHandler(6)}
+        selected={props.filterIndex === 6}
       >
         <Icon>
           <FaClock />
@@ -291,8 +304,8 @@ export default function GamePageRight(props) {
         </TitleContainer>
       </RightMenuItem>
       <RightMenuItem
-        onClick={() => props.filterHandler(6)}
-        selected={props.filterIndex === 6}
+        onClick={() => props.filterHandler(7)}
+        selected={props.filterIndex === 7}
       >
         <Icon>
           <FaWifi />
