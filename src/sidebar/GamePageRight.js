@@ -184,6 +184,16 @@ const TitleCount = styled.div`
   padding: 3px;
 `;
 
+const JournalButton = styled.div`
+  width: 95%;
+  background-color: #55aece;
+  margin: 0.5rem;
+  border-radius: 2px;
+  padding: 0.5rem;
+  text-align: center;
+  color: rgba(3, 3, 3, 1);
+`;
+
 export default function GamePageRight(props) {
   const achievements = props.achievements;
   const toGet = getModeAchivementsToAttainTarget(achievements);
@@ -219,6 +229,13 @@ export default function GamePageRight(props) {
 
   return (
     <Container>
+      <JournalButton
+        onClick={() => {
+          props.closeJournal();
+        }}
+      >
+        {props.journalOpen ? "CLOSE" : "OPEN"} JOURNAL
+      </JournalButton>
       <Subheader>FILTER OPTIONS</Subheader>
       <RightMenuItem
         onClick={() => props.filterHandler(0)}

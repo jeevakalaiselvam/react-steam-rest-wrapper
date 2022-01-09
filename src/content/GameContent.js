@@ -32,13 +32,13 @@ const MainContainer = styled.div`
 `;
 
 const ContentContainer = styled.div`
-  width: 70%;
+  width: ${(props) => (props.open ? "70%" : "100%")};
   min-height: 100vh;
   overflow: scroll;
 `;
 
 const JournalContainer = styled.div`
-  width: 30%;
+  width: ${(props) => (props.open ? "30%" : "0%")};
   min-height: 100vh;
   overflow: scroll;
 `;
@@ -139,7 +139,7 @@ export default function GameContent(props) {
 
   return (
     <MainContainer>
-      <ContentContainer>
+      <ContentContainer open={props.journalOpen}>
         <ContainerInner>
           {filteredAchievements.map((achievement) => {
             return props.viewType === 0 ? (
@@ -175,7 +175,7 @@ export default function GameContent(props) {
           </Page>
         </Pagination>
       </ContentContainer>
-      <JournalContainer>
+      <JournalContainer open={props.journalOpen}>
         <AchievementJournal
           achievement={achievementSelected}
           refreshViewWithoutFetch={refreshViewWithoutFetch}
