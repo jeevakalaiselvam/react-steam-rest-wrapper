@@ -39,8 +39,7 @@ const CardContainer = styled.div`
   border-radius: 4px;
   margin: 4px;
   padding: 0.5rem 1rem;
-  padding-bottom: ${(props) =>
-    props.descriptionLength > 40 || props.nameLength > 25 ? "2rem" : "1rem"};
+  padding-bottom: 3rem;
   border: 1px solid #fefefe00;
 
   &:hover {
@@ -115,17 +114,6 @@ const Icon = styled.div`
   background-size: cover;
 `;
 
-const PinIcon = styled.div`
-  width: 20px;
-  height: 20px;
-  z-index: 1000;
-  color: ${(props) => (props.iconColor ? "#3EB595" : "#333")};
-
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
 const Data = styled.div`
   flex: 1;
   display: flex;
@@ -184,6 +172,23 @@ const Completion = styled.div`
   font-size: 1rem;
   background-color: rgba(10, 17, 25, 0.85);
   opacity: ${(props) => (props.completed ? "1" : "0")};
+`;
+
+const PinIcon = styled.div`
+  position: absolute;
+  z-index: 100;
+  bottom: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  padding: 2rem;
+  z-index: 1000;
+  margin-top: 1rem;
+  color: ${(props) => (props.iconColor ? "#3EB595" : "#333")};
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const AchivementType = styled.div`
@@ -254,24 +259,6 @@ export default function AchievementNormal(props) {
             </Completion>
           )}
         </Icon>
-        <PinIcon
-          iconColor={_STORAGE_CHECK_ARRAY(
-            `${game_id}_pinned`,
-            `${game_id}_${name}`
-          )}
-          onClick={() => {
-            if (
-              _STORAGE_CHECK_ARRAY(`${game_id}_pinned`, `${game_id}_${name}`)
-            ) {
-              _STORAGE_REMOVE_ARRAY(`${game_id}_pinned`, `${game_id}_${name}`);
-            } else {
-              _STORAGE_APPEND_ARRAY(`${game_id}_pinned`, `${game_id}_${name}`);
-            }
-            props.refreshViewWithoutFetch && props.refreshViewWithoutFetch();
-          }}
-        >
-          <FaThumbtack style={{ cursor: "pointer" }} />
-        </PinIcon>
       </IconContainer>
       <Data>
         <Title
@@ -298,6 +285,22 @@ export default function AchievementNormal(props) {
           <Percentage>{Number(global_percentage).toFixed(2)} %</Percentage>
         )}
       </Misc>
+      <PinIcon
+        iconColor={_STORAGE_CHECK_ARRAY(
+          `${game_id}_pinned`,
+          `${game_id}_${name}`
+        )}
+        onClick={() => {
+          if (_STORAGE_CHECK_ARRAY(`${game_id}_pinned`, `${game_id}_${name}`)) {
+            _STORAGE_REMOVE_ARRAY(`${game_id}_pinned`, `${game_id}_${name}`);
+          } else {
+            _STORAGE_APPEND_ARRAY(`${game_id}_pinned`, `${game_id}_${name}`);
+          }
+          props.refreshViewWithoutFetch && props.refreshViewWithoutFetch();
+        }}
+      >
+        <FaThumbtack style={{ cursor: "pointer" }} />
+      </PinIcon>
       <AchivementType>
         <AchivementTypeData active={achievementType === UNMISSABLE}>
           <FaCheckDouble
