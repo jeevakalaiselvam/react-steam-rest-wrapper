@@ -32,13 +32,13 @@ const MainContainer = styled.div`
 `;
 
 const ContentContainer = styled.div`
-  width: 100%;
+  width: 70%;
   min-height: 100vh;
   overflow: scroll;
 `;
 
 const JournalContainer = styled.div`
-  width: 0%;
+  width: 30%;
   min-height: 100vh;
   overflow: scroll;
 `;
@@ -175,7 +175,7 @@ export default function GameContent(props) {
           </Page>
         </Pagination>
       </ContentContainer>
-      {/* <JournalContainer>
+      <JournalContainer>
         <AchievementJournal
           achievement={achievementSelected}
           refreshViewWithoutFetch={refreshViewWithoutFetch}
@@ -187,7 +187,7 @@ export default function GameContent(props) {
             onChange={journalEntryChanged}
           />
         </JournalInput>
-      </JournalContainer> */}
+      </JournalContainer>
     </MainContainer>
   );
 }
