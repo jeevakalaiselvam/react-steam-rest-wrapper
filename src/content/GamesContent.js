@@ -70,7 +70,7 @@ export default function GamesContent(props) {
           props.viewIndex === 0 ? (
             <GameCardMinimal game={game} key={game.id} />
           ) : (
-            <GameCardNormal game={game} key={game.id} />
+            <GameCardMinimal game={game} key={game.id} />
           )
         )}
       </ContainerInner>

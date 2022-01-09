@@ -132,7 +132,7 @@ export default function GamesPageRight(props) {
         </Icon>
         <Title>Name Z-A</Title>
       </RightMenuItem>
-      <Subheader>VIEW OPTIONS</Subheader>
+      {/* <Subheader>VIEW OPTIONS</Subheader>
       <RightMenuItem
         onClick={() => props.viewHandler(0)}
         selected={props.viewIndex === 0}
@@ -150,7 +150,7 @@ export default function GamesPageRight(props) {
           <FaGripHorizontal />
         </Icon>
         <Title>Normal</Title>
-      </RightMenuItem>
+      </RightMenuItem> */}
     </Container>
   );
 }
