@@ -267,25 +267,21 @@ export default function AchievementJournal(props) {
       </Misc>
       <AchivementType>
         <AchivementTypeData active={achievementType === UNMISSABLE}>
-          UNMISSABLE <FaCheckDouble />
+          <FaCheckDouble />
         </AchivementTypeData>
         <AchivementTypeData active={achievementType === MISSABLE}>
-          MISSABLE <FaSkull />
+          <FaSkull />
         </AchivementTypeData>
         <AchivementTypeData active={achievementType === COLLECTIBLE}>
-          COLLECTIBLE
           <FaBinoculars />
         </AchivementTypeData>
         <AchivementTypeData active={achievementType === HARD}>
-          HARD
           <FaFistRaised />
         </AchivementTypeData>
         <AchivementTypeData active={achievementType === GRIND}>
-          GRIND
           <FaClock />
         </AchivementTypeData>
         <AchivementTypeData active={achievementType === MULTIPLAYER}>
-          MULTIPLAYER
           <FaWifi />
         </AchivementTypeData>
       </AchivementType>

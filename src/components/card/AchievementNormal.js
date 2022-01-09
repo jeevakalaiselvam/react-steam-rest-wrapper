@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import {
   FaBinoculars,
+  FaBook,
+  FaBookOpen,
   FaCheck,
   FaCheckDouble,
   FaClock,
@@ -228,6 +230,12 @@ const AchivementTypeData = styled.div`
   }
 `;
 
+const JournalTag = styled.div`
+  position: absolute;
+  top: 25px;
+  right: 18px;
+`;
+
 export default function AchievementNormal(props) {
   const {
     icon,
@@ -288,6 +296,9 @@ export default function AchievementNormal(props) {
           <Percentage>{Number(global_percentage).toFixed(2)} %</Percentage>
         )}
       </Misc>
+      {/* <JournalTag>
+        <FaBookOpen />
+      </JournalTag> */}
       <PinIcon
         iconColor={_STORAGE_CHECK_ARRAY(
           `${game_id}_pinned`,
