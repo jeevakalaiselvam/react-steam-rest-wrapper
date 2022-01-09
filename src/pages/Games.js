@@ -102,7 +102,6 @@ export default function Games() {
     }
   };
 
-
   return (
     <PageContainer>
       <Header />
