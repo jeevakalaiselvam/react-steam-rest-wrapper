@@ -21,7 +21,6 @@ const MainContainer = styled.div`
   min-height: 100vh;
   justify-content: space-between;
   flex-direction: column;
-  overflow: scroll;
   scrollbar-width: thin;
   align-items: flex-start;
   flex-wrap: wrap;
@@ -35,11 +34,13 @@ const MainContainer = styled.div`
 const ContentContainer = styled.div`
   width: 70%;
   min-height: 100vh;
+  overflow: scroll;
 `;
 
 const JournalContainer = styled.div`
   width: 30%;
   min-height: 100vh;
+  overflow: scroll;
 `;
 
 const ContainerInner = styled.div`
@@ -47,7 +48,6 @@ const ContainerInner = styled.div`
   width: 100%;
   justify-self: flex-start;
   justify-content: center;
-  overflow: scroll;
   flex-wrap: wrap;
   padding-bottom: 1.5rem;
 `;
@@ -78,7 +78,6 @@ const Page = styled.div`
 const PageCount = styled.div`
   padding: 0.25rem 0.75rem;
 `;
-
 const JournalInput = styled.div`
   & > textarea {
     width: 100%;
@@ -109,6 +108,8 @@ export default function GameContent(props) {
     setRefresh((old) => !refresh);
     props.updatePinnedCount();
   };
+
+  const refreshAchievementList = () => {};
 
   const achievementSelectedHandler = (achievement) => {
     setAchievementSelected((old) => achievement);
@@ -174,7 +175,10 @@ export default function GameContent(props) {
         </Pagination>
       </ContentContainer>
       <JournalContainer>
-        <AchievementJournal achievement={achievementSelected} />
+        <AchievementJournal
+          achievement={achievementSelected}
+          refreshViewWithoutFetch={refreshViewWithoutFetch}
+        />
         <JournalInput>
           <textarea
             spellCheck={false}

@@ -199,6 +199,7 @@ const AchivementTypeData = styled.div`
   padding: 0.25rem 0.5rem;
   border-radius: 5px;
   color: ${(props) => (props.active ? "#55aece" : "#959da6")};
+  display: ${(props) => (props.active ? "flex" : "none")};
 
   &:hover {
     cursor: pointer;
@@ -227,7 +228,6 @@ export default function AchievementJournal(props) {
     <CardContainer
       descriptionLength={description?.length || 0}
       nameLength={name?.length || 0}
-      onClick={() => props.achievementSelectedHandler(`${game_id}_${id}`)}
     >
       <InnerContainerBG></InnerContainerBG>
       <InnerContainer image={STEAM_HEADER_IMAGE(game_id)}></InnerContainer>
@@ -267,21 +267,25 @@ export default function AchievementJournal(props) {
       </Misc>
       <AchivementType>
         <AchivementTypeData active={achievementType === UNMISSABLE}>
-          <FaCheckDouble />
+          UNMISSABLE <FaCheckDouble />
         </AchivementTypeData>
         <AchivementTypeData active={achievementType === MISSABLE}>
-          <FaSkull />
+          MISSABLE <FaSkull />
         </AchivementTypeData>
         <AchivementTypeData active={achievementType === COLLECTIBLE}>
+          COLLECTIBLE
           <FaBinoculars />
         </AchivementTypeData>
         <AchivementTypeData active={achievementType === HARD}>
+          HARD
           <FaFistRaised />
         </AchivementTypeData>
         <AchivementTypeData active={achievementType === GRIND}>
+          GRIND
           <FaClock />
         </AchivementTypeData>
         <AchivementTypeData active={achievementType === MULTIPLAYER}>
+          MULTIPLAYER
           <FaWifi />
         </AchivementTypeData>
       </AchivementType>

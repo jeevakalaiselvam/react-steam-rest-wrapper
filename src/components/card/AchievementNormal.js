@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   FaBinoculars,
   FaCheck,
@@ -245,10 +245,6 @@ export default function AchievementNormal(props) {
   const [achievementType, setAchievementType] = useState(
     _STORAGE_READ(`${game_id}_${id}`) || UNTAGGED
   );
-
-  const [journalData, setJournalData] = useState("No Entry Found!");
-
-  const journalDataChanged = (e) => {};
 
   return (
     <CardContainer

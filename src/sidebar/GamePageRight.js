@@ -252,7 +252,7 @@ export default function GamePageRight(props) {
           <FaCheckDouble />
         </Icon>
         <TitleContainer>
-          <Title>Unmissable</Title>
+          <Title>Story</Title>
           <TitleCount>{unMissableCount}</TitleCount>
         </TitleContainer>
       </RightMenuItem>
