@@ -302,13 +302,13 @@ export default function AchievementNormal(props) {
       <PinIcon
         iconColor={_STORAGE_CHECK_ARRAY(
           `${game_id}_pinned`,
-          `${game_id}_${name}`
+          `${game_id}_${id}`
         )}
         onClick={() => {
-          if (_STORAGE_CHECK_ARRAY(`${game_id}_pinned`, `${game_id}_${name}`)) {
-            _STORAGE_REMOVE_ARRAY(`${game_id}_pinned`, `${game_id}_${name}`);
+          if (_STORAGE_CHECK_ARRAY(`${game_id}_pinned`, `${game_id}_${id}`)) {
+            _STORAGE_REMOVE_ARRAY(`${game_id}_pinned`, `${game_id}_${id}`);
           } else {
-            _STORAGE_APPEND_ARRAY(`${game_id}_pinned`, `${game_id}_${name}`);
+            _STORAGE_APPEND_ARRAY(`${game_id}_pinned`, `${game_id}_${id}`);
           }
           props.refreshViewWithoutFetch && props.refreshViewWithoutFetch();
         }}
