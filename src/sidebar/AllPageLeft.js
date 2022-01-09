@@ -37,6 +37,8 @@ const MainMenu = styled.div`
   width: 100%;
   zindex: 10000;
   display: flex;
+  height: 100vh;
+  overflow: scroll;
   flex-direction: column;
 `;
 

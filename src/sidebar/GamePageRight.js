@@ -25,6 +25,7 @@ const Container = styled.div`
   width: 100%;
   display: flex;
   height: 100%;
+  overflow: scroll;
   position: relative;
   flex-direction: column;
   align-items: flex-start;

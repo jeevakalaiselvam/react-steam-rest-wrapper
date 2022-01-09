@@ -41,6 +41,7 @@ const CardContainer = styled.div`
   margin: 4px;
   padding: 0.5rem 1rem;
   padding-bottom: 3rem;
+  cursor: pointer;
   border: 1px solid #fefefe00;
 
   &:hover {
@@ -249,6 +250,7 @@ export default function AchievementNormal(props) {
     <CardContainer
       descriptionLength={description?.length || 0}
       nameLength={name?.length || 0}
+      onClick={() => props.achievementSelectedHandler(`${game_id}_${id}`)}
     >
       <InnerContainerBG></InnerContainerBG>
       <InnerContainer image={STEAM_HEADER_IMAGE(game_id)}></InnerContainer>
