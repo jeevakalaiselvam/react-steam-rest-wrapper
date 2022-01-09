@@ -81,8 +81,8 @@ const PageCount = styled.div`
 const JournalInput = styled.div`
   & > textarea {
     width: 100%;
-    color: #bbbbbb;
-    background-color: rgba(10, 17, 25, 1);
+    color: #b8b9bd;
+    background-color: #222730;
     padding: 1rem;
     border: none;
     outline: none;
