@@ -27,6 +27,7 @@ const ToolTipContent = styled.div`
   padding: 1rem;
   align-items: center;
   justify-content: center;
+  z-index: 10000000;
 `;
 
 const Completion = styled.div`
