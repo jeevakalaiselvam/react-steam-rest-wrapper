@@ -247,8 +247,8 @@ export default function AchievementNormal(props) {
 
   return (
     <CardContainer
-      descriptionLength={description.length}
-      nameLength={name.length}
+      descriptionLength={description?.length || 0}
+      nameLength={name?.length || 0}
     >
       <InnerContainerBG></InnerContainerBG>
       <InnerContainer image={STEAM_HEADER_IMAGE(game_id)}></InnerContainer>
