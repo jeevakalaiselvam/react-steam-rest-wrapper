@@ -13,6 +13,7 @@ import AchievementMinimal from "../components/card/AchievementMinimal";
 import AchievementNormal from "../components/card/AchievementNormal";
 import { filterAchievementsByType } from "../helper/games";
 import { UNMISSABLE } from "../constants/achievement";
+import AchievementJournal from "../components/card/AchievementJournal";
 
 const MainContainer = styled.div`
   display: flex;
@@ -87,7 +88,7 @@ const JournalInput = styled.div`
     border: none;
     outline: none;
     height: 100vh;
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 `;
 
@@ -100,26 +101,38 @@ export default function GameContent(props) {
 
   const [refresh, setRefresh] = useState(true);
   const [journalData, setJournalData] = useState("No Entry Found!");
-  const [achievementSelected, setAchievementSelected] = useState(0);
+  const [achievementSelected, setAchievementSelected] = useState(
+    filteredAchievements.length != 0 && filteredAchievements[0]
+  );
 
   const refreshViewWithoutFetch = () => {
     setRefresh((old) => !refresh);
     props.updatePinnedCount();
   };
 
-  const achievementSelectedHandler = (achievementStorageJournalKey) => {
-    setAchievementSelected((old) => achievementStorageJournalKey);
+  const achievementSelectedHandler = (achievement) => {
+    setAchievementSelected((old) => achievement);
   };
 
+  useEffect(() => {
+    console.log("Refreshing");
+    setAchievementSelected((old) => ({ ...old }));
+  }, [refresh]);
+
   const journalEntryChanged = (e) => {
-    _STORAGE_WRITE(`${achievementSelected}_JOURNAL`, e.target.value);
+    _STORAGE_WRITE(
+      `${achievementSelected.game_id}_${achievementSelected.id}_JOURNAL`,
+      e.target.value
+    );
     setJournalData((old) => e.target.value);
   };
 
   useEffect(() => {
     setJournalData(
       (old) =>
-        _STORAGE_READ(`${achievementSelected}_JOURNAL`) || "No Entry Found!"
+        _STORAGE_READ(
+          `${achievementSelected.game_id}_${achievementSelected.id}_JOURNAL`
+        ) || "No Entry Found!"
     );
   }, [achievementSelected]);
 
@@ -161,6 +174,7 @@ export default function GameContent(props) {
         </Pagination>
       </ContentContainer>
       <JournalContainer>
+        <AchievementJournal achievement={achievementSelected} />
         <JournalInput>
           <textarea
             spellCheck={false}

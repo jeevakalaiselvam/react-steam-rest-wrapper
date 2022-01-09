@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   FaBinoculars,
   FaCheck,
@@ -48,30 +48,7 @@ const CardContainer = styled.div`
     border: 1px solid #00000044;
   }
 
-  @media only screen and (min-width: 1361px) {
-    width: 32%;
-  }
-  @media only screen and (max-width: 1360px) and (min-width: 1201px) {
-    width: 48%;
-  }
-  @media only screen and (max-width: 1200px) and (min-width: 1061px) {
-    width: 48%;
-  }
-  @media only screen and (max-width: 1060px) and (min-width: 961px) {
-    width: 48%;
-  }
-  @media only screen and (max-width: 960px) and (min-width: 769px) {
-    width: 96%;
-  }
-  @media only screen and (max-width: 768px) and (min-width: 631px) {
-    width: 96%;
-  }
-  @media only screen and (max-width: 630px) and (min-width: 481px) {
-    width: 96%;
-  }
-  @media only screen and (max-width: 480px) {
-    width: 96%;
-  }
+  width: 100%;
 `;
 
 const InnerContainer = styled.div`
@@ -228,7 +205,7 @@ const AchivementTypeData = styled.div`
   }
 `;
 
-export default function AchievementNormal(props) {
+export default function AchievementJournal(props) {
   const {
     icon,
     id,
@@ -238,23 +215,19 @@ export default function AchievementNormal(props) {
     game_id,
     global_percentage,
     unlocked,
-    game_completed_count,
-    game_total_count,
   } = props.achievement;
 
-  const [achievementType, setAchievementType] = useState(
-    _STORAGE_READ(`${game_id}_${id}`) || UNTAGGED
-  );
+  const [achievementType, setAchievementType] = useState();
 
-  const [journalData, setJournalData] = useState("No Entry Found!");
-
-  const journalDataChanged = (e) => {};
+  useEffect(() => {
+    setAchievementType((old) => _STORAGE_READ(`${game_id}_${id}`) || UNTAGGED);
+  }, [props.achievement]);
 
   return (
     <CardContainer
       descriptionLength={description?.length || 0}
       nameLength={name?.length || 0}
-      onClick={() => props.achievementSelectedHandler(props.achievement)}
+      onClick={() => props.achievementSelectedHandler(`${game_id}_${id}`)}
     >
       <InnerContainerBG></InnerContainerBG>
       <InnerContainer image={STEAM_HEADER_IMAGE(game_id)}></InnerContainer>
@@ -292,76 +265,24 @@ export default function AchievementNormal(props) {
           <Percentage>{Number(global_percentage).toFixed(2)} %</Percentage>
         )}
       </Misc>
-      <PinIcon
-        iconColor={_STORAGE_CHECK_ARRAY(
-          `${game_id}_pinned`,
-          `${game_id}_${name}`
-        )}
-        onClick={() => {
-          if (_STORAGE_CHECK_ARRAY(`${game_id}_pinned`, `${game_id}_${name}`)) {
-            _STORAGE_REMOVE_ARRAY(`${game_id}_pinned`, `${game_id}_${name}`);
-          } else {
-            _STORAGE_APPEND_ARRAY(`${game_id}_pinned`, `${game_id}_${name}`);
-          }
-          props.refreshViewWithoutFetch && props.refreshViewWithoutFetch();
-        }}
-      >
-        <FaThumbtack style={{ cursor: "pointer" }} />
-      </PinIcon>
       <AchivementType>
         <AchivementTypeData active={achievementType === UNMISSABLE}>
-          <FaCheckDouble
-            onClick={() => {
-              _STORAGE_WRITE(`${game_id}_${id}`, UNMISSABLE);
-              setAchievementType((old) => UNMISSABLE);
-              props.refreshViewWithoutFetch();
-            }}
-          />
+          <FaCheckDouble />
         </AchivementTypeData>
         <AchivementTypeData active={achievementType === MISSABLE}>
-          <FaSkull
-            onClick={() => {
-              _STORAGE_WRITE(`${game_id}_${id}`, MISSABLE);
-              setAchievementType((old) => MISSABLE);
-              props.refreshViewWithoutFetch();
-            }}
-          />
+          <FaSkull />
         </AchivementTypeData>
         <AchivementTypeData active={achievementType === COLLECTIBLE}>
-          <FaBinoculars
-            onClick={() => {
-              _STORAGE_WRITE(`${game_id}_${id}`, COLLECTIBLE);
-              setAchievementType((old) => COLLECTIBLE);
-              props.refreshViewWithoutFetch();
-            }}
-          />
+          <FaBinoculars />
         </AchivementTypeData>
         <AchivementTypeData active={achievementType === HARD}>
-          <FaFistRaised
-            onClick={() => {
-              _STORAGE_WRITE(`${game_id}_${id}`, HARD);
-              setAchievementType((old) => HARD);
-              props.refreshViewWithoutFetch();
-            }}
-          />
+          <FaFistRaised />
         </AchivementTypeData>
         <AchivementTypeData active={achievementType === GRIND}>
-          <FaClock
-            onClick={() => {
-              _STORAGE_WRITE(`${game_id}_${id}`, GRIND);
-              setAchievementType((old) => GRIND);
-              props.refreshViewWithoutFetch();
-            }}
-          />
+          <FaClock />
         </AchivementTypeData>
         <AchivementTypeData active={achievementType === MULTIPLAYER}>
-          <FaWifi
-            onClick={() => {
-              _STORAGE_WRITE(`${game_id}_${id}`, MULTIPLAYER);
-              setAchievementType((old) => MULTIPLAYER);
-              props.refreshViewWithoutFetch();
-            }}
-          />
+          <FaWifi />
         </AchivementTypeData>
       </AchivementType>
     </CardContainer>
