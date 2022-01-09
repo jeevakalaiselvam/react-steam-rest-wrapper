@@ -182,7 +182,7 @@ const PinIcon = styled.div`
   position: absolute;
   z-index: 100;
   bottom: 0;
-  left: 0;
+  left: 10px;
   width: 20px;
   height: 20px;
   padding: 2rem;
@@ -232,8 +232,9 @@ const AchivementTypeData = styled.div`
 
 const JournalTag = styled.div`
   position: absolute;
-  top: 25px;
-  right: 18px;
+  color: #55aece;
+  top: 30px;
+  right: 23px;
 `;
 
 export default function AchievementNormal(props) {
@@ -296,9 +297,11 @@ export default function AchievementNormal(props) {
           <Percentage>{Number(global_percentage).toFixed(2)} %</Percentage>
         )}
       </Misc>
-      {/* <JournalTag>
-        <FaBookOpen />
-      </JournalTag> */}
+      {_STORAGE_READ(`${game_id}_${id}_JOURNAL`) && (
+        <JournalTag>
+          <FaBookOpen />
+        </JournalTag>
+      )}
       <PinIcon
         iconColor={_STORAGE_CHECK_ARRAY(
           `${game_id}_pinned`,
