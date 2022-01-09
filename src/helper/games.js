@@ -60,7 +60,7 @@ export const getPerfectGamesCount = (games) => {
 
 export const filterAchievementsByType = (achievements, gameId) => {
   const mapperType = [
-    UNMISSABLE,
+    UNTAGGED,
     UNMISSABLE,
     MISSABLE,
     COLLECTIBLE,
@@ -72,7 +72,7 @@ export const filterAchievementsByType = (achievements, gameId) => {
     if (
       (_STORAGE_READ(`${gameId}_${achievement.id}`) || UNTAGGED).trim() ===
       (
-        mapperType[+_STORAGE_READ(ACHIEVEMENTGAMEPAGE_FILTER)] || UNMISSABLE
+        mapperType[+_STORAGE_READ(ACHIEVEMENTGAMEPAGE_FILTER)] || UNTAGGED
       ).trim()
     ) {
       return true;
