@@ -18,6 +18,7 @@ import {
   MISSABLE,
   MULTIPLAYER,
   UNMISSABLE,
+  UNTAGGED,
 } from "../../constants/achievement";
 import { STEAM_HEADER_IMAGE } from "../../helper/endpoints";
 import {
@@ -241,7 +242,7 @@ export default function AchievementNormal(props) {
   } = props.achievement;
 
   const [achievementType, setAchievementType] = useState(
-    _STORAGE_READ(`${game_id}_${id}`) || UNMISSABLE
+    _STORAGE_READ(`${game_id}_${id}`) || UNTAGGED
   );
 
   return (

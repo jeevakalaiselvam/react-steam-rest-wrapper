@@ -112,7 +112,7 @@ export const fetchAchievementsBacklog = async (
   let achievementsResponse = {};
 
   const mainURL = `${process.env.REACT_APP_API_ENDPOINT}backlog?target=${
-    _STORAGE_READ(COMPLETION_TARGET) ?? TARGET_DEFAULT_COMPLETION
+    _STORAGE_READ(COMPLETION_TARGET) || 100
   }&`;
   const selectedAddedURL = includeSelectQueryAchievements(mainURL, selectOrder);
   const sortAddedURL = includeSortQueryAchievements(
@@ -156,7 +156,7 @@ export const fetchGameRandom = async (force = false) => {
 
   const mainURL = `${
     process.env.REACT_APP_API_ENDPOINT
-  }random?force=${force}&target=${_STORAGE_READ(COMPLETION_TARGET)}`;
+  }random?force=${force}&target=${_STORAGE_READ(COMPLETION_TARGET) || 100}`;
   console.log(mainURL);
   gameResponse = (await axios.get(mainURL)).data;
 
