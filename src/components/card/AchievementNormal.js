@@ -44,11 +44,10 @@ const CardContainer = styled.div`
   padding: 0.5rem 1rem;
   padding-bottom: 3rem;
   cursor: pointer;
-  border: 1px solid #fefefe00;
-
-  &:hover {
-    border: 1px solid #00000044;
-  }
+  box-shadow: ${(props) =>
+    props.selected
+      ? "rgba(85,174,206, 0.25) 0px 54px 55px, rgba(85,174,206, 0.12) 0px -12px 30px, rgba(85,174,206, 0.12) 0px 4px 6px, rgba(85,174,206, 0.17) 0px 12px 13px, rgba(85,174,206, 0.09) 0px -3px 5px;"
+      : "rgba(85,174,206, 0) 0px 54px 55px, rgba(85,174,206, 0) 0px -12px 30px, rgba(85,174,206, 0) 0px 4px 6px, rgba(85,174,206, 0) 0px 12px 13px, rgba(85,174,206, 0) 0px -3px 5px"};
 
   @media only screen and (min-width: 1361px) {
     width: 32%;
@@ -257,6 +256,7 @@ export default function AchievementNormal(props) {
 
   return (
     <CardContainer
+      selected={props.achievementSelected.id === id}
       descriptionLength={description?.length || 0}
       nameLength={name?.length || 0}
       onClick={() => props.achievementSelectedHandler(props.achievement)}

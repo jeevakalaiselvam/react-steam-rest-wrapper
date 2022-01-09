@@ -152,6 +152,7 @@ export default function GameContent(props) {
               <AchievementNormal
                 refreshViewWithoutFetch={refreshViewWithoutFetch}
                 achievement={achievement}
+                achievementSelected={achievementSelected}
                 key={achievement.game_id + achievement.id}
                 achievementSelectedHandler={achievementSelectedHandler}
               />
