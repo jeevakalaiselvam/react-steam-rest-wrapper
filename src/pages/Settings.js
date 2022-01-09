@@ -28,9 +28,15 @@ export default function Settings() {
     console.log("Refreshing Database");
     const response = await refreshDatabaseInBackend();
     if (response) {
-      setTimeout(() => {
-        window.location.href = "/currentGame";
-      }, 3000);
+      if (_STORAGE_READ(SELECTED_GAME)) {
+        setTimeout(() => {
+          window.location.href = "/currentGame";
+        }, 3000);
+      } else {
+        setTimeout(() => {
+          window.location.href = "/games";
+        }, 3000);
+      }
     }
   };
 
@@ -45,5 +51,5 @@ export default function Settings() {
         rightSidebarWidth={"0px"}
       />
     </PageContainer>
-  ); 
+  );
 }
