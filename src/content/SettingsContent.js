@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { FaSyncAlt } from 'react-icons/fa';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import { FaSyncAlt } from "react-icons/fa";
+import styled from "styled-components";
 import {
   COMPLETION_TARGET,
   TARGET_DEFAULT_COMPLETION,
   _STORAGE_READ,
   _STORAGE_WRITE,
-} from '../helper/storage';
+} from "../helper/storage";
 
 const ContentContainer = styled.div`
   display: flex;
@@ -213,7 +213,7 @@ export default function SettingsContent(props) {
       <ContainerInner>
         <MainTitle>Settings</MainTitle>
         <Row>
-          <Column>
+          {/* <Column>
             <Label>
               <Bottom>Target percentage for achieving a medal in a game</Bottom>
             </Label>
@@ -240,7 +240,7 @@ export default function SettingsContent(props) {
             >
               SAVE
             </Button>
-          </Column>
+          </Column> */}
         </Row>
 
         <ButtonRefresh
@@ -248,8 +248,8 @@ export default function SettingsContent(props) {
             refreshDatabase();
           }}
         >
-          {!rotate && 'Sync Database'}
-          {rotate && 'Syncing Database, Please wait...'}
+          {!rotate && "Sync Database"}
+          {rotate && "Syncing Database, Please wait..."}
           {rotate && (
             <IconRefreshRotate>
               <FaSyncAlt />

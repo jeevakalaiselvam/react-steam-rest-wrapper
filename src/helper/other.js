@@ -1,4 +1,10 @@
-import { PERCENTAGE_BRONZE, PERCENTAGE_COPPER, PERCENTAGE_GOLD, PERCENTAGE_GREEN, PERCENTAGE_PURPLE } from "../constants/percentage";
+import {
+  PERCENTAGE_BRONZE,
+  PERCENTAGE_COPPER,
+  PERCENTAGE_GOLD,
+  PERCENTAGE_GREEN,
+  PERCENTAGE_PURPLE,
+} from "../constants/percentage";
 import {
   COMPLETION_TARGET,
   SELECTED_GAME_COMPLETED,
@@ -89,16 +95,16 @@ export const getAllAchievementsObtainedForDate = (achievements, date) => {
 };
 
 export const getModeAchivementsToAttainTarget = (achievements) => {
-  const target = _STORAGE_READ(COMPLETION_TARGET) ?? TARGET_DEFAULT_COMPLETION;
+  const target = 100;
   const completed = _STORAGE_READ(SELECTED_GAME_COMPLETED);
   const total = _STORAGE_READ(SELECTED_GAME_TOTAL);
-  const toGetGold = Math.ceil(((PERCENTAGE_GOLD / 100) * total) - completed);
-  const toGetPurple = Math.ceil(((PERCENTAGE_PURPLE / 100) * total) - completed);
-  const toGetGreen = Math.ceil(((PERCENTAGE_GREEN / 100) * total) - completed);
-  const toGetBronze = Math.ceil(((PERCENTAGE_BRONZE / 100) * total) - completed);
-  const toGetCopper = Math.ceil(((PERCENTAGE_COPPER / 100) * total) - completed);
-  
-  return {toGetGold,toGetPurple,toGetGreen,toGetBronze,toGetCopper};
+  const toGetGold = Math.ceil((PERCENTAGE_GOLD / 100) * total - completed);
+  const toGetPurple = Math.ceil((PERCENTAGE_PURPLE / 100) * total - completed);
+  const toGetGreen = Math.ceil((PERCENTAGE_GREEN / 100) * total - completed);
+  const toGetBronze = Math.ceil((PERCENTAGE_BRONZE / 100) * total - completed);
+  const toGetCopper = Math.ceil((PERCENTAGE_COPPER / 100) * total - completed);
+
+  return { toGetGold, toGetPurple, toGetGreen, toGetBronze, toGetCopper };
 };
 
 export const getMedalCompletedGames = (gameInfo) => {
@@ -108,27 +114,24 @@ export const getMedalCompletedGames = (gameInfo) => {
     purple: 0,
     green: 0,
     bronze: 0,
-    copper:0,
+    copper: 0,
   };
 
   game_percentages &&
     game_percentages.forEach((percentage) => {
-      if (
-        percentage == PERCENTAGE_GOLD
-        
-      ) {
+      if (percentage == PERCENTAGE_GOLD) {
         totalMedals.gold++;
       }
-      if(percentage < PERCENTAGE_GOLD && percentage >= PERCENTAGE_PURPLE){
+      if (percentage < PERCENTAGE_GOLD && percentage >= PERCENTAGE_PURPLE) {
         totalMedals.purple++;
       }
-      if(percentage < PERCENTAGE_PURPLE && percentage >= PERCENTAGE_GREEN){
+      if (percentage < PERCENTAGE_PURPLE && percentage >= PERCENTAGE_GREEN) {
         totalMedals.green++;
       }
-      if(percentage < PERCENTAGE_GREEN && percentage >= PERCENTAGE_BRONZE){
+      if (percentage < PERCENTAGE_GREEN && percentage >= PERCENTAGE_BRONZE) {
         totalMedals.bronze++;
       }
-      if(percentage < PERCENTAGE_BRONZE && percentage >= PERCENTAGE_COPPER){
+      if (percentage < PERCENTAGE_BRONZE && percentage >= PERCENTAGE_COPPER) {
         totalMedals.copper++;
       }
     });

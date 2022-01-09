@@ -137,8 +137,7 @@ export default function GameCardNormal(props) {
   } = props.game.game;
 
   const getRemainingForTarget = () => {
-    const completionTarget =
-      _STORAGE_READ(COMPLETION_TARGET) ?? TARGET_DEFAULT_COMPLETION;
+    const completionTarget = 100;
 
     return Math.ceil(
       (completionTarget / 100) * total_achievements_count -
@@ -174,34 +173,21 @@ export default function GameCardNormal(props) {
               <FaTrophy />
             </IconInner>
             <AchievementCount>
-              {+completion_percentage <
-                Number(
-                  _STORAGE_READ(COMPLETION_TARGET) ?? TARGET_DEFAULT_COMPLETION
-                ) && getRemainingForTarget()}
+              {+completion_percentage < Number(100) && getRemainingForTarget()}
 
-              {+completion_percentage >=
-                Number(
-                  _STORAGE_READ(COMPLETION_TARGET) ?? TARGET_DEFAULT_COMPLETION
-                ) && <FaCheck />}
+              {+completion_percentage >= Number(100) && <FaCheck />}
             </AchievementCount>
           </AchievementData>
-          {+completion_percentage >=
-            Number(
-              _STORAGE_READ(COMPLETION_TARGET) ?? TARGET_DEFAULT_COMPLETION
-            ) && (
+          {+completion_percentage >= Number(100) && (
             <Medal>
               <FaMedal />
             </Medal>
           )}
-          {+completion_percentage <
-            Number(
-              _STORAGE_READ(COMPLETION_TARGET) ?? TARGET_DEFAULT_COMPLETION
-            ) &&
-            +completion_percentage > 0 && (
-              <IconStarted>
-                <FaHourglass />
-              </IconStarted>
-            )}
+          {+completion_percentage < Number(100) && +completion_percentage > 0 && (
+            <IconStarted>
+              <FaHourglass />
+            </IconStarted>
+          )}
         </InnerContainer>
       </Card>
     </CardContainer>

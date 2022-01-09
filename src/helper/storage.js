@@ -53,9 +53,9 @@ export const GAMES_INFO_TOTAL_ACHIEVEMENTS = "GAMES_INFO_TOTAL_ACHIEVEMENTS";
 ///ALL STORAGE RELATED FUNCTIONS
 
 export const getCompletionTarget = () => {
-  const completionTarget = _STORAGE_READ("COMPLETION_TARGET");
+  const completionTarget = 100;
   if (completionTarget) return completionTarget;
-  else return 80;
+  else return 100;
 };
 
 export const _STORAGE_READ = (key) => {

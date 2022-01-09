@@ -12,7 +12,7 @@ export const includeSelectQueryGames = (initialUrl, selectOrder) => {
 
 export const includeSortQueryGames = (initialUrl, sortOrder) => {
   const indexMapper = [
-    `completion&target=${_STORAGE_READ(COMPLETION_TARGET)}&`,
+    `completion&target=100&`,
     "playtime&",
     "name&order=az&",
     "name&order=za&",
