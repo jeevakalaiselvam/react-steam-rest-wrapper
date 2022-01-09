@@ -6,7 +6,9 @@ import AllPageLeft from "../sidebar/AllPageLeft";
 import { refreshDatabaseInBackend } from "../action/games";
 import {
   CURRENT_PAGE,
+  SELECTED_GAME,
   SETTINGS_PAGE_INDEX,
+  _STORAGE_READ,
   _STORAGE_WRITE,
 } from "../helper/storage";
 import SettingsContent from "../content/SettingsContent";
