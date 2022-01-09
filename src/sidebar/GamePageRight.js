@@ -1,17 +1,23 @@
 import React from "react";
 import {
   FaArrowRight,
+  FaBinoculars,
+  FaCheckDouble,
   FaClock,
   FaFilter,
+  FaFistRaised,
   FaGripHorizontal,
   FaMedal,
   FaPercentage,
+  FaSkull,
   FaSortAlphaDown,
   FaSortAlphaDownAlt,
   FaThumbtack,
   FaTrophy,
+  FaWifi,
 } from "react-icons/fa";
 import styled from "styled-components";
+import { getCountForAchievements } from "../helper/games";
 import { getModeAchivementsToAttainTarget } from "../helper/other";
 import { _STORAGE_CHECK_ARRAY } from "../helper/storage";
 
@@ -53,13 +59,6 @@ const RightMenuItem = styled.div`
 const Icon = styled.div`
   font-size: 1rem;
   transform: translateY(-1px);
-`;
-const Title = styled.div`
-  display: flex;
-  font-size: 0.9rem;
-  margin-left: 1rem;
-  align-items: center;
-  flex-direction: row;
 `;
 
 const ToGet = styled.div`
@@ -159,9 +158,43 @@ const MedalCopper = styled.div`
   align-items: center;
 `;
 
+const TitleContainer = styled.div`
+  display: flex;
+  font-size: 0.9rem;
+  margin-left: 1rem;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+`;
+
+const Title = styled.div`
+  flex: 1;
+`;
+const TitleCount = styled.div`
+  background-color: rgba(122, 132, 148, 0.26);
+  color: white;
+  margin-left: 0.5rem;
+  min-width: 25px;
+  color: #55aece;
+  text-align: center;
+  font-size: 0.75rem;
+  border-radius: 5px;
+  padding: 3px;
+`;
+
 export default function GamePageRight(props) {
   const achievements = props.achievements;
   const toGet = getModeAchivementsToAttainTarget(achievements);
+  const {
+    unTaggedCount,
+    unMissableCount,
+    missableCount,
+    collectibleCount,
+    hardCount,
+    grindCount,
+    multiplayerCount,
+  } = getCountForAchievements(achievements);
 
   const getPinnedAchievementsCount = (tmpAchievements) => {
     const pinnedAchievements = [];
@@ -192,61 +225,82 @@ export default function GamePageRight(props) {
         <Icon>
           <FaGripHorizontal />
         </Icon>
-        <Title>All</Title>
+        <TitleContainer>
+          <Title>Untagged</Title>
+          <TitleCount>{unTaggedCount}</TitleCount>
+        </TitleContainer>
       </RightMenuItem>
       <RightMenuItem
         onClick={() => props.filterHandler(1)}
         selected={props.filterIndex === 1}
       >
         <Icon>
-          <FaGripHorizontal />
+          <FaCheckDouble />
         </Icon>
-        <Title>Unmissable</Title>
+        <TitleContainer>
+          <Title>Unmissable</Title>
+          <TitleCount>{unMissableCount}</TitleCount>
+        </TitleContainer>
       </RightMenuItem>
       <RightMenuItem
         onClick={() => props.filterHandler(2)}
         selected={props.filterIndex === 2}
       >
         <Icon>
-          <FaGripHorizontal />
+          <FaSkull />
         </Icon>
-        <Title>Missable</Title>
+        <TitleContainer>
+          <Title>Missable</Title>
+          <TitleCount>{missableCount}</TitleCount>
+        </TitleContainer>
       </RightMenuItem>
       <RightMenuItem
         onClick={() => props.filterHandler(3)}
         selected={props.filterIndex === 3}
       >
         <Icon>
-          <FaGripHorizontal />
+          <FaBinoculars />
         </Icon>
-        <Title>Collectible</Title>
+        <TitleContainer>
+          <Title>Collectible</Title>
+          <TitleCount>{collectibleCount}</TitleCount>
+        </TitleContainer>
       </RightMenuItem>
       <RightMenuItem
         onClick={() => props.filterHandler(4)}
         selected={props.filterIndex === 4}
       >
         <Icon>
-          <FaGripHorizontal />
+          <FaFistRaised />
         </Icon>
-        <Title>Hard</Title>
+        <TitleContainer>
+          <Title>Hard</Title>
+          <TitleCount>{hardCount}</TitleCount>
+        </TitleContainer>
       </RightMenuItem>
       <RightMenuItem
         onClick={() => props.filterHandler(5)}
         selected={props.filterIndex === 5}
       >
         <Icon>
-          <FaGripHorizontal />
+          <FaClock />
         </Icon>
-        <Title>Grind</Title>
+        <TitleContainer>
+          <Title>Grind</Title>
+          <TitleCount>{grindCount}</TitleCount>
+        </TitleContainer>
       </RightMenuItem>
       <RightMenuItem
         onClick={() => props.filterHandler(6)}
         selected={props.filterIndex === 6}
       >
         <Icon>
-          <FaGripHorizontal />
+          <FaWifi />
         </Icon>
-        <Title>Multiplayer</Title>
+        <TitleContainer>
+          <Title>Multiplayer</Title>
+          <TitleCount>{multiplayerCount}</TitleCount>
+        </TitleContainer>
       </RightMenuItem>
 
       <Subheader>VIEW OPTIONS</Subheader>
@@ -257,7 +311,7 @@ export default function GamePageRight(props) {
         <Icon>
           <FaGripHorizontal />
         </Icon>
-        <Title>Minimal</Title>
+        <TitleContainer>Minimal</TitleContainer>
       </RightMenuItem>
       <RightMenuItem
         onClick={() => props.viewHandler(1)}
@@ -266,7 +320,7 @@ export default function GamePageRight(props) {
         <Icon>
           <FaGripHorizontal />
         </Icon>
-        <Title>Normal</Title>
+        <TitleContainer>Normal</TitleContainer>
       </RightMenuItem>
 
       <Subheader>SELECT OPTIONS</Subheader>
@@ -277,7 +331,7 @@ export default function GamePageRight(props) {
         <Icon>
           <FaFilter />
         </Icon>
-        <Title>All</Title>
+        <TitleContainer>All</TitleContainer>
       </RightMenuItem>
       <RightMenuItem
         onClick={() => props.selectHandler(1)}
@@ -286,7 +340,7 @@ export default function GamePageRight(props) {
         <Icon>
           <FaFilter />
         </Icon>
-        <Title>Unlocked</Title>
+        <TitleContainer>Unlocked</TitleContainer>
       </RightMenuItem>
       <RightMenuItem
         onClick={() => props.selectHandler(2)}
@@ -295,7 +349,7 @@ export default function GamePageRight(props) {
         <Icon>
           <FaFilter />
         </Icon>
-        <Title>Not Unlocked</Title>
+        <TitleContainer>Not Unlocked</TitleContainer>
       </RightMenuItem>
       <RightMenuItem
         onClick={() => props.selectHandler(3)}
@@ -304,7 +358,7 @@ export default function GamePageRight(props) {
         <Icon>
           <FaFilter />
         </Icon>
-        <Title>Pinned</Title>
+        <TitleContainer>Pinned</TitleContainer>
       </RightMenuItem>
       <Subheader>SORT OPTIONS</Subheader>
       <RightMenuItem
@@ -314,7 +368,7 @@ export default function GamePageRight(props) {
         <Icon>
           <FaClock />
         </Icon>
-        <Title>Recent</Title>
+        <TitleContainer>Recent</TitleContainer>
       </RightMenuItem>
       <RightMenuItem
         onClick={() => props.sortHandler(1)}
@@ -323,7 +377,7 @@ export default function GamePageRight(props) {
         <Icon>
           <FaPercentage />
         </Icon>
-        <Title>Rarity Easy</Title>
+        <TitleContainer>Rarity Easy</TitleContainer>
       </RightMenuItem>
       <RightMenuItem
         onClick={() => props.sortHandler(2)}
@@ -332,7 +386,7 @@ export default function GamePageRight(props) {
         <Icon>
           <FaPercentage />
         </Icon>
-        <Title>Rarity Hard</Title>
+        <TitleContainer>Rarity Hard</TitleContainer>
       </RightMenuItem>
 
       <RightMenuItem
@@ -342,7 +396,7 @@ export default function GamePageRight(props) {
         <Icon>
           <FaSortAlphaDown />
         </Icon>
-        <Title>Name A-Z</Title>
+        <TitleContainer>Name A-Z</TitleContainer>
       </RightMenuItem>
       <RightMenuItem
         onClick={() => props.sortHandler(4)}
@@ -351,7 +405,7 @@ export default function GamePageRight(props) {
         <Icon>
           <FaSortAlphaDownAlt />
         </Icon>
-        <Title>Name Z-A</Title>
+        <TitleContainer>Name Z-A</TitleContainer>
       </RightMenuItem>
       <RightMenuItem
         onClick={() => props.sortHandler(5)}
@@ -360,7 +414,7 @@ export default function GamePageRight(props) {
         <Icon>
           <FaSortAlphaDownAlt />
         </Icon>
-        <Title>Hidden</Title>
+        <TitleContainer>Hidden</TitleContainer>
       </RightMenuItem>
 
       {pinnedCount > 0 && (

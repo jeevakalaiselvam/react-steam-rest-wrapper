@@ -5,6 +5,7 @@ import {
   MISSABLE,
   MULTIPLAYER,
   UNMISSABLE,
+  UNTAGGED,
 } from "../constants/achievement";
 import {
   ACHIEVEMENTGAMEPAGE_FILTER,
@@ -69,7 +70,7 @@ export const filterAchievementsByType = (achievements, gameId) => {
   ];
   const newAchievements = achievements.filter((achievement) => {
     if (
-      (_STORAGE_READ(`${gameId}_${achievement.id}`) || UNMISSABLE).trim() ===
+      (_STORAGE_READ(`${gameId}_${achievement.id}`) || UNTAGGED).trim() ===
       (
         mapperType[+_STORAGE_READ(ACHIEVEMENTGAMEPAGE_FILTER)] || UNMISSABLE
       ).trim()
@@ -80,4 +81,57 @@ export const filterAchievementsByType = (achievements, gameId) => {
     }
   });
   return newAchievements;
+};
+
+//Get Count for achievements
+export const getCountForAchievements = (achievements) => {
+  let unTaggedCount = 0,
+    unMissableCount = 0,
+    missableCount = 0,
+    collectibleCount = 0,
+    hardCount = 0,
+    grindCount = 0,
+    multiplayerCount = 0;
+
+  achievements.length &&
+    achievements.forEach((achievement) => {
+      const type = (
+        _STORAGE_READ(`${achievement.game_id}_${achievement.id}`) || UNTAGGED
+      ).trim();
+      switch (type) {
+        case UNTAGGED:
+          unTaggedCount++;
+          break;
+        case UNMISSABLE:
+          unMissableCount++;
+          break;
+        case MISSABLE:
+          missableCount++;
+          break;
+        case GRIND:
+          grindCount++;
+          break;
+        case HARD:
+          hardCount++;
+          break;
+        case COLLECTIBLE:
+          collectibleCount++;
+          break;
+        case MULTIPLAYER:
+          multiplayerCount++;
+          break;
+        default:
+          break;
+      }
+    });
+
+  return {
+    unTaggedCount,
+    unMissableCount,
+    missableCount,
+    collectibleCount,
+    hardCount,
+    grindCount,
+    multiplayerCount,
+  };
 };
