@@ -105,8 +105,8 @@ const IconContainer = styled.div`
 `;
 
 const Icon = styled.div`
-  width: 55px;
-  height: 55px;
+  width: 70px;
+  height: 70px;
   cursor: pointer;
   border-radius: 2px;
   background-image: url("${(props) => props.image}");
