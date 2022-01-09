@@ -60,6 +60,7 @@ export const getPerfectGamesCount = (games) => {
 
 export const filterAchievementsByType = (achievements, gameId) => {
   const mapperType = [
+    ALL,
     UNTAGGED,
     UNMISSABLE,
     MISSABLE,
