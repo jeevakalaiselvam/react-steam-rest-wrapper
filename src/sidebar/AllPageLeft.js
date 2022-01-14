@@ -30,6 +30,7 @@ import {
   _STORAGE_READ,
   _STORAGE_WRITE,
   KANBAN_INDEX,
+  PLANNER_INDEX,
 } from "../helper/storage";
 import { fetchGamesInfo } from "../action/games";
 import { getMedalCompletedGames, getTotalAchievements } from "../helper/other";
@@ -149,6 +150,16 @@ export default function AllPageLeft() {
         </IconSetTrophy> */}
       </IconSetContainer>
       <Subheader>SELECT CATEGORY</Subheader>
+      <MenuItemLink
+        icon={<FaGamepad />}
+        title={"Planner"}
+        to={"/planner"}
+        navItemClicked={() => {
+          _STORAGE_WRITE(CURRENT_PAGE, PLANNER_INDEX);
+          window.location.href = `/${_STORAGE_READ(CURRENT_PAGE)}`;
+        }}
+        selected={_STORAGE_READ(CURRENT_PAGE) === PLANNER_INDEX}
+      />
       <MenuItemLink
         icon={<FaGamepad />}
         title={"Kanban"}

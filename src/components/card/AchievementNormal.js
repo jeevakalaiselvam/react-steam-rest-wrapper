@@ -259,7 +259,9 @@ export default function AchievementNormal(props) {
       selected={props.achievementSelected.id === id}
       descriptionLength={description?.length || 0}
       nameLength={name?.length || 0}
-      onClick={() => props.achievementSelectedHandler(props.achievement)}
+      onClick={() => {
+        props.achievementSelectedHandler(props.achievement);
+      }}
     >
       <InnerContainerBG></InnerContainerBG>
       <InnerContainer image={STEAM_HEADER_IMAGE(game_id)}></InnerContainer>
@@ -302,22 +304,6 @@ export default function AchievementNormal(props) {
           <FaBookOpen />
         </JournalTag>
       )}
-      <PinIcon
-        iconColor={_STORAGE_CHECK_ARRAY(
-          `${game_id}_pinned`,
-          `${game_id}_${id}`
-        )}
-        onClick={() => {
-          if (_STORAGE_CHECK_ARRAY(`${game_id}_pinned`, `${game_id}_${id}`)) {
-            _STORAGE_REMOVE_ARRAY(`${game_id}_pinned`, `${game_id}_${id}`);
-          } else {
-            _STORAGE_APPEND_ARRAY(`${game_id}_pinned`, `${game_id}_${id}`);
-          }
-          props.refreshViewWithoutFetch && props.refreshViewWithoutFetch();
-        }}
-      >
-        <FaThumbtack style={{ cursor: "pointer" }} />
-      </PinIcon>
       <AchivementType>
         <AchivementTypeData active={achievementType === UNMISSABLE}>
           <FaCheckDouble
@@ -337,33 +323,7 @@ export default function AchievementNormal(props) {
             }}
           />
         </AchivementTypeData>
-        <AchivementTypeData active={achievementType === COLLECTIBLE}>
-          <FaBinoculars
-            onClick={() => {
-              _STORAGE_WRITE(`${game_id}_${id}`, COLLECTIBLE);
-              setAchievementType((old) => COLLECTIBLE);
-              props.refreshViewWithoutFetch();
-            }}
-          />
-        </AchivementTypeData>
-        <AchivementTypeData active={achievementType === HARD}>
-          <FaFistRaised
-            onClick={() => {
-              _STORAGE_WRITE(`${game_id}_${id}`, HARD);
-              setAchievementType((old) => HARD);
-              props.refreshViewWithoutFetch();
-            }}
-          />
-        </AchivementTypeData>
-        <AchivementTypeData active={achievementType === GRIND}>
-          <FaClock
-            onClick={() => {
-              _STORAGE_WRITE(`${game_id}_${id}`, GRIND);
-              setAchievementType((old) => GRIND);
-              props.refreshViewWithoutFetch();
-            }}
-          />
-        </AchivementTypeData>
+
         <AchivementTypeData active={achievementType === MULTIPLAYER}>
           <FaWifi
             onClick={() => {

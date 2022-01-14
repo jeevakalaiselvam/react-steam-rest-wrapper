@@ -198,7 +198,7 @@ const AchivementTypeData = styled.div`
   justify-content: center;
   padding: 0.25rem 0.5rem;
   border-radius: 5px;
-  color: ${(props) => (props.active ? "#55aece" : "#959da6")};
+  color: ${(props) => (props.highlight ? "#55aece" : "#959da6")};
   display: ${(props) => (props.active ? "flex" : "none")};
 
   &:hover {
@@ -228,6 +228,7 @@ export default function AchievementJournal(props) {
     <CardContainer
       descriptionLength={description?.length || 0}
       nameLength={name?.length || 0}
+      onClick={() => props.openJournal()}
     >
       <InnerContainerBG></InnerContainerBG>
       <InnerContainer image={STEAM_HEADER_IMAGE(game_id)}></InnerContainer>
@@ -266,24 +267,62 @@ export default function AchievementJournal(props) {
         )}
       </Misc>
       <AchivementType>
-        <AchivementTypeData active={achievementType === UNMISSABLE}>
-          <FaCheckDouble />
-        </AchivementTypeData>
-        <AchivementTypeData active={achievementType === MISSABLE}>
-          <FaSkull />
-        </AchivementTypeData>
-        <AchivementTypeData active={achievementType === COLLECTIBLE}>
-          <FaBinoculars />
-        </AchivementTypeData>
-        <AchivementTypeData active={achievementType === HARD}>
-          <FaFistRaised />
-        </AchivementTypeData>
-        <AchivementTypeData active={achievementType === GRIND}>
-          <FaClock />
-        </AchivementTypeData>
-        <AchivementTypeData active={achievementType === MULTIPLAYER}>
-          <FaWifi />
-        </AchivementTypeData>
+        {achievementType !== UNTAGGED && (
+          <>
+            <AchivementTypeData
+              active={achievementType === UNMISSABLE}
+              highlight={true}
+            >
+              <FaCheckDouble />
+            </AchivementTypeData>
+            <AchivementTypeData
+              active={achievementType === MISSABLE}
+              highlight={true}
+            >
+              <FaSkull />
+            </AchivementTypeData>
+            <AchivementTypeData
+              active={achievementType === MULTIPLAYER}
+              highlight={true}
+            >
+              <FaWifi />
+            </AchivementTypeData>
+          </>
+        )}
+        {achievementType === UNTAGGED && (
+          <>
+            <AchivementTypeData active={true} highlight={false}>
+              <FaCheckDouble
+                onClick={(e) => {
+                  _STORAGE_WRITE(`${game_id}_${id}`, UNMISSABLE);
+                  setAchievementType((old) => UNMISSABLE);
+                  props.refreshViewWithoutFetch();
+                  e.stopPropagation();
+                }}
+              />
+            </AchivementTypeData>
+            <AchivementTypeData active={true} highlight={false}>
+              <FaSkull
+                onClick={(e) => {
+                  _STORAGE_WRITE(`${game_id}_${id}`, MISSABLE);
+                  setAchievementType((old) => MISSABLE);
+                  props.refreshViewWithoutFetch();
+                  e.stopPropagation();
+                }}
+              />
+            </AchivementTypeData>
+            <AchivementTypeData active={true} highlight={false}>
+              <FaWifi
+                onClick={(e) => {
+                  _STORAGE_WRITE(`${game_id}_${id}`, MULTIPLAYER);
+                  setAchievementType((old) => MULTIPLAYER);
+                  props.refreshViewWithoutFetch();
+                  e.stopPropagation();
+                }}
+              />
+            </AchivementTypeData>
+          </>
+        )}
       </AchivementType>
     </CardContainer>
   );
