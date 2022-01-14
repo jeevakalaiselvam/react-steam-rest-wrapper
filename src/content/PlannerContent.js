@@ -14,9 +14,12 @@ import {
   _STORAGE_WRITE,
 } from "../helper/storage";
 import { PAGINATION_ACHIEVEMENTS_PER_PAGE } from "../helper/pagination";
-import AchievementKanban from "../components/card/AchievementKanban";
-import { getAchievementsFilteredByCategory } from "../helper/games";
+import {
+  getAchievementsFilteredByCategory,
+  getAchievementsFilteredByPhase,
+} from "../helper/games";
 import AchievementJournal from "../components/card/AchievementJournal";
+import AchievementPhase from "../components/card/AchievementPhase";
 
 const MainContainer = styled.div`
   display: flex;
@@ -149,7 +152,7 @@ const AchievementContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 0.25rem;
+  padding: 0.5rem;
   height: 100vh;
   overflow: scroll;
   scrollbar-width: none;
@@ -246,13 +249,10 @@ export default function PlannerContent(props) {
     return !!pattern.test(str);
   }
 
-  const {
-    allCount,
-    unTaggedCount,
-    unMissableCount,
-    missableCount,
-    multiplayerCount,
-  } = getAchievementsFilteredByCategory(filteredAchievements);
+  const { unTaggedCount } =
+    getAchievementsFilteredByCategory(filteredAchievements);
+  const { phase1, phase2, phase3, phase4 } =
+    getAchievementsFilteredByPhase(filteredAchievements);
 
   return (
     <MainContainer>
@@ -263,7 +263,7 @@ export default function PlannerContent(props) {
             <AchievementContainer>
               {unTaggedCount.map((achievement) => {
                 return (
-                  <AchievementJournal
+                  <AchievementPhase
                     refreshViewWithoutFetch={refreshViewWithoutFetch}
                     achievement={achievement}
                     achievementSelected={achievementSelected}
@@ -276,11 +276,11 @@ export default function PlannerContent(props) {
             </AchievementContainer>
           </SectionContainer>
           <SectionContainer empty={false}>
-            <SectionTitle>Story</SectionTitle>
+            <SectionTitle>Phase 1</SectionTitle>
             <AchievementContainer>
-              {unMissableCount.map((achievement) => {
+              {phase1.map((achievement) => {
                 return (
-                  <AchievementJournal
+                  <AchievementPhase
                     refreshViewWithoutFetch={refreshViewWithoutFetch}
                     achievement={achievement}
                     achievementSelected={achievementSelected}
@@ -293,11 +293,11 @@ export default function PlannerContent(props) {
             </AchievementContainer>
           </SectionContainer>
           <SectionContainer empty={false}>
-            <SectionTitle>Missable</SectionTitle>
+            <SectionTitle>Phase 2</SectionTitle>
             <AchievementContainer>
-              {missableCount.map((achievement) => {
+              {phase2.map((achievement) => {
                 return (
-                  <AchievementJournal
+                  <AchievementPhase
                     refreshViewWithoutFetch={refreshViewWithoutFetch}
                     achievement={achievement}
                     achievementSelected={achievementSelected}
@@ -311,11 +311,28 @@ export default function PlannerContent(props) {
           </SectionContainer>
 
           <SectionContainer empty={false}>
-            <SectionTitle>Online</SectionTitle>
+            <SectionTitle>Phase 3</SectionTitle>
             <AchievementContainer>
-              {multiplayerCount.map((achievement) => {
+              {phase3.map((achievement) => {
                 return (
-                  <AchievementJournal
+                  <AchievementPhase
+                    refreshViewWithoutFetch={refreshViewWithoutFetch}
+                    achievement={achievement}
+                    achievementSelected={achievementSelected}
+                    key={achievement.game_id + achievement.id}
+                    achievementSelectedHandler={achievementSelectedHandler}
+                    openJournal={props.openJournal}
+                  />
+                );
+              })}
+            </AchievementContainer>
+          </SectionContainer>
+          <SectionContainer empty={false}>
+            <SectionTitle>Phase 4</SectionTitle>
+            <AchievementContainer>
+              {phase4.map((achievement) => {
+                return (
+                  <AchievementPhase
                     refreshViewWithoutFetch={refreshViewWithoutFetch}
                     achievement={achievement}
                     achievementSelected={achievementSelected}

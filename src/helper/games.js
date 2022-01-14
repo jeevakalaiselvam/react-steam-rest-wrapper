@@ -5,6 +5,10 @@ import {
   HARD,
   MISSABLE,
   MULTIPLAYER,
+  PHASE1,
+  PHASE2,
+  PHASE3,
+  PHASE4,
   UNMISSABLE,
   UNTAGGED,
 } from "../constants/achievement";
@@ -117,6 +121,40 @@ export const getAchievementsFilteredByCategory = (achievements) => {
           break;
         case MULTIPLAYER:
           data.multiplayerCount.push(achievement);
+          break;
+        default:
+          break;
+      }
+    });
+
+  return data;
+};
+
+export const getAchievementsFilteredByPhase = (achievements) => {
+  let data = {
+    phase1: [],
+    phase2: [],
+    phase3: [],
+    phase4: [],
+  };
+
+  achievements.length &&
+    achievements.forEach((achievement) => {
+      const type = (
+        _STORAGE_READ(`${achievement.game_id}_${achievement.id}`) || PHASE1
+      ).trim();
+      switch (type) {
+        case PHASE1:
+          data.phase1.push(achievement);
+          break;
+        case PHASE2:
+          data.phase2.push(achievement);
+          break;
+        case PHASE3:
+          data.phase3.push(achievement);
+          break;
+        case PHASE4:
+          data.phase4.push(achievement);
           break;
         default:
           break;
