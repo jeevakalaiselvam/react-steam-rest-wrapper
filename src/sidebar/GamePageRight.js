@@ -237,21 +237,10 @@ export default function GamePageRight(props) {
         {props.journalOpen ? "CLOSE" : "OPEN"} JOURNAL
       </JournalButton>
       <Subheader>FILTER OPTIONS</Subheader>
+
       <RightMenuItem
         onClick={() => props.filterHandler(0)}
         selected={props.filterIndex === 0}
-      >
-        <Icon>
-          <FaGripHorizontal />
-        </Icon>
-        <TitleContainer>
-          <Title>All</Title>
-          <TitleCount>{allCount}</TitleCount>
-        </TitleContainer>
-      </RightMenuItem>
-      <RightMenuItem
-        onClick={() => props.filterHandler(1)}
-        selected={props.filterIndex === 1}
       >
         <Icon>
           <FaGripHorizontal />
@@ -262,8 +251,8 @@ export default function GamePageRight(props) {
         </TitleContainer>
       </RightMenuItem>
       <RightMenuItem
-        onClick={() => props.filterHandler(2)}
-        selected={props.filterIndex === 2}
+        onClick={() => props.filterHandler(1)}
+        selected={props.filterIndex === 1}
       >
         <Icon>
           <FaCheckDouble />
@@ -274,8 +263,8 @@ export default function GamePageRight(props) {
         </TitleContainer>
       </RightMenuItem>
       <RightMenuItem
-        onClick={() => props.filterHandler(3)}
-        selected={props.filterIndex === 3}
+        onClick={() => props.filterHandler(2)}
+        selected={props.filterIndex === 2}
       >
         <Icon>
           <FaSkull />
@@ -285,45 +274,10 @@ export default function GamePageRight(props) {
           <TitleCount>{missableCount}</TitleCount>
         </TitleContainer>
       </RightMenuItem>
+
       <RightMenuItem
-        onClick={() => props.filterHandler(4)}
-        selected={props.filterIndex === 4}
-      >
-        <Icon>
-          <FaBinoculars />
-        </Icon>
-        <TitleContainer>
-          <Title>Collectible</Title>
-          <TitleCount>{collectibleCount}</TitleCount>
-        </TitleContainer>
-      </RightMenuItem>
-      <RightMenuItem
-        onClick={() => props.filterHandler(5)}
-        selected={props.filterIndex === 5}
-      >
-        <Icon>
-          <FaFistRaised />
-        </Icon>
-        <TitleContainer>
-          <Title>Hard</Title>
-          <TitleCount>{hardCount}</TitleCount>
-        </TitleContainer>
-      </RightMenuItem>
-      <RightMenuItem
-        onClick={() => props.filterHandler(6)}
-        selected={props.filterIndex === 6}
-      >
-        <Icon>
-          <FaClock />
-        </Icon>
-        <TitleContainer>
-          <Title>Grind</Title>
-          <TitleCount>{grindCount}</TitleCount>
-        </TitleContainer>
-      </RightMenuItem>
-      <RightMenuItem
-        onClick={() => props.filterHandler(7)}
-        selected={props.filterIndex === 7}
+        onClick={() => props.filterHandler(3)}
+        selected={props.filterIndex === 3}
       >
         <Icon>
           <FaWifi />

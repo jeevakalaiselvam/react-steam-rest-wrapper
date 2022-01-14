@@ -8,6 +8,7 @@ const PageContainer = styled.div`
   flex-direction: row;
   min-height: 100vh;
   max-height: 100vh;
+  overflow: none;
   padding-top: 64px;
 
   @media only screen and (min-width: 841px) {
@@ -64,6 +65,8 @@ const ContentContainer = styled.div`
   display: flex;
   flex: 1;
   align-items: center;
+  min-height: 100vh;
+  overflow: none;
   flex-direction: column;
 
   @media only screen and (max-width: 841px) {

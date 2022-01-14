@@ -11,6 +11,7 @@ import Milestone from "./pages/Milestone";
 import Next from "./pages/Next";
 import Random from "./pages/Random";
 import CurrentGame from "./pages/CurrentGame";
+import Kanban from "./pages/Kanban";
 
 export default function App() {
   const [navLeftOpen, setNavLeftOpen] = useState(false);
@@ -25,6 +26,9 @@ export default function App() {
           <Switch>
             <Route exact path="/">
               <Settings />
+            </Route>
+            <Route exact path="/kanban">
+              <Kanban />
             </Route>
             <Route exact path="/currentGame">
               <CurrentGame />

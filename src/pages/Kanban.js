@@ -3,16 +3,22 @@ import styled from "styled-components";
 import Page from "../components/core/Page";
 import AllPageLeft from "../sidebar/AllPageLeft";
 import { useState } from "react";
-import { fetchAchievementsForGame } from "../action/games";
+import {
+  fetchAchievementsForGame,
+  refreshDatabaseInBackend,
+} from "../action/games";
 import { GameContext } from "../context/GameContext";
 import {
   ACHIEVEMENTGAMEPAGE_FILTER,
   ACHIEVEMENTGAMEPAGE_SELECT,
   ACHIEVEMENTGAMEPAGE_SORT,
   ACHIEVEMENTGAMEPAGE_VIEW,
+  CURRENT_GAME_PAGE_INDEX,
+  CURRENT_PAGE,
   GAMEPAGE_HEADER_COMPLETED,
   GAMEPAGE_HEADER_REMAINING,
   GAMEPAGE_HEADER_TOTAL,
+  KANBAN_INDEX,
   PAGINATION_TOTAL_COUNT,
   SELECTED_GAME,
   _STORAGE_CHECK_ARRAY,
@@ -24,15 +30,18 @@ import GameContent from "../content/GameContent";
 import GamePageRight from "../sidebar/GamePageRight";
 import HeaderGameProgress from "../components/core/HeaderGameProgress";
 import { LEFTSIDEBAR_WIDTH, RIGHTSIDEBAR_WIDTH } from "../constants/dimensions";
+import KanbanContent from "../content/KanbanContent";
 
 const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100vw;
   max-height: 100vh;
+  min-height: 100vh;
+  overflow: none;
 `;
 
-export default function Game() {
+export default function Kanban() {
   const { setNavRightOpen } = useContext(GameContext);
   const [achievements, setAchievements] = useState({});
   const [achievementsPage, setAchievementsPage] = useState(1);
@@ -49,6 +58,7 @@ export default function Game() {
   const [filterIndex, setFilterIndex] = useState(
     Number(_STORAGE_READ(ACHIEVEMENTGAMEPAGE_FILTER))
   );
+
   const [journalOpen, setJournalOpen] = useState(true);
 
   const toggleNavRight = () => {
@@ -81,6 +91,7 @@ export default function Game() {
     };
     setLoading((old) => true);
     getAllAchievements(sortIndex, viewIndex, selectIndex);
+    _STORAGE_WRITE(CURRENT_PAGE, KANBAN_INDEX);
   }, [sortIndex, viewIndex, achievementsPage, selectIndex]);
 
   const sortHandler = (sortOption) => {
@@ -149,6 +160,10 @@ export default function Game() {
     setAchievements((old) => old.slice());
   };
 
+  const closeJournal = () => {
+    setJournalOpen((old) => !old);
+  };
+
   return (
     <PageContainer>
       <HeaderGameProgress achievements={achievements} />
@@ -163,12 +178,14 @@ export default function Game() {
             viewIndex={viewIndex}
             sortIndex={sortIndex}
             selectIndex={selectIndex}
+            filterIndex={filterIndex}
             achievements={achievements}
+            closeJournal={closeJournal}
             journalOpen={journalOpen}
           />
         }
         content={
-          <GameContent
+          <KanbanContent
             achievements={achievements}
             viewType={viewIndex}
             page={achievementsPage}

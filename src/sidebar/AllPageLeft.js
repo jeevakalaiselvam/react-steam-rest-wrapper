@@ -29,6 +29,7 @@ import {
   STORAGE_HEADER_TOTAL_PERFECT_GAMES,
   _STORAGE_READ,
   _STORAGE_WRITE,
+  KANBAN_INDEX,
 } from "../helper/storage";
 import { fetchGamesInfo } from "../action/games";
 import { getMedalCompletedGames, getTotalAchievements } from "../helper/other";
@@ -148,6 +149,16 @@ export default function AllPageLeft() {
         </IconSetTrophy> */}
       </IconSetContainer>
       <Subheader>SELECT CATEGORY</Subheader>
+      <MenuItemLink
+        icon={<FaGamepad />}
+        title={"Kanban"}
+        to={"/kanban"}
+        navItemClicked={() => {
+          _STORAGE_WRITE(CURRENT_PAGE, KANBAN_INDEX);
+          window.location.href = `/${_STORAGE_READ(CURRENT_PAGE)}`;
+        }}
+        selected={_STORAGE_READ(CURRENT_PAGE) === KANBAN_INDEX}
+      />
       <MenuItemLink
         icon={<FaGamepad />}
         title={"Ongoing"}
