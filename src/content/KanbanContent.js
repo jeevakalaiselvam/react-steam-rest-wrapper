@@ -194,7 +194,7 @@ export default function KanbanContent(props) {
               })}
             </AchievementContainer>
           </SectionContainer>
-          <SectionContainer empty={unMissableCount.length === 0}>
+          <SectionContainer empty={false}>
             <SectionTitle>Story</SectionTitle>
             <AchievementContainer>
               {unMissableCount.map((achievement) => {
@@ -210,7 +210,7 @@ export default function KanbanContent(props) {
               })}
             </AchievementContainer>
           </SectionContainer>
-          <SectionContainer empty={missableCount.length === 0}>
+          <SectionContainer empty={false}>
             <SectionTitle>Missable</SectionTitle>
             <AchievementContainer>
               {missableCount.map((achievement) => {
@@ -227,7 +227,7 @@ export default function KanbanContent(props) {
             </AchievementContainer>
           </SectionContainer>
 
-          <SectionContainer empty={multiplayerCount.length === 0}>
+          <SectionContainer empty={false}>
             <SectionTitle>Online</SectionTitle>
             <AchievementContainer>
               {multiplayerCount.map((achievement) => {
