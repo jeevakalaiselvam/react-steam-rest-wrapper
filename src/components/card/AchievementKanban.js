@@ -214,8 +214,8 @@ const AchivementTypeData = styled.div`
 const JournalTag = styled.div`
   position: absolute;
   color: #55aece;
-  top: 30px;
-  right: 23px;
+  bottom: 8px;
+  left: 16px;
 `;
 
 export default function AchievementKanban(props) {
