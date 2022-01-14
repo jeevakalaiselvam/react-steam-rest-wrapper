@@ -285,7 +285,10 @@ export default function AchievementPhase(props) {
     <CardContainer
       descriptionLength={description?.length || 0}
       nameLength={name?.length || 0}
-      onClick={() => props.openJournal()}
+      onClick={() => {
+        props.achievementSelectedHandler(props.achievement);
+        props.openJournal();
+      }}
     >
       <InnerContainerBG></InnerContainerBG>
       <InnerContainer image={STEAM_HEADER_IMAGE(game_id)}></InnerContainer>
