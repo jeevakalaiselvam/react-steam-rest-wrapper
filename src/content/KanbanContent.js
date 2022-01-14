@@ -92,7 +92,7 @@ const JournalInput = styled.div`
 
 const SectionContainer = styled.div`
   height: 98vh;
-  display: flex;
+  display: ${(props) => (props.empty ? "none" : "flex")};
   flex: 1;
   align-items: center;
   justify-content: center;
@@ -114,7 +114,7 @@ const AchievementContainer = styled.div`
   padding: 0.25rem;
   height: 100vh;
   overflow: scroll;
-  scrollbar-width: thin; /* "auto" or "thin" */
+  scrollbar-width: none;
   scrollbar-color: black gray;
 `;
 

@@ -46,10 +46,10 @@ const CardContainer = styled.div`
   cursor: pointer;
   box-shadow: ${(props) =>
     props.selected
-      ? "rgba(85,174,206, 0.25) 0px 54px 55px, rgba(85,174,206, 0.12) 0px -12px 30px, rgba(85,174,206, 0.12) 0px 4px 6px, rgba(85,174,206, 0.17) 0px 12px 13px, rgba(85,174,206, 0.09) 0px -3px 5px;"
+      ? "rgba(85,174,206, 0.25) 0px 4px 10px"
       : "rgba(85,174,206, 0) 0px 54px 55px, rgba(85,174,206, 0) 0px -12px 30px, rgba(85,174,206, 0) 0px 4px 6px, rgba(85,174,206, 0) 0px 12px 13px, rgba(85,174,206, 0) 0px -3px 5px"};
 
-  width: 100%;
+  width: 98%;
 `;
 
 const InnerContainer = styled.div`
