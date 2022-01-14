@@ -50,7 +50,7 @@ const CardContainer = styled.div`
       : "rgba(85,174,206, 0) 0px 54px 55px, rgba(85,174,206, 0) 0px -12px 30px, rgba(85,174,206, 0) 0px 4px 6px, rgba(85,174,206, 0) 0px 12px 13px, rgba(85,174,206, 0) 0px -3px 5px"};
 
   @media only screen and (min-width: 1361px) {
-    width: 32%;
+    width: 48%;
   }
   @media only screen and (max-width: 1360px) and (min-width: 1201px) {
     width: 48%;
