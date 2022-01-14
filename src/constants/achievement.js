@@ -7,6 +7,7 @@ export const HARD = "HARD";
 export const UNTAGGED = "UNTAGGED";
 export const ALL = "ALL";
 
+export const NONE = "NONE";
 export const PHASE1 = "PHASE1";
 export const PHASE2 = "PHASE2";
 export const PHASE3 = "PHASE3";

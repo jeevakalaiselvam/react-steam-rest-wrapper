@@ -5,6 +5,7 @@ import {
   HARD,
   MISSABLE,
   MULTIPLAYER,
+  NONE,
   PHASE1,
   PHASE2,
   PHASE3,
@@ -105,7 +106,7 @@ export const getAchievementsFilteredByCategory = (achievements) => {
 
   achievements.length &&
     achievements.forEach((achievement) => {
-      data.allCount.push(achievements);
+      data.allCount.push(achievement);
       const type = (
         _STORAGE_READ(`${achievement.game_id}_${achievement.id}`) || UNTAGGED
       ).trim();
@@ -132,6 +133,7 @@ export const getAchievementsFilteredByCategory = (achievements) => {
 
 export const getAchievementsFilteredByPhase = (achievements) => {
   let data = {
+    none: [],
     phase1: [],
     phase2: [],
     phase3: [],
@@ -141,9 +143,12 @@ export const getAchievementsFilteredByPhase = (achievements) => {
   achievements.length &&
     achievements.forEach((achievement) => {
       const type = (
-        _STORAGE_READ(`${achievement.game_id}_${achievement.id}`) || PHASE1
+        _STORAGE_READ(`${achievement.game_id}_${achievement.id}_PHASE`) || NONE
       ).trim();
       switch (type) {
+        case NONE:
+          data.none.push(achievement);
+          break;
         case PHASE1:
           data.phase1.push(achievement);
           break;

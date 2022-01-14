@@ -17,6 +17,7 @@ import {
   HARD,
   MISSABLE,
   MULTIPLAYER,
+  NONE,
   PHASE1,
   PHASE2,
   PHASE3,
@@ -269,7 +270,7 @@ export default function AchievementPhase(props) {
   useEffect(() => {
     setAchievementType((old) => _STORAGE_READ(`${game_id}_${id}`) || UNTAGGED);
     setAchievementPhase(
-      (old) => _STORAGE_READ(`${game_id}_${id}_PHASE`) || PHASE1
+      (old) => _STORAGE_READ(`${game_id}_${id}_PHASE`) || NONE
     );
   }, [props.achievement]);
 
@@ -375,58 +376,118 @@ export default function AchievementPhase(props) {
       </AchivementType>
 
       <AchivementPhase>
-        <AchivementPhaseData active={true} highlight={false}>
-          <PhaseIcon
-            active={achievementPhase === PHASE1}
-            onClick={(e) => {
-              _STORAGE_WRITE(`${game_id}_${id}_PHASE`, PHASE1);
-              setAchievementPhase((old) => PHASE1);
-              props.refreshViewWithoutFetch();
-              e.stopPropagation();
-            }}
-          >
-            P1
-          </PhaseIcon>
-        </AchivementPhaseData>
-        <AchivementPhaseData active={true} highlight={false}>
-          <PhaseIcon
-            active={achievementPhase === PHASE2}
-            onClick={(e) => {
-              _STORAGE_WRITE(`${game_id}_${id}_PHASE`, PHASE2);
-              setAchievementPhase((old) => PHASE2);
-              props.refreshViewWithoutFetch();
-              e.stopPropagation();
-            }}
-          >
-            P2
-          </PhaseIcon>
-        </AchivementPhaseData>
-        <AchivementPhaseData active={true} highlight={false}>
-          <PhaseIcon
-            active={achievementPhase === PHASE3}
-            onClick={(e) => {
-              _STORAGE_WRITE(`${game_id}_${id}_PHASE`, PHASE3);
-              setAchievementPhase((old) => PHASE3);
-              props.refreshViewWithoutFetch();
-              e.stopPropagation();
-            }}
-          >
-            P3
-          </PhaseIcon>
-        </AchivementPhaseData>
-        <AchivementPhaseData active={true} highlight={false}>
-          <PhaseIcon
-            active={achievementPhase === PHASE4}
-            onClick={(e) => {
-              _STORAGE_WRITE(`${game_id}_${id}_PHASE`, PHASE4);
-              setAchievementPhase((old) => PHASE4);
-              props.refreshViewWithoutFetch();
-              e.stopPropagation();
-            }}
-          >
-            P4
-          </PhaseIcon>
-        </AchivementPhaseData>
+        {achievementPhase !== NONE && (
+          <>
+            <AchivementPhaseData active={true} highlight={false}>
+              <PhaseIcon
+                active={achievementPhase === PHASE1}
+                onClick={(e) => {
+                  _STORAGE_WRITE(`${game_id}_${id}_PHASE`, PHASE1);
+                  setAchievementPhase((old) => PHASE1);
+                  props.refreshViewWithoutFetch();
+                  e.stopPropagation();
+                }}
+              >
+                P1
+              </PhaseIcon>
+            </AchivementPhaseData>
+            <AchivementPhaseData active={true} highlight={false}>
+              <PhaseIcon
+                active={achievementPhase === PHASE2}
+                onClick={(e) => {
+                  _STORAGE_WRITE(`${game_id}_${id}_PHASE`, PHASE2);
+                  setAchievementPhase((old) => PHASE2);
+                  props.refreshViewWithoutFetch();
+                  e.stopPropagation();
+                }}
+              >
+                P2
+              </PhaseIcon>
+            </AchivementPhaseData>
+            <AchivementPhaseData active={true} highlight={false}>
+              <PhaseIcon
+                active={achievementPhase === PHASE3}
+                onClick={(e) => {
+                  _STORAGE_WRITE(`${game_id}_${id}_PHASE`, PHASE3);
+                  setAchievementPhase((old) => PHASE3);
+                  props.refreshViewWithoutFetch();
+                  e.stopPropagation();
+                }}
+              >
+                P3
+              </PhaseIcon>
+            </AchivementPhaseData>
+            <AchivementPhaseData active={true} highlight={false}>
+              <PhaseIcon
+                active={achievementPhase === PHASE4}
+                onClick={(e) => {
+                  _STORAGE_WRITE(`${game_id}_${id}_PHASE`, PHASE4);
+                  setAchievementPhase((old) => PHASE4);
+                  props.refreshViewWithoutFetch();
+                  e.stopPropagation();
+                }}
+              >
+                P4
+              </PhaseIcon>
+            </AchivementPhaseData>
+          </>
+        )}
+        {achievementPhase === NONE && (
+          <>
+            <AchivementPhaseData active={true} highlight={false}>
+              <PhaseIcon
+                active={achievementPhase === PHASE1}
+                onClick={(e) => {
+                  _STORAGE_WRITE(`${game_id}_${id}_PHASE`, PHASE1);
+                  setAchievementPhase((old) => PHASE1);
+                  props.refreshViewWithoutFetch();
+                  e.stopPropagation();
+                }}
+              >
+                P1
+              </PhaseIcon>
+            </AchivementPhaseData>
+            <AchivementPhaseData active={true} highlight={false}>
+              <PhaseIcon
+                active={achievementPhase === PHASE2}
+                onClick={(e) => {
+                  _STORAGE_WRITE(`${game_id}_${id}_PHASE`, PHASE2);
+                  setAchievementPhase((old) => PHASE2);
+                  props.refreshViewWithoutFetch();
+                  e.stopPropagation();
+                }}
+              >
+                P2
+              </PhaseIcon>
+            </AchivementPhaseData>
+            <AchivementPhaseData active={true} highlight={false}>
+              <PhaseIcon
+                active={achievementPhase === PHASE3}
+                onClick={(e) => {
+                  _STORAGE_WRITE(`${game_id}_${id}_PHASE`, PHASE3);
+                  setAchievementPhase((old) => PHASE3);
+                  props.refreshViewWithoutFetch();
+                  e.stopPropagation();
+                }}
+              >
+                P3
+              </PhaseIcon>
+            </AchivementPhaseData>
+            <AchivementPhaseData active={true} highlight={false}>
+              <PhaseIcon
+                active={achievementPhase === PHASE4}
+                onClick={(e) => {
+                  _STORAGE_WRITE(`${game_id}_${id}_PHASE`, PHASE4);
+                  setAchievementPhase((old) => PHASE4);
+                  props.refreshViewWithoutFetch();
+                  e.stopPropagation();
+                }}
+              >
+                P4
+              </PhaseIcon>
+            </AchivementPhaseData>
+          </>
+        )}
       </AchivementPhase>
     </CardContainer>
   );
