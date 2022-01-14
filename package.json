@@ -20,6 +20,7 @@
     "react-icons": "^4.2.0",
     "react-loading": "^2.0.3",
     "react-loading-icons": "^1.0.6",
+    "react-player": "^2.9.0",
     "react-popper": "^2.2.5",
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",

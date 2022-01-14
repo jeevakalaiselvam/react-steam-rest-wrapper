@@ -1,21 +1,15 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { FaBackward, FaForward } from "react-icons/fa";
+import ReactPlayer from "react-player";
 import {
-  ACHIEVEMENTGAMEPAGE_FILTER,
   PAGINATION_TOTAL_COUNT,
-  SELECTED_GAME,
   _STORAGE_READ,
   _STORAGE_WRITE,
 } from "../helper/storage";
 import { PAGINATION_ACHIEVEMENTS_PER_PAGE } from "../helper/pagination";
-import AchievementMinimal from "../components/card/AchievementMinimal";
 import AchievementKanban from "../components/card/AchievementKanban";
-import {
-  filterAchievementsByType,
-  getAchievementsFilteredByCategory,
-} from "../helper/games";
-import { UNMISSABLE } from "../constants/achievement";
+import { getAchievementsFilteredByCategory } from "../helper/games";
 import AchievementJournal from "../components/card/AchievementJournal";
 
 const MainContainer = styled.div`
@@ -85,7 +79,20 @@ const JournalInput = styled.div`
     padding: 1rem;
     border: none;
     outline: none;
-    height: 100vh;
+    height: 95vh;
+    font-size: 1rem;
+  }
+`;
+
+const VideoInput = styled.div`
+  & > textarea {
+    width: 100%;
+    color: #b8b9bd;
+    background-color: #222730;
+    padding: 1rem;
+    border: none;
+    outline: none;
+    height: 5vh;
     font-size: 1rem;
   }
 `;
@@ -118,6 +125,10 @@ const AchievementContainer = styled.div`
   scrollbar-color: black gray;
 `;
 
+const VideoContainer = styled.div`
+  display: ${(props) => (props.visible ? "flex" : "none")};
+`;
+
 export default function KanbanContent(props) {
   const achievements = props.achievements;
   // const filteredAchievements = filterAchievementsByType(
@@ -129,6 +140,9 @@ export default function KanbanContent(props) {
 
   const [refresh, setRefresh] = useState(true);
   const [journalData, setJournalData] = useState("No Entry Found!");
+  const [journalVideoData, setJournalVideoData] = useState(
+    "No Video Link Found!"
+  );
   const [achievementSelected, setAchievementSelected] = useState(
     filteredAchievements.length != 0 && filteredAchievements[0]
   );
@@ -157,6 +171,14 @@ export default function KanbanContent(props) {
     setJournalData((old) => e.target.value);
   };
 
+  const journalVideoChanged = (e) => {
+    _STORAGE_WRITE(
+      `${achievementSelected.game_id}_${achievementSelected.id}_JOURNAL_VIDEO`,
+      e.target.value
+    );
+    setJournalVideoData((old) => e.target.value);
+  };
+
   useEffect(() => {
     setJournalData(
       (old) =>
@@ -164,7 +186,26 @@ export default function KanbanContent(props) {
           `${achievementSelected.game_id}_${achievementSelected.id}_JOURNAL`
         ) || "No Entry Found!"
     );
+    setJournalVideoData(
+      (old) =>
+        _STORAGE_READ(
+          `${achievementSelected.game_id}_${achievementSelected.id}_JOURNAL_VIDEO`
+        ) || "No Entry Found!"
+    );
   }, [achievementSelected]);
+
+  function validURL(str) {
+    var pattern = new RegExp(
+      "^(https?:\\/\\/)?" + // protocol
+        "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+        "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+        "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+        "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+        "(\\#[-a-z\\d_]*)?$",
+      "i"
+    ); // fragment locator
+    return !!pattern.test(str);
+  }
 
   const {
     allCount,
@@ -265,6 +306,16 @@ export default function KanbanContent(props) {
           achievement={achievementSelected}
           refreshViewWithoutFetch={refreshViewWithoutFetch}
         />
+        <VideoContainer visible={validURL(journalVideoData)}>
+          <ReactPlayer url={journalVideoData} />
+        </VideoContainer>
+        <VideoInput>
+          <textarea
+            spellCheck={false}
+            value={journalVideoData}
+            onChange={journalVideoChanged}
+          />
+        </VideoInput>
         <JournalInput>
           <textarea
             spellCheck={false}
