@@ -307,7 +307,7 @@ export default function KanbanContent(props) {
           refreshViewWithoutFetch={refreshViewWithoutFetch}
         />
         <VideoContainer visible={validURL(journalVideoData)}>
-          <ReactPlayer url={journalVideoData} />
+          <ReactPlayer url={journalVideoData} controls />
         </VideoContainer>
         <VideoInput>
           <textarea
