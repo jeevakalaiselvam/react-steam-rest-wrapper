@@ -507,7 +507,7 @@ export default function PlannerContent(props) {
         open={props.journalOpen}
         onClick={() => props.closeJournal()}
       >
-        <JournalContainer>
+        <JournalContainer onClick={(e) => e.stopPropagation()}>
           {/* <CloseButton onClick={() => props.closeJournal()}>
           <FaTimes />
         </CloseButton> */}

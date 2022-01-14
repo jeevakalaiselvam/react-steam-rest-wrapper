@@ -228,7 +228,7 @@ export default function AchievementJournal(props) {
     <CardContainer
       descriptionLength={description?.length || 0}
       nameLength={name?.length || 0}
-      onClick={() => props.openJournal()}
+      onClick={() => props.openJournal && props.openJournal()}
     >
       <InnerContainerBG></InnerContainerBG>
       <InnerContainer image={STEAM_HEADER_IMAGE(game_id)}></InnerContainer>
