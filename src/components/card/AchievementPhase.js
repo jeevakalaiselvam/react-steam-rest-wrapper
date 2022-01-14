@@ -244,7 +244,14 @@ const AchivementTypeData = styled.div`
   justify-content: center;
   padding: 0.25rem 0.5rem;
   border-radius: 5px;
-  color: ${(props) => (props.highlight ? "#55aece" : "#959da6")};
+  color: ${(props) =>
+    props.highlight
+      ? props.type === "safe"
+        ? "#4fc25c"
+        : props.type === "danger"
+        ? "#bb2124"
+        : "#5bc0de"
+      : "#959da6"};
   display: ${(props) => (props.active ? "flex" : "none")};
 
   &:hover {
@@ -322,18 +329,21 @@ export default function AchievementPhase(props) {
             <AchivementTypeData
               active={achievementType === UNMISSABLE}
               highlight={true}
+              type="safe"
             >
               <FaCheckDouble />
             </AchivementTypeData>
             <AchivementTypeData
               active={achievementType === MISSABLE}
               highlight={true}
+              type="danger"
             >
               <FaSkull />
             </AchivementTypeData>
             <AchivementTypeData
               active={achievementType === MULTIPLAYER}
               highlight={true}
+              type="normal"
             >
               <FaWifi />
             </AchivementTypeData>
