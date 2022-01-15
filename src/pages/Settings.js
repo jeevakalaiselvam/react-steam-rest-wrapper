@@ -32,7 +32,7 @@ export default function Settings() {
     if (response) {
       if (_STORAGE_READ(SELECTED_GAME)) {
         setTimeout(() => {
-          window.location.href = "/kanban";
+          window.location.href = "/planner";
         }, 3000);
       } else {
         setTimeout(() => {
