@@ -517,7 +517,7 @@ export default function PlannerContent(props) {
           />
           <JournalInnerContainer>
             <VideoContainer visible={validURL(journalVideoData)}>
-              <ReactPlayer url={journalVideoData} controls />
+              <ReactPlayer url={journalVideoData} controls width={"100%"} />
             </VideoContainer>
             <VideoInput>
               <textarea
