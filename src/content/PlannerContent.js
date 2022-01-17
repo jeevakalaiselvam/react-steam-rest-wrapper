@@ -50,10 +50,10 @@ const MainJournalOuterContainer = styled.div`
 
 const JournalContainer = styled.div`
   display: flex;
-  width: 90vw;
+  width: ${(props) => (props.videoVisible ? "90vw" : "50vw")};
   position: fixed;
   left: 50%;
-  background-color: rgba(10, 17, 25, 1);
+  background-color: rgba(10, 17, 20, 1);
   top: 50%;
   transform: translate(-50%, -50%);
   max-height: 80vh;
@@ -66,10 +66,9 @@ const JournalContainer = styled.div`
 const VideoInnerContainer = styled.div`
   display: flex;
   flex: 2;
-  padding: 1rem;
+  padding: 1rem 0.25rem;
   flex-direction: column;
   align-items: center;
-  margin-right: 1rem;
   justify-content: flex-start;
 `;
 
@@ -77,6 +76,9 @@ const JournalInnerContainer = styled.div`
   display: "flex";
   flex: 1;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0.25rem;
   scrollbar-width: thin; /* "auto" or "thin" */
   scrollbar-color: black gray;
 `;
@@ -128,6 +130,9 @@ const JournalInput = styled.div`
     outline: none;
     height: 100%;
     font-size: 1rem;
+    flex-direction: row;
+    scrollbar-width: thin; /* "auto" or "thin" */
+    scrollbar-color: black gray;
   }
 `;
 
@@ -186,7 +191,6 @@ const CloseButton = styled.div`
 const VideoContainer = styled.div`
   display: "flex";
   width: 100%;
-  background-color: red;
   flex: 1;
 `;
 
@@ -531,35 +535,50 @@ export default function PlannerContent(props) {
           {console.log()}
           <JournalContainer
             onClick={(e) => e.stopPropagation()}
-            visible={validURL(journalVideoData)}
+            videoVisible={validURL(journalVideoData)}
           >
             {/* <CloseButton onClick={() => props.closeJournal()}>
           <FaTimes />
         </CloseButton> */}
-            <VideoInnerContainer>
-              <VideoInput>
-                <input
-                  spellCheck={false}
-                  value={journalVideoData}
-                  onChange={journalVideoChanged}
-                />
-              </VideoInput>
+            {validURL(journalVideoData) === true && (
+              <VideoInnerContainer>
+                <VideoInput>
+                  <input
+                    spellCheck={false}
+                    value={journalVideoData}
+                    onChange={journalVideoChanged}
+                    placeholder="Enter Video URL.."
+                  />
+                </VideoInput>
 
-              <VideoContainer>
-                <ReactPlayer
-                  url={journalVideoData}
-                  controls
-                  width={"100%"}
-                  height={"100%"}
-                />
-              </VideoContainer>
-            </VideoInnerContainer>
+                <VideoContainer>
+                  <ReactPlayer
+                    url={journalVideoData}
+                    controls
+                    width={"100%"}
+                    height={"100%"}
+                  />
+                </VideoContainer>
+              </VideoInnerContainer>
+            )}
             <JournalInnerContainer>
-              <AchievementJournal
-                achievement={achievementSelected}
-                refreshViewWithoutFetch={refreshViewWithoutFetch}
-              />
-
+              <div style={{ marginRight: "0.75rem" }}>
+                <AchievementJournal
+                  achievement={achievementSelected}
+                  refreshViewWithoutFetch={refreshViewWithoutFetch}
+                />
+              </div>
+              {validURL(journalVideoData) === false && (
+                <VideoInput>
+                  <input
+                    style={{ marginBottom: "1rem" }}
+                    spellCheck={false}
+                    value={journalVideoData}
+                    placeholder="Enter Video URL.."
+                    onChange={journalVideoChanged}
+                  />
+                </VideoInput>
+              )}
               <JournalInput>
                 <textarea
                   spellCheck={false}
