@@ -50,21 +50,32 @@ const MainJournalOuterContainer = styled.div`
 
 const JournalContainer = styled.div`
   display: flex;
-  width: 30vw;
+  width: 90vw;
   position: fixed;
   left: 50%;
+  background-color: rgba(10, 17, 25, 1);
   top: 50%;
   transform: translate(-50%, -50%);
   max-height: 80vh;
-  flex-direction: column;
+  min-height: 80vh;
+  flex-direction: row;
   scrollbar-width: thin; /* "auto" or "thin" */
   scrollbar-color: black gray;
 `;
 
+const VideoInnerContainer = styled.div`
+  display: flex;
+  flex: 2;
+  padding: 1rem;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 1rem;
+  justify-content: flex-start;
+`;
+
 const JournalInnerContainer = styled.div`
   display: "flex";
-  height: 100%;
-  overflow: scroll;
+  flex: 1;
   flex-direction: column;
   scrollbar-width: thin; /* "auto" or "thin" */
   scrollbar-color: black gray;
@@ -106,6 +117,8 @@ const PageCount = styled.div`
   padding: 0.25rem 0.75rem;
 `;
 const JournalInput = styled.div`
+  flex: 1;
+  height: 84%;
   & > textarea {
     width: 100%;
     color: #b8b9bd;
@@ -113,13 +126,15 @@ const JournalInput = styled.div`
     padding: 1rem;
     border: none;
     outline: none;
-    height: 95vh;
+    height: 100%;
     font-size: 1rem;
   }
 `;
 
 const VideoInput = styled.div`
-  & > textarea {
+  width: 100%;
+
+  & > input {
     width: 100%;
     color: #b8b9bd;
     background-color: #222730;
@@ -169,7 +184,10 @@ const CloseButton = styled.div`
 `;
 
 const VideoContainer = styled.div`
-  display: ${(props) => (props.visible ? "flex" : "none")};
+  display: "flex";
+  width: 100%;
+  background-color: red;
+  flex: 1;
 `;
 
 const SectionSearchInput = styled.div`
@@ -511,25 +529,37 @@ export default function PlannerContent(props) {
           onClick={() => props.closeJournal()}
         >
           {console.log()}
-          <JournalContainer onClick={(e) => e.stopPropagation()}>
+          <JournalContainer
+            onClick={(e) => e.stopPropagation()}
+            visible={validURL(journalVideoData)}
+          >
             {/* <CloseButton onClick={() => props.closeJournal()}>
           <FaTimes />
         </CloseButton> */}
-            <AchievementJournal
-              achievement={achievementSelected}
-              refreshViewWithoutFetch={refreshViewWithoutFetch}
-            />
-            <JournalInnerContainer>
-              <VideoContainer visible={validURL(journalVideoData)}>
-                <ReactPlayer url={journalVideoData} controls width={"100%"} />
-              </VideoContainer>
+            <VideoInnerContainer>
               <VideoInput>
-                <textarea
+                <input
                   spellCheck={false}
                   value={journalVideoData}
                   onChange={journalVideoChanged}
                 />
               </VideoInput>
+
+              <VideoContainer>
+                <ReactPlayer
+                  url={journalVideoData}
+                  controls
+                  width={"100%"}
+                  height={"100%"}
+                />
+              </VideoContainer>
+            </VideoInnerContainer>
+            <JournalInnerContainer>
+              <AchievementJournal
+                achievement={achievementSelected}
+                refreshViewWithoutFetch={refreshViewWithoutFetch}
+              />
+
               <JournalInput>
                 <textarea
                   spellCheck={false}
