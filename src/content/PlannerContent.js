@@ -202,9 +202,7 @@ export default function PlannerContent(props) {
   const [journalVideoData, setJournalVideoData] = useState(
     "No Video Link Found!"
   );
-  const [achievementSelected, setAchievementSelected] = useState(
-    filteredAchievements.length != 0 && filteredAchievements[0]
-  );
+  const [achievementSelected, setAchievementSelected] = useState(null);
 
   const refreshAchievementList = () => {};
 
@@ -233,18 +231,20 @@ export default function PlannerContent(props) {
   };
 
   useEffect(() => {
-    setJournalData(
-      (old) =>
-        _STORAGE_READ(
-          `${achievementSelected.game_id}_${achievementSelected.id}_JOURNAL`
-        ) || "No Entry Found!"
-    );
-    setJournalVideoData(
-      (old) =>
-        _STORAGE_READ(
-          `${achievementSelected.game_id}_${achievementSelected.id}_JOURNAL_VIDEO`
-        ) || "No Entry Found!"
-    );
+    if (achievementSelected !== null) {
+      setJournalData(
+        (old) =>
+          _STORAGE_READ(
+            `${achievementSelected.game_id}_${achievementSelected.id}_JOURNAL`
+          ) || "No Entry Found!"
+      );
+      setJournalVideoData(
+        (old) =>
+          _STORAGE_READ(
+            `${achievementSelected.game_id}_${achievementSelected.id}_JOURNAL_VIDEO`
+          ) || "No Entry Found!"
+      );
+    }
   }, [achievementSelected]);
 
   function validURL(str) {
@@ -503,39 +503,44 @@ export default function PlannerContent(props) {
           </Page>
         </Pagination>
       </ContentContainer>
-      <MainJournalOuterContainer
-        open={props.journalOpen}
-        onClick={() => props.closeJournal()}
-      >
-        <JournalContainer onClick={(e) => e.stopPropagation()}>
-          {/* <CloseButton onClick={() => props.closeJournal()}>
+      {achievementSelected != null && (
+        <MainJournalOuterContainer
+          open={
+            Object.keys(achievementSelected).length !== 0 && props.journalOpen
+          }
+          onClick={() => props.closeJournal()}
+        >
+          {console.log()}
+          <JournalContainer onClick={(e) => e.stopPropagation()}>
+            {/* <CloseButton onClick={() => props.closeJournal()}>
           <FaTimes />
         </CloseButton> */}
-          <AchievementJournal
-            achievement={achievementSelected}
-            refreshViewWithoutFetch={refreshViewWithoutFetch}
-          />
-          <JournalInnerContainer>
-            <VideoContainer visible={validURL(journalVideoData)}>
-              <ReactPlayer url={journalVideoData} controls width={"100%"} />
-            </VideoContainer>
-            <VideoInput>
-              <textarea
-                spellCheck={false}
-                value={journalVideoData}
-                onChange={journalVideoChanged}
-              />
-            </VideoInput>
-            <JournalInput>
-              <textarea
-                spellCheck={false}
-                value={journalData}
-                onChange={journalEntryChanged}
-              />
-            </JournalInput>
-          </JournalInnerContainer>
-        </JournalContainer>
-      </MainJournalOuterContainer>
+            <AchievementJournal
+              achievement={achievementSelected}
+              refreshViewWithoutFetch={refreshViewWithoutFetch}
+            />
+            <JournalInnerContainer>
+              <VideoContainer visible={validURL(journalVideoData)}>
+                <ReactPlayer url={journalVideoData} controls width={"100%"} />
+              </VideoContainer>
+              <VideoInput>
+                <textarea
+                  spellCheck={false}
+                  value={journalVideoData}
+                  onChange={journalVideoChanged}
+                />
+              </VideoInput>
+              <JournalInput>
+                <textarea
+                  spellCheck={false}
+                  value={journalData}
+                  onChange={journalEntryChanged}
+                />
+              </JournalInput>
+            </JournalInnerContainer>
+          </JournalContainer>
+        </MainJournalOuterContainer>
+      )}
     </MainContainer>
   );
 }
