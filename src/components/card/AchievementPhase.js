@@ -125,6 +125,12 @@ const Title = styled.div`
   font-weight: bold;
   text-shadow: 2px 2px 2px rgb(10 17 25 / 45%);
 `;
+const Desc = styled.div`
+  font-size: 0.85rem;
+  color: #d2d2d2;
+  z-index: 101;
+`;
+
 const DescSmall = styled.div`
   font-size: 0.85rem;
   color: #959da6;
@@ -315,7 +321,11 @@ export default function AchievementPhase(props) {
           {name}
         </Title>
         <Desc>{description}</Desc>
-        <DescSmall>{description.split("/n")[0] || ""}</DescSmall>
+        <DescSmall>
+          {(_STORAGE_READ(`${game_id}_${id}_JOURNAL`) &&
+            _STORAGE_READ(`${game_id}_${id}_JOURNAL`).split("\n")[0]) ||
+            ""}
+        </DescSmall>
         {/* <GameName>{game_name}</GameName> */}
       </Data>
       <Misc>
