@@ -484,7 +484,7 @@ export default function PlannerContent(props) {
               })}
             </AchievementContainer>
           </SectionContainer>
-          <SectionContainer empty={false}>
+          {/* <SectionContainer empty={false}>
             <SectionTitle>Phase 4</SectionTitle>
             <SectionSearchInput>
               <input
@@ -507,7 +507,7 @@ export default function PlannerContent(props) {
                 );
               })}
             </AchievementContainer>
-          </SectionContainer>
+          </SectionContainer> */}
         </ContainerInner>
         <Pagination>
           <Page onClick={props.moveToPageLeft}>

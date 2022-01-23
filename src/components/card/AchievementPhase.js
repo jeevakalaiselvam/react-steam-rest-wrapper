@@ -325,7 +325,7 @@ export default function AchievementPhase(props) {
           {(_STORAGE_READ(`${game_id}_${id}_JOURNAL`) &&
             _STORAGE_READ(`${game_id}_${id}_JOURNAL`)
               .split("\n")[0]
-              .substring(0, 15) + "...") ||
+              .substring(0, 30) + "...") ||
             ""}
         </DescSmall>
         {/* <GameName>{game_name}</GameName> */}
@@ -466,7 +466,7 @@ export default function AchievementPhase(props) {
                 P3
               </PhaseIcon>
             </AchivementPhaseData>
-            <AchivementPhaseData active={true} highlight={false}>
+            {/* <AchivementPhaseData active={true} highlight={false}>
               <PhaseIcon
                 active={achievementPhase === PHASE4}
                 onClick={(e) => {
@@ -478,7 +478,7 @@ export default function AchievementPhase(props) {
               >
                 P4
               </PhaseIcon>
-            </AchivementPhaseData>
+            </AchivementPhaseData> */}
           </>
         )}
         {achievementPhase === NONE && (
