@@ -308,10 +308,23 @@ export default function PlannerContent(props) {
     setNoneAchievements((old) => {
       let newAchievements = [];
       newAchievements = noneAllAchievements.filter((achievement) => {
-        return achievement.name
-          .toLowerCase()
-          .trim()
-          .includes(e.target.value.toLowerCase().trim());
+        return (
+          achievement.name
+            .toLowerCase()
+            .trim()
+            .includes(e.target.value.toLowerCase().trim()) ||
+          achievement.description
+            .toLowerCase()
+            .trim()
+            .includes(e.target.value.toLowerCase().trim()) ||
+          (
+            _STORAGE_READ(`${achievement.game_id}_${achievement.id}_JOURNAL`) ||
+            ""
+          )
+            .toLowerCase()
+            .trim()
+            .includes(e.target.value.toLowerCase().trim())
+        );
       });
       return newAchievements;
     });
@@ -321,10 +334,23 @@ export default function PlannerContent(props) {
     setphase1Achievements((old) => {
       let newAchievements = [];
       newAchievements = phase1AllAchievements.filter((achievement) => {
-        return achievement.name
-          .toLowerCase()
-          .trim()
-          .includes(e.target.value.toLowerCase().trim());
+        return (
+          achievement.name
+            .toLowerCase()
+            .trim()
+            .includes(e.target.value.toLowerCase().trim()) ||
+          achievement.description
+            .toLowerCase()
+            .trim()
+            .includes(e.target.value.toLowerCase().trim()) ||
+          (
+            _STORAGE_READ(`${achievement.game_id}_${achievement.id}_JOURNAL`) ||
+            ""
+          )
+            .toLowerCase()
+            .trim()
+            .includes(e.target.value.toLowerCase().trim())
+        );
       });
       return newAchievements;
     });
@@ -333,10 +359,23 @@ export default function PlannerContent(props) {
     setphase2Achievements((old) => {
       let newAchievements = [];
       newAchievements = phase2AllAchievements.filter((achievement) => {
-        return achievement.name
-          .toLowerCase()
-          .trim()
-          .includes(e.target.value.toLowerCase().trim());
+        return (
+          achievement.name
+            .toLowerCase()
+            .trim()
+            .includes(e.target.value.toLowerCase().trim()) ||
+          achievement.description
+            .toLowerCase()
+            .trim()
+            .includes(e.target.value.toLowerCase().trim()) ||
+          (
+            _STORAGE_READ(`${achievement.game_id}_${achievement.id}_JOURNAL`) ||
+            ""
+          )
+            .toLowerCase()
+            .trim()
+            .includes(e.target.value.toLowerCase().trim())
+        );
       });
       return newAchievements;
     });
@@ -345,10 +384,23 @@ export default function PlannerContent(props) {
     setphase3Achievements((old) => {
       let newAchievements = [];
       newAchievements = phase3AllAchievements.filter((achievement) => {
-        return achievement.name
-          .toLowerCase()
-          .trim()
-          .includes(e.target.value.toLowerCase().trim());
+        return (
+          achievement.name
+            .toLowerCase()
+            .trim()
+            .includes(e.target.value.toLowerCase().trim()) ||
+          achievement.description
+            .toLowerCase()
+            .trim()
+            .includes(e.target.value.toLowerCase().trim()) ||
+          (
+            _STORAGE_READ(`${achievement.game_id}_${achievement.id}_JOURNAL`) ||
+            ""
+          )
+            .toLowerCase()
+            .trim()
+            .includes(e.target.value.toLowerCase().trim())
+        );
       });
       return newAchievements;
     });
@@ -357,10 +409,23 @@ export default function PlannerContent(props) {
     setphase4Achievements((old) => {
       let newAchievements = [];
       newAchievements = phase4AllAchievements.filter((achievement) => {
-        return achievement.name
-          .toLowerCase()
-          .trim()
-          .includes(e.target.value.toLowerCase().trim());
+        return (
+          achievement.name
+            .toLowerCase()
+            .trim()
+            .includes(e.target.value.toLowerCase().trim()) ||
+          achievement.description
+            .toLowerCase()
+            .trim()
+            .includes(e.target.value.toLowerCase().trim()) ||
+          (
+            _STORAGE_READ(`${achievement.game_id}_${achievement.id}_JOURNAL`) ||
+            ""
+          )
+            .toLowerCase()
+            .trim()
+            .includes(e.target.value.toLowerCase().trim())
+        );
       });
       return newAchievements;
     });
@@ -484,30 +549,6 @@ export default function PlannerContent(props) {
               })}
             </AchievementContainer>
           </SectionContainer>
-          {/* <SectionContainer empty={false}>
-            <SectionTitle>Phase 4</SectionTitle>
-            <SectionSearchInput>
-              <input
-                type="text"
-                onChange={phase4SearchChange}
-                placeholder="Search.."
-              />
-            </SectionSearchInput>
-            <AchievementContainer>
-              {phase4Achievements.map((achievement) => {
-                return (
-                  <AchievementPhase
-                    refreshViewWithoutFetch={refreshViewWithoutFetch}
-                    achievement={achievement}
-                    achievementSelected={achievementSelected}
-                    key={achievement.game_id + achievement.id}
-                    achievementSelectedHandler={achievementSelectedHandler}
-                    openJournal={props.openJournal}
-                  />
-                );
-              })}
-            </AchievementContainer>
-          </SectionContainer> */}
         </ContainerInner>
         <Pagination>
           <Page onClick={props.moveToPageLeft}>
