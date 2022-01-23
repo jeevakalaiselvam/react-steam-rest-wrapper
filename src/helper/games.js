@@ -145,10 +145,8 @@ export const getAchievementsFilteredByPhase = (achievements) => {
       const type = (
         _STORAGE_READ(`${achievement.game_id}_${achievement.id}_PHASE`) || NONE
       ).trim();
+      data.none.push(achievement);
       switch (type) {
-        case NONE:
-          data.none.push(achievement);
-          break;
         case PHASE1:
           data.phase1.push(achievement);
           break;

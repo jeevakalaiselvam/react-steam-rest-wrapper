@@ -260,7 +260,7 @@ const AchivementTypeData = styled.div`
         ? "#5bc0de"
         : "#959da6"
       : "#959da6"};
-  display: ${(props) => (props.active ? "flex" : "flex")};
+  display: ${(props) => (props.active ? "flex" : "none")};
 
   &:hover {
     cursor: pointer;
