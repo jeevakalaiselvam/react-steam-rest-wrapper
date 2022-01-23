@@ -245,12 +245,14 @@ const AchivementTypeData = styled.div`
   padding: 0.25rem 0.5rem;
   border-radius: 5px;
   color: ${(props) =>
-    props.highlight
-      ? props.type === "safe"
+    props.highlight && props.active
+      ? props.type === "safe" && props.active
         ? "#4fc25c"
-        : props.type === "danger"
+        : props.type === "danger" && props.active
         ? "#bb2124"
-        : "#5bc0de"
+        : props.type === "normal" && props.active
+        ? "#5bc0de"
+        : "#959da6"
       : "#959da6"};
   display: ${(props) => (props.active ? "flex" : "flex")};
 
