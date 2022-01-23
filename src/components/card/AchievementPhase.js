@@ -252,7 +252,7 @@ const AchivementTypeData = styled.div`
         ? "#bb2124"
         : "#5bc0de"
       : "#959da6"};
-  display: ${(props) => (props.active ? "flex" : "none")};
+  display: ${(props) => (props.active ? "flex" : "flex")};
 
   &:hover {
     cursor: pointer;
@@ -334,21 +334,42 @@ export default function AchievementPhase(props) {
               highlight={true}
               type="safe"
             >
-              <FaCheckDouble />
+              <FaCheckDouble
+                onClick={(e) => {
+                  _STORAGE_WRITE(`${game_id}_${id}`, UNMISSABLE);
+                  setAchievementType((old) => UNMISSABLE);
+                  props.refreshViewWithoutFetch();
+                  e.stopPropagation();
+                }}
+              />
             </AchivementTypeData>
             <AchivementTypeData
               active={achievementType === MISSABLE}
               highlight={true}
               type="danger"
             >
-              <FaSkull />
+              <FaSkull
+                onClick={(e) => {
+                  _STORAGE_WRITE(`${game_id}_${id}`, MISSABLE);
+                  setAchievementType((old) => MISSABLE);
+                  props.refreshViewWithoutFetch();
+                  e.stopPropagation();
+                }}
+              />
             </AchivementTypeData>
             <AchivementTypeData
               active={achievementType === MULTIPLAYER}
               highlight={true}
               type="normal"
             >
-              <FaWifi />
+              <FaWifi
+                onClick={(e) => {
+                  _STORAGE_WRITE(`${game_id}_${id}`, MULTIPLAYER);
+                  setAchievementType((old) => MULTIPLAYER);
+                  props.refreshViewWithoutFetch();
+                  e.stopPropagation();
+                }}
+              />
             </AchivementTypeData>
           </>
         )}
