@@ -323,7 +323,9 @@ export default function AchievementPhase(props) {
         <Desc>{description}</Desc>
         <DescSmall>
           {(_STORAGE_READ(`${game_id}_${id}_JOURNAL`) &&
-            _STORAGE_READ(`${game_id}_${id}_JOURNAL`).split("\n")[0]) ||
+            _STORAGE_READ(`${game_id}_${id}_JOURNAL`)
+              .split("\n")[0]
+              .substring(0, 45) + "...") ||
             ""}
         </DescSmall>
         {/* <GameName>{game_name}</GameName> */}
