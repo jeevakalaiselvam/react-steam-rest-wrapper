@@ -157,23 +157,22 @@ export const getAchievementsFilteredByPhase = (achievements) => {
 
       if (achievement.unlocked == "0") {
         data.lockedAll.push(achievement);
-      }
-
-      switch (type) {
-        case PHASE1:
-          data.phase1.push(achievement);
-          break;
-        case PHASE2:
-          data.phase2.push(achievement);
-          break;
-        case PHASE3:
-          data.phase3.push(achievement);
-          break;
-        case PHASE4:
-          data.phase4.push(achievement);
-          break;
-        default:
-          break;
+        switch (type) {
+          case PHASE1:
+            data.phase1.push(achievement);
+            break;
+          case PHASE2:
+            data.phase2.push(achievement);
+            break;
+          case PHASE3:
+            data.phase3.push(achievement);
+            break;
+          case PHASE4:
+            data.phase4.push(achievement);
+            break;
+          default:
+            break;
+        }
       }
     });
 
