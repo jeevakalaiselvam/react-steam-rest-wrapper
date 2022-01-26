@@ -293,8 +293,9 @@ export default function PlannerContent(props) {
   } = getAchievementsFilteredByPhase(filteredAchievements);
 
   const [noneAchievements, setNoneAchievements] = useState(noneAllAchievements);
-  const [phase1Achievements, setphase1Achievements] =
-    useState(lockedAchievements);
+  const [phase1Achievements, setphase1Achievements] = useState(
+    phase1AllAchievements
+  );
   const [phase2Achievements, setphase2Achievements] = useState(
     phase2AllAchievements
   );
