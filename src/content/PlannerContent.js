@@ -479,6 +479,30 @@ export default function PlannerContent(props) {
             </AchievementContainer>
           </SectionContainer>
           <SectionContainer empty={false}>
+            <SectionTitle>Unlocked</SectionTitle>
+            <SectionSearchInput>
+              <input
+                type="text"
+                onChange={phase4SearchChange}
+                placeholder="Search.."
+              />
+            </SectionSearchInput>
+            <AchievementContainer>
+              {phase4Achievements.map((achievement) => {
+                return (
+                  <AchievementPhase
+                    refreshViewWithoutFetch={refreshViewWithoutFetch}
+                    achievement={achievement}
+                    achievementSelected={achievementSelected}
+                    key={achievement.game_id + achievement.id}
+                    achievementSelectedHandler={achievementSelectedHandler}
+                    openJournal={props.openJournal}
+                  />
+                );
+              })}
+            </AchievementContainer>
+          </SectionContainer>
+          <SectionContainer empty={false}>
             <SectionTitle>Phase 1</SectionTitle>
             <SectionSearchInput>
               <input
@@ -538,30 +562,6 @@ export default function PlannerContent(props) {
             </SectionSearchInput>
             <AchievementContainer>
               {phase3Achievements.map((achievement) => {
-                return (
-                  <AchievementPhase
-                    refreshViewWithoutFetch={refreshViewWithoutFetch}
-                    achievement={achievement}
-                    achievementSelected={achievementSelected}
-                    key={achievement.game_id + achievement.id}
-                    achievementSelectedHandler={achievementSelectedHandler}
-                    openJournal={props.openJournal}
-                  />
-                );
-              })}
-            </AchievementContainer>
-          </SectionContainer>
-          <SectionContainer empty={false}>
-            <SectionTitle>Unlocked</SectionTitle>
-            <SectionSearchInput>
-              <input
-                type="text"
-                onChange={phase4SearchChange}
-                placeholder="Search.."
-              />
-            </SectionSearchInput>
-            <AchievementContainer>
-              {phase4Achievements.map((achievement) => {
                 return (
                   <AchievementPhase
                     refreshViewWithoutFetch={refreshViewWithoutFetch}
