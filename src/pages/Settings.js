@@ -13,6 +13,7 @@ import {
 } from "../helper/storage";
 import SettingsContent from "../content/SettingsContent";
 import { LEFTSIDEBAR_WIDTH } from "../constants/dimensions";
+import { refreshDatabaseAndMoveToPage } from "../helper/games";
 
 const PageContainer = styled.div`
   display: flex;
@@ -26,29 +27,15 @@ export default function Settings() {
     _STORAGE_WRITE(CURRENT_PAGE, SETTINGS_PAGE_INDEX);
   }, []);
 
-  const refreshDatabase = async () => {
-    console.log("Refreshing Database");
-    const response = await refreshDatabaseInBackend();
-    if (response) {
-      if (_STORAGE_READ(SELECTED_GAME)) {
-        setTimeout(() => {
-          window.location.href = "/planner";
-        }, 3000);
-      } else {
-        setTimeout(() => {
-          window.location.href = "/games";
-        }, 3000);
-      }
-    }
-  };
-
   return (
     <PageContainer>
       <Header />
       <Page
         leftSidebar={<AllPageLeft />}
         rightSidebar={""}
-        content={<SettingsContent refreshDatabase={refreshDatabase} />}
+        content={
+          <SettingsContent refreshDatabase={refreshDatabaseAndMoveToPage} />
+        }
         leftSidebarWidth={LEFTSIDEBAR_WIDTH}
         rightSidebarWidth={"0px"}
       />

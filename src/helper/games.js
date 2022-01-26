@@ -1,3 +1,4 @@
+import { refreshDatabaseInBackend } from "../action/games";
 import {
   ALL,
   COLLECTIBLE,
@@ -16,6 +17,7 @@ import {
 import {
   ACHIEVEMENTGAMEPAGE_FILTER,
   getCompletionTarget,
+  SELECTED_GAME,
   _STORAGE_READ,
 } from "./storage";
 
@@ -206,4 +208,21 @@ export const getCountForAchievements = (achievements) => {
     missableCount,
     multiplayerCount,
   };
+};
+
+//Refresh all games
+export const refreshDatabaseAndMoveToPage = async (path) => {
+  console.log("Refreshing Database");
+  const response = await refreshDatabaseInBackend();
+  if (response) {
+    if (_STORAGE_READ(SELECTED_GAME)) {
+      setTimeout(() => {
+        window.location.href = path;
+      }, 2000);
+    } else {
+      setTimeout(() => {
+        window.location.href = "/games";
+      }, 2000);
+    }
+  }
 };

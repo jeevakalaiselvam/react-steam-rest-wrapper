@@ -189,6 +189,7 @@ export default function Planner() {
             journalOpen={journalOpen}
             closeJournal={closeJournal}
             openJournal={openJournal}
+            showRefresh={true}
           />
         }
         content={

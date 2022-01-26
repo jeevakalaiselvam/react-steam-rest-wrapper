@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   FaArrowRight,
   FaBinoculars,
@@ -17,9 +17,17 @@ import {
   FaWifi,
 } from "react-icons/fa";
 import styled from "styled-components";
-import { getCountForAchievements } from "../helper/games";
+import { refreshDatabaseInBackend } from "../action/games";
+import {
+  getCountForAchievements,
+  refreshDatabaseAndMoveToPage,
+} from "../helper/games";
 import { getModeAchivementsToAttainTarget } from "../helper/other";
-import { _STORAGE_CHECK_ARRAY } from "../helper/storage";
+import {
+  SELECTED_GAME,
+  _STORAGE_CHECK_ARRAY,
+  _STORAGE_READ,
+} from "../helper/storage";
 
 const Container = styled.div`
   width: 100%;
@@ -208,6 +216,8 @@ export default function GamePageRight(props) {
     multiplayerCount,
   } = getCountForAchievements(achievements);
 
+  const refreshTextRef = useRef(null);
+
   const getPinnedAchievementsCount = (tmpAchievements) => {
     const pinnedAchievements = [];
 
@@ -229,13 +239,25 @@ export default function GamePageRight(props) {
 
   return (
     <Container>
-      <JournalButton
-        onClick={() => {
-          props.closeJournal();
-        }}
-      >
-        {props.journalOpen ? "CLOSE" : "OPEN"} JOURNAL
-      </JournalButton>
+      {!props.showRefresh && (
+        <JournalButton
+          onClick={() => {
+            props.closeJournal();
+          }}
+        >
+          {props.journalOpen ? "CLOSE" : "OPEN"} JOURNAL
+        </JournalButton>
+      )}
+      {props.showRefresh && (
+        <JournalButton
+          ref={refreshTextRef}
+          onClick={() => {
+            refreshDatabaseAndMoveToPage("/planner");
+          }}
+        >
+          REFRESH
+        </JournalButton>
+      )}
       <Subheader>FILTER OPTIONS</Subheader>
 
       <RightMenuItem
