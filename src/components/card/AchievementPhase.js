@@ -162,10 +162,10 @@ const Completion = styled.div`
   color: white;
   justify-content: center;
   width: 100%;
-  color: #ffffff;
+  color: #fff;
   height: 100%;
   font-size: 1rem;
-  background-color: rgba(10, 17, 25, 0.85);
+  background-color: rgba(10, 17, 25, 0.5);
   opacity: ${(props) => (props.completed ? "1" : "0")};
 `;
 
@@ -522,7 +522,7 @@ export default function AchievementPhase(props) {
                 P3
               </PhaseIcon>
             </AchivementPhaseData>
-            <AchivementPhaseData active={true} highlight={false}>
+            {/* <AchivementPhaseData active={true} highlight={false}>
               <PhaseIcon
                 active={achievementPhase === PHASE4}
                 onClick={(e) => {
@@ -534,7 +534,7 @@ export default function AchievementPhase(props) {
               >
                 P4
               </PhaseIcon>
-            </AchivementPhaseData>
+            </AchivementPhaseData> */}
           </>
         )}
       </AchivementPhase>

@@ -288,21 +288,21 @@ export default function PlannerContent(props) {
     phase2: phase2AllAchievements,
     phase3: phase3AllAchievements,
     phase4: phase4AllAchievements,
+    unlockedAll: unlockedAchievements,
+    lockedAll: lockedAchievements,
   } = getAchievementsFilteredByPhase(filteredAchievements);
 
   const [noneAchievements, setNoneAchievements] = useState(noneAllAchievements);
-  const [phase1Achievements, setphase1Achievements] = useState(
-    phase1AllAchievements
-  );
+  const [phase1Achievements, setphase1Achievements] =
+    useState(lockedAchievements);
   const [phase2Achievements, setphase2Achievements] = useState(
     phase2AllAchievements
   );
   const [phase3Achievements, setphase3Achievements] = useState(
     phase3AllAchievements
   );
-  const [phase4Achievements, setphase4Achievements] = useState(
-    phase4AllAchievements
-  );
+  const [phase4Achievements, setphase4Achievements] =
+    useState(unlockedAchievements);
 
   const noneSearchChange = (e) => {
     setNoneAchievements((old) => {
@@ -333,7 +333,7 @@ export default function PlannerContent(props) {
   const phase1SearchChange = (e) => {
     setphase1Achievements((old) => {
       let newAchievements = [];
-      newAchievements = phase1AllAchievements.filter((achievement) => {
+      newAchievements = lockedAchievements.filter((achievement) => {
         return (
           achievement.name
             .toLowerCase()
@@ -440,12 +440,13 @@ export default function PlannerContent(props) {
       phase2: phase2AllAchievements,
       phase3: phase3AllAchievements,
       phase4: phase4AllAchievements,
+      unlockedAll: unlockedAchievements,
     } = getAchievementsFilteredByPhase(filteredAchievements);
     setNoneAchievements((old) => noneAllAchievements);
     setphase1Achievements((old) => phase1AllAchievements);
     setphase2Achievements((old) => phase2AllAchievements);
     setphase3Achievements((old) => phase3AllAchievements);
-    setphase4Achievements((old) => phase4AllAchievements);
+    setphase4Achievements((old) => unlockedAchievements);
   };
 
   return (
@@ -453,7 +454,7 @@ export default function PlannerContent(props) {
       <ContentContainer open={props.journalOpen}>
         <ContainerInner>
           <SectionContainer empty={noneAllAchievements.length === 0}>
-            <SectionTitle>All</SectionTitle>
+            <SectionTitle>Backlog</SectionTitle>
             <SectionSearchInput>
               <input
                 type="text"
@@ -462,7 +463,7 @@ export default function PlannerContent(props) {
               />
             </SectionSearchInput>
             <AchievementContainer>
-              {noneAchievements.map((achievement) => {
+              {lockedAchievements.map((achievement) => {
                 return (
                   <AchievementPhase
                     refreshViewWithoutFetch={refreshViewWithoutFetch}
@@ -536,6 +537,30 @@ export default function PlannerContent(props) {
             </SectionSearchInput>
             <AchievementContainer>
               {phase3Achievements.map((achievement) => {
+                return (
+                  <AchievementPhase
+                    refreshViewWithoutFetch={refreshViewWithoutFetch}
+                    achievement={achievement}
+                    achievementSelected={achievementSelected}
+                    key={achievement.game_id + achievement.id}
+                    achievementSelectedHandler={achievementSelectedHandler}
+                    openJournal={props.openJournal}
+                  />
+                );
+              })}
+            </AchievementContainer>
+          </SectionContainer>
+          <SectionContainer empty={false}>
+            <SectionTitle>Unlocked</SectionTitle>
+            <SectionSearchInput>
+              <input
+                type="text"
+                onChange={phase4SearchChange}
+                placeholder="Search.."
+              />
+            </SectionSearchInput>
+            <AchievementContainer>
+              {phase4Achievements.map((achievement) => {
                 return (
                   <AchievementPhase
                     refreshViewWithoutFetch={refreshViewWithoutFetch}

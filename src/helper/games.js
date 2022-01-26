@@ -140,6 +140,8 @@ export const getAchievementsFilteredByPhase = (achievements) => {
     phase2: [],
     phase3: [],
     phase4: [],
+    unlockedAll: [],
+    lockedAll: [],
   };
 
   achievements.length &&
@@ -148,6 +150,15 @@ export const getAchievementsFilteredByPhase = (achievements) => {
         _STORAGE_READ(`${achievement.game_id}_${achievement.id}_PHASE`) || NONE
       ).trim();
       data.none.push(achievement);
+
+      if (achievement.unlocked == "1") {
+        data.unlockedAll.push(achievement);
+      }
+
+      if (achievement.unlocked == "0") {
+        data.lockedAll.push(achievement);
+      }
+
       switch (type) {
         case PHASE1:
           data.phase1.push(achievement);
@@ -165,6 +176,14 @@ export const getAchievementsFilteredByPhase = (achievements) => {
           break;
       }
     });
+
+  data.unlockedAll = data.unlockedAll.sort((a, b) => {
+    return +a.unlocked_time < +b.unlocked_time;
+  });
+
+  data.lockedAll = data.lockedAll.sort((a, b) => {
+    return +a.global_percentage < +b.global_percentage;
+  });
 
   return data;
 };
