@@ -149,7 +149,6 @@ export const getAchievementsFilteredByPhase = (achievements) => {
       const type = (
         _STORAGE_READ(`${achievement.game_id}_${achievement.id}_PHASE`) || NONE
       ).trim();
-      data.none.push(achievement);
 
       if (achievement.unlocked == "1") {
         data.unlockedAll.push(achievement);
@@ -158,6 +157,8 @@ export const getAchievementsFilteredByPhase = (achievements) => {
       if (achievement.unlocked == "0") {
         data.lockedAll.push(achievement);
         switch (type) {
+          case NONE:
+            data.none.push(achievement);
           case PHASE1:
             data.phase1.push(achievement);
             break;

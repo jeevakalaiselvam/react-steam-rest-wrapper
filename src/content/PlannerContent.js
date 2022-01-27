@@ -455,7 +455,7 @@ export default function PlannerContent(props) {
       <ContentContainer open={props.journalOpen}>
         <ContainerInner>
           <SectionContainer empty={noneAllAchievements.length === 0}>
-            <SectionTitle>Backlog</SectionTitle>
+            <SectionTitle>Untagged</SectionTitle>
             <SectionSearchInput>
               <input
                 type="text"
