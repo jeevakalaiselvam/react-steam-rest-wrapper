@@ -159,6 +159,7 @@ export const getAchievementsFilteredByPhase = (achievements) => {
         switch (type) {
           case NONE:
             data.none.push(achievement);
+            break;
           case PHASE1:
             data.phase1.push(achievement);
             break;
