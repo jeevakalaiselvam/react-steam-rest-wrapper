@@ -163,6 +163,7 @@ const SectionContainer = styled.div`
 const SectionTitle = styled.div`
   font-size: 1rem;
   height: 2vh;
+  cursor: pointer;
   text-align: center;
   width: 100%;
   text-transform: capitalize;
@@ -293,6 +294,7 @@ export default function PlannerContent(props) {
   } = getAchievementsFilteredByPhase(filteredAchievements);
 
   const [noneAchievements, setNoneAchievements] = useState(noneAllAchievements);
+  const [untaggedActive, setUntaggedActive] = useState(true);
   const [phase1Achievements, setphase1Achievements] = useState(
     phase1AllAchievements
   );
@@ -455,7 +457,9 @@ export default function PlannerContent(props) {
       <ContentContainer open={props.journalOpen}>
         <ContainerInner>
           <SectionContainer empty={noneAllAchievements.length === 0}>
-            <SectionTitle>Untagged</SectionTitle>
+            <SectionTitle onClick={() => setUntaggedActive((old) => !old)}>
+              {untaggedActive ? "Untagged" : "Backlog"}
+            </SectionTitle>
             <SectionSearchInput>
               <input
                 type="text"
@@ -464,18 +468,32 @@ export default function PlannerContent(props) {
               />
             </SectionSearchInput>
             <AchievementContainer>
-              {noneAllAchievements.map((achievement) => {
-                return (
-                  <AchievementPhase
-                    refreshViewWithoutFetch={refreshViewWithoutFetch}
-                    achievement={achievement}
-                    achievementSelected={achievementSelected}
-                    key={achievement.game_id + achievement.id}
-                    achievementSelectedHandler={achievementSelectedHandler}
-                    openJournal={props.openJournal}
-                  />
-                );
-              })}
+              {untaggedActive &&
+                noneAchievements.map((achievement) => {
+                  return (
+                    <AchievementPhase
+                      refreshViewWithoutFetch={refreshViewWithoutFetch}
+                      achievement={achievement}
+                      achievementSelected={achievementSelected}
+                      key={achievement.game_id + achievement.id}
+                      achievementSelectedHandler={achievementSelectedHandler}
+                      openJournal={props.openJournal}
+                    />
+                  );
+                })}
+              {!untaggedActive &&
+                lockedAchievements.map((achievement) => {
+                  return (
+                    <AchievementPhase
+                      refreshViewWithoutFetch={refreshViewWithoutFetch}
+                      achievement={achievement}
+                      achievementSelected={achievementSelected}
+                      key={achievement.game_id + achievement.id}
+                      achievementSelectedHandler={achievementSelectedHandler}
+                      openJournal={props.openJournal}
+                    />
+                  );
+                })}
             </AchievementContainer>
           </SectionContainer>
           <SectionContainer empty={false}>
