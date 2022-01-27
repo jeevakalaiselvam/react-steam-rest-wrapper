@@ -464,7 +464,7 @@ export default function PlannerContent(props) {
               />
             </SectionSearchInput>
             <AchievementContainer>
-              {lockedAchievements.map((achievement) => {
+              {noneAllAchievements.map((achievement) => {
                 return (
                   <AchievementPhase
                     refreshViewWithoutFetch={refreshViewWithoutFetch}
