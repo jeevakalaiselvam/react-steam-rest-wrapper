@@ -236,11 +236,11 @@ export const refreshDatabaseAndMoveToPage = async (path) => {
     if (_STORAGE_READ(SELECTED_GAME)) {
       setTimeout(() => {
         window.location.href = path;
-      }, 2000);
+      }, 3000);
     } else {
       setTimeout(() => {
         window.location.href = "/games";
-      }, 2000);
+      }, 3000);
     }
   }
 };

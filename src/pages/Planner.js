@@ -67,6 +67,7 @@ export default function Planner() {
     setNavRightOpen((navState) => !navState);
   };
 
+  //When any criteria changes
   useEffect(() => {
     const getAllAchievements = async (sortOrder, viewOrder) => {
       const achievementsResponse = await fetchAchievementsForGame(
@@ -95,6 +96,36 @@ export default function Planner() {
     getAllAchievements(sortIndex, viewIndex, selectIndex);
     _STORAGE_WRITE(CURRENT_PAGE, PLANNER_INDEX);
   }, [sortIndex, viewIndex, achievementsPage, selectIndex]);
+
+  //Initial Loading
+  useEffect(() => {
+    const getAllAchievements = async (sortOrder, viewOrder) => {
+      const achievementsResponse = await fetchAchievementsForGame(
+        sortOrder,
+        viewOrder,
+        achievementsPage,
+        selectIndex,
+        _STORAGE_READ(SELECTED_GAME)
+      );
+
+      _STORAGE_WRITE(GAMEPAGE_HEADER_TOTAL, achievementsResponse.total);
+      _STORAGE_WRITE(GAMEPAGE_HEADER_COMPLETED, achievementsResponse.completed);
+      _STORAGE_WRITE(GAMEPAGE_HEADER_REMAINING, achievementsResponse.remaining);
+      if (selectIndex === 3) {
+        const pinnedAchievements = getPinnedAchievements(
+          achievementsResponse.achievements
+        );
+        setAchievements((old) => pinnedAchievements);
+      } else {
+        setAchievements((old) => achievementsResponse.achievements);
+      }
+
+      setLoading((old) => false);
+    };
+    setLoading((old) => true);
+    getAllAchievements(sortIndex, viewIndex, selectIndex);
+    _STORAGE_WRITE(CURRENT_PAGE, PLANNER_INDEX);
+  }, []);
 
   const sortHandler = (sortOption) => {
     _STORAGE_WRITE(ACHIEVEMENTGAMEPAGE_SORT, sortOption);
