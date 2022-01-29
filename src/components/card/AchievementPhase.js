@@ -234,7 +234,7 @@ const AchivementPhaseData = styled.div`
   padding: 0.25rem 0.5rem;
   border-radius: 5px;
   color: ${(props) => (props.highlight ? "#55aece" : "#959da6")};
-  display: ${(props) => (props.active ? "flex" : "none")};
+  display: ${(props) => (props.active ? "flex" : "flex")};
 
   &:hover {
     cursor: pointer;
