@@ -33,7 +33,7 @@ const JournalContainer = styled.div`
   min-height: 100vh;
   overflow: scroll;
   scrollbar-width: thin; /* "auto" or "thin" */
-  scrollbar-color: black gray;
+  scrollbar-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
 `;
 
 const ContainerInner = styled.div`
@@ -122,7 +122,7 @@ const AchievementContainer = styled.div`
   height: 100vh;
   overflow: scroll;
   scrollbar-width: none;
-  scrollbar-color: black gray;
+  scrollbar-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
 `;
 
 const VideoContainer = styled.div`

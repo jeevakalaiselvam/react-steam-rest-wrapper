@@ -60,7 +60,8 @@ const JournalContainer = styled.div`
   min-height: 80vh;
   flex-direction: row;
   scrollbar-width: thin; /* "auto" or "thin" */
-  scrollbar-color: black gray;
+
+  scrollbar-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
 `;
 
 const VideoInnerContainer = styled.div`
@@ -80,7 +81,8 @@ const JournalInnerContainer = styled.div`
   justify-content: center;
   padding: 1rem 0.25rem;
   scrollbar-width: thin; /* "auto" or "thin" */
-  scrollbar-color: black gray;
+
+  scrollbar-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
 `;
 
 const ContainerInner = styled.div`
@@ -132,7 +134,8 @@ const JournalInput = styled.div`
     font-size: 1rem;
     flex-direction: row;
     scrollbar-width: thin; /* "auto" or "thin" */
-    scrollbar-color: black gray;
+
+    scrollbar-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
   }
 `;
 
@@ -177,7 +180,8 @@ const AchievementContainer = styled.div`
   height: 100vh;
   overflow: scroll;
   scrollbar-width: none;
-  scrollbar-color: black gray;
+
+  scrollbar-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
 `;
 
 const CloseButton = styled.div`
