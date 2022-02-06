@@ -35,7 +35,7 @@ export default function Settings() {
         rightSidebar={""}
         content={
           <SettingsContent
-            refreshDatabase={refreshDatabaseAndMoveToPage("/planner")}
+            refreshDatabase={refreshDatabaseAndMoveToPage("/games")}
           />
         }
         leftSidebarWidth={LEFTSIDEBAR_WIDTH}
