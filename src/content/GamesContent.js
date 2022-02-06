@@ -13,7 +13,8 @@ const ContentContainer = styled.div`
   justify-content: space-between;
   flex-direction: column;
   overflow: scroll;
-  scrollbar-width: thin;
+  scrollbar-width: thin; /* "auto" or "thin" */
+  scrollbar-color: black gray;
   align-items: flex-start;
   flex-wrap: wrap;
   padding-bottom: 1rem;
@@ -28,6 +29,8 @@ const ContainerInner = styled.div`
   width: 100%;
   justify-self: flex-start;
   justify-content: center;
+  scrollbar-width: thin; /* "auto" or "thin" */
+  scrollbar-color: black gray;
   overflow: scroll;
   flex-wrap: wrap;
 `;
