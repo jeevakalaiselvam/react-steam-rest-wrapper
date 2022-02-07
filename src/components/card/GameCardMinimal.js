@@ -269,35 +269,35 @@ export default function GameCardMinimal(props) {
         {+completion_percentage === 100 && (
           <GoldMedal>
             <FaTrophy /> &nbsp;
-            {` ${total_achievements_count - completed_achievements_count}`}
+            {`${completed_achievements_count} / ${total_achievements_count}`}
           </GoldMedal>
         )}
         {+completion_percentage < PERCENTAGE_GOLD &&
           +completion_percentage >= PERCENTAGE_PURPLE && (
             <PurpleMedal>
               <FaTrophy /> &nbsp;
-              {` ${total_achievements_count - completed_achievements_count}`}
+              {`${completed_achievements_count} / ${total_achievements_count}`}
             </PurpleMedal>
           )}
         {+completion_percentage < PERCENTAGE_PURPLE &&
           +completion_percentage >= PERCENTAGE_GREEN && (
             <GreenMedal>
               <FaTrophy /> &nbsp;
-              {` ${total_achievements_count - completed_achievements_count}`}
+              {`${completed_achievements_count} / ${total_achievements_count}`}
             </GreenMedal>
           )}
         {+completion_percentage < PERCENTAGE_GREEN &&
           +completion_percentage >= PERCENTAGE_BRONZE && (
             <BronzeMedal>
               <FaTrophy /> &nbsp;
-              {` ${total_achievements_count - completed_achievements_count}`}
+              {`${completed_achievements_count} / ${total_achievements_count}`}
             </BronzeMedal>
           )}
         {+completion_percentage < PERCENTAGE_BRONZE &&
           +completion_percentage >= PERCENTAGE_COPPER && (
             <CopperMedal>
               <FaTrophy /> &nbsp;
-              {` ${total_achievements_count - completed_achievements_count}`}
+              {`${completed_achievements_count} / ${total_achievements_count}`}
             </CopperMedal>
           )}
         {+completion_percentage < PERCENTAGE_COPPER &&

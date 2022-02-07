@@ -424,7 +424,7 @@ export default function GamePageRight(props) {
         <TitleContainer>Hidden</TitleContainer>
       </RightMenuItem>
 
-      {pinnedCount > 0 && (
+      {/* {pinnedCount > 0 && (
         <ToGet>
           <IconAndText>
             <Trophy>
@@ -443,7 +443,7 @@ export default function GamePageRight(props) {
             <Data>{pinnedCount}</Data>
           </IconAndText>
         </ToGet>
-      )}
+      )} */}
       {toGet.toGetGold > 0 && (
         <ToGet>
           <IconAndText>
