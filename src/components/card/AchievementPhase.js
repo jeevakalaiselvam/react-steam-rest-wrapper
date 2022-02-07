@@ -117,6 +117,7 @@ const Misc = styled.div`
   display: flex;
   justify-self: flex-start;
   flex-direction: row;
+  font-size: 1.1rem;
   color: ${(props) => props.color};
 `;
 const Percentage = styled.div`
@@ -335,9 +336,9 @@ export default function AchievementPhase(props) {
       </Data>
       <Misc color={getColorFromPercentage(global_percentage)}>
         <FaTrophy />{" "}
-        <Percentage color={getColorFromPercentage(global_percentage)}>
-          {Number(global_percentage).toFixed(2)} %
-        </Percentage>
+        {/* <Percentage color={getColorFromPercentage(global_percentage)}>
+          {Math.floor(global_percentage)} %
+        </Percentage> */}
       </Misc>
       <AchivementType>
         {achievementType !== UNTAGGED && (

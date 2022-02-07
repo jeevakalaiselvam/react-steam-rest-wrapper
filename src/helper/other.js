@@ -150,7 +150,7 @@ export const getTotalAchievements = (gameInfo) => {
 
 export const getColorFromPercentage = (percentage = +percentage) => {
   if (percentage >= ACHIEVEMENT_COPPER) {
-    return "#c0c0c0";
+    return "#CD7F32";
   } else if (
     percentage >= ACHIEVEMENT_BRONZE &&
     percentage < ACHIEVEMENT_COPPER
@@ -160,14 +160,14 @@ export const getColorFromPercentage = (percentage = +percentage) => {
     percentage >= ACHIEVEMENT_GREEN &&
     percentage < ACHIEVEMENT_BRONZE
   ) {
-    return "#c0c0c0";
+    return "#a6ff00";
   } else if (
     percentage >= ACHIEVEMENT_PURPLE &&
     percentage < ACHIEVEMENT_GREEN
   ) {
-    return "#c0c0c0";
+    return "#b666d2";
   } else if (percentage < ACHIEVEMENT_PURPLE) {
-    return "#c0c0c0";
+    return "#fecc09";
   } else {
   }
   // if (percentage == PERCENTAGE_GOLD_INVERSE) {
