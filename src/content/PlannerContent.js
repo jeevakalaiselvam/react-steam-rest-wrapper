@@ -461,7 +461,7 @@ export default function PlannerContent(props) {
     <MainContainer>
       <ContentContainer open={props.journalOpen}>
         <ContainerInner>
-          <SectionContainer empty={noneAllAchievements.length === 0}>
+          <SectionContainer empty={false}>
             <SectionTitle onClick={() => setUntaggedActive((old) => !old)}>
               {untaggedActive ? "Untagged" : "Backlog"}
             </SectionTitle>
