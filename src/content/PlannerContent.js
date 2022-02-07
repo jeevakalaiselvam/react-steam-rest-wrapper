@@ -296,6 +296,7 @@ export default function PlannerContent(props) {
     unlockedAll: unlockedAchievements,
     lockedAll: lockedAchievements,
   } = getAchievementsFilteredByPhase(filteredAchievements);
+  console.log(filteredAchievements);
 
   const [noneAchievements, setNoneAchievements] = useState(noneAllAchievements);
   const [untaggedActive, setUntaggedActive] = useState(true);

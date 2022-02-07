@@ -8,6 +8,7 @@ import {
   FaGlobe,
   FaSkull,
   FaThumbtack,
+  FaTrophy,
   FaWifi,
 } from "react-icons/fa";
 import styled from "styled-components";
@@ -26,6 +27,7 @@ import {
   UNTAGGED,
 } from "../../constants/achievement";
 import { STEAM_HEADER_IMAGE } from "../../helper/endpoints";
+import { getColorFromPercentage } from "../../helper/other";
 import {
   _STORAGE_READ,
   COMPLETION_TARGET,
@@ -115,6 +117,13 @@ const Misc = styled.div`
   display: flex;
   justify-self: flex-start;
   flex-direction: row;
+  color: ${(props) => props.color};
+`;
+const Percentage = styled.div`
+  color: #959da6;
+  margin-left: 0.5rem;
+  font-size: 0.8rem;
+  color: ${(props) => props.color};
 `;
 
 const Title = styled.div`
@@ -140,12 +149,6 @@ const DescSmall = styled.div`
 const GameName = styled.div`
   color: #959da6;
   z-index: 101;
-  font-size: 0.8rem;
-`;
-
-const Percentage = styled.div`
-  color: #959da6;
-  margin-left: 0.5rem;
   font-size: 0.8rem;
 `;
 
@@ -330,16 +333,11 @@ export default function AchievementPhase(props) {
         </DescSmall>
         {/* <GameName>{game_name}</GameName> */}
       </Data>
-      <Misc>
-        <FaGlobe />{" "}
-        {Number(global_percentage) <= 10 && (
-          <PercentageGold>
-            {Number(global_percentage).toFixed(2)} %
-          </PercentageGold>
-        )}
-        {Number(global_percentage) > 10 && (
-          <Percentage>{Number(global_percentage).toFixed(2)} %</Percentage>
-        )}
+      <Misc color={getColorFromPercentage(global_percentage)}>
+        <FaTrophy />{" "}
+        <Percentage color={getColorFromPercentage(global_percentage)}>
+          {Number(global_percentage).toFixed(2)} %
+        </Percentage>
       </Misc>
       <AchivementType>
         {achievementType !== UNTAGGED && (

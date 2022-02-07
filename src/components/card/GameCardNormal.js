@@ -265,8 +265,12 @@ export default function GameCardNormal(props) {
             </AchievementCount>
           </AchievementData>}
         </AchivementCountData> */}
-
         {+completion_percentage === 100 && (
+          <GoldMedal>
+            <FaMedal />
+          </GoldMedal>
+        )}
+        {/* {+completion_percentage === 100 && (
           <GoldMedal>
             <FaMedal />
           </GoldMedal>
@@ -294,7 +298,7 @@ export default function GameCardNormal(props) {
             <CopperMedal>
               <FaMedal />
             </CopperMedal>
-          )}
+          )} */}
         {+completion_percentage < PERCENTAGE_COPPER &&
           +completion_percentage !== 0 && (
             <IconStarted>

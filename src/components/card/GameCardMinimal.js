@@ -90,7 +90,7 @@ const IconInner = styled.div`
 
 const InnerContainer = styled.div`
   position: absolute;
-  top: 0;
+  bottom: 0;
   right: 0;
   background-color: rgba(10, 17, 25, 0.8);
   display: flex;
@@ -268,31 +268,36 @@ export default function GameCardMinimal(props) {
 
         {+completion_percentage === 100 && (
           <GoldMedal>
-            <FaMedal />
+            <FaTrophy /> &nbsp;
+            {` ${completed_achievements_count} / ${total_achievements_count}`}
           </GoldMedal>
         )}
         {+completion_percentage < PERCENTAGE_GOLD &&
           +completion_percentage >= PERCENTAGE_PURPLE && (
             <PurpleMedal>
-              <FaMedal />
+              <FaTrophy /> &nbsp;
+              {` ${completed_achievements_count} / ${total_achievements_count}`}
             </PurpleMedal>
           )}
         {+completion_percentage < PERCENTAGE_PURPLE &&
           +completion_percentage >= PERCENTAGE_GREEN && (
             <GreenMedal>
-              <FaMedal />
+              <FaTrophy /> &nbsp;
+              {` ${completed_achievements_count} / ${total_achievements_count}`}
             </GreenMedal>
           )}
         {+completion_percentage < PERCENTAGE_GREEN &&
           +completion_percentage >= PERCENTAGE_BRONZE && (
             <BronzeMedal>
-              <FaMedal />
+              <FaTrophy /> &nbsp;
+              {` ${completed_achievements_count} / ${total_achievements_count}`}
             </BronzeMedal>
           )}
         {+completion_percentage < PERCENTAGE_BRONZE &&
           +completion_percentage >= PERCENTAGE_COPPER && (
             <CopperMedal>
-              <FaMedal />
+              <FaTrophy /> &nbsp;
+              {` ${completed_achievements_count} / ${total_achievements_count}`}
             </CopperMedal>
           )}
         {+completion_percentage < PERCENTAGE_COPPER &&

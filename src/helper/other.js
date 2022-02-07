@@ -1,9 +1,14 @@
 import {
   PERCENTAGE_BRONZE,
+  ACHIEVEMENT_BRONZE,
   PERCENTAGE_COPPER,
+  ACHIEVEMENT_COPPER,
   PERCENTAGE_GOLD,
+  ACHIEVEMENT_GOLD,
   PERCENTAGE_GREEN,
+  ACHIEVEMENT_GREEN,
   PERCENTAGE_PURPLE,
+  ACHIEVEMENT_PURPLE,
 } from "../constants/percentage";
 import {
   COMPLETION_TARGET,
@@ -141,4 +146,52 @@ export const getMedalCompletedGames = (gameInfo) => {
 export const getTotalAchievements = (gameInfo) => {
   const { completed_achievements } = gameInfo;
   return completed_achievements;
+};
+
+export const getColorFromPercentage = (percentage = +percentage) => {
+  if (percentage >= ACHIEVEMENT_COPPER) {
+    return "#c0c0c0";
+  } else if (
+    percentage >= ACHIEVEMENT_BRONZE &&
+    percentage < ACHIEVEMENT_COPPER
+  ) {
+    return "#c0c0c0";
+  } else if (
+    percentage >= ACHIEVEMENT_GREEN &&
+    percentage < ACHIEVEMENT_BRONZE
+  ) {
+    return "#c0c0c0";
+  } else if (
+    percentage >= ACHIEVEMENT_PURPLE &&
+    percentage < ACHIEVEMENT_GREEN
+  ) {
+    return "#c0c0c0";
+  } else if (percentage < ACHIEVEMENT_PURPLE) {
+    return "#c0c0c0";
+  } else {
+  }
+  // if (percentage == PERCENTAGE_GOLD_INVERSE) {
+  //   return "#fecc09";
+  // } else if (
+  //   percentage < PERCENTAGE_GOLD_INVERSE &&
+  //   percentage >= PERCENTAGE_PURPLE_INVERSE
+  // ) {
+  //   return "#b666d2";
+  // } else if (
+  //   percentage < PERCENTAGE_PURPLE_INVERSE &&
+  //   percentage >= PERCENTAGE_GREEN_INVERSE
+  // ) {
+  //   return "#a6ff00";
+  // } else if (
+  //   percentage < PERCENTAGE_GREEN_INVERSE &&
+  //   percentage >= PERCENTAGE_BRONZE_INVERSE
+  // ) {
+  //   return "#c0c0c0";
+  // } else if (
+  //   percentage < PERCENTAGE_BRONZE &&
+  //   percentage >= PERCENTAGE_COPPER
+  // ) {
+  //
+  // } else {
+  // }
 };
