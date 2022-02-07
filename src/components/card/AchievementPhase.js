@@ -334,12 +334,12 @@ export default function AchievementPhase(props) {
         </DescSmall>
         {/* <GameName>{game_name}</GameName> */}
       </Data>
-      <Misc color={getColorFromPercentage(global_percentage)}>
+      {/* <Misc color={getColorFromPercentage(global_percentage)}>
         <FaTrophy />{" "}
-        {/* <Percentage color={getColorFromPercentage(global_percentage)}>
+        <Percentage color={getColorFromPercentage(global_percentage)}>
           {Math.floor(global_percentage)} %
-        </Percentage> */}
-      </Misc>
+        </Percentage>
+      </Misc> */}
       <AchivementType>
         {achievementType !== UNTAGGED && (
           <>
