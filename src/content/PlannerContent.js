@@ -294,12 +294,17 @@ export default function PlannerContent(props) {
     phase3: phase3AllAchievements,
     phase4: phase4AllAchievements,
     unlockedAll: unlockedAchievements,
-    lockedAll: lockedAchievements,
+    lockedAll: lockedAllAchievements,
   } = getAchievementsFilteredByPhase(filteredAchievements);
   console.log(filteredAchievements);
 
+  const [allAchievements, setAllAchievements] = useState(filteredAchievements);
   const [noneAchievements, setNoneAchievements] = useState(noneAllAchievements);
+  const [lockedAchievements, setLockedAchievements] = useState(
+    lockedAllAchievements
+  );
   const [untaggedActive, setUntaggedActive] = useState(true);
+  const [unlockedActive, setUnlockedActive] = useState(true);
   const [phase1Achievements, setphase1Achievements] = useState(
     phase1AllAchievements
   );
@@ -338,10 +343,36 @@ export default function PlannerContent(props) {
     });
   };
 
+  const lockedSearchChange = (e) => {
+    setLockedAchievements((old) => {
+      let newAchievements = [];
+      newAchievements = lockedAllAchievements.filter((achievement) => {
+        return (
+          achievement.name
+            .toLowerCase()
+            .trim()
+            .includes(e.target.value.toLowerCase().trim()) ||
+          achievement.description
+            .toLowerCase()
+            .trim()
+            .includes(e.target.value.toLowerCase().trim()) ||
+          (
+            _STORAGE_READ(`${achievement.game_id}_${achievement.id}_JOURNAL`) ||
+            ""
+          )
+            .toLowerCase()
+            .trim()
+            .includes(e.target.value.toLowerCase().trim())
+        );
+      });
+      return newAchievements;
+    });
+  };
+
   const phase1SearchChange = (e) => {
     setphase1Achievements((old) => {
       let newAchievements = [];
-      newAchievements = lockedAchievements.filter((achievement) => {
+      newAchievements = phase1Achievements.filter((achievement) => {
         return (
           achievement.name
             .toLowerCase()
@@ -439,6 +470,32 @@ export default function PlannerContent(props) {
     });
   };
 
+  const allSearchChange = (e) => {
+    setAllAchievements((old) => {
+      let newAchievements = [];
+      newAchievements = filteredAchievements.filter((achievement) => {
+        return (
+          achievement.name
+            .toLowerCase()
+            .trim()
+            .includes(e.target.value.toLowerCase().trim()) ||
+          achievement.description
+            .toLowerCase()
+            .trim()
+            .includes(e.target.value.toLowerCase().trim()) ||
+          (
+            _STORAGE_READ(`${achievement.game_id}_${achievement.id}_JOURNAL`) ||
+            ""
+          )
+            .toLowerCase()
+            .trim()
+            .includes(e.target.value.toLowerCase().trim())
+        );
+      });
+      return newAchievements;
+    });
+  };
+
   const refreshViewWithoutFetch = () => {
     setRefresh((old) => !refresh);
     props.updatePinnedCount();
@@ -468,7 +525,9 @@ export default function PlannerContent(props) {
             <SectionSearchInput>
               <input
                 type="text"
-                onChange={noneSearchChange}
+                onChange={
+                  !untaggedActive ? noneSearchChange : lockedSearchChange
+                }
                 placeholder="Search.."
               />
             </SectionSearchInput>
@@ -576,27 +635,43 @@ export default function PlannerContent(props) {
             </AchievementContainer>
           </SectionContainer>
           <SectionContainer empty={false}>
-            <SectionTitle>Unlocked</SectionTitle>
+            <SectionTitle onClick={() => setUnlockedActive((old) => !old)}>
+              {unlockedActive ? "Unlocked" : "All"}
+            </SectionTitle>
             <SectionSearchInput>
               <input
                 type="text"
-                onChange={phase4SearchChange}
+                onChange={unlockedActive ? phase4SearchChange : allSearchChange}
                 placeholder="Search.."
               />
             </SectionSearchInput>
             <AchievementContainer>
-              {phase4Achievements.map((achievement) => {
-                return (
-                  <AchievementPhase
-                    refreshViewWithoutFetch={refreshViewWithoutFetch}
-                    achievement={achievement}
-                    achievementSelected={achievementSelected}
-                    key={achievement.game_id + achievement.id}
-                    achievementSelectedHandler={achievementSelectedHandler}
-                    openJournal={props.openJournal}
-                  />
-                );
-              })}
+              {unlockedActive &&
+                phase4Achievements.map((achievement) => {
+                  return (
+                    <AchievementPhase
+                      refreshViewWithoutFetch={refreshViewWithoutFetch}
+                      achievement={achievement}
+                      achievementSelected={achievementSelected}
+                      key={achievement.game_id + achievement.id}
+                      achievementSelectedHandler={achievementSelectedHandler}
+                      openJournal={props.openJournal}
+                    />
+                  );
+                })}
+              {!unlockedActive &&
+                allAchievements.map((achievement) => {
+                  return (
+                    <AchievementPhase
+                      refreshViewWithoutFetch={refreshViewWithoutFetch}
+                      achievement={achievement}
+                      achievementSelected={achievementSelected}
+                      key={achievement.game_id + achievement.id}
+                      achievementSelectedHandler={achievementSelectedHandler}
+                      openJournal={props.openJournal}
+                    />
+                  );
+                })}
             </AchievementContainer>
           </SectionContainer>
         </ContainerInner>
