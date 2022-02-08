@@ -444,7 +444,7 @@ export default function GamePageRight(props) {
           </IconAndText>
         </ToGet>
       )} */}
-      {toGet.toGetGold > 0 && (
+      {/* {toGet.toGetGold > 0 && (
         <ToGet>
           <IconAndText>
             <Trophy>
@@ -524,7 +524,7 @@ export default function GamePageRight(props) {
             <FaMedal />
           </MedalCopper>
         </ToGet>
-      )}
+      )} */}
     </Container>
   );
 }
