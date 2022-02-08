@@ -119,10 +119,11 @@ export default function AllPageLeft() {
 
   const totalMedals = getMedalCompletedGames(gameInfo);
   const totalAchievements = getTotalAchievements(gameInfo);
+  console.log(gameInfo);
 
   return (
     <MainMenu>
-      <IconSetContainer visible={!loading}>
+      {/* <IconSetContainer visible={!loading}>
         <IconSetMedal color="#fecc09">
           <DataMedal>{totalMedals.gold}</DataMedal>
           <FaMedal />
@@ -143,12 +144,7 @@ export default function AllPageLeft() {
           <DataMedal>{totalMedals.copper}</DataMedal>
           <FaMedal />
         </IconSetMedal>
-
-        {/* <IconSetTrophy>
-          <DataTotal>{totalAchievements}</DataTotal>
-          <FaTrophy />
-        </IconSetTrophy> */}
-      </IconSetContainer>
+      </IconSetContainer> */}
       <Subheader>SELECT CATEGORY</Subheader>
       <MenuItemLink
         icon={<FaGamepad />}
