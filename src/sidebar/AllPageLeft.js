@@ -67,6 +67,7 @@ const IconSetMedal = styled.div`
   align-items: center;
   color: ${(props) => props.color};
   flex: 1;
+  font-size: 1.3rem;
   justify-content: center;
 `;
 
@@ -75,7 +76,6 @@ const IconSetTrophy = styled.div`
   flex-direction: row;
   align-items: center;
   flex: 1;
-  font-size: 1.2rem;
   color: #55aece;
   justify-content: center;
 `;
@@ -83,7 +83,6 @@ const IconSetTrophy = styled.div`
 const DataMedal = styled.div`
   display: flex;
   flex-direction: row;
-  font-size: 1.3rem;
   align-items: center;
   text-align:center
   justify-content: center;
@@ -95,6 +94,22 @@ const DataTotal = styled.div`
   align-items: center;
   justify-content: center;
   margin-right: 0.5rem;
+`;
+
+const CountMedal = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 1.4rem;
+  justify-content: center;
+`;
+
+const MedalMilestones = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 1.2rem;
+  justify-content: center;
 `;
 
 export default function AllPageLeft() {
@@ -119,12 +134,23 @@ export default function AllPageLeft() {
 
   const totalMedals = getMedalCompletedGames(gameInfo);
   const totalAchievements = getTotalAchievements(gameInfo);
-  console.log(gameInfo);
 
   return (
     <MainMenu>
-      {/* <IconSetContainer visible={!loading}>
+      <IconSetContainer visible={!loading}>
+        <IconSetMedal color="#b666d2">
+          <DataMedal>{totalAchievements}</DataMedal>
+          <CountMedal>
+            <FaTrophy />
+          </CountMedal>
+        </IconSetMedal>
         <IconSetMedal color="#fecc09">
+          <DataMedal>{Math.floor(totalAchievements / 10)}</DataMedal>
+          <MedalMilestones>
+            <FaMedal />
+          </MedalMilestones>
+        </IconSetMedal>
+        {/* <IconSetMedal color="#fecc09">
           <DataMedal>{totalMedals.gold}</DataMedal>
           <FaMedal />
         </IconSetMedal>
@@ -143,8 +169,8 @@ export default function AllPageLeft() {
         <IconSetMedal color="#cd7f32">
           <DataMedal>{totalMedals.copper}</DataMedal>
           <FaMedal />
-        </IconSetMedal>
-      </IconSetContainer> */}
+        </IconSetMedal> */}
+      </IconSetContainer>
       <Subheader>SELECT CATEGORY</Subheader>
       <MenuItemLink
         icon={<FaGamepad />}

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   FaArrowRight,
   FaBinoculars,
@@ -17,14 +17,22 @@ import {
   FaWifi,
 } from "react-icons/fa";
 import styled from "styled-components";
-import { refreshDatabaseInBackend } from "../action/games";
+import { fetchGamesInfo, refreshDatabaseInBackend } from "../action/games";
 import {
   getCountForAchievements,
   refreshDatabaseAndMoveToPage,
 } from "../helper/games";
-import { getModeAchivementsToAttainTarget } from "../helper/other";
+import {
+  getMedalCompletedGames,
+  getModeAchivementsToAttainTarget,
+  getTotalAchievements,
+} from "../helper/other";
 import {
   SELECTED_GAME,
+  STORAGE_HEADER_AVERAGE_COMPLETION,
+  STORAGE_HEADER_TOTAL_ACHIEVEMENTS,
+  STORAGE_HEADER_TOTAL_GAMES,
+  STORAGE_HEADER_TOTAL_PERFECT_GAMES,
   _STORAGE_CHECK_ARRAY,
   _STORAGE_READ,
 } from "../helper/storage";
