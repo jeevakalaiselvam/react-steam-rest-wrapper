@@ -139,16 +139,16 @@ export default function AllPageLeft() {
     <MainMenu>
       <IconSetContainer visible={!loading}>
         <IconSetMedal color="#b666d2">
-          <DataMedal>{totalAchievements}</DataMedal>
           <CountMedal>
             <FaTrophy />
           </CountMedal>
+          <DataMedal>{totalAchievements}</DataMedal>
         </IconSetMedal>
         <IconSetMedal color="#fecc09">
-          <DataMedal>{Math.floor(totalAchievements / 10)}</DataMedal>
           <MedalMilestones>
             <FaMedal />
           </MedalMilestones>
+          <DataMedal>{Math.floor(totalAchievements / 10)}</DataMedal>
         </IconSetMedal>
         {/* <IconSetMedal color="#fecc09">
           <DataMedal>{totalMedals.gold}</DataMedal>
