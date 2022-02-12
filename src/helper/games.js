@@ -242,7 +242,7 @@ export const refreshDatabaseAndMoveToPage = async (path) => {
     } else {
       setTimeout(() => {
         window.location.href = "/games";
-      }, 4000);
+      }, 3000);
     }
   }
 };

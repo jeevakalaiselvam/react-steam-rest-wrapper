@@ -25,7 +25,7 @@ const PageContainer = styled.div`
 export default function Settings() {
   useEffect(() => {
     _STORAGE_WRITE(CURRENT_PAGE, SETTINGS_PAGE_INDEX);
-    refreshDatabaseAndMoveToPage("/games");
+    // refreshDatabaseAndMoveToPage("/games");
   }, []);
 
   const refreshDatabase = () => {
@@ -38,7 +38,11 @@ export default function Settings() {
       <Page
         leftSidebar={<AllPageLeft />}
         rightSidebar={""}
-        content={<SettingsContent refreshDatabase={refreshDatabase} />}
+        content={
+          <SettingsContent
+            refreshDatabase={refreshDatabaseAndMoveToPage("/games")}
+          />
+        }
         leftSidebarWidth={LEFTSIDEBAR_WIDTH}
         rightSidebarWidth={"0px"}
       />
