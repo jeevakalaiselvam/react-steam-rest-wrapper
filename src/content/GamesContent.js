@@ -17,11 +17,11 @@ const ContentContainer = styled.div`
   scrollbar-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
   align-items: flex-start;
   flex-wrap: wrap;
-  padding-bottom: 1rem;
+  /* padding-bottom: 1rem;
 
   @media only screen and (max-width: 840px) {
     padding-bottom: 3rem;
-  }
+  } */
 `;
 
 const ContainerInner = styled.div`
@@ -77,7 +77,7 @@ export default function GamesContent(props) {
           )
         )}
       </ContainerInner>
-      <Pagination>
+      {/* <Pagination>
         <Page onClick={props.moveToPageLeft}>
           <FaBackward />
         </Page>
@@ -90,7 +90,7 @@ export default function GamesContent(props) {
         <Page onClick={props.moveToPageRight}>
           <FaForward />
         </Page>
-      </Pagination>
+      </Pagination> */}
     </ContentContainer>
   );
 }

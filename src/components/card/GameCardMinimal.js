@@ -3,7 +3,9 @@ import {
   FaCheck,
   FaClock,
   FaHourglass,
+  FaIgloo,
   FaMedal,
+  FaSteam,
   FaTrophy,
 } from "react-icons/fa";
 import styled from "styled-components";
@@ -14,8 +16,10 @@ import {
   PERCENTAGE_GREEN,
   PERCENTAGE_PURPLE,
 } from "../../constants/percentage";
+import { getXPForAchievement } from "../../helper/other";
 import {
   COMPLETION_TARGET,
+  GAMEPAGE_SELECT,
   SELECTED_GAME,
   SELECTED_GAME_COMPLETED,
   SELECTED_GAME_COMPLETED_PERCETAGE,
@@ -92,7 +96,7 @@ const InnerContainer = styled.div`
   position: absolute;
   bottom: 0;
   right: 0;
-  background-color: rgba(10, 17, 25, 0.8);
+  background-color: rgba(10, 17, 25, 0.9);
   display: flex;
   padding: 0.5rem;
   flex-direction: row;
@@ -106,7 +110,7 @@ const InnerContainerMedal = styled.div`
   position: absolute;
   bottom: 0;
   left: 0;
-  background-color: rgba(10, 17, 25, 0.8);
+  background-color: rgba(10, 17, 25, 0.9);
   display: flex;
   padding: 0.5rem;
   flex-direction: row;
@@ -131,6 +135,14 @@ const GoldMedal = styled.div`
   display: flex;
   align-items: center;
   color: #fecc09;
+  justify-content: flex-end;
+`;
+
+const RemainingXP = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  color: #fefefe;
   justify-content: flex-end;
 `;
 
@@ -195,6 +207,18 @@ export default function GameCardMinimal(props) {
     total_achievements_count,
   } = props.game;
 
+  console.log("GAME:", props.game);
+  const game = props.game;
+  let xpRemaining = 0;
+  if (game.all_achievements) {
+    game.all_achievements.forEach((achievement) => {
+      if (+achievement.unlocked == 0) {
+        xpRemaining =
+          xpRemaining + +getXPForAchievement(+achievement.global_percentage);
+      }
+    });
+  }
+
   const getRemainingForTarget = () => {
     // const completionTarget =
     //   _STORAGE_READ(COMPLETION_TARGET) ?? TARGET_DEFAULT_COMPLETION;
@@ -245,75 +269,10 @@ export default function GameCardMinimal(props) {
       }}
     >
       <InnerContainer>
-        {/* <AchivementCountData>
-          {getRemainingForTarget().toGold > 0 && <AchievementData>
-            <IconInner color="#fecc09">
-              <FaTrophy />
-            </IconInner>
-            <AchievementCount>
-              { getRemainingForTarget().toGold}
-            </AchievementCount>
-          </AchievementData>}
-          {getRemainingForTarget().toPurple > 0 && <AchievementData>
-            <IconInner color="#b666d2">
-              <FaTrophy />
-            </IconInner>
-            <AchievementCount>
-              { getRemainingForTarget().toPurple}
-            </AchievementCount>
-          </AchievementData>}
-          {getRemainingForTarget().toGreen > 0 && <AchievementData>
-            <IconInner color="#a6ff00">
-              <FaTrophy />
-            </IconInner>
-            <AchievementCount>
-              { getRemainingForTarget().toGreen}
-            </AchievementCount>
-          </AchievementData>}
-          {getRemainingForTarget().toBronze > 0 && <AchievementData>
-            <IconInner color="#CD7F32">
-              <FaTrophy />
-            </IconInner>
-            <AchievementCount>
-              { getRemainingForTarget().toBronze}
-            </AchievementCount>
-          </AchievementData>}
-        </AchivementCountData> */}
-
-        {+completion_percentage === 100 && (
-          <GoldMedal>
-            <FaTrophy /> &nbsp;
-            {`${total_achievements_count - completed_achievements_count}`}
-          </GoldMedal>
-        )}
-        {+completion_percentage < PERCENTAGE_GOLD &&
-          +completion_percentage >= PERCENTAGE_PURPLE && (
-            <PurpleMedal>
-              <FaTrophy /> &nbsp;
-              {`${total_achievements_count - completed_achievements_count}`}
-            </PurpleMedal>
-          )}
-        {+completion_percentage < PERCENTAGE_PURPLE &&
-          +completion_percentage >= PERCENTAGE_GREEN && (
-            <GreenMedal>
-              <FaTrophy /> &nbsp;
-              {`${total_achievements_count - completed_achievements_count}`}
-            </GreenMedal>
-          )}
-        {+completion_percentage < PERCENTAGE_GREEN &&
-          +completion_percentage >= PERCENTAGE_BRONZE && (
-            <BronzeMedal>
-              <FaTrophy /> &nbsp;
-              {`${total_achievements_count - completed_achievements_count}`}
-            </BronzeMedal>
-          )}
-        {+completion_percentage < PERCENTAGE_BRONZE &&
-          +completion_percentage >= PERCENTAGE_COPPER && (
-            <CopperMedal>
-              <FaTrophy /> &nbsp;
-              {`${total_achievements_count - completed_achievements_count}`}
-            </CopperMedal>
-          )}
+        <RemainingXP>
+          <FaSteam style={{ marginRight: "0.5rem" }} />
+          {`${xpRemaining}`}
+        </RemainingXP>
         {+completion_percentage < PERCENTAGE_COPPER &&
           +completion_percentage !== 0 && (
             <IconStarted>
@@ -325,15 +284,6 @@ export default function GameCardMinimal(props) {
             <FaHourglass />
           </IconStarted>
         )}
-        {/* {+completion_percentage <
-          Number(
-            _STORAGE_READ(COMPLETION_TARGET) ?? TARGET_DEFAULT_COMPLETION
-          ) &&
-          +completion_percentage > 0 && (
-            <IconStarted>
-              <FaHourglass />
-            </IconStarted>
-          )} */}
       </InnerContainer>
     </Card>
   );

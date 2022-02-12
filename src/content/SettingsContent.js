@@ -203,7 +203,7 @@ export default function SettingsContent(props) {
   let targetPercentage = 80;
   const [rotate, setRotate] = useState(false);
 
-  const refreshDatabase = () => {
+  const refreshDatabaseInner = () => {
     setRotate((old) => true);
     props.refreshDatabase();
   };
@@ -245,7 +245,7 @@ export default function SettingsContent(props) {
 
         <ButtonRefresh
           onClick={(e) => {
-            refreshDatabase();
+            refreshDatabaseInner();
           }}
         >
           {!rotate && "Sync Database"}

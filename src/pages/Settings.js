@@ -27,17 +27,17 @@ export default function Settings() {
     _STORAGE_WRITE(CURRENT_PAGE, SETTINGS_PAGE_INDEX);
   }, []);
 
+  const refreshDatabase = () => {
+    refreshDatabaseAndMoveToPage("/games");
+  };
+
   return (
     <PageContainer>
       <Header />
       <Page
         leftSidebar={<AllPageLeft />}
         rightSidebar={""}
-        content={
-          <SettingsContent
-            refreshDatabase={refreshDatabaseAndMoveToPage("/games")}
-          />
-        }
+        content={<SettingsContent refreshDatabase={refreshDatabase} />}
         leftSidebarWidth={LEFTSIDEBAR_WIDTH}
         rightSidebarWidth={"0px"}
       />

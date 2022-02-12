@@ -96,6 +96,7 @@ const DataMedal = styled.div`
   flex-direction: row;
   align-items: center;
   text-align: center;
+  font-size: 1.3rem;
   justify-content: center;
 `;
 
@@ -105,7 +106,7 @@ const DataToXP = styled.div`
   align-items: center;
   text-align: center;
   justify-content: center;
-  font-size: 1rem; ;
+  font-size: 0.8rem; ;
 `;
 
 const DataTotal = styled.div`
@@ -119,8 +120,9 @@ const DataTotal = styled.div`
 const CountMedal = styled.div`
   display: flex;
   flex-direction: row;
+  margin-bottom: 0.3rem;
   align-items: center;
-  font-size: 1.4rem;
+  font-size: 1.7rem;
   justify-content: center;
 `;
 
@@ -162,7 +164,7 @@ export default function AllPageLeft() {
     <MainMenu>
       <Subheader>PROFILE</Subheader>
       <IconSetContainer visible={!loading}>
-        <IconSetMedal color="#fecc09">
+        <IconSetMedal color="#67c8eb">
           <CountMedal>
             <FaSteam />
           </CountMedal>
@@ -170,43 +172,11 @@ export default function AllPageLeft() {
         </IconSetMedal>
         <IconSetMedal color="#c0c0c0">
           <DataToXP>
-            <FaAngleDoubleUp />{" "}
-            {(Math.floor(totalXP / 1000) + 1) * 1000 - totalXP}
+            <FaAngleDoubleUp style={{ marginRight: "0.2rem" }} />{" "}
+            {(Math.floor(totalXP / 1000) + 1) * 1000 - totalXP} XP
           </DataToXP>
         </IconSetMedal>
       </IconSetContainer>
-
-      {/* <IconSetContainer visible={!loading}>
-        <IconSetMedal color="#fecc09">
-          <CountMedal>
-            <FaTrophy />
-          </CountMedal>
-          <DataMedal>{achivementCountForVariety.gold}</DataMedal>
-        </IconSetMedal>
-        <IconSetMedal color="#b666d2">
-          <CountMedal>
-            <FaTrophy />
-          </CountMedal>
-          <DataMedal>{achivementCountForVariety.purple}</DataMedal>
-        </IconSetMedal>
-        <IconSetMedal color="#c0c0c0">
-          <CountMedal>
-            <FaTrophy />
-          </CountMedal>
-          <DataMedal>{achivementCountForVariety.silver}</DataMedal>
-        </IconSetMedal>
-      </IconSetContainer> */}
-      {/* 
-      <Subheader>HISTORY</Subheader>
-
-      <IconSetContainer visible={!loading}>
-        <IconSetMedal color="#c0c0c0">
-          <DataToXP>
-            <FaAngleDoubleUp />{" "}
-            {(Math.floor(totalXP / 1000) + 1) * 1000 - totalXP}
-          </DataToXP>
-        </IconSetMedal>
-      </IconSetContainer> */}
 
       <Subheader>SELECT CATEGORY</Subheader>
       <MenuItemLink

@@ -148,7 +148,7 @@ export const getTotalAchievements = (gameInfo) => {
   return completed_achievements;
 };
 
-export const getColorFromPercentage = (percentage = +percentage) => {
+export const getColorFromPercentageOld = (percentage = +percentage) => {
   if (+percentage >= 75) {
     return "#c0c0c0";
   } else if (+percentage >= 50 && +percentage < 75) {
@@ -195,6 +195,37 @@ export const getTotalXPForAchievements = (gameInfo) => {
     });
   }
   return { totalXP };
+};
+
+export const getColorFromPercentage = (percentage) => {
+  const percent = +percentage;
+  if (percent <= 1) {
+    return "#5bc0de";
+  } else if (percent > 1 && percent <= 5) {
+    return "#5bc0de";
+  } else if (percent > 5 && percent <= 10) {
+    return "#5bc0de";
+  } else if (percent > 10 && percent <= 20) {
+    return "#5bc0de";
+  } else if (percent > 20 && percent <= 30) {
+    return "#5bc0de";
+  } else if (percent > 30 && percent <= 40) {
+    return "#5bc0de";
+  } else if (percent > 40 && percent <= 50) {
+    return "#5bc0de";
+  } else if (percent > 50 && percent <= 60) {
+    return "#5bc0de";
+  } else if (percent > 60 && percent <= 70) {
+    return "#5bc0de";
+  } else if (percent > 70 && percent <= 80) {
+    return "#5bc0de";
+  } else if (percent > 80 && percent <= 90) {
+    return "#5bc0de";
+  } else if (percent > 90 && percent <= 100) {
+    return "#5bc0de";
+  } else {
+    return "#5bc0de";
+  }
 };
 
 export const getXPForAchievement = (percentage) => {
