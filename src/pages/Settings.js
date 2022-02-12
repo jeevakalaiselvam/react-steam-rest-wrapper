@@ -25,6 +25,7 @@ const PageContainer = styled.div`
 export default function Settings() {
   useEffect(() => {
     _STORAGE_WRITE(CURRENT_PAGE, SETTINGS_PAGE_INDEX);
+    refreshDatabaseAndMoveToPage("/games");
   }, []);
 
   const refreshDatabase = () => {
