@@ -106,6 +106,20 @@ const InnerContainer = styled.div`
   font-size: 1.1rem;
 `;
 
+const InnerContainerLeft = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(10, 17, 25, 0.9);
+  display: flex;
+  padding: 0.5rem;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  font-size: 1.1rem;
+`;
+
 const InnerContainerMedal = styled.div`
   position: absolute;
   bottom: 0;
@@ -141,9 +155,21 @@ const GoldMedal = styled.div`
 const RemainingXP = styled.div`
   flex: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
   color: #fefefe;
-  justify-content: flex-end;
+  font-size: 1rem;
+  justify-content: center;
+`;
+
+const CompletedXP = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-size: 0.9rem;
+  color: #fefefe;
+  justify-content: center;
 `;
 
 const PurpleMedal = styled.div`
@@ -210,11 +236,15 @@ export default function GameCardMinimal(props) {
   console.log("GAME:", props.game);
   const game = props.game;
   let xpRemaining = 0;
+  let xpObtained = 0;
   if (game.all_achievements) {
     game.all_achievements.forEach((achievement) => {
       if (+achievement.unlocked == 0) {
         xpRemaining =
           xpRemaining + +getXPForAchievement(+achievement.global_percentage);
+      } else {
+        xpObtained =
+          xpObtained + +getXPForAchievement(+achievement.global_percentage);
       }
     });
   }
@@ -270,9 +300,11 @@ export default function GameCardMinimal(props) {
     >
       <InnerContainer>
         <RemainingXP>
-          <FaSteam style={{ marginRight: "0.5rem" }} />
+          <FaSteam style={{ marginBottom: "0.25rem" }} />
+          {/* <div>Remaining</div> */}
           {`${xpRemaining}`}
         </RemainingXP>
+
         {+completion_percentage < PERCENTAGE_COPPER &&
           +completion_percentage !== 0 && (
             <IconStarted>
@@ -285,6 +317,13 @@ export default function GameCardMinimal(props) {
           </IconStarted>
         )}
       </InnerContainer>
+      {/* <InnerContainerLeft>
+        <CompletedXP>
+          <FaSteam style={{ marginBottom: "0.25rem" }} />
+          <div>Completed</div>
+          {`${xpObtained}`}
+        </CompletedXP>
+      </InnerContainerLeft> */}
     </Card>
   );
 }
