@@ -37,6 +37,7 @@ import {
   _STORAGE_WRITE,
   KANBAN_INDEX,
   PLANNER_INDEX,
+  SELECTED_GAME,
 } from "../helper/storage";
 import { fetchGamesInfo } from "../action/games";
 import {
@@ -134,6 +135,19 @@ const MedalMilestones = styled.div`
   justify-content: center;
 `;
 
+const JournalButton = styled.div`
+  width: 95%;
+  background-color: #55aece;
+  margin: 0.5rem;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  text-align: center;
+  color: rgba(3, 3, 3, 1);
+`;
+
 export default function AllPageLeft() {
   const [gameInfo, setGameInfo] = useState({
     total_games: _STORAGE_READ(STORAGE_HEADER_TOTAL_GAMES) ?? 0,
@@ -177,7 +191,21 @@ export default function AllPageLeft() {
           </DataToXP>
         </IconSetMedal>
       </IconSetContainer>
-
+      <Subheader>STATS </Subheader>
+      {_STORAGE_READ(SELECTED_GAME) && (
+        <JournalButton
+          onClick={() => {
+            window.open(
+              `https://steamcommunity.com/id/notreallogan/stats/${_STORAGE_READ(
+                SELECTED_GAME
+              )}/achievements/`,
+              "_blank"
+            );
+          }}
+        >
+          STEAM
+        </JournalButton>
+      )}
       <Subheader>SELECT CATEGORY</Subheader>
       <MenuItemLink
         icon={<FaGamepad />}
