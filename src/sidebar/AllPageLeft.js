@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
+  FaAngleDoubleUp,
   FaBinoculars,
   FaBookOpen,
   FaChartBar,
@@ -7,8 +8,13 @@ import {
   FaMedal,
   FaRandom,
   FaSlidersH,
+  FaSortAlphaUp,
+  FaSortUp,
   FaStar,
+  FaSteam,
   FaTrophy,
+  FaUps,
+  FaXbox,
 } from "react-icons/fa";
 import MenuItemLink from "../components/core/MenuItemLink";
 import styled from "styled-components";
@@ -33,7 +39,12 @@ import {
   PLANNER_INDEX,
 } from "../helper/storage";
 import { fetchGamesInfo } from "../action/games";
-import { getMedalCompletedGames, getTotalAchievements } from "../helper/other";
+import {
+  getColorFromPercentageVariety,
+  getMedalCompletedGames,
+  getTotalAchievements,
+  getTotalXPForAchievements,
+} from "../helper/other";
 
 const MainMenu = styled.div`
   width: 100%;
@@ -54,7 +65,7 @@ const Subheader = styled.div`
 
 const IconSetContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   opacity: ${(props) => (props.visible ? "1" : "0")};
   padding: 0.5rem;
   align-items: center;
@@ -84,8 +95,17 @@ const DataMedal = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  text-align:center
+  text-align: center;
   justify-content: center;
+`;
+
+const DataToXP = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  font-size: 1rem; ;
 `;
 
 const DataTotal = styled.div`
@@ -134,43 +154,60 @@ export default function AllPageLeft() {
 
   const totalMedals = getMedalCompletedGames(gameInfo);
   const totalAchievements = getTotalAchievements(gameInfo);
+  // const achivementCountForVariety = getColorFromPercentageVariety(gameInfo);
+  const { totalXP, xpToday, xpWeek, xpMonth } =
+    getTotalXPForAchievements(gameInfo);
 
   return (
     <MainMenu>
+      <Subheader>PROFILE</Subheader>
       <IconSetContainer visible={!loading}>
+        <IconSetMedal color="#fecc09">
+          <CountMedal>
+            <FaSteam />
+          </CountMedal>
+          <DataMedal>Level {Math.floor(totalXP / 1000)}</DataMedal>
+        </IconSetMedal>
+        <IconSetMedal color="#c0c0c0">
+          <DataToXP>
+            <FaAngleDoubleUp />{" "}
+            {(Math.floor(totalXP / 1000) + 1) * 1000 - totalXP}
+          </DataToXP>
+        </IconSetMedal>
+      </IconSetContainer>
+
+      {/* <IconSetContainer visible={!loading}>
+        <IconSetMedal color="#fecc09">
+          <CountMedal>
+            <FaTrophy />
+          </CountMedal>
+          <DataMedal>{achivementCountForVariety.gold}</DataMedal>
+        </IconSetMedal>
         <IconSetMedal color="#b666d2">
           <CountMedal>
             <FaTrophy />
           </CountMedal>
-          <DataMedal>{totalAchievements}</DataMedal>
+          <DataMedal>{achivementCountForVariety.purple}</DataMedal>
         </IconSetMedal>
-        <IconSetMedal color="#fecc09">
-          <MedalMilestones>
-            <FaMedal />
-          </MedalMilestones>
-          <DataMedal>{Math.floor(totalAchievements / 10)}</DataMedal>
+        <IconSetMedal color="#c0c0c0">
+          <CountMedal>
+            <FaTrophy />
+          </CountMedal>
+          <DataMedal>{achivementCountForVariety.silver}</DataMedal>
         </IconSetMedal>
-        {/* <IconSetMedal color="#fecc09">
-          <DataMedal>{totalMedals.gold}</DataMedal>
-          <FaMedal />
+      </IconSetContainer> */}
+      {/* 
+      <Subheader>HISTORY</Subheader>
+
+      <IconSetContainer visible={!loading}>
+        <IconSetMedal color="#c0c0c0">
+          <DataToXP>
+            <FaAngleDoubleUp />{" "}
+            {(Math.floor(totalXP / 1000) + 1) * 1000 - totalXP}
+          </DataToXP>
         </IconSetMedal>
-        <IconSetMedal color="#b666d2">
-          <DataMedal>{totalMedals.purple}</DataMedal>
-          <FaMedal />
-        </IconSetMedal>
-        <IconSetMedal color="#a6ff00">
-          <DataMedal>{totalMedals.green}</DataMedal>
-          <FaMedal />
-        </IconSetMedal>
-        <IconSetMedal color="#C0C0C0">
-          <DataMedal>{totalMedals.bronze}</DataMedal>
-          <FaMedal />
-        </IconSetMedal>
-        <IconSetMedal color="#cd7f32">
-          <DataMedal>{totalMedals.copper}</DataMedal>
-          <FaMedal />
-        </IconSetMedal> */}
-      </IconSetContainer>
+      </IconSetContainer> */}
+
       <Subheader>SELECT CATEGORY</Subheader>
       <MenuItemLink
         icon={<FaGamepad />}

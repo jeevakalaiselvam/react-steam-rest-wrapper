@@ -7,6 +7,7 @@ import {
   FaFistRaised,
   FaGlobe,
   FaSkull,
+  FaSteam,
   FaThumbtack,
   FaTrophy,
   FaWifi,
@@ -27,7 +28,10 @@ import {
   UNTAGGED,
 } from "../../constants/achievement";
 import { STEAM_HEADER_IMAGE } from "../../helper/endpoints";
-import { getColorFromPercentage } from "../../helper/other";
+import {
+  getColorFromPercentage,
+  getXPForAchievement,
+} from "../../helper/other";
 import {
   _STORAGE_READ,
   COMPLETION_TARGET,
@@ -335,9 +339,9 @@ export default function AchievementPhase(props) {
         {/* <GameName>{game_name}</GameName> */}
       </Data>
       <Misc color={getColorFromPercentage(global_percentage)}>
-        <FaTrophy />{" "}
+        <FaSteam />{" "}
         <Percentage color={getColorFromPercentage(global_percentage)}>
-          {Math.floor(global_percentage)} %
+          {getXPForAchievement(Math.floor(global_percentage))} XP
         </Percentage>
       </Misc>
       <AchivementType>

@@ -12,6 +12,7 @@ import {
   FaSkull,
   FaSortAlphaDown,
   FaSortAlphaDownAlt,
+  FaSpinner,
   FaThumbtack,
   FaTrophy,
   FaWifi,
@@ -205,9 +206,30 @@ const JournalButton = styled.div`
   background-color: #55aece;
   margin: 0.5rem;
   border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 0.5rem;
   text-align: center;
   color: rgba(3, 3, 3, 1);
+`;
+
+const SpinnerIcon = styled.div`
+  margin: 0;
+  padding: 0;
+  margin-left: 1rem;
+  font-size: 1rem;
+  transform-origin: 25% 50%;
+  animation: spin 1s infinite;
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 `;
 
 export default function GamePageRight(props) {
@@ -244,9 +266,11 @@ export default function GamePageRight(props) {
   };
 
   const pinnedCount = getPinnedAchievementsCount(achievements);
+  const [refreshing, setRefreshing] = useState(false);
 
   return (
     <Container>
+      <Subheader>OTHERS</Subheader>
       {!props.showRefresh && (
         <JournalButton
           onClick={() => {
@@ -260,10 +284,17 @@ export default function GamePageRight(props) {
         <JournalButton
           ref={refreshTextRef}
           onClick={() => {
+            console.log(refreshTextRef);
+            setRefreshing((old) => true);
             refreshDatabaseAndMoveToPage("/planner");
           }}
         >
-          REFRESH
+          {refreshing && (
+            <SpinnerIcon spin={true}>
+              <FaSpinner style={{ marginRight: "1rem" }} />
+            </SpinnerIcon>
+          )}
+          {refreshing ? "REFRESHING..." : "REFRESH"}
         </JournalButton>
       )}
       <Subheader>FILTER OPTIONS</Subheader>

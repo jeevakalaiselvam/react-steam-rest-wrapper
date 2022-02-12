@@ -149,49 +149,80 @@ export const getTotalAchievements = (gameInfo) => {
 };
 
 export const getColorFromPercentage = (percentage = +percentage) => {
-  if (percentage >= ACHIEVEMENT_COPPER) {
-    return "#CD7F32";
-  } else if (
-    percentage >= ACHIEVEMENT_BRONZE &&
-    percentage < ACHIEVEMENT_COPPER
-  ) {
+  if (+percentage >= 75) {
     return "#c0c0c0";
-  } else if (
-    percentage >= ACHIEVEMENT_GREEN &&
-    percentage < ACHIEVEMENT_BRONZE
-  ) {
+  } else if (+percentage >= 50 && +percentage < 75) {
+    return "#c0c0c0";
+  } else if (+percentage >= 25 && +percentage < 50) {
     return "#a6ff00";
-  } else if (
-    percentage >= ACHIEVEMENT_PURPLE &&
-    percentage < ACHIEVEMENT_GREEN
-  ) {
-    return "#b666d2";
-  } else if (percentage < ACHIEVEMENT_PURPLE) {
-    return "#fecc09";
+  } else if (+percentage >= 10 && +percentage < 25) {
+    return "#c0c0c0";
+  } else {
+    return "#c0c0c0";
+  }
+};
+
+export const getColorFromPercentageVariety = (gameInfo) => {
+  const data = { bronze: 0, silver: 0, green: 0, purple: 0, gold: 0 };
+  if (gameInfo.all_achievements) {
+    gameInfo.all_achievements.forEach((achievement) => {
+      if (+achievement.unlocked == 1) {
+        if (+achievement.global_percentage <= 10) {
+          data.gold++;
+        } else if (
+          +achievement.global_percentage <= 50 &&
+          +achievement.global_percentage > 10
+        ) {
+          data.purple++;
+        } else {
+          data.silver++;
+        }
+      }
+    });
+  }
+  return data;
+};
+
+export const getTotalXPForAchievements = (gameInfo) => {
+  let totalXP = 0;
+  if (gameInfo.all_achievements) {
+    gameInfo.all_achievements.forEach((achievement) => {
+      if (+achievement.unlocked == 1) {
+        totalXP =
+          totalXP +
+          +getXPForAchievement(Math.floor(+achievement.global_percentage));
+      }
+    });
+  }
+  return { totalXP };
+};
+
+export const getXPForAchievement = (percentage) => {
+  const percent = +percentage;
+  if (percent <= 1) {
+    return "100";
+  } else if (percent > 1 && percent <= 5) {
+    return "75";
+  } else if (percent > 5 && percent <= 10) {
+    return "50";
+  } else if (percent > 10 && percent <= 20) {
+    return "40";
+  } else if (percent > 20 && percent <= 30) {
+    return "40";
+  } else if (percent > 30 && percent <= 40) {
+    return "30";
+  } else if (percent > 40 && percent <= 50) {
+    return "30";
+  } else if (percent > 50 && percent <= 60) {
+    return "20";
+  } else if (percent > 60 && percent <= 70) {
+    return "20";
+  } else if (percent > 70 && percent <= 80) {
+    return "10";
+  } else if (percent > 80 && percent <= 90) {
+    return "10";
+  } else if (percent > 90 && percent <= 100) {
+    return "5";
   } else {
   }
-  // if (percentage == PERCENTAGE_GOLD_INVERSE) {
-  //   return "#fecc09";
-  // } else if (
-  //   percentage < PERCENTAGE_GOLD_INVERSE &&
-  //   percentage >= PERCENTAGE_PURPLE_INVERSE
-  // ) {
-  //   return "#b666d2";
-  // } else if (
-  //   percentage < PERCENTAGE_PURPLE_INVERSE &&
-  //   percentage >= PERCENTAGE_GREEN_INVERSE
-  // ) {
-  //   return "#a6ff00";
-  // } else if (
-  //   percentage < PERCENTAGE_GREEN_INVERSE &&
-  //   percentage >= PERCENTAGE_BRONZE_INVERSE
-  // ) {
-  //   return "#c0c0c0";
-  // } else if (
-  //   percentage < PERCENTAGE_BRONZE &&
-  //   percentage >= PERCENTAGE_COPPER
-  // ) {
-  //
-  // } else {
-  // }
 };
