@@ -341,7 +341,7 @@ export default function AchievementPhase(props) {
       <Misc color={getColorFromPercentage(global_percentage)}>
         <FaSteam />{" "}
         <Percentage color={getColorFromPercentage(global_percentage)}>
-          {getXPForAchievement(Math.floor(global_percentage))}
+          {getXPForAchievement(Math.floor(global_percentage))} XP
         </Percentage>
       </Misc>
       <AchivementType>
