@@ -39,13 +39,18 @@ import {
   PLANNER_INDEX,
   SELECTED_GAME,
 } from "../helper/storage";
-import { fetchGamesInfo } from "../action/games";
+import { fetchAchievementsForGame, fetchGamesInfo } from "../action/games";
 import {
   getColorFromPercentageVariety,
   getMedalCompletedGames,
   getTotalAchievements,
   getTotalXPForAchievements,
 } from "../helper/other";
+import { XPLEVELUP } from "../constants/percentage";
+import {
+  getAchievementsFilteredByPhase,
+  getXPSumForAchievements,
+} from "../helper/games";
 
 const MainMenu = styled.div`
   width: 100%;
@@ -107,7 +112,7 @@ const DataToXP = styled.div`
   align-items: center;
   text-align: center;
   justify-content: center;
-  font-size: 0.8rem; ;
+  font-size: 0.9rem; ;
 `;
 
 const DataTotal = styled.div`
@@ -148,6 +153,37 @@ const JournalButton = styled.div`
   color: rgba(3, 3, 3, 1);
 `;
 
+const HistoryContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+const HistorySet = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+`;
+const HistoryHeader = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem;
+  justify-content: center;
+`;
+const HistoryIcon = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem 0rem;
+  color: #55aece;
+`;
+const HistoryData = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 export default function AllPageLeft() {
   const [gameInfo, setGameInfo] = useState({
     total_games: _STORAGE_READ(STORAGE_HEADER_TOTAL_GAMES) ?? 0,
@@ -157,6 +193,7 @@ export default function AllPageLeft() {
     perfect_games_count: _STORAGE_READ(STORAGE_HEADER_TOTAL_PERFECT_GAMES) ?? 0,
   });
   const [loading, setLoading] = useState(false);
+  const [count, setCount] = useState({ todayCount: 0, weekCount: 0 });
 
   useEffect(() => {
     const getAllGamesInfo = async () => {
@@ -168,11 +205,41 @@ export default function AllPageLeft() {
     getAllGamesInfo();
   }, []);
 
+  useEffect(() => {
+    const getAllAchievements = async (sortOrder, viewOrder) => {
+      const achievementsResponse = await fetchAchievementsForGame(
+        0,
+        0,
+        1,
+        0,
+        _STORAGE_READ(SELECTED_GAME)
+      );
+
+      const achievementsForGame = achievementsResponse.achievements;
+      const {
+        none: noneAllAchievements,
+        phase1: phase1AllAchievements,
+        phase2: phase2AllAchievements,
+        phase3: phase3AllAchievements,
+        phase4: phase4AllAchievements,
+        unlockedAll: unlockedAchievements,
+        unlockedToday: unlockedTodayAchievements,
+        unlockedWeek: unlockedWeekAchievements,
+        lockedAll: lockedAllAchievements,
+      } = getAchievementsFilteredByPhase(achievementsForGame);
+      setCount((old) => ({
+        todayCount: getXPSumForAchievements(unlockedTodayAchievements),
+        weekCount: getXPSumForAchievements(unlockedWeekAchievements),
+      }));
+    };
+
+    const achievments = getAllAchievements(0, 0, 1);
+  }, []);
+
   const totalMedals = getMedalCompletedGames(gameInfo);
   const totalAchievements = getTotalAchievements(gameInfo);
   // const achivementCountForVariety = getColorFromPercentageVariety(gameInfo);
-  const { totalXP, xpToday, xpWeek, xpMonth } =
-    getTotalXPForAchievements(gameInfo);
+  const { totalXP } = getTotalXPForAchievements(gameInfo);
 
   return (
     <MainMenu>
@@ -182,15 +249,31 @@ export default function AllPageLeft() {
           <CountMedal>
             <FaSteam />
           </CountMedal>
-          <DataMedal>Level {Math.floor(totalXP / 1000)}</DataMedal>
+          <DataMedal>Level {Math.floor(totalXP / XPLEVELUP)}</DataMedal>
         </IconSetMedal>
         <IconSetMedal color="#c0c0c0">
           <DataToXP>
             <FaAngleDoubleUp style={{ marginRight: "0.2rem" }} />{" "}
-            {(Math.floor(totalXP / 1000) + 1) * 1000 - totalXP} XP
+            {(Math.floor(totalXP / XPLEVELUP) + 1) * XPLEVELUP - totalXP} XP
           </DataToXP>
         </IconSetMedal>
       </IconSetContainer>
+      <HistoryContainer>
+        <HistorySet>
+          <HistoryHeader>TODAY</HistoryHeader>
+          <HistoryIcon>
+            <FaSteam />
+          </HistoryIcon>
+          <HistoryData>{count.todayCount} XP</HistoryData>
+        </HistorySet>
+        <HistorySet>
+          <HistoryHeader>WEEK</HistoryHeader>
+          <HistoryIcon>
+            <FaSteam />
+          </HistoryIcon>
+          <HistoryData>{count.weekCount} XP</HistoryData>
+        </HistorySet>
+      </HistoryContainer>
       <Subheader>STATS </Subheader>
       {_STORAGE_READ(SELECTED_GAME) && (
         <JournalButton

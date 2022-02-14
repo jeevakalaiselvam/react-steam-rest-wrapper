@@ -212,6 +212,9 @@ export const getAchievementsFilteredByPhase = (achievements) => {
     return +a.global_percentage < +b.global_percentage;
   });
 
+  localStorage.setItem("XP_TODAY", getXPSumForAchievements(data.unlockedToday));
+  localStorage.setItem("XP_WEEK", getXPSumForAchievements(data.unlockedToday));
+
   return data;
 };
 
