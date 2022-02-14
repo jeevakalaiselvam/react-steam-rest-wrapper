@@ -184,7 +184,7 @@ const HistoryData = styled.div`
   justify-content: center;
 `;
 
-export default function AllPageLeft() {
+export default function AllPageLeft({ combinedAchievements }) {
   const [gameInfo, setGameInfo] = useState({
     total_games: _STORAGE_READ(STORAGE_HEADER_TOTAL_GAMES) ?? 0,
     average_completion: _STORAGE_READ(STORAGE_HEADER_AVERAGE_COMPLETION) ?? 0,
@@ -207,15 +207,6 @@ export default function AllPageLeft() {
 
   useEffect(() => {
     const getAllAchievements = async (sortOrder, viewOrder) => {
-      const achievementsResponse = await fetchAchievementsForGame(
-        0,
-        0,
-        1,
-        0,
-        _STORAGE_READ(SELECTED_GAME)
-      );
-
-      const achievementsForGame = achievementsResponse.achievements;
       const {
         none: noneAllAchievements,
         phase1: phase1AllAchievements,
@@ -226,7 +217,7 @@ export default function AllPageLeft() {
         unlockedToday: unlockedTodayAchievements,
         unlockedWeek: unlockedWeekAchievements,
         lockedAll: lockedAllAchievements,
-      } = getAchievementsFilteredByPhase(achievementsForGame);
+      } = getAchievementsFilteredByPhase(combinedAchievements);
       setCount((old) => ({
         todayCount: getXPSumForAchievements(unlockedTodayAchievements),
         weekCount: getXPSumForAchievements(unlockedWeekAchievements),
@@ -234,7 +225,7 @@ export default function AllPageLeft() {
     };
 
     const achievments = getAllAchievements(0, 0, 1);
-  }, []);
+  }, [combinedAchievements]);
 
   const totalMedals = getMedalCompletedGames(gameInfo);
   const totalAchievements = getTotalAchievements(gameInfo);

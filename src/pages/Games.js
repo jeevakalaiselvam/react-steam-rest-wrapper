@@ -56,6 +56,14 @@ export default function Games() {
         selectOrder
       );
       setGames((old) => games);
+      let combinedAchievements = [];
+      games.length &&
+        games.forEach((game) => {
+          game.all_achievements.forEach((achievement) => {
+            combinedAchievements = [...combinedAchievements, achievement];
+          });
+        });
+      console.log("ALL ACHIEVEMENTS", combinedAchievements);
       setLoading((old) => false);
     };
     setLoading((old) => true);
@@ -102,11 +110,19 @@ export default function Games() {
     }
   };
 
+  const updateGlobalXPCounts = () => {};
+
+  const [allAchievements, setAllAchievements] = useState([]);
+
+  let combinedAchievements = [];
+
   return (
     <PageContainer>
       <Header />
       <Page
-        leftSidebar={<AllPageLeft />}
+        leftSidebar={
+          <AllPageLeft combinedAchievements={combinedAchievements} />
+        }
         rightSidebar={
           <GamesPageRight
             sortHandler={sortHandler}
