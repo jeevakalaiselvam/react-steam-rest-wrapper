@@ -5,6 +5,7 @@ import {
   FaClock,
   FaCross,
   FaForward,
+  FaSteam,
   FaTimes,
 } from "react-icons/fa";
 import ReactPlayer from "react-player";
@@ -17,6 +18,7 @@ import { PAGINATION_ACHIEVEMENTS_PER_PAGE } from "../helper/pagination";
 import {
   getAchievementsFilteredByCategory,
   getAchievementsFilteredByPhase,
+  getXPSumForAchievements,
 } from "../helper/games";
 import AchievementJournal from "../components/card/AchievementJournal";
 import AchievementPhase from "../components/card/AchievementPhase";
@@ -167,8 +169,35 @@ const SectionTitle = styled.div`
   font-size: 1rem;
   height: 2vh;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   width: 100%;
+  text-transform: capitalize;
+`;
+const InnerTitle = styled.div`
+  font-size: 1rem;
+  height: 2vh;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: center;
+  margin-right: 1rem;
+  width: 100%;
+  text-transform: capitalize;
+`;
+const InnerIcon = styled.div`
+  font-size: 1rem;
+  height: 2vh;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  width: 100%;
+  color: #55aece;
   text-transform: capitalize;
 `;
 
@@ -294,6 +323,8 @@ export default function PlannerContent(props) {
     phase3: phase3AllAchievements,
     phase4: phase4AllAchievements,
     unlockedAll: unlockedAchievements,
+    unlockedToday: unlockedTodayAchievements,
+    unlockedWeek: unlockedWeekAchievements,
     lockedAll: lockedAllAchievements,
   } = getAchievementsFilteredByPhase(filteredAchievements);
   console.log(filteredAchievements);
@@ -314,8 +345,9 @@ export default function PlannerContent(props) {
   const [phase3Achievements, setphase3Achievements] = useState(
     phase3AllAchievements
   );
-  const [phase4Achievements, setphase4Achievements] =
-    useState(unlockedAchievements);
+  const [phase4Achievements, setphase4Achievements] = useState(
+    unlockedTodayAchievements
+  );
 
   const noneSearchChange = (e) => {
     setNoneAchievements((old) => {
@@ -506,12 +538,14 @@ export default function PlannerContent(props) {
       phase3: phase3AllAchievements,
       phase4: phase4AllAchievements,
       unlockedAll: unlockedAchievements,
+      unlockedWeek: unlockedWeekAchievements,
+      unlockedToday: unlockedTodayAchievements,
     } = getAchievementsFilteredByPhase(filteredAchievements);
     setNoneAchievements((old) => noneAllAchievements);
     setphase1Achievements((old) => phase1AllAchievements);
     setphase2Achievements((old) => phase2AllAchievements);
     setphase3Achievements((old) => phase3AllAchievements);
-    setphase4Achievements((old) => unlockedAchievements);
+    setphase4Achievements((old) => unlockedTodayAchievements);
   };
 
   return (
@@ -520,7 +554,13 @@ export default function PlannerContent(props) {
         <ContainerInner>
           <SectionContainer empty={false}>
             <SectionTitle onClick={() => setUntaggedActive((old) => !old)}>
-              {untaggedActive ? "Backlog" : "Untagged"}
+              <InnerTitle>{untaggedActive ? "Backlog" : "Untagged"}</InnerTitle>
+              <InnerIcon>
+                <FaSteam style={{ marginRight: "0.5rem" }} />
+                {untaggedActive
+                  ? `${getXPSumForAchievements(lockedAchievements)} XP`
+                  : `${getXPSumForAchievements(noneAchievements)} XP`}
+              </InnerIcon>
             </SectionTitle>
             <SectionSearchInput>
               <input
@@ -562,7 +602,13 @@ export default function PlannerContent(props) {
           </SectionContainer>
 
           <SectionContainer empty={false}>
-            <SectionTitle>Phase 1</SectionTitle>
+            <SectionTitle>
+              <InnerTitle>{`Phase 1`}</InnerTitle>
+              <InnerIcon>
+                <FaSteam style={{ marginRight: "0.5rem" }} />
+                {`${getXPSumForAchievements(phase1Achievements)} XP`}
+              </InnerIcon>
+            </SectionTitle>
             <SectionSearchInput>
               <input
                 type="text"
@@ -586,7 +632,13 @@ export default function PlannerContent(props) {
             </AchievementContainer>
           </SectionContainer>
           <SectionContainer empty={false}>
-            <SectionTitle>Phase 2</SectionTitle>
+            <SectionTitle>
+              <InnerTitle>{`Phase 2`}</InnerTitle>
+              <InnerIcon>
+                <FaSteam style={{ marginRight: "0.5rem" }} />
+                {`${getXPSumForAchievements(phase2Achievements)} XP`}
+              </InnerIcon>
+            </SectionTitle>
             <SectionSearchInput>
               <input
                 type="text"
@@ -611,7 +663,13 @@ export default function PlannerContent(props) {
           </SectionContainer>
 
           <SectionContainer empty={false}>
-            <SectionTitle>Phase 3</SectionTitle>
+            <SectionTitle>
+              <InnerTitle>{`Phase 3`}</InnerTitle>
+              <InnerIcon>
+                <FaSteam style={{ marginRight: "0.5rem" }} />
+                {`${getXPSumForAchievements(phase3Achievements)} XP`}
+              </InnerIcon>
+            </SectionTitle>
             <SectionSearchInput>
               <input
                 type="text"
@@ -636,7 +694,13 @@ export default function PlannerContent(props) {
           </SectionContainer>
           <SectionContainer empty={false}>
             <SectionTitle onClick={() => setUnlockedActive((old) => !old)}>
-              {unlockedActive ? "Unlocked" : "All"}
+              <InnerTitle>{unlockedActive ? `Today` : `Week`}</InnerTitle>
+              <InnerIcon>
+                <FaSteam style={{ marginRight: "0.5rem" }} />
+                {unlockedActive
+                  ? `${getXPSumForAchievements(phase4Achievements)} XP`
+                  : `${getXPSumForAchievements(unlockedWeekAchievements)} XP`}
+              </InnerIcon>
             </SectionTitle>
             <SectionSearchInput>
               <input
@@ -660,7 +724,7 @@ export default function PlannerContent(props) {
                   );
                 })}
               {!unlockedActive &&
-                allAchievements.map((achievement) => {
+                unlockedWeekAchievements.map((achievement) => {
                   return (
                     <AchievementPhase
                       refreshViewWithoutFetch={refreshViewWithoutFetch}

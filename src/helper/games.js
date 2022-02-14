@@ -14,6 +14,7 @@ import {
   UNMISSABLE,
   UNTAGGED,
 } from "../constants/achievement";
+import { getXPForAchievement } from "./other";
 import {
   ACHIEVEMENTGAMEPAGE_FILTER,
   getCompletionTarget,
@@ -141,6 +142,7 @@ export const getAchievementsFilteredByPhase = (achievements) => {
     phase3: [],
     phase4: [],
     unlockedAll: [],
+    unlockedToday: [],
     lockedAll: [],
   };
 
@@ -180,6 +182,30 @@ export const getAchievementsFilteredByPhase = (achievements) => {
 
   data.unlockedAll = data.unlockedAll.sort((a, b) => {
     return +a.unlocked_time < +b.unlocked_time;
+  });
+
+  data.unlockedToday = data.unlockedAll.filter((achievement) => {
+    const dateToday = new Date();
+    dateToday.setUTCHours(0, 0, 0, 0);
+    let unlockedDate = new Date(achievement.unlocked_time * 1000);
+    if (unlockedDate.getTime() > dateToday.getTime()) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+
+  data.unlockedWeek = data.unlockedAll.filter((achievement) => {
+    const dateToday = new Date();
+    const weekBack = new Date();
+    weekBack.setDate(dateToday.getDate() - 7);
+    weekBack.setUTCHours(0, 0, 0, 0);
+    let unlockedDate = new Date(achievement.unlocked_time * 1000);
+    if (unlockedDate.getTime() > weekBack.getTime()) {
+      return true;
+    } else {
+      return false;
+    }
   });
 
   data.lockedAll = data.lockedAll.sort((a, b) => {
@@ -245,4 +271,12 @@ export const refreshDatabaseAndMoveToPage = async (path) => {
       }, 3000);
     }
   }
+};
+
+export const getXPSumForAchievements = (achievements) => {
+  let xpTotal = 0;
+  achievements.forEach((achievement) => {
+    xpTotal += +getXPForAchievement(+achievement.global_percentage);
+  });
+  return xpTotal;
 };
