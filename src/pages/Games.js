@@ -64,6 +64,7 @@ export default function Games() {
           });
         });
       console.log("ALL ACHIEVEMENTS", combinedAchievements);
+      setAllAchievements((old) => combinedAchievements);
       setLoading((old) => false);
     };
     setLoading((old) => true);
@@ -120,9 +121,7 @@ export default function Games() {
     <PageContainer>
       <Header />
       <Page
-        leftSidebar={
-          <AllPageLeft combinedAchievements={combinedAchievements} />
-        }
+        leftSidebar={<AllPageLeft allAchievements={allAchievements} />}
         rightSidebar={
           <GamesPageRight
             sortHandler={sortHandler}

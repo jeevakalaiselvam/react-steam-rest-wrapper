@@ -205,7 +205,7 @@ export default function Planner() {
     <PageContainer>
       <HeaderGameProgress achievements={achievements} />
       <Page
-        leftSidebar={<AllPageLeft />}
+        leftSidebar={<AllPageLeft allAchievements={achievements} />}
         rightSidebar={
           <GamePageRight
             filterHandler={filterHandler}

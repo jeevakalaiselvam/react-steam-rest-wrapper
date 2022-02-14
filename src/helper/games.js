@@ -146,7 +146,8 @@ export const getAchievementsFilteredByPhase = (achievements) => {
     lockedAll: [],
   };
 
-  achievements.length &&
+  achievements &&
+    achievements.length &&
     achievements.forEach((achievement) => {
       const type = (
         _STORAGE_READ(`${achievement.game_id}_${achievement.id}_PHASE`) || NONE

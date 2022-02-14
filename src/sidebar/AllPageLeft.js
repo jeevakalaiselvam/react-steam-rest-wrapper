@@ -184,7 +184,7 @@ const HistoryData = styled.div`
   justify-content: center;
 `;
 
-export default function AllPageLeft({ combinedAchievements }) {
+export default function AllPageLeft({ allAchievements }) {
   const [gameInfo, setGameInfo] = useState({
     total_games: _STORAGE_READ(STORAGE_HEADER_TOTAL_GAMES) ?? 0,
     average_completion: _STORAGE_READ(STORAGE_HEADER_AVERAGE_COMPLETION) ?? 0,
@@ -217,7 +217,7 @@ export default function AllPageLeft({ combinedAchievements }) {
         unlockedToday: unlockedTodayAchievements,
         unlockedWeek: unlockedWeekAchievements,
         lockedAll: lockedAllAchievements,
-      } = getAchievementsFilteredByPhase(combinedAchievements);
+      } = getAchievementsFilteredByPhase(allAchievements);
       setCount((old) => ({
         todayCount: getXPSumForAchievements(unlockedTodayAchievements),
         weekCount: getXPSumForAchievements(unlockedWeekAchievements),
@@ -225,7 +225,7 @@ export default function AllPageLeft({ combinedAchievements }) {
     };
 
     const achievments = getAllAchievements(0, 0, 1);
-  }, [combinedAchievements]);
+  }, [allAchievements]);
 
   const totalMedals = getMedalCompletedGames(gameInfo);
   const totalAchievements = getTotalAchievements(gameInfo);
