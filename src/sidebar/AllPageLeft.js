@@ -243,12 +243,6 @@ export default function AllPageLeft({ allAchievements }) {
           </CountMedal>
           <DataMedal>Level {Math.floor(totalXP / XPLEVELUP)}</DataMedal>
         </IconSetMedal>
-        <IconSetMedal color="#c0c0c0">
-          <DataToXP>
-            <FaAngleDoubleUp style={{ marginRight: "0.2rem" }} />{" "}
-            {(Math.floor(totalXP / XPLEVELUP) + 1) * XPLEVELUP - totalXP} XP
-          </DataToXP>
-        </IconSetMedal>
         <Progress
           style={{ padding: "0rem 0.5rem" }}
           showInfo={false}
@@ -261,9 +255,15 @@ export default function AllPageLeft({ allAchievements }) {
             )
           }
         />
+        <IconSetMedal color="#c0c0c0">
+          <DataToXP>
+            <FaAngleDoubleUp style={{ marginRight: "0.2rem" }} />{" "}
+            {(Math.floor(totalXP / XPLEVELUP) + 1) * XPLEVELUP - totalXP} XP
+          </DataToXP>
+        </IconSetMedal>
       </IconSetContainer>
 
-      <HistoryContainer>
+      {/* <HistoryContainer>
         <HistorySet>
           <HistoryHeader>TODAY</HistoryHeader>
           <HistoryIcon>
@@ -278,7 +278,7 @@ export default function AllPageLeft({ allAchievements }) {
           </HistoryIcon>
           <HistoryData>{count.weekCount} XP</HistoryData>
         </HistorySet>
-      </HistoryContainer>
+      </HistoryContainer> */}
       <Subheader>STATS </Subheader>
       {_STORAGE_READ(SELECTED_GAME) && (
         <JournalButton

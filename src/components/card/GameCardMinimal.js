@@ -155,7 +155,7 @@ const GoldMedal = styled.div`
 const RemainingXP = styled.div`
   flex: 1;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   color: #fefefe;
   font-size: 1rem;
@@ -166,8 +166,8 @@ const CompletedXP = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
-  flex-direction: column;
-  font-size: 0.9rem;
+  flex-direction: row;
+  font-size: 1rem;
   color: #fefefe;
   justify-content: center;
 `;
@@ -300,7 +300,7 @@ export default function GameCardMinimal(props) {
     >
       <InnerContainer>
         <RemainingXP>
-          <FaSteam style={{ marginBottom: "0.25rem" }} />
+          <FaSteam style={{ marginRight: "0.25rem", color: "#67c8eb" }} />
           {/* <div>Remaining</div> */}
           {`${xpRemaining}`}
         </RemainingXP>
@@ -317,13 +317,12 @@ export default function GameCardMinimal(props) {
           </IconStarted>
         )}
       </InnerContainer>
-      {/* <InnerContainerLeft>
+      <InnerContainerLeft>
         <CompletedXP>
-          <FaSteam style={{ marginBottom: "0.25rem" }} />
-          <div>Completed</div>
+          <FaCheck style={{ marginRight: "0.25rem", color: "#a6ff00" }} />
           {`${xpObtained}`}
         </CompletedXP>
-      </InnerContainerLeft> */}
+      </InnerContainerLeft>
     </Card>
   );
 }
