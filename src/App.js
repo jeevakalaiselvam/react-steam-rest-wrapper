@@ -13,6 +13,8 @@ import Random from "./pages/Random";
 import CurrentGame from "./pages/CurrentGame";
 import Kanban from "./pages/Kanban";
 import Planner from "./pages/Planner";
+import "antd/dist/antd.css";
+import "./style.css";
 
 export default function App() {
   const [navLeftOpen, setNavLeftOpen] = useState(false);

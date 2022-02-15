@@ -51,6 +51,7 @@ import {
   getAchievementsFilteredByPhase,
   getXPSumForAchievements,
 } from "../helper/games";
+import { Progress } from "antd";
 
 const MainMenu = styled.div`
   width: 100%;
@@ -248,7 +249,20 @@ export default function AllPageLeft({ allAchievements }) {
             {(Math.floor(totalXP / XPLEVELUP) + 1) * XPLEVELUP - totalXP} XP
           </DataToXP>
         </IconSetMedal>
+        <Progress
+          style={{ padding: "0rem 0.5rem" }}
+          showInfo={false}
+          percent={
+            100 -
+            Math.floor(
+              (((Math.floor(totalXP / XPLEVELUP) + 1) * XPLEVELUP - totalXP) /
+                XPLEVELUP) *
+                100
+            )
+          }
+        />
       </IconSetContainer>
+
       <HistoryContainer>
         <HistorySet>
           <HistoryHeader>TODAY</HistoryHeader>
