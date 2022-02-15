@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
   FaAngleDoubleUp,
+  FaArrowRight,
   FaBinoculars,
   FaBookOpen,
   FaChartBar,
@@ -185,6 +186,78 @@ const HistoryData = styled.div`
   justify-content: center;
 `;
 
+const LevelUp = styled.div`
+  position: fixed;
+  display: ${(props) => (props.visible ? "flex" : "none")};
+  margin: 0 auto;
+  left: 50%;
+  flex-direction: column;
+  top: 50%;
+  transform: translate(-50%, -100%);
+  width: 800px;
+  height: 500px;
+  border-radius: 5px;
+  background-color: rgba(10, 17, 25, 1);
+  align-items: center;
+  justify-content: center;
+  transition: 0.5s all;
+`;
+
+const LevelUpText = styled.div`
+  display: flex;
+  width: 100%;
+  color: #fefefe;
+  font-size: 6rem;
+  align-items: center;
+  justify-content: center;
+`;
+
+const LevelUpStat = styled.div`
+  display: flex;
+  width: 100%;
+  color: #fefefe;
+  font-size: 7rem;
+  align-items: center;
+  justify-content: center;
+`;
+
+const LevelUpStatBefore = styled.div`
+  display: flex;
+  width: 100%;
+  color: #fefefe;
+  font-size: 7rem;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const LevelUpStatIcon = styled.div`
+  display: flex;
+  width: 100%;
+  color: #fefefe;
+  font-size: 5rem;
+  align-items: center;
+  justify-content: center;
+`;
+const LevelUpStatAfter = styled.div`
+  display: flex;
+  width: 100%;
+  color: #fefefe;
+  flex-direction: column;
+  font-size: 7rem;
+  align-items: center;
+  justify-content: center;
+`;
+
+const LevelledUp = styled.div`
+  display: flex;
+  width: 100%;
+  color: #a6ff00;
+  font-size: 1rem;
+  align-items: center;
+  justify-content: center;
+`;
+
 export default function AllPageLeft({ allAchievements }) {
   const [gameInfo, setGameInfo] = useState({
     total_games: _STORAGE_READ(STORAGE_HEADER_TOTAL_GAMES) ?? 0,
@@ -232,16 +305,67 @@ export default function AllPageLeft({ allAchievements }) {
   const totalAchievements = getTotalAchievements(gameInfo);
   // const achivementCountForVariety = getColorFromPercentageVariety(gameInfo);
   const { totalXP } = getTotalXPForAchievements(gameInfo);
+  const [levelStats, setLevelStat] = useState({
+    showLevelUp: false,
+    oldLevel: "0",
+    newLevel: "0",
+  });
+
+  const storedLevel = +_STORAGE_READ("PLAYER_LEVEL") || 0;
+  const newLevel = Math.floor(totalXP / XPLEVELUP);
+  console.log("STORED ", storedLevel, "NEW LEVEL ", newLevel);
+  if (storedLevel < newLevel) {
+    setLevelStat((old) => ({
+      ...old,
+      showLevelUp: true,
+      oldLevel: _STORAGE_READ("PLAYER_LEVEL"),
+      newLevel: Math.floor(totalXP / XPLEVELUP),
+    }));
+    _STORAGE_WRITE("PLAYER_LEVEL", Math.floor(totalXP / XPLEVELUP));
+  } else {
+    console.log("NOT LESS");
+  }
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLevelStat((old) => ({
+        ...old,
+        showLevelUp: false,
+      }));
+    }, 10000);
+  }, [levelStats.showLevelUp]);
 
   return (
     <MainMenu>
+      {/* {levelStats.showLevelUp && (
+        <LevelUp visible={levelStats.showLevelUp}>
+          <LevelUpText>Level Up</LevelUpText>
+          <LevelUpStat>
+            <LevelUpStatBefore>{levelStats.oldLevel}</LevelUpStatBefore>
+            <LevelUpStatIcon>
+              <FaArrowRight />
+            </LevelUpStatIcon>
+            <LevelUpStatAfter>{levelStats.newLevel}</LevelUpStatAfter>
+          </LevelUpStat>
+        </LevelUp>
+      )} */}
       <Subheader>PROFILE</Subheader>
-      <IconSetContainer visible={!loading}>
+      <IconSetContainer visible={true}>
         <IconSetMedal color="#67c8eb">
           <CountMedal>
             <FaSteam />
           </CountMedal>
           <DataMedal>Level {Math.floor(totalXP / XPLEVELUP)}</DataMedal>
+        </IconSetMedal>
+        <IconSetMedal color="#c0c0c0">
+          <DataToXP>
+            <FaAngleDoubleUp style={{ marginRight: "0.2rem" }} />{" "}
+            {loading
+              ? 0
+              : (Math.floor(totalXP / XPLEVELUP) + 1) * XPLEVELUP -
+                totalXP}{" "}
+            XP
+          </DataToXP>
         </IconSetMedal>
         <Progress
           style={{ padding: "0rem 0.5rem" }}
@@ -255,12 +379,12 @@ export default function AllPageLeft({ allAchievements }) {
             )
           }
         />
-        <IconSetMedal color="#c0c0c0">
-          <DataToXP>
-            <FaAngleDoubleUp style={{ marginRight: "0.2rem" }} />{" "}
-            {(Math.floor(totalXP / XPLEVELUP) + 1) * XPLEVELUP - totalXP} XP
-          </DataToXP>
-        </IconSetMedal>
+        {levelStats.showLevelUp && (
+          <LevelledUp>
+            <FaAngleDoubleUp style={{ marginRight: "0.2rem" }} /> Levelled Up{" "}
+            <FaAngleDoubleUp style={{ marginLeft: "0.2rem" }} />
+          </LevelledUp>
+        )}
       </IconSetContainer>
 
       {/* <HistoryContainer>
