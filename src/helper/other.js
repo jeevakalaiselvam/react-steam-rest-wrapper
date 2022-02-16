@@ -257,3 +257,28 @@ export const getXPForAchievement = (percentage) => {
   } else {
   }
 };
+
+export const getAchievementsUnlockedAfterRefresh = (allAchievements) => {
+  const lastUpdateTime = +_STORAGE_READ("LAST_REFRESH_TIME") || 0;
+  const sortedAchievementsByRecent = allAchievements.sort((ach1, ach2) => {
+    return ach2.unlocked_time - ach1.unlocked_time;
+  });
+  const achievementsUnlockedAfterRefresh = sortedAchievementsByRecent.filter(
+    (achievement) => {
+      console.log(
+        +achievement.unlocked_time * 1000,
+        " > ",
+        +lastUpdateTime,
+        " = ",
+        +achievement.unlocked_time * 1000 > +lastUpdateTime
+      );
+      if (+achievement.unlocked_time * 1000 > +lastUpdateTime) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  );
+
+  return achievementsUnlockedAfterRefresh;
+};

@@ -12,7 +12,7 @@ const ContentContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   overflow: scroll;
-  scrollbar-width: thin;
+  scrollbar-width: none; /* "auto" or "thin" */
   align-items: center;
   flex-wrap: wrap;
   padding-bottom: 1rem;
@@ -28,6 +28,8 @@ const ContainerInner = styled.div`
   justify-self: flex-start;
   justify-content: center;
   overflow: scroll;
+  scrollbar-width: none; /* "auto" or "thin" */
+  scrollbar-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
   flex-wrap: wrap;
 `;
 

@@ -21,7 +21,7 @@ const MainContainer = styled.div`
   min-height: 100vh;
   justify-content: space-between;
   flex-direction: column;
-  scrollbar-width: thin;
+  scrollbar-width: none; /* "auto" or "thin" */
   align-items: flex-start;
   flex-wrap: wrap;
   padding-bottom: 1rem;
@@ -35,12 +35,16 @@ const ContentContainer = styled.div`
   width: ${(props) => (props.open ? "70%" : "100%")};
   min-height: 100vh;
   overflow: scroll;
+  scrollbar-width: none; /* "auto" or "thin" */
+  scrollbar-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
 `;
 
 const JournalContainer = styled.div`
   width: ${(props) => (props.open ? "30%" : "0%")};
   min-height: 100vh;
   overflow: scroll;
+  scrollbar-width: none; /* "auto" or "thin" */
+  scrollbar-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
 `;
 
 const ContainerInner = styled.div`

@@ -4,6 +4,8 @@ import styled from "styled-components";
 const AchievementContainer = styled.div`
   width: 100%;
   overflow: scroll;
+  scrollbar-width: none; /* "auto" or "thin" */
+  scrollbar-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
   display: flex;
   max-height: 100vh;
   display: flex;

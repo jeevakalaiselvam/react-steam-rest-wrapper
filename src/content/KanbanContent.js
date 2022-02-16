@@ -32,7 +32,7 @@ const JournalContainer = styled.div`
   width: ${(props) => (props.open ? "30%" : "0%")};
   min-height: 100vh;
   overflow: scroll;
-  scrollbar-width: thin; /* "auto" or "thin" */
+  scrollbar-width: none; /* "auto" or "thin" */
   scrollbar-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
 `;
 

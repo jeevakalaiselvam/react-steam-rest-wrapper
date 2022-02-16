@@ -7,6 +7,8 @@ const AchievementContainer = styled.div`
   overflow: scroll;
   display: flex;
   max-height: 100vh;
+  scrollbar-width: none; /* "auto" or "thin" */
+  scrollbar-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
   display: flex;
   flex-direction: column;
   align-items: flex-start;

@@ -36,6 +36,7 @@ import {
   STORAGE_HEADER_TOTAL_PERFECT_GAMES,
   _STORAGE_CHECK_ARRAY,
   _STORAGE_READ,
+  _STORAGE_WRITE,
 } from "../helper/storage";
 
 const Container = styled.div`
@@ -43,6 +44,8 @@ const Container = styled.div`
   display: flex;
   height: 100%;
   overflow: scroll;
+  scrollbar-width: none; /* "auto" or "thin" */
+  scrollbar-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
   position: relative;
   flex-direction: column;
   align-items: flex-start;
@@ -202,7 +205,12 @@ const TitleCount = styled.div`
 `;
 
 const JournalButton = styled.div`
-  width: 95%;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  cursor: pointer;
   background-color: #55aece;
   margin: 0.5rem;
   border-radius: 2px;
@@ -285,6 +293,7 @@ export default function GamePageRight(props) {
           ref={refreshTextRef}
           onClick={() => {
             console.log(refreshTextRef);
+            _STORAGE_WRITE("LAST_REFRESH_TIME", new Date().getTime());
             setRefreshing((old) => true);
             refreshDatabaseAndMoveToPage("/planner");
           }}

@@ -38,9 +38,11 @@ const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100vw;
+  scrollbar-width: none;
+  scrollbar-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
   max-height: 100vh;
   min-height: 100vh;
-  overflow: none;
+  overflow: scroll;
 `;
 
 export default function Planner() {

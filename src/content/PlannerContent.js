@@ -22,6 +22,7 @@ import {
 } from "../helper/games";
 import AchievementJournal from "../components/card/AchievementJournal";
 import AchievementPhase from "../components/card/AchievementPhase";
+import { getAchievementsUnlockedAfterRefresh } from "../helper/other";
 
 const MainContainer = styled.div`
   display: flex;
@@ -61,7 +62,7 @@ const JournalContainer = styled.div`
   max-height: 80vh;
   min-height: 80vh;
   flex-direction: row;
-  scrollbar-width: thin; /* "auto" or "thin" */
+  scrollbar-width: none; /* "auto" or "thin" */
 
   scrollbar-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
 `;
@@ -82,7 +83,7 @@ const JournalInnerContainer = styled.div`
   align-items: center;
   justify-content: center;
   padding: 1rem 0.25rem;
-  scrollbar-width: thin; /* "auto" or "thin" */
+  scrollbar-width: none; /* "auto" or "thin" */
 
   scrollbar-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
 `;
@@ -135,7 +136,7 @@ const JournalInput = styled.div`
     height: 100%;
     font-size: 1rem;
     flex-direction: row;
-    scrollbar-width: thin; /* "auto" or "thin" */
+    scrollbar-width: none; /* "auto" or "thin" */
 
     scrollbar-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
   }
@@ -209,7 +210,6 @@ const AchievementContainer = styled.div`
   height: 100vh;
   overflow: scroll;
   scrollbar-width: none;
-
   scrollbar-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
 `;
 
@@ -243,6 +243,58 @@ const SectionSearchInput = styled.div`
   }
 `;
 
+const RecentHistoryContainer = styled.div`
+  display: ${(props) => (props.visible ? "flex" : "none")};
+  top: 0;
+  z-index: 1000000000000;
+  left: 0;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(14, 22, 31, 0.8);
+`;
+
+const RecentHistory = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 40vw;
+  height: 80vh;
+`;
+
+const RecentHistoryTitle = styled.div`
+  display: flex;
+  width: 100%;
+  color: #55aece;
+  padding: 0.5rem 1rem;
+  border-width: 2px 2px 0px 2px;
+  border-color: rgba(7, 13, 17, 0);
+  border-style: solid;
+  font-size: 1.1rem;
+  align-items: center;
+  justify-content: center;
+`;
+
+const RecentHistoryContent = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: center;
+  scrollbar-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+  flex-direction: column;
+  flex: 1;
+  border-width: 0px 2px 2px 2px;
+  border-color: rgba(7, 13, 17, 0);
+  border-style: solid;
+  overflow: scroll;
+  justify-content: flex-start;
+  scrollbar-width: none; /* "auto" or "thin" */
+  scrollbar-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+`;
+
 export default function PlannerContent(props) {
   const achievements = props.achievements;
   // const filteredAchievements = filterAchievementsByType(
@@ -252,6 +304,11 @@ export default function PlannerContent(props) {
   const [filteredAchievements, setFilteredAchievements] = useState(
     props.achievements
   );
+
+  console.log("ALL ACHIEVEMENTS", filteredAchievements);
+  const recentlyUnlockedAfterRefresh =
+    getAchievementsUnlockedAfterRefresh(filteredAchievements);
+  console.log("RECENTLY UNLOCKED", recentlyUnlockedAfterRefresh);
 
   const [refresh, setRefresh] = useState(true);
   const [journalData, setJournalData] = useState("No Entry Found!");
@@ -548,8 +605,36 @@ export default function PlannerContent(props) {
     setphase4Achievements((old) => unlockedTodayAchievements);
   };
 
+  const [showHistory, setShowHistory] = useState(
+    recentlyUnlockedAfterRefresh.length !== 0
+  );
+
   return (
     <MainContainer>
+      <RecentHistoryContainer
+        onClick={() => {
+          setShowHistory((old) => false);
+        }}
+        visible={showHistory}
+      >
+        <RecentHistory>
+          <RecentHistoryTitle>Recently Unlocked</RecentHistoryTitle>
+          <RecentHistoryContent>
+            {recentlyUnlockedAfterRefresh.map((achievement) => {
+              return (
+                <AchievementPhase
+                  refreshViewWithoutFetch={refreshViewWithoutFetch}
+                  achievement={achievement}
+                  achievementSelected={achievementSelected}
+                  key={achievement.game_id + achievement.id}
+                  achievementSelectedHandler={achievementSelectedHandler}
+                  openJournal={props.openJournal}
+                />
+              );
+            })}
+          </RecentHistoryContent>
+        </RecentHistory>
+      </RecentHistoryContainer>
       <ContentContainer open={props.journalOpen}>
         <ContainerInner>
           <SectionContainer empty={false}>

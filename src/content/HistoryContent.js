@@ -15,7 +15,7 @@ const ContentContainer = styled.div`
   width: 100%;
   justify-content: flex-start;
   flex-direction: column;
-  scrollbar-width: thin;
+  scrollbar-width: none; /* "auto" or "thin" */
   align-items: flex-start;
   padding-bottom: 1rem;
 

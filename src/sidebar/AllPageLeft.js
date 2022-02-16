@@ -59,6 +59,8 @@ const MainMenu = styled.div`
   zindex: 10000;
   display: flex;
   height: 100vh;
+  scrollbar-width: none;
+  scrollbar-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
   overflow: scroll;
   flex-direction: column;
 `;
@@ -143,7 +145,12 @@ const MedalMilestones = styled.div`
 `;
 
 const JournalButton = styled.div`
-  width: 95%;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  cursor: pointer;
   background-color: #55aece;
   margin: 0.5rem;
   border-radius: 2px;

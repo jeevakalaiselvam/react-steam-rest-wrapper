@@ -9,4 +9,5 @@ export const ACHIEVEMENT_BRONZE = 75;
 export const ACHIEVEMENT_GREEN = 50;
 export const ACHIEVEMENT_PURPLE = 10;
 
-export const XPLEVELUP = 1000;
+export const XPLEVELUP = 100;
+export const XPLEVELUP2 = 1000;
