@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
+  FaAngleDoubleDown,
   FaAngleDoubleUp,
   FaArrowRight,
   FaBinoculars,
@@ -53,6 +54,7 @@ import {
   getXPSumForAchievements,
 } from "../helper/games";
 import { Progress } from "antd";
+import { Tag, Card } from "antd";
 
 const MainMenu = styled.div`
   width: 100%;
@@ -77,7 +79,7 @@ const IconSetContainer = styled.div`
   display: flex;
   flex-direction: column;
   opacity: ${(props) => (props.visible ? "1" : "0")};
-  padding: 0.5rem;
+  padding: 0rem 0.5rem;
   align-items: center;
   justify-content: center;
 `;
@@ -160,6 +162,22 @@ const JournalButton = styled.div`
   padding: 0.5rem;
   text-align: center;
   color: rgba(3, 3, 3, 1);
+`;
+
+const LevelProgress = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+const LevelItem = styled.div`
+  display: flex;
+  align-items: center;
+  color: #55aece;
+  flex-direction: column;
+  font-size: 1rem;
+  justify-content: center;
 `;
 
 const HistoryContainer = styled.div`
@@ -348,12 +366,19 @@ export default function AllPageLeft({ allAchievements }) {
             <LevelUpStatAfter>{levelStats.newLevel}</LevelUpStatAfter>
           </LevelUpStat>
         </LevelUp>
-      )} */}
+      )} */}{" "}
       <Subheader>PROFILE</Subheader>
       <IconSetContainer visible={true}>
+        <DataToXP style={{ padding: "0rem 1rem 0.5rem 1rem" }}>
+          NotRealLogan
+        </DataToXP>
         <IconSetMedal color="#67c8eb">
           <CountMedal>
-            <FaSteam />
+            <img
+              src="https://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/cf/cf358afb5ce7f6566ecdfae7ac6a6679b0147743_full.jpg"
+              width={"75px"}
+              height={"75px"}
+            />
           </CountMedal>
           <DataMedal>Level {Math.floor(totalXP / XPLEVELUP)}</DataMedal>
         </IconSetMedal>
@@ -388,7 +413,7 @@ export default function AllPageLeft({ allAchievements }) {
                   showLevelUp: false,
                 }));
                 _STORAGE_WRITE("PLAYER_LEVEL", Math.floor(totalXP / XPLEVELUP));
-              }, 1000);
+              }, 100);
             }}
           >
             <FaAngleDoubleUp style={{ marginRight: "0.2rem" }} /> Levelled Up{" "}
@@ -396,7 +421,6 @@ export default function AllPageLeft({ allAchievements }) {
           </LevelledUp>
         )}
       </IconSetContainer>
-
       {/* <HistoryContainer>
         <HistorySet>
           <HistoryHeader>TODAY</HistoryHeader>
@@ -413,6 +437,33 @@ export default function AllPageLeft({ allAchievements }) {
           <HistoryData>{count.weekCount} XP</HistoryData>
         </HistorySet>
       </HistoryContainer> */}
+      <LevelProgress>
+        <Subheader>PROGRESS TODAY </Subheader>
+        {new Array(Math.floor(count.todayCount / XPLEVELUP))
+          .fill(Math.floor(totalXP / XPLEVELUP))
+          .map((level, index) => {
+            return (
+              <LevelItem>
+                <Tag
+                  color="#55aece"
+                  style={{ color: "rgba(3,3,3,1)", fontSize: "0.9rem" }}
+                >
+                  {" "}
+                  Level {level + index - 1}
+                </Tag>
+                <FaAngleDoubleDown style={{ margin: "0.5rem" }} />
+              </LevelItem>
+            );
+          })}
+        <LevelItem>
+          <Tag
+            color="#55aece"
+            style={{ color: "rgba(3,3,3,1)", fontSize: "0.9rem" }}
+          >
+            Level {Math.floor(totalXP / XPLEVELUP)}
+          </Tag>
+        </LevelItem>
+      </LevelProgress>
       <Subheader>STATS </Subheader>
       {_STORAGE_READ(SELECTED_GAME) && (
         <JournalButton
@@ -509,7 +560,6 @@ export default function AllPageLeft({ allAchievements }) {
         }}
         selected={_STORAGE_READ(CURRENT_PAGE) === MILESTONE_PAGE_INDEX}
       />
-
       <MenuItemLink
         icon={<FaBinoculars />}
         title={"What's Next"}
@@ -539,7 +589,7 @@ export default function AllPageLeft({ allAchievements }) {
           window.location.href = `/${_STORAGE_READ(CURRENT_PAGE)}`;
         }}
         selected={_STORAGE_READ(CURRENT_PAGE) === SETTINGS_PAGE_INDEX}
-      />
+      />{" "}
     </MainMenu>
   );
 }
