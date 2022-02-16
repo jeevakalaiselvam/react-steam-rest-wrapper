@@ -613,6 +613,7 @@ export default function PlannerContent(props) {
     <MainContainer>
       <RecentHistoryContainer
         onClick={() => {
+          _STORAGE_WRITE("LAST_REFRESH_TIME", new Date().getTime());
           setShowHistory((old) => false);
         }}
         visible={showHistory}
