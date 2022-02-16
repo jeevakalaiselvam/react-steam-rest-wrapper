@@ -333,7 +333,7 @@ export default function AllPageLeft({ allAchievements }) {
     } else {
       console.log("NOT LESS");
     }
-  }, []);
+  }, [totalXP]);
 
   return (
     <MainMenu>
@@ -387,6 +387,7 @@ export default function AllPageLeft({ allAchievements }) {
                   ...old,
                   showLevelUp: false,
                 }));
+                _STORAGE_WRITE("PLAYER_LEVEL", Math.floor(totalXP / XPLEVELUP));
               }, 1000);
             }}
           >
