@@ -319,19 +319,21 @@ export default function AllPageLeft({ allAchievements }) {
     newLevel: "0",
   });
 
-  const storedLevel = +_STORAGE_READ("PLAYER_LEVEL") || 0;
-  const newLevel = Math.floor(totalXP / XPLEVELUP);
-  console.log("STORED ", storedLevel, "NEW LEVEL ", newLevel);
-  if (storedLevel < newLevel) {
-    setLevelStat((old) => ({
-      ...old,
-      showLevelUp: true,
-      oldLevel: _STORAGE_READ("PLAYER_LEVEL"),
-      newLevel: Math.floor(totalXP / XPLEVELUP),
-    }));
-  } else {
-    console.log("NOT LESS");
-  }
+  useEffect(() => {
+    const storedLevel = +_STORAGE_READ("PLAYER_LEVEL") || 0;
+    const newLevel = Math.floor(totalXP / XPLEVELUP);
+    console.log("STORED ", storedLevel, "NEW LEVEL ", newLevel);
+    if (storedLevel < newLevel) {
+      setLevelStat((old) => ({
+        ...old,
+        showLevelUp: true,
+        oldLevel: _STORAGE_READ("PLAYER_LEVEL"),
+        newLevel: Math.floor(totalXP / XPLEVELUP),
+      }));
+    } else {
+      console.log("NOT LESS");
+    }
+  }, []);
 
   return (
     <MainMenu>
