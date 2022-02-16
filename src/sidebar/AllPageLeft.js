@@ -329,7 +329,6 @@ export default function AllPageLeft({ allAchievements }) {
       oldLevel: _STORAGE_READ("PLAYER_LEVEL"),
       newLevel: Math.floor(totalXP / XPLEVELUP),
     }));
-    _STORAGE_WRITE("PLAYER_LEVEL", Math.floor(totalXP / XPLEVELUP));
   } else {
     console.log("NOT LESS");
   }
