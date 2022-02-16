@@ -328,19 +328,9 @@ export default function AllPageLeft({ allAchievements }) {
       oldLevel: _STORAGE_READ("PLAYER_LEVEL"),
       newLevel: Math.floor(totalXP / XPLEVELUP),
     }));
-    _STORAGE_WRITE("PLAYER_LEVEL", Math.floor(totalXP / XPLEVELUP));
   } else {
     console.log("NOT LESS");
   }
-
-  useEffect(() => {
-    setTimeout(() => {
-      setLevelStat((old) => ({
-        ...old,
-        showLevelUp: false,
-      }));
-    }, 10000);
-  }, [levelStats.showLevelUp]);
 
   return (
     <MainMenu>
@@ -387,7 +377,15 @@ export default function AllPageLeft({ allAchievements }) {
           }
         />
         {levelStats.showLevelUp && (
-          <LevelledUp>
+          <LevelledUp
+            onClick={() => {
+              setLevelStat((old) => ({
+                ...old,
+                showLevelUp: false,
+              }));
+              _STORAGE_WRITE("PLAYER_LEVEL", Math.floor(totalXP / XPLEVELUP));
+            }}
+          >
             <FaAngleDoubleUp style={{ marginRight: "0.2rem" }} /> Levelled Up{" "}
             <FaAngleDoubleUp style={{ marginLeft: "0.2rem" }} />
           </LevelledUp>
