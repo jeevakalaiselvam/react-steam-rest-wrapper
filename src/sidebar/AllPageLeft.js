@@ -259,6 +259,7 @@ const LevelUpStatAfter = styled.div`
 const LevelledUp = styled.div`
   display: flex;
   width: 100%;
+  cursor: pointer;
   color: #a6ff00;
   font-size: 1rem;
   align-items: center;
@@ -328,6 +329,7 @@ export default function AllPageLeft({ allAchievements }) {
       oldLevel: _STORAGE_READ("PLAYER_LEVEL"),
       newLevel: Math.floor(totalXP / XPLEVELUP),
     }));
+    _STORAGE_WRITE("PLAYER_LEVEL", Math.floor(totalXP / XPLEVELUP));
   } else {
     console.log("NOT LESS");
   }
@@ -379,11 +381,12 @@ export default function AllPageLeft({ allAchievements }) {
         {levelStats.showLevelUp && (
           <LevelledUp
             onClick={() => {
-              setLevelStat((old) => ({
-                ...old,
-                showLevelUp: false,
-              }));
-              _STORAGE_WRITE("PLAYER_LEVEL", Math.floor(totalXP / XPLEVELUP));
+              setTimeout(() => {
+                setLevelStat((old) => ({
+                  ...old,
+                  showLevelUp: false,
+                }));
+              }, 1000);
             }}
           >
             <FaAngleDoubleUp style={{ marginRight: "0.2rem" }} /> Levelled Up{" "}
