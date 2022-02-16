@@ -107,10 +107,8 @@ const DataMedal = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  color: ${(props) => (props.color ? props.color : "#FEFEFE")};
   text-align: center;
-  font-size: 1.2rem;
-  font-weight: bold;
+  font-size: 1.3rem;
   justify-content: center;
 `;
 
@@ -355,8 +353,6 @@ export default function AllPageLeft({ allAchievements }) {
     }
   }, [totalXP]);
 
-  const currentLevel = Math.floor(totalXP / XPLEVELUP);
-
   return (
     <MainMenu>
       {/* {levelStats.showLevelUp && (
@@ -384,17 +380,16 @@ export default function AllPageLeft({ allAchievements }) {
               height={"75px"}
             />
           </CountMedal>
-          <DataMedal color={"#fecc09"}>
-            Prestige {Math.floor(currentLevel / 100)}
-          </DataMedal>
-          <DataMedal>
-            Level {currentLevel - Math.floor(currentLevel / 100) * 100}
-          </DataMedal>
+          <DataMedal>Level {Math.floor(totalXP / XPLEVELUP)}</DataMedal>
         </IconSetMedal>
         <IconSetMedal color="#c0c0c0">
           <DataToXP>
             <FaAngleDoubleUp style={{ marginRight: "0.2rem" }} />{" "}
-            {loading ? 0 : (currentLevel + 1) * XPLEVELUP - totalXP} XP
+            {loading
+              ? 0
+              : (Math.floor(totalXP / XPLEVELUP) + 1) * XPLEVELUP -
+                totalXP}{" "}
+            XP
           </DataToXP>
         </IconSetMedal>
         <Progress
@@ -403,7 +398,9 @@ export default function AllPageLeft({ allAchievements }) {
           percent={
             100 -
             Math.floor(
-              (((currentLevel + 1) * XPLEVELUP - totalXP) / XPLEVELUP) * 100
+              (((Math.floor(totalXP / XPLEVELUP) + 1) * XPLEVELUP - totalXP) /
+                XPLEVELUP) *
+                100
             )
           }
         />
@@ -415,7 +412,7 @@ export default function AllPageLeft({ allAchievements }) {
                   ...old,
                   showLevelUp: false,
                 }));
-                _STORAGE_WRITE("PLAYER_LEVEL", currentLevel);
+                _STORAGE_WRITE("PLAYER_LEVEL", Math.floor(totalXP / XPLEVELUP));
               }, 100);
             }}
           >
@@ -443,7 +440,7 @@ export default function AllPageLeft({ allAchievements }) {
       <LevelProgress>
         <Subheader>PROGRESS TODAY </Subheader>
         {new Array(Math.floor(count.todayCount / XPLEVELUP))
-          .fill(currentLevel)
+          .fill(Math.floor(totalXP / XPLEVELUP))
           .map((level, index) => {
             return (
               <LevelItem>
@@ -452,11 +449,7 @@ export default function AllPageLeft({ allAchievements }) {
                   style={{ color: "rgba(3,3,3,1)", fontSize: "0.9rem" }}
                 >
                   {" "}
-                  Level{" "}
-                  {currentLevel -
-                    Math.floor(currentLevel / 100) * 100 +
-                    index -
-                    1}
+                  Level {level + index - 1}
                 </Tag>
                 <FaAngleDoubleDown style={{ margin: "0.5rem" }} />
               </LevelItem>
@@ -467,7 +460,7 @@ export default function AllPageLeft({ allAchievements }) {
             color="#55aece"
             style={{ color: "rgba(3,3,3,1)", fontSize: "0.9rem" }}
           >
-            Level {currentLevel - Math.floor(currentLevel / 100) * 100}
+            Level {Math.floor(totalXP / XPLEVELUP)}
           </Tag>
         </LevelItem>
       </LevelProgress>
