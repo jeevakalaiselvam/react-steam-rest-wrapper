@@ -270,14 +270,14 @@ export const refreshDatabaseAndMoveToPage = async (path) => {
       if (_STORAGE_READ(SELECTED_GAME)) {
         setTimeout(() => {
           window.location.href = path;
-        }, 3000);
+        }, 2500);
       } else {
         setTimeout(() => {
           window.location.href = "/games";
-        }, 3000);
+        }, 2500);
       }
     }
-  }, 2000);
+  }, 1500);
 };
 
 export const getXPSumForAchievements = (achievements) => {
