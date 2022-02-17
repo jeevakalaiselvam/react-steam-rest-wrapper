@@ -5,6 +5,7 @@ import AllPageLeft from "../sidebar/AllPageLeft";
 import { useState } from "react";
 import {
   fetchAchievementsForGame,
+  fetchGames,
   refreshDatabaseInBackend,
 } from "../action/games";
 import { GameContext } from "../context/GameContext";
@@ -203,11 +204,27 @@ export default function Planner() {
     setJournalOpen((old) => true);
   };
 
+  const [allAchievements, setAllAchievements] = useState([]);
+  useEffect(() => {
+    const getAllGames = async (sortOrder, viewOrder, selectOrder) => {
+      const games = await fetchGames(sortOrder, viewOrder, 1, selectOrder);
+      let combinedAchievements = [];
+      games.length &&
+        games.forEach((game) => {
+          game.all_achievements.forEach((achievement) => {
+            combinedAchievements = [...combinedAchievements, achievement];
+          });
+        });
+      setAllAchievements((old) => combinedAchievements);
+    };
+    getAllGames(0, 0, 0);
+  }, []);
+
   return (
     <PageContainer>
       <HeaderGameProgress achievements={achievements} />
       <Page
-        leftSidebar={<AllPageLeft allAchievements={achievements} />}
+        leftSidebar={<AllPageLeft allAchievements={allAchievements} />}
         rightSidebar={
           <GamePageRight
             filterHandler={filterHandler}
