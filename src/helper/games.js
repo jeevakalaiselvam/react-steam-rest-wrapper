@@ -1,4 +1,4 @@
-import { refreshDatabaseInBackend } from "../action/games";
+import { awakeServer, refreshDatabaseInBackend } from "../action/games";
 import {
   ALL,
   COLLECTIBLE,
@@ -262,19 +262,22 @@ export const getCountForAchievements = (achievements) => {
 
 //Refresh all games
 export const refreshDatabaseAndMoveToPage = async (path) => {
-  console.log("Refreshing Database");
-  const response = await refreshDatabaseInBackend();
-  if (response) {
-    if (_STORAGE_READ(SELECTED_GAME)) {
-      setTimeout(() => {
-        window.location.href = path;
-      }, 3000);
-    } else {
-      setTimeout(() => {
-        window.location.href = "/games";
-      }, 3000);
+  awakeServer();
+  setTimeout(async () => {
+    console.log("Refreshing Database");
+    const response = await refreshDatabaseInBackend();
+    if (response) {
+      if (_STORAGE_READ(SELECTED_GAME)) {
+        setTimeout(() => {
+          window.location.href = path;
+        }, 3000);
+      } else {
+        setTimeout(() => {
+          window.location.href = "/games";
+        }, 3000);
+      }
     }
-  }
+  }, 2000);
 };
 
 export const getXPSumForAchievements = (achievements) => {
