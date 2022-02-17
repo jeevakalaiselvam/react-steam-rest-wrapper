@@ -438,7 +438,7 @@ export default function AllPageLeft({ allAchievements }) {
         </HistorySet>
       </HistoryContainer> */}
       <LevelProgress>
-        <Subheader>PROGRESS TODAY </Subheader>
+        <Subheader>TODAY </Subheader>
         {/* {new Array(Math.floor(count.todayCount / XPLEVELUP))
           .fill(Math.floor(totalXP / XPLEVELUP))
           .map((level, index) => {
@@ -460,8 +460,8 @@ export default function AllPageLeft({ allAchievements }) {
             color="#55aece"
             style={{
               color: "rgba(3,3,3,1)",
-              fontSize: "0.8rem",
-              padding: "0.25rem 0.5rem",
+              fontSize: "0.9rem",
+              padding: "0.25rem 1rem",
             }}
           >
             {Math.floor(count.todayCount)} XP
