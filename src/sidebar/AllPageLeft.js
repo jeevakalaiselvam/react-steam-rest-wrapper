@@ -460,8 +460,8 @@ export default function AllPageLeft({ allAchievements }) {
             color="#55aece"
             style={{
               color: "rgba(3,3,3,1)",
-              fontSize: "1rem",
-              padding: "0.25rem",
+              fontSize: "0.8rem",
+              padding: "0.25rem 0.5rem",
             }}
           >
             {Math.floor(count.todayCount)} XP
