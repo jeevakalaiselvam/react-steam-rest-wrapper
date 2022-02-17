@@ -439,7 +439,7 @@ export default function AllPageLeft({ allAchievements }) {
       </HistoryContainer> */}
       <LevelProgress>
         <Subheader>PROGRESS TODAY </Subheader>
-        {/* {new Array(Math.floor(count.todayCount / XPLEVELUP))
+        {new Array(Math.floor(count.todayCount / XPLEVELUP))
           .fill(Math.floor(totalXP / XPLEVELUP))
           .map((level, index) => {
             return (
@@ -454,17 +454,13 @@ export default function AllPageLeft({ allAchievements }) {
                 <FaAngleDoubleDown style={{ margin: "0.5rem" }} />
               </LevelItem>
             );
-          })} */}
+          })}
         <LevelItem>
           <Tag
             color="#55aece"
-            style={{
-              color: "rgba(3,3,3,1)",
-              fontSize: "1.3rem",
-              padding: "0.25rem",
-            }}
+            style={{ color: "rgba(3,3,3,1)", fontSize: "0.9rem" }}
           >
-            {Math.floor(count.todayCount)} XP
+            Level {Math.floor(totalXP / XPLEVELUP)}
           </Tag>
         </LevelItem>
       </LevelProgress>
