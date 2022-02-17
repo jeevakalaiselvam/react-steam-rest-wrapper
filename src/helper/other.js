@@ -235,23 +235,23 @@ export const getXPForAchievement = (percentage) => {
   } else if (percent > 1 && percent <= 5) {
     return "75";
   } else if (percent > 5 && percent <= 10) {
-    return "50";
+    return "75";
   } else if (percent > 10 && percent <= 20) {
-    return "40";
+    return "50";
   } else if (percent > 20 && percent <= 30) {
-    return "40";
+    return "50";
   } else if (percent > 30 && percent <= 40) {
-    return "30";
+    return "25";
   } else if (percent > 40 && percent <= 50) {
-    return "30";
+    return "25";
   } else if (percent > 50 && percent <= 60) {
-    return "20";
+    return "25";
   } else if (percent > 60 && percent <= 70) {
-    return "20";
+    return "10";
   } else if (percent > 70 && percent <= 80) {
     return "10";
   } else if (percent > 80 && percent <= 90) {
-    return "10";
+    return "5";
   } else if (percent > 90 && percent <= 100) {
     return "5";
   } else {
