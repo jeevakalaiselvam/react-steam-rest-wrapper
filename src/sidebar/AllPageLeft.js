@@ -375,9 +375,9 @@ export default function AllPageLeft({ allAchievements }) {
         <IconSetMedal color="#67c8eb">
           <CountMedal>
             <img
-              src="https://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/cf/cf358afb5ce7f6566ecdfae7ac6a6679b0147743_full.jpg"
-              width={"75px"}
-              height={"75px"}
+              src="https://cdn.akamai.steamstatic.com/steamcommunity/public/images/avatars/99/9956539609766b550b2c9b67c0351e0e663a8c5f_full.jpg"
+              width={"50px"}
+              height={"50px"}
             />
           </CountMedal>
           <DataMedal>Level {Math.floor(totalXP / XPLEVELUP)}</DataMedal>
