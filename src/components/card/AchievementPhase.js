@@ -14,6 +14,7 @@ import {
 } from "react-icons/fa";
 import styled from "styled-components";
 import {
+  ALL,
   COLLECTIBLE,
   GRIND,
   HARD,
@@ -358,8 +359,13 @@ export default function AchievementPhase(props) {
             >
               <FaCheckDouble
                 onClick={(e) => {
-                  _STORAGE_WRITE(`${game_id}_${id}`, UNMISSABLE);
-                  setAchievementType((old) => UNMISSABLE);
+                  if (_STORAGE_READ(`${game_id}_${id}`) === UNMISSABLE) {
+                    _STORAGE_WRITE(`${game_id}_${id}`, "");
+                    setAchievementType((old) => "");
+                  } else {
+                    _STORAGE_WRITE(`${game_id}_${id}`, UNMISSABLE);
+                    setAchievementType((old) => UNMISSABLE);
+                  }
                   props.refreshViewWithoutFetch();
                   e.stopPropagation();
                 }}
@@ -372,8 +378,13 @@ export default function AchievementPhase(props) {
             >
               <FaSkull
                 onClick={(e) => {
-                  _STORAGE_WRITE(`${game_id}_${id}`, MISSABLE);
-                  setAchievementType((old) => MISSABLE);
+                  if (_STORAGE_READ(`${game_id}_${id}`) === MISSABLE) {
+                    _STORAGE_WRITE(`${game_id}_${id}`, "");
+                    setAchievementType((old) => "");
+                  } else {
+                    _STORAGE_WRITE(`${game_id}_${id}`, MISSABLE);
+                    setAchievementType((old) => MISSABLE);
+                  }
                   props.refreshViewWithoutFetch();
                   e.stopPropagation();
                 }}
@@ -386,8 +397,13 @@ export default function AchievementPhase(props) {
             >
               <FaWifi
                 onClick={(e) => {
-                  _STORAGE_WRITE(`${game_id}_${id}`, MULTIPLAYER);
-                  setAchievementType((old) => MULTIPLAYER);
+                  if (_STORAGE_READ(`${game_id}_${id}`) === MULTIPLAYER) {
+                    _STORAGE_WRITE(`${game_id}_${id}`, "");
+                    setAchievementType((old) => "");
+                  } else {
+                    _STORAGE_WRITE(`${game_id}_${id}`, MULTIPLAYER);
+                    setAchievementType((old) => MULTIPLAYER);
+                  }
                   props.refreshViewWithoutFetch();
                   e.stopPropagation();
                 }}
@@ -400,8 +416,13 @@ export default function AchievementPhase(props) {
             <AchivementTypeData active={true} highlight={false}>
               <FaCheckDouble
                 onClick={(e) => {
-                  _STORAGE_WRITE(`${game_id}_${id}`, UNMISSABLE);
-                  setAchievementType((old) => UNMISSABLE);
+                  if (_STORAGE_READ(`${game_id}_${id}`) === UNMISSABLE) {
+                    _STORAGE_WRITE(`${game_id}_${id}`, "");
+                    setAchievementType((old) => "");
+                  } else {
+                    _STORAGE_WRITE(`${game_id}_${id}`, UNMISSABLE);
+                    setAchievementType((old) => UNMISSABLE);
+                  }
                   props.refreshViewWithoutFetch();
                   e.stopPropagation();
                 }}
@@ -410,8 +431,13 @@ export default function AchievementPhase(props) {
             <AchivementTypeData active={true} highlight={false}>
               <FaSkull
                 onClick={(e) => {
-                  _STORAGE_WRITE(`${game_id}_${id}`, MISSABLE);
-                  setAchievementType((old) => MISSABLE);
+                  if (_STORAGE_READ(`${game_id}_${id}`) === MISSABLE) {
+                    _STORAGE_WRITE(`${game_id}_${id}`, "");
+                    setAchievementType((old) => "");
+                  } else {
+                    _STORAGE_WRITE(`${game_id}_${id}`, MISSABLE);
+                    setAchievementType((old) => MISSABLE);
+                  }
                   props.refreshViewWithoutFetch();
                   e.stopPropagation();
                 }}
@@ -420,8 +446,13 @@ export default function AchievementPhase(props) {
             <AchivementTypeData active={true} highlight={false}>
               <FaWifi
                 onClick={(e) => {
-                  _STORAGE_WRITE(`${game_id}_${id}`, MULTIPLAYER);
-                  setAchievementType((old) => MULTIPLAYER);
+                  if (_STORAGE_READ(`${game_id}_${id}`) === MULTIPLAYER) {
+                    _STORAGE_WRITE(`${game_id}_${id}`, "");
+                    setAchievementType((old) => "");
+                  } else {
+                    _STORAGE_WRITE(`${game_id}_${id}`, MULTIPLAYER);
+                    setAchievementType((old) => MULTIPLAYER);
+                  }
                   props.refreshViewWithoutFetch();
                   e.stopPropagation();
                 }}
