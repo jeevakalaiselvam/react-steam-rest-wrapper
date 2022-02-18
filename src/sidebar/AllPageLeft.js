@@ -453,7 +453,7 @@ export default function AllPageLeft({ allAchievements }) {
         </HistorySet>
       </HistoryContainer> */}
       <Subheader>TODAY </Subheader>
-      <DataToXP>
+      <DataToXP style={{ color: "#b666d2" }}>
         <FaPlusCircle style={{ marginRight: "0.2rem" }} /> {count.todayCount} XP
       </DataToXP>
       <LevelProgress>
