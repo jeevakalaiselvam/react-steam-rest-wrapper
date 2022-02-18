@@ -51,15 +51,17 @@ const CardContainer = styled.div`
   border-radius: 4px;
   margin: 4px;
   padding: 0.5rem 1rem;
+  height: 120px;
   padding-bottom: 3rem;
   cursor: pointer;
   border: 1px solid #fefefe00;
+  opacity: ${(props) => (!props.completed ? "1" : "0.3")};
 
   &:hover {
     border: 1px solid #00000044;
   }
 
-  width: 100%;
+  width: ${(props) => (props.width ? props.width : "100%")};
 `;
 
 const PhaseIcon = styled.div`
@@ -221,7 +223,7 @@ const AchivementPhase = styled.div`
   padding: 0.5rem;
   left: 0;
   margin-top: 1rem;
-  display: flex;
+  display: ${(props) => props.showPhases || "none"};
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -299,6 +301,8 @@ export default function AchievementPhase(props) {
 
   return (
     <CardContainer
+      completed={unlocked}
+      width={props.width}
       descriptionLength={description?.length || 0}
       nameLength={name?.length || 0}
       onClick={() => {
@@ -427,7 +431,7 @@ export default function AchievementPhase(props) {
         )}
       </AchivementType>
 
-      <AchivementPhase>
+      <AchivementPhase showPhases={props.showPhases}>
         {achievementPhase !== NONE && (
           <>
             <AchivementPhaseData active={true} highlight={false}>

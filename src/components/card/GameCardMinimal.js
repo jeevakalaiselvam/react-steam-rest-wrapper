@@ -295,7 +295,7 @@ export default function GameCardMinimal(props) {
           SELECTED_GAME_COMPLETED,
           props.game.completed_achievements_count
         );
-        window.location.href = "/planner";
+        window.location.href = "/ongoing";
       }}
     >
       <InnerContainer>

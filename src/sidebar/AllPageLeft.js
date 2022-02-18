@@ -6,8 +6,15 @@ import {
   FaBinoculars,
   FaBookOpen,
   FaChartBar,
+  FaCircle,
   FaGamepad,
+  FaGripHorizontal,
+  FaHandPaper,
+  FaLayerGroup,
+  FaMap,
   FaMedal,
+  FaPlus,
+  FaPlusCircle,
   FaRandom,
   FaSlidersH,
   FaSortAlphaUp,
@@ -445,15 +452,10 @@ export default function AllPageLeft({ allAchievements }) {
           <HistoryData>{count.weekCount} XP</HistoryData>
         </HistorySet>
       </HistoryContainer> */}
-      {/* <Subheader>XP </Subheader>
-      <LevelItem>
-        <Tag
-          color="#55aece"
-          style={{ color: "rgba(3,3,3,1)", fontSize: "0.9rem" }}
-        >
-          {Math.floor(count.todayCount)} XP
-        </Tag>
-      </LevelItem> */}
+      <Subheader>TODAY </Subheader>
+      <DataToXP>
+        <FaPlusCircle style={{ marginRight: "0.2rem" }} /> {count.todayCount} XP
+      </DataToXP>
       <LevelProgress>
         <Subheader>PROGRESS </Subheader>
         <LevelItem>
@@ -496,7 +498,17 @@ export default function AllPageLeft({ allAchievements }) {
       )}
       <Subheader>SELECT CATEGORY</Subheader>
       <MenuItemLink
-        icon={<FaGamepad />}
+        icon={<FaLayerGroup />}
+        title={"Ongoing"}
+        to={"/currentGame"}
+        navItemClicked={() => {
+          _STORAGE_WRITE(CURRENT_PAGE, CURRENT_GAME_PAGE_INDEX);
+          window.location.href = `/${_STORAGE_READ(CURRENT_PAGE)}`;
+        }}
+        selected={_STORAGE_READ(CURRENT_PAGE) === CURRENT_GAME_PAGE_INDEX}
+      />
+      <MenuItemLink
+        icon={<FaGripHorizontal />}
         title={"Planner"}
         to={"/planner"}
         navItemClicked={() => {
@@ -506,7 +518,7 @@ export default function AllPageLeft({ allAchievements }) {
         selected={_STORAGE_READ(CURRENT_PAGE) === PLANNER_INDEX}
       />
       <MenuItemLink
-        icon={<FaGamepad />}
+        icon={<FaHandPaper />}
         title={"Kanban"}
         to={"/kanban"}
         navItemClicked={() => {
@@ -514,16 +526,6 @@ export default function AllPageLeft({ allAchievements }) {
           window.location.href = `/${_STORAGE_READ(CURRENT_PAGE)}`;
         }}
         selected={_STORAGE_READ(CURRENT_PAGE) === KANBAN_INDEX}
-      />
-      <MenuItemLink
-        icon={<FaGamepad />}
-        title={"Ongoing"}
-        to={"/currentGame"}
-        navItemClicked={() => {
-          _STORAGE_WRITE(CURRENT_PAGE, CURRENT_GAME_PAGE_INDEX);
-          window.location.href = `/${_STORAGE_READ(CURRENT_PAGE)}`;
-        }}
-        selected={_STORAGE_READ(CURRENT_PAGE) === CURRENT_GAME_PAGE_INDEX}
       />
       <MenuItemLink
         icon={<FaGamepad />}

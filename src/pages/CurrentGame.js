@@ -5,6 +5,7 @@ import AllPageLeft from "../sidebar/AllPageLeft";
 import { useState } from "react";
 import {
   fetchAchievementsForGame,
+  fetchGames,
   refreshDatabaseInBackend,
 } from "../action/games";
 import { GameContext } from "../context/GameContext";
@@ -13,12 +14,13 @@ import {
   ACHIEVEMENTGAMEPAGE_SELECT,
   ACHIEVEMENTGAMEPAGE_SORT,
   ACHIEVEMENTGAMEPAGE_VIEW,
-  CURRENT_GAME_PAGE_INDEX,
   CURRENT_PAGE,
   GAMEPAGE_HEADER_COMPLETED,
   GAMEPAGE_HEADER_REMAINING,
   GAMEPAGE_HEADER_TOTAL,
+  KANBAN_INDEX,
   PAGINATION_TOTAL_COUNT,
+  CURRENT_GAME_PAGE_INDEX,
   SELECTED_GAME,
   _STORAGE_CHECK_ARRAY,
   _STORAGE_READ,
@@ -29,12 +31,19 @@ import GameContent from "../content/GameContent";
 import GamePageRight from "../sidebar/GamePageRight";
 import HeaderGameProgress from "../components/core/HeaderGameProgress";
 import { LEFTSIDEBAR_WIDTH, RIGHTSIDEBAR_WIDTH } from "../constants/dimensions";
+import KanbanContent from "../content/KanbanContent";
+import PlannerContent from "../content/PlannerContent";
+import CurrentGameContent from "../content/CurrentGameContent";
 
 const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100vw;
+  scrollbar-width: none;
+  scrollbar-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
   max-height: 100vh;
+  min-height: 100vh;
+  overflow: scroll;
 `;
 
 export default function CurrentGame() {
@@ -61,6 +70,7 @@ export default function CurrentGame() {
     setNavRightOpen((navState) => !navState);
   };
 
+  //When any criteria changes
   useEffect(() => {
     const getAllAchievements = async (sortOrder, viewOrder) => {
       const achievementsResponse = await fetchAchievementsForGame(
@@ -89,6 +99,36 @@ export default function CurrentGame() {
     getAllAchievements(sortIndex, viewIndex, selectIndex);
     _STORAGE_WRITE(CURRENT_PAGE, CURRENT_GAME_PAGE_INDEX);
   }, [sortIndex, viewIndex, achievementsPage, selectIndex]);
+
+  //Initial Loading
+  useEffect(() => {
+    const getAllAchievements = async (sortOrder, viewOrder) => {
+      const achievementsResponse = await fetchAchievementsForGame(
+        sortOrder,
+        viewOrder,
+        achievementsPage,
+        selectIndex,
+        _STORAGE_READ(SELECTED_GAME)
+      );
+
+      _STORAGE_WRITE(GAMEPAGE_HEADER_TOTAL, achievementsResponse.total);
+      _STORAGE_WRITE(GAMEPAGE_HEADER_COMPLETED, achievementsResponse.completed);
+      _STORAGE_WRITE(GAMEPAGE_HEADER_REMAINING, achievementsResponse.remaining);
+      if (selectIndex === 3) {
+        const pinnedAchievements = getPinnedAchievements(
+          achievementsResponse.achievements
+        );
+        setAchievements((old) => pinnedAchievements);
+      } else {
+        setAchievements((old) => achievementsResponse.achievements);
+      }
+
+      setLoading((old) => false);
+    };
+    setLoading((old) => true);
+    getAllAchievements(sortIndex, viewIndex, selectIndex);
+    _STORAGE_WRITE(CURRENT_PAGE, CURRENT_GAME_PAGE_INDEX);
+  }, []);
 
   const sortHandler = (sortOption) => {
     _STORAGE_WRITE(ACHIEVEMENTGAMEPAGE_SORT, sortOption);
@@ -157,14 +197,34 @@ export default function CurrentGame() {
   };
 
   const closeJournal = () => {
-    setJournalOpen((old) => !old);
+    setJournalOpen((old) => false);
   };
+
+  const openJournal = () => {
+    setJournalOpen((old) => true);
+  };
+
+  const [allAchievements, setAllAchievements] = useState([]);
+  useEffect(() => {
+    const getAllGames = async (sortOrder, viewOrder, selectOrder) => {
+      const games = await fetchGames(sortOrder, viewOrder, 1, selectOrder);
+      let combinedAchievements = [];
+      games.length &&
+        games.forEach((game) => {
+          game.all_achievements.forEach((achievement) => {
+            combinedAchievements = [...combinedAchievements, achievement];
+          });
+        });
+      setAllAchievements((old) => combinedAchievements);
+    };
+    getAllGames(0, 0, 0);
+  }, []);
 
   return (
     <PageContainer>
       <HeaderGameProgress achievements={achievements} />
       <Page
-        leftSidebar={<AllPageLeft />}
+        leftSidebar={<AllPageLeft allAchievements={allAchievements} />}
         rightSidebar={
           <GamePageRight
             filterHandler={filterHandler}
@@ -176,12 +236,14 @@ export default function CurrentGame() {
             selectIndex={selectIndex}
             filterIndex={filterIndex}
             achievements={achievements}
-            closeJournal={closeJournal}
             journalOpen={journalOpen}
+            closeJournal={closeJournal}
+            openJournal={openJournal}
+            showRefresh={true}
           />
         }
         content={
-          <GameContent
+          <CurrentGameContent
             achievements={achievements}
             viewType={viewIndex}
             page={achievementsPage}
@@ -189,6 +251,8 @@ export default function CurrentGame() {
             moveToPageRight={moveToPageRightHandler}
             moveToPageLeft={moveToPageLeftHandler}
             journalOpen={journalOpen}
+            closeJournal={closeJournal}
+            openJournal={openJournal}
           />
         }
         leftSidebarWidth={LEFTSIDEBAR_WIDTH}

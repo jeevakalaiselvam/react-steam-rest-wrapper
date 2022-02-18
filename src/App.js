@@ -36,7 +36,7 @@ export default function App() {
             <Route exact path="/kanban">
               <Kanban />
             </Route>
-            <Route exact path="/currentGame">
+            <Route exact path="/ongoing">
               <CurrentGame />
             </Route>
             <Route exact path="/games">
