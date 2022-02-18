@@ -167,7 +167,11 @@ const JournalButton = styled.div`
 const LevelProgress = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  max-height: 300px;
+  scrollbar-width: none;
+  scrollbar-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+  overflow: scroll;
+  justify-content: flex-start;
   flex-direction: column;
 `;
 
@@ -353,6 +357,10 @@ export default function AllPageLeft({ allAchievements }) {
     }
   }, [totalXP]);
 
+  const levelArray = new Array(Math.floor(count.todayCount / XPLEVELUP)).fill(
+    Math.floor(totalXP / XPLEVELUP)
+  );
+
   return (
     <MainMenu>
       {/* {levelStats.showLevelUp && (
@@ -437,24 +445,17 @@ export default function AllPageLeft({ allAchievements }) {
           <HistoryData>{count.weekCount} XP</HistoryData>
         </HistorySet>
       </HistoryContainer> */}
+      {/* <Subheader>XP </Subheader>
+      <LevelItem>
+        <Tag
+          color="#55aece"
+          style={{ color: "rgba(3,3,3,1)", fontSize: "0.9rem" }}
+        >
+          {Math.floor(count.todayCount)} XP
+        </Tag>
+      </LevelItem> */}
       <LevelProgress>
-        <Subheader>TODAY </Subheader>
-        {new Array(Math.floor(count.todayCount / XPLEVELUP))
-          .fill(Math.floor(totalXP / XPLEVELUP))
-          .map((level, index) => {
-            return (
-              <LevelItem>
-                <Tag
-                  color="#55aece"
-                  style={{ color: "rgba(3,3,3,1)", fontSize: "0.9rem" }}
-                >
-                  {" "}
-                  Level {level + index - 1}
-                </Tag>
-                <FaAngleDoubleDown style={{ margin: "0.5rem" }} />
-              </LevelItem>
-            );
-          })}
+        <Subheader>PROGRESS </Subheader>
         <LevelItem>
           <Tag
             color="#55aece"
@@ -463,6 +464,20 @@ export default function AllPageLeft({ allAchievements }) {
             Level {Math.floor(totalXP / XPLEVELUP)}
           </Tag>
         </LevelItem>
+        {levelArray.map((level, index) => {
+          return (
+            <LevelItem>
+              <FaAngleDoubleUp style={{ margin: "0.5rem" }} />
+              <Tag
+                color="#55aece"
+                style={{ color: "rgba(3,3,3,1)", fontSize: "0.9rem" }}
+              >
+                {" "}
+                Level {Math.floor(totalXP / XPLEVELUP) - index - 1}
+              </Tag>
+            </LevelItem>
+          );
+        })}
       </LevelProgress>
       <Subheader>STATS </Subheader>
       {_STORAGE_READ(SELECTED_GAME) && (

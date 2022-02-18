@@ -254,7 +254,7 @@ const RecentHistoryContainer = styled.div`
   flex-direction: column;
   height: 100vh;
   width: 100vw;
-  background: rgba(14, 22, 31, 0.8);
+  background: rgba(14, 22, 31, 0.85);
 `;
 
 const RecentHistory = styled.div`

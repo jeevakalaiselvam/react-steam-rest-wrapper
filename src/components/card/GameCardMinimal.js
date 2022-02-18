@@ -317,12 +317,12 @@ export default function GameCardMinimal(props) {
           </IconStarted>
         )}
       </InnerContainer>
-      <InnerContainerLeft>
+      {/* <InnerContainerLeft>
         <CompletedXP>
           <FaCheck style={{ marginRight: "0.25rem", color: "#a6ff00" }} />
           {`${xpObtained}`}
         </CompletedXP>
-      </InnerContainerLeft>
+      </InnerContainerLeft> */}
     </Card>
   );
 }

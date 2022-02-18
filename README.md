@@ -18,3 +18,5 @@ Simple Tracker application for Steam Achievements using React and Node.
 ![Screenshot](screens/screen5.webp)
 ![Screenshot](screens/screen6.webp)
 ![Screenshot](screens/screen7.webp)
+
+<!-- pm2 serve build 8080 --spa  -->
