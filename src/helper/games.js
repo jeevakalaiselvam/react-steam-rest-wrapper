@@ -134,6 +134,15 @@ export const getAchievementsFilteredByCategory = (achievements) => {
   return data;
 };
 
+export const sortAchievementByPercentage = (achievements) => {
+  const newAchievements = achievements.sort((a, b) => {
+    return +a.global_percentage < +b.global_percentage;
+  });
+  console.log("FILTERED ACHIEVEMENTS", newAchievements);
+
+  return newAchievements;
+};
+
 export const getAchievementsFilteredByPhase = (achievements) => {
   let data = {
     none: [],

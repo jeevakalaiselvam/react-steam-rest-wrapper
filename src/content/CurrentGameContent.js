@@ -19,6 +19,7 @@ import {
   getAchievementsFilteredByCategory,
   getAchievementsFilteredByPhase,
   getXPSumForAchievements,
+  sortAchievementByPercentage,
 } from "../helper/games";
 import AchievementJournal from "../components/card/AchievementJournal";
 import AchievementPhase from "../components/card/AchievementPhase";
@@ -389,22 +390,16 @@ export default function CurrentGameContent(props) {
   } = getAchievementsFilteredByPhase(filteredAchievements);
   console.log(filteredAchievements);
 
-  const [allAchievements, setAllAchievements] = useState(filteredAchievements);
+  const [allAchievements, setAllAchievements] = useState(
+    sortAchievementByPercentage(filteredAchievements)
+  );
   const [noneAchievements, setNoneAchievements] = useState(noneAllAchievements);
   const [lockedAchievements, setLockedAchievements] = useState(
     lockedAllAchievements
   );
   const [untaggedActive, setUntaggedActive] = useState(true);
   const [unlockedActive, setUnlockedActive] = useState(true);
-  const [phase1Achievements, setphase1Achievements] = useState(
-    phase1AllAchievements
-  );
-  const [phase2Achievements, setphase2Achievements] = useState(
-    phase2AllAchievements
-  );
-  const [phase3Achievements, setphase3Achievements] = useState(
-    phase3AllAchievements
-  );
+
   const [phase4Achievements, setphase4Achievements] = useState(
     unlockedTodayAchievements
   );
@@ -461,81 +456,6 @@ export default function CurrentGameContent(props) {
     });
   };
 
-  const phase1SearchChange = (e) => {
-    setphase1Achievements((old) => {
-      let newAchievements = [];
-      newAchievements = phase1Achievements.filter((achievement) => {
-        return (
-          achievement.name
-            .toLowerCase()
-            .trim()
-            .includes(e.target.value.toLowerCase().trim()) ||
-          achievement.description
-            .toLowerCase()
-            .trim()
-            .includes(e.target.value.toLowerCase().trim()) ||
-          (
-            _STORAGE_READ(`${achievement.game_id}_${achievement.id}_JOURNAL`) ||
-            ""
-          )
-            .toLowerCase()
-            .trim()
-            .includes(e.target.value.toLowerCase().trim())
-        );
-      });
-      return newAchievements;
-    });
-  };
-  const phase2SearchChange = (e) => {
-    setphase2Achievements((old) => {
-      let newAchievements = [];
-      newAchievements = phase2AllAchievements.filter((achievement) => {
-        return (
-          achievement.name
-            .toLowerCase()
-            .trim()
-            .includes(e.target.value.toLowerCase().trim()) ||
-          achievement.description
-            .toLowerCase()
-            .trim()
-            .includes(e.target.value.toLowerCase().trim()) ||
-          (
-            _STORAGE_READ(`${achievement.game_id}_${achievement.id}_JOURNAL`) ||
-            ""
-          )
-            .toLowerCase()
-            .trim()
-            .includes(e.target.value.toLowerCase().trim())
-        );
-      });
-      return newAchievements;
-    });
-  };
-  const phase3SearchChange = (e) => {
-    setphase3Achievements((old) => {
-      let newAchievements = [];
-      newAchievements = phase3AllAchievements.filter((achievement) => {
-        return (
-          achievement.name
-            .toLowerCase()
-            .trim()
-            .includes(e.target.value.toLowerCase().trim()) ||
-          achievement.description
-            .toLowerCase()
-            .trim()
-            .includes(e.target.value.toLowerCase().trim()) ||
-          (
-            _STORAGE_READ(`${achievement.game_id}_${achievement.id}_JOURNAL`) ||
-            ""
-          )
-            .toLowerCase()
-            .trim()
-            .includes(e.target.value.toLowerCase().trim())
-        );
-      });
-      return newAchievements;
-    });
-  };
   const phase4SearchChange = (e) => {
     setphase4Achievements((old) => {
       let newAchievements = [];
@@ -602,9 +522,6 @@ export default function CurrentGameContent(props) {
       unlockedToday: unlockedTodayAchievements,
     } = getAchievementsFilteredByPhase(filteredAchievements);
     setNoneAchievements((old) => noneAllAchievements);
-    setphase1Achievements((old) => phase1AllAchievements);
-    setphase2Achievements((old) => phase2AllAchievements);
-    setphase3Achievements((old) => phase3AllAchievements);
     setphase4Achievements((old) => unlockedTodayAchievements);
   };
 
@@ -642,45 +559,26 @@ export default function CurrentGameContent(props) {
       <ContentContainer open={props.journalOpen}>
         <ContainerInner>
           <SectionContainer empty={false} flex="4">
-            <SectionTitle onClick={() => setUntaggedActive((old) => old)}>
-              <InnerTitle>{untaggedActive ? "Backlog" : "Untagged"}</InnerTitle>
+            <SectionTitle>
+              <InnerTitle>{"Backlog"}</InnerTitle>
               <InnerIcon>
                 <FaSteam style={{ marginRight: "0.5rem" }} />
-                {untaggedActive
-                  ? `${getXPSumForAchievements(lockedAchievements)} XP`
-                  : `${getXPSumForAchievements(noneAchievements)} XP`}
+                {`${getXPSumForAchievements(lockedAchievements)} XP`}
               </InnerIcon>
             </SectionTitle>
             <SectionSearchInput>
               <input
                 type="text"
-                onChange={
-                  !untaggedActive ? noneSearchChange : lockedSearchChange
-                }
+                onChange={noneSearchChange}
                 placeholder="Search.."
               />
             </SectionSearchInput>
             <AchievementContainer>
-              {!untaggedActive &&
-                filteredAchievements.map((achievement) => {
-                  return (
-                    <AchievementPhase
-                      width="24%"
-                      refreshViewWithoutFetch={refreshViewWithoutFetch}
-                      achievement={achievement}
-                      achievementSelected={achievementSelected}
-                      key={achievement.game_id + achievement.id}
-                      achievementSelectedHandler={achievementSelectedHandler}
-                      openJournal={props.openJournal}
-                    />
-                  );
-                })}
               {untaggedActive &&
-                filteredAchievements.map((achievement) => {
+                allAchievements.map((achievement) => {
                   return (
                     <AchievementPhase
                       width="24%"
-                      showPhases={false}
                       refreshViewWithoutFetch={refreshViewWithoutFetch}
                       achievement={achievement}
                       achievementSelected={achievementSelected}

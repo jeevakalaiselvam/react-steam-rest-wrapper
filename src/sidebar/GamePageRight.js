@@ -295,7 +295,7 @@ export default function GamePageRight(props) {
             console.log(refreshTextRef);
             _STORAGE_WRITE("LAST_REFRESH_TIME", new Date().getTime());
             setRefreshing((old) => true);
-            refreshDatabaseAndMoveToPage("/planner");
+            refreshDatabaseAndMoveToPage("/ongoing");
           }}
         >
           {refreshing && (
