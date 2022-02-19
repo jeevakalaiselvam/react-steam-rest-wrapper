@@ -56,7 +56,7 @@ const CardContainer = styled.div`
   padding-bottom: 3rem;
   cursor: pointer;
   border: 1px solid #fefefe00;
-  opacity: ${(props) => (!props.completed ? "1" : "0.3")};
+  opacity: ${(props) => (!props.completed ? "1" : "0.15")};
 
   &:hover {
     border: 1px solid #00000044;
