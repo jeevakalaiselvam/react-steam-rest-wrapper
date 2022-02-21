@@ -109,7 +109,7 @@ const InnerContainer = styled.div`
 const InnerContainerLeft = styled.div`
   position: absolute;
   bottom: 0;
-  left: 0;
+  right: 0;
   background-color: rgba(10, 17, 25, 0.9);
   display: flex;
   padding: 0.5rem;
@@ -298,10 +298,9 @@ export default function GameCardMinimal(props) {
         window.location.href = "/ongoing";
       }}
     >
-      <InnerContainer>
+      {/* <InnerContainer>
         <RemainingXP>
           <FaSteam style={{ marginRight: "0.25rem", color: "#67c8eb" }} />
-          {/* <div>Remaining</div> */}
           {`${xpRemaining}`}
         </RemainingXP>
 
@@ -316,13 +315,13 @@ export default function GameCardMinimal(props) {
             <FaHourglass />
           </IconStarted>
         )}
-      </InnerContainer>
-      {/* <InnerContainerLeft>
+      </InnerContainer> */}
+      <InnerContainerLeft>
         <CompletedXP>
           <FaCheck style={{ marginRight: "0.25rem", color: "#a6ff00" }} />
           {`${xpObtained}`}
         </CompletedXP>
-      </InnerContainerLeft> */}
+      </InnerContainerLeft>
     </Card>
   );
 }
