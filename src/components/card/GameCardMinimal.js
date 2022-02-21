@@ -15,6 +15,7 @@ import {
   PERCENTAGE_GOLD,
   PERCENTAGE_GREEN,
   PERCENTAGE_PURPLE,
+  XPLEVELUP,
 } from "../../constants/percentage";
 import { getXPForAchievement } from "../../helper/other";
 import {
@@ -104,6 +105,7 @@ const InnerContainer = styled.div`
   justify-content: center;
   align-self: center;
   font-size: 1.1rem;
+  display: none;
 `;
 
 const InnerContainerLeft = styled.div`
@@ -298,7 +300,7 @@ export default function GameCardMinimal(props) {
         window.location.href = "/ongoing";
       }}
     >
-      {/* <InnerContainer>
+      <InnerContainer>
         <RemainingXP>
           <FaSteam style={{ marginRight: "0.25rem", color: "#67c8eb" }} />
           {`${xpRemaining}`}
@@ -315,10 +317,15 @@ export default function GameCardMinimal(props) {
             <FaHourglass />
           </IconStarted>
         )}
-      </InnerContainer> */}
+      </InnerContainer>
       <InnerContainerLeft>
         <CompletedXP>
-          <FaCheck style={{ marginRight: "0.25rem", color: "#a6ff00" }} />
+          <FaSteam
+            style={{
+              marginRight: "0.25rem",
+              color: `${xpObtained < 1000 ? "#67c8eb" : "#67c8eb"}`,
+            }}
+          />
           {`${xpObtained}`} XP
         </CompletedXP>
       </InnerContainerLeft>
