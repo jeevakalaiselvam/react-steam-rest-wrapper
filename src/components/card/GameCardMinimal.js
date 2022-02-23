@@ -16,6 +16,7 @@ import {
   PERCENTAGE_GREEN,
   PERCENTAGE_PURPLE,
   XPLEVELUP,
+  XPTARGET,
 } from "../../constants/percentage";
 import { getXPForAchievement } from "../../helper/other";
 import {
@@ -325,16 +326,16 @@ export default function GameCardMinimal(props) {
       <InnerContainerLeft>
         <CompletedXP
           style={{
-            color: `${xpObtained < XPLEVELUP ? "#fefefe" : "#55aece"}`,
+            color: `${xpObtained < XPTARGET ? "#fefefe" : "#55aece"}`,
           }}
         >
           <FaSteam
             style={{
               marginRight: "0.25rem",
-              color: `${xpObtained < XPLEVELUP ? "#fefefe" : "#55aece"}`,
+              color: `${xpObtained < XPTARGET ? "#fefefe" : "#55aece"}`,
             }}
           />
-          {`${xpObtained < XPLEVELUP ? xpObtained : XPLEVELUP}`} XP
+          {`${xpObtained < XPTARGET ? xpObtained : XPTARGET}`} XP
         </CompletedXP>
       </InnerContainerLeft>
     </Card>

@@ -174,7 +174,7 @@ const JournalButton = styled.div`
 const LevelProgress = styled.div`
   display: flex;
   align-items: center;
-  max-height: 300px;
+  max-height: 700px;
   scrollbar-width: none;
   scrollbar-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
   overflow: scroll;
@@ -186,7 +186,7 @@ const LevelItem = styled.div`
   display: flex;
   align-items: center;
   color: #55aece;
-  flex-direction: row;
+  flex-direction: column;
   font-size: 1rem;
   justify-content: center;
 `;
@@ -430,20 +430,18 @@ export default function AllPageLeft({ allAchievements }) {
       </DataToXP>
       <LevelProgress>
         <Subheader>PROGRESS </Subheader>
-        <LevelItem style={{ margin: "0.5rem" }}>
-          <FaAngleDoubleUp style={{ marginRight: "0.6rem" }} />
+        <LevelItem>
           <Tag
             color="#55aece"
             style={{ color: "rgba(3,3,3,1)", fontSize: "0.9rem" }}
           >
             Level {Math.floor(totalXP / XPLEVELUP)}
           </Tag>
-          <FaAngleDoubleUp />
         </LevelItem>
         {levelArray.map((level, index) => {
           return (
-            <LevelItem style={{ margin: "0.5rem" }}>
-              <FaAngleDoubleUp style={{ marginRight: "0.6rem" }} />
+            <LevelItem>
+              <FaAngleDoubleUp style={{ margin: "0.2rem" }} />
               <Tag
                 color="#55aece"
                 style={{
@@ -454,7 +452,6 @@ export default function AllPageLeft({ allAchievements }) {
               >
                 Level {Math.floor(totalXP / XPLEVELUP) - index - 1}
               </Tag>
-              <FaAngleDoubleUp />
             </LevelItem>
           );
         })}
