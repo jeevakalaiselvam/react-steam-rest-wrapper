@@ -56,7 +56,7 @@ const CardContainer = styled.div`
   padding-bottom: 3rem;
   cursor: pointer;
   border: 1px solid #fefefe00;
-  opacity: ${(props) => (!props.completed ? "1" : "0.15")};
+  opacity: ${(props) => (!props.completed ? "1" : "0.25")};
 
   &:hover {
     border: 1px solid #00000044;
@@ -177,7 +177,7 @@ const Completion = styled.div`
   height: 100%;
   font-size: 1rem;
   background-color: rgba(10, 17, 25, 0.5);
-  opacity: ${(props) => (props.completed ? "1" : "0")};
+  opacity: ${(props) => (props.completed ? "0" : "0")};
 `;
 
 const PinIcon = styled.div`
@@ -313,7 +313,7 @@ export default function AchievementPhase(props) {
     >
       <InnerContainerBG></InnerContainerBG>
       <InnerContainer image={STEAM_HEADER_IMAGE(game_id)}></InnerContainer>
-      <IconContainer>
+      <IconContainer completed={unlocked}>
         <Icon image={icon}>
           {unlocked === 1 && (
             <Completion completed={unlocked}>

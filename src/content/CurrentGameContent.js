@@ -531,7 +531,7 @@ export default function CurrentGameContent(props) {
 
   return (
     <MainContainer>
-      <RecentHistoryContainer
+      {/* <RecentHistoryContainer
         onClick={() => {
           _STORAGE_WRITE("LAST_REFRESH_TIME", new Date().getTime());
           setShowHistory((old) => false);
@@ -555,7 +555,7 @@ export default function CurrentGameContent(props) {
             })}
           </RecentHistoryContent>
         </RecentHistory>
-      </RecentHistoryContainer>
+      </RecentHistoryContainer> */}
       <ContentContainer open={props.journalOpen}>
         <ContainerInner>
           <SectionContainer empty={false} flex="4">
