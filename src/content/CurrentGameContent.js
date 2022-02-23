@@ -24,6 +24,7 @@ import {
 import AchievementJournal from "../components/card/AchievementJournal";
 import AchievementPhase from "../components/card/AchievementPhase";
 import { getAchievementsUnlockedAfterRefresh } from "../helper/other";
+import { XPLEVELUP } from "../constants/percentage";
 
 const MainContainer = styled.div`
   display: flex;
@@ -177,6 +178,7 @@ const SectionTitle = styled.div`
   text-align: center;
   width: 100%;
   text-transform: capitalize;
+  color: ${(props) => (props.xpCount > XPLEVELUP ? "#55aece" : "#55aece")};
 `;
 const InnerTitle = styled.div`
   font-size: 1rem;
@@ -199,7 +201,6 @@ const InnerIcon = styled.div`
   justify-content: flex-start;
   text-align: center;
   width: 100%;
-  color: #55aece;
   text-transform: capitalize;
 `;
 
@@ -592,13 +593,20 @@ export default function CurrentGameContent(props) {
           </SectionContainer>
 
           <SectionContainer empty={false} flex="1">
-            <SectionTitle onClick={() => setUnlockedActive((old) => !old)}>
-              <InnerTitle>{!unlockedActive ? `Today` : `All`}</InnerTitle>
+            <SectionTitle
+              onClick={() => setUnlockedActive((old) => !old)}
+              xpCount={
+                !unlockedActive
+                  ? +`${getXPSumForAchievements(phase4Achievements)}`
+                  : +`${getXPSumForAchievements(unlockedAchievements)}`
+              }
+            >
+              <InnerTitle>{!unlockedActive ? `Today` : `History`}</InnerTitle>
               <InnerIcon>
                 <FaSteam style={{ marginRight: "0.5rem" }} />
                 {!unlockedActive
                   ? `${getXPSumForAchievements(phase4Achievements)} XP`
-                  : `${getXPSumForAchievements(unlockedWeekAchievements)} XP`}
+                  : `${getXPSumForAchievements(unlockedAchievements)} XP`}
               </InnerIcon>
             </SectionTitle>
             <SectionSearchInput>

@@ -105,13 +105,12 @@ const InnerContainer = styled.div`
   justify-content: center;
   align-self: center;
   font-size: 1.1rem;
-  display: none;
 `;
 
 const InnerContainerLeft = styled.div`
   position: absolute;
   bottom: 0;
-  right: 0;
+  left: 0;
   background-color: rgba(10, 17, 25, 0.9);
   display: flex;
   padding: 0.5rem;
@@ -301,9 +300,13 @@ export default function GameCardMinimal(props) {
       }}
     >
       <InnerContainer>
-        <RemainingXP>
-          <FaSteam style={{ marginRight: "0.25rem", color: "#67c8eb" }} />
-          {`${xpRemaining}`}
+        <RemainingXP
+          style={{
+            color: `${xpObtained < 1000 ? "#55aece" : "#55aece"}`,
+          }}
+        >
+          <FaSteam style={{ marginRight: "0.25rem", color: "#55aece" }} />
+          {`${xpRemaining}`} XP
         </RemainingXP>
 
         {+completion_percentage < PERCENTAGE_COPPER &&
@@ -319,11 +322,15 @@ export default function GameCardMinimal(props) {
         )}
       </InnerContainer>
       <InnerContainerLeft>
-        <CompletedXP>
-          <FaSteam
+        <CompletedXP
+          style={{
+            color: `${xpObtained < 1000 ? "#55aece" : "#55aece"}`,
+          }}
+        >
+          <FaCheck
             style={{
               marginRight: "0.25rem",
-              color: `${xpObtained < 1000 ? "#67c8eb" : "#67c8eb"}`,
+              color: `${xpObtained < 1000 ? "#55aece" : "#55aece"}`,
             }}
           />
           {`${xpObtained}`} XP
