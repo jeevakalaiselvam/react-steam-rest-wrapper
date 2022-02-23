@@ -52,6 +52,7 @@ import { fetchAchievementsForGame, fetchGamesInfo } from "../action/games";
 import {
   getColorFromPercentageVariety,
   getMedalCompletedGames,
+  getRandomColor,
   getTotalAchievements,
   getTotalXPForAchievements,
 } from "../helper/other";
