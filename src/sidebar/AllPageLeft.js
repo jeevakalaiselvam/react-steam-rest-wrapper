@@ -186,7 +186,7 @@ const LevelItem = styled.div`
   display: flex;
   align-items: center;
   color: #55aece;
-  flex-direction: column;
+  flex-direction: row;
   font-size: 1rem;
   justify-content: center;
 `;
@@ -430,25 +430,31 @@ export default function AllPageLeft({ allAchievements }) {
       </DataToXP>
       <LevelProgress>
         <Subheader>PROGRESS </Subheader>
-        <LevelItem>
+        <LevelItem style={{ margin: "0.5rem" }}>
+          <FaAngleDoubleUp style={{ marginRight: "0.6rem" }} />
           <Tag
             color="#55aece"
             style={{ color: "rgba(3,3,3,1)", fontSize: "0.9rem" }}
           >
             Level {Math.floor(totalXP / XPLEVELUP)}
           </Tag>
+          <FaAngleDoubleUp />
         </LevelItem>
         {levelArray.map((level, index) => {
           return (
-            <LevelItem>
-              <FaAngleDoubleUp style={{ margin: "0.5rem" }} />
+            <LevelItem style={{ margin: "0.5rem" }}>
+              <FaAngleDoubleUp style={{ marginRight: "0.6rem" }} />
               <Tag
                 color="#55aece"
-                style={{ color: "rgba(3,3,3,1)", fontSize: "0.9rem" }}
+                style={{
+                  color: "rgba(3,3,3,1)",
+                  fontSize: "0.9rem",
+                  textAlign: "center",
+                }}
               >
-                {" "}
                 Level {Math.floor(totalXP / XPLEVELUP) - index - 1}
               </Tag>
+              <FaAngleDoubleUp />
             </LevelItem>
           );
         })}
@@ -479,7 +485,7 @@ export default function AllPageLeft({ allAchievements }) {
         }}
         selected={_STORAGE_READ(CURRENT_PAGE) === CURRENT_GAME_PAGE_INDEX}
       />
-      <MenuItemLink
+      {/* <MenuItemLink
         icon={<FaGripHorizontal />}
         title={"Planner"}
         to={"/planner"}
@@ -488,7 +494,7 @@ export default function AllPageLeft({ allAchievements }) {
           window.location.href = `/${_STORAGE_READ(CURRENT_PAGE)}`;
         }}
         selected={_STORAGE_READ(CURRENT_PAGE) === PLANNER_INDEX}
-      />
+      /> */}
       <MenuItemLink
         icon={<FaHandPaper />}
         title={"Kanban"}
@@ -509,7 +515,7 @@ export default function AllPageLeft({ allAchievements }) {
         }}
         selected={_STORAGE_READ(CURRENT_PAGE) === GAMES_PAGE_INDEX}
       />
-      <MenuItemLink
+      {/* <MenuItemLink
         icon={<FaTrophy />}
         title={"Achievements"}
         to={"/achievements"}
@@ -518,7 +524,7 @@ export default function AllPageLeft({ allAchievements }) {
           window.location.href = `/${_STORAGE_READ(CURRENT_PAGE)}`;
         }}
         selected={_STORAGE_READ(CURRENT_PAGE) === ACHIEVEMENTS_PAGE_INDEX}
-      />
+      /> */}
       <MenuItemLink
         icon={<FaChartBar />}
         title={"History"}
@@ -529,7 +535,7 @@ export default function AllPageLeft({ allAchievements }) {
         }}
         selected={_STORAGE_READ(CURRENT_PAGE) === HISTORY_PAGE_INDEX}
       />
-      <MenuItemLink
+      {/* <MenuItemLink
         icon={<FaBookOpen />}
         title={"Backlog"}
         to={"/backlog"}
@@ -538,8 +544,8 @@ export default function AllPageLeft({ allAchievements }) {
           window.location.href = `/${_STORAGE_READ(CURRENT_PAGE)}`;
         }}
         selected={_STORAGE_READ(CURRENT_PAGE) === BACKLOG_PAGE_INDEX}
-      />
-      <MenuItemLink
+      /> */}
+      {/* <MenuItemLink
         icon={<FaStar />}
         title={"Milestones"}
         to={"/milestone"}
@@ -548,8 +554,8 @@ export default function AllPageLeft({ allAchievements }) {
           window.location.href = `/${_STORAGE_READ(CURRENT_PAGE)}`;
         }}
         selected={_STORAGE_READ(CURRENT_PAGE) === MILESTONE_PAGE_INDEX}
-      />
-      <MenuItemLink
+      /> */}
+      {/* <MenuItemLink
         icon={<FaBinoculars />}
         title={"What's Next"}
         to={"/next"}
@@ -568,7 +574,7 @@ export default function AllPageLeft({ allAchievements }) {
           window.location.href = `/${_STORAGE_READ(CURRENT_PAGE)}`;
         }}
         selected={_STORAGE_READ(CURRENT_PAGE) === RANDOM_PAGE_INDEX}
-      />
+      /> */}
       <MenuItemLink
         icon={<FaSlidersH />}
         title={"Settings"}
