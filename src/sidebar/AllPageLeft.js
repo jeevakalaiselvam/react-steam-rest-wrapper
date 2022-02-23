@@ -495,7 +495,7 @@ export default function AllPageLeft({ allAchievements }) {
         }}
         selected={_STORAGE_READ(CURRENT_PAGE) === PLANNER_INDEX}
       /> */}
-      <MenuItemLink
+      {/* <MenuItemLink
         icon={<FaHandPaper />}
         title={"Kanban"}
         to={"/kanban"}
@@ -504,7 +504,7 @@ export default function AllPageLeft({ allAchievements }) {
           window.location.href = `/${_STORAGE_READ(CURRENT_PAGE)}`;
         }}
         selected={_STORAGE_READ(CURRENT_PAGE) === KANBAN_INDEX}
-      />
+      /> */}
       <MenuItemLink
         icon={<FaGamepad />}
         title={"Games"}
