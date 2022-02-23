@@ -370,18 +370,6 @@ export default function AllPageLeft({ allAchievements }) {
 
   return (
     <MainMenu>
-      {/* {levelStats.showLevelUp && (
-        <LevelUp visible={levelStats.showLevelUp}>
-          <LevelUpText>Level Up</LevelUpText>
-          <LevelUpStat>
-            <LevelUpStatBefore>{levelStats.oldLevel}</LevelUpStatBefore>
-            <LevelUpStatIcon>
-              <FaArrowRight />
-            </LevelUpStatIcon>
-            <LevelUpStatAfter>{levelStats.newLevel}</LevelUpStatAfter>
-          </LevelUpStat>
-        </LevelUp>
-      )} */}{" "}
       <Subheader>PROFILE</Subheader>
       <IconSetContainer visible={true}>
         <DataToXP style={{ padding: "0rem 1rem 0.5rem 1rem" }}>
@@ -436,22 +424,6 @@ export default function AllPageLeft({ allAchievements }) {
           </LevelledUp>
         )}
       </IconSetContainer>
-      {/* <HistoryContainer>
-        <HistorySet>
-          <HistoryHeader>TODAY</HistoryHeader>
-          <HistoryIcon>
-            <FaSteam />
-          </HistoryIcon>
-          <HistoryData>{count.todayCount} XP</HistoryData>
-        </HistorySet>
-        <HistorySet>
-          <HistoryHeader>WEEK</HistoryHeader>
-          <HistoryIcon>
-            <FaSteam />
-          </HistoryIcon>
-          <HistoryData>{count.weekCount} XP</HistoryData>
-        </HistorySet>
-      </HistoryContainer> */}
       <Subheader>TODAY </Subheader>
       <DataToXP style={{ color: "#c0c0c0" }}>
         <FaPlusCircle style={{ marginRight: "0.2rem" }} /> {count.todayCount} XP

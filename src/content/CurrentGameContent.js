@@ -593,10 +593,10 @@ export default function CurrentGameContent(props) {
 
           <SectionContainer empty={false} flex="1">
             <SectionTitle onClick={() => setUnlockedActive((old) => !old)}>
-              <InnerTitle>{unlockedActive ? `Today` : `All`}</InnerTitle>
+              <InnerTitle>{!unlockedActive ? `Today` : `All`}</InnerTitle>
               <InnerIcon>
                 <FaSteam style={{ marginRight: "0.5rem" }} />
-                {unlockedActive
+                {!unlockedActive
                   ? `${getXPSumForAchievements(phase4Achievements)} XP`
                   : `${getXPSumForAchievements(unlockedWeekAchievements)} XP`}
               </InnerIcon>
@@ -604,12 +604,14 @@ export default function CurrentGameContent(props) {
             <SectionSearchInput>
               <input
                 type="text"
-                onChange={unlockedActive ? phase4SearchChange : allSearchChange}
+                onChange={
+                  !unlockedActive ? phase4SearchChange : allSearchChange
+                }
                 placeholder="Search.."
               />
             </SectionSearchInput>
             <AchievementContainer>
-              {unlockedActive &&
+              {!unlockedActive &&
                 phase4Achievements.map((achievement) => {
                   return (
                     <AchievementPhase
@@ -622,7 +624,7 @@ export default function CurrentGameContent(props) {
                     />
                   );
                 })}
-              {!unlockedActive &&
+              {unlockedActive &&
                 unlockedAchievements.map((achievement) => {
                   return (
                     <AchievementPhase
