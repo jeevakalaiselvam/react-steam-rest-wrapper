@@ -56,7 +56,7 @@ import {
   getTotalAchievements,
   getTotalXPForAchievements,
 } from "../helper/other";
-import { XPLEVELUP } from "../constants/percentage";
+import { XPLEVELUP, XPTARGET } from "../constants/percentage";
 import {
   getAchievementsFilteredByPhase,
   getXPSumForAchievements,
@@ -339,6 +339,18 @@ export default function AllPageLeft({ allAchievements }) {
     const achievments = getAllAchievements(0, 0, 1);
   }, [allAchievements]);
 
+  const {
+    none: noneAllAchievements,
+    phase1: phase1AllAchievements,
+    phase2: phase2AllAchievements,
+    phase3: phase3AllAchievements,
+    phase4: phase4AllAchievements,
+    unlockedAll: unlockedAchievements,
+    unlockedToday: unlockedTodayAchievements,
+    unlockedWeek: unlockedWeekAchievements,
+    lockedAll: lockedAllAchievements,
+  } = getAchievementsFilteredByPhase(allAchievements);
+
   const totalMedals = getMedalCompletedGames(gameInfo);
   const totalAchievements = getTotalAchievements(gameInfo);
   // const achivementCountForVariety = getColorFromPercentageVariety(gameInfo);
@@ -368,6 +380,8 @@ export default function AllPageLeft({ allAchievements }) {
   const levelArray = new Array(Math.floor(count.todayCount / XPLEVELUP)).fill(
     Math.floor(totalXP / XPLEVELUP)
   );
+
+  const totalUnlockedXP = getXPSumForAchievements(unlockedAchievements);
 
   return (
     <MainMenu>
@@ -425,6 +439,15 @@ export default function AllPageLeft({ allAchievements }) {
           </LevelledUp>
         )}
       </IconSetContainer>
+      <Subheader>GAME </Subheader>
+      <DataToXP style={{ color: "#c0c0c0" }}>
+        <Tag
+          color={`${totalUnlockedXP < XPTARGET ? "#55aece" : "#fecc09"}`}
+          style={{ color: "rgba(3,3,3,1)", fontSize: "1rem" }}
+        >
+          {totalUnlockedXP} XP
+        </Tag>
+      </DataToXP>
       <Subheader>TODAY </Subheader>
       <DataToXP style={{ color: "#c0c0c0" }}>
         <FaPlusCircle style={{ marginRight: "0.2rem" }} /> {count.todayCount} XP

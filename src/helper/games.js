@@ -291,8 +291,12 @@ export const refreshDatabaseAndMoveToPage = async (path) => {
 
 export const getXPSumForAchievements = (achievements) => {
   let xpTotal = 0;
-  achievements.forEach((achievement) => {
-    xpTotal += +getXPForAchievement(+achievement.global_percentage);
-  });
+  if (achievements.length) {
+    console.log("CALCULATING XP", achievements);
+    achievements.forEach((achievement) => {
+      xpTotal += +getXPForAchievement(+achievement.global_percentage);
+    });
+    console.log("TOTAL CALCULATED", xpTotal);
+  }
   return xpTotal;
 };

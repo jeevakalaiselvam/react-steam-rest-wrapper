@@ -224,9 +224,10 @@ export default function CurrentGame() {
     <PageContainer>
       <HeaderGameProgress achievements={achievements} />
       <Page
-        leftSidebar={<AllPageLeft allAchievements={allAchievements} />}
+        leftSidebar={<AllPageLeft allAchievements={achievements} />}
         rightSidebar={
           <GamePageRight
+            allAchievements={allAchievements}
             filterHandler={filterHandler}
             sortHandler={sortHandler}
             viewHandler={viewHandler}

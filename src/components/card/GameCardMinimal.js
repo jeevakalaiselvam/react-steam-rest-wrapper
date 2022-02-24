@@ -324,19 +324,35 @@ export default function GameCardMinimal(props) {
         )}
       </InnerContainer>
       <InnerContainerLeft>
-        <CompletedXP
-          style={{
-            color: `${xpObtained < XPTARGET ? "#fefefe" : "#55aece"}`,
-          }}
-        >
-          <FaSteam
+        {xpObtained < XPTARGET && (
+          <CompletedXP
             style={{
-              marginRight: "0.25rem",
-              color: `${xpObtained < XPTARGET ? "#fefefe" : "#55aece"}`,
+              color: `${xpObtained < XPTARGET ? "#fefefe" : "#fecc09"}`,
             }}
-          />
-          {`${xpObtained < XPTARGET ? xpObtained : XPTARGET}`} XP
-        </CompletedXP>
+          >
+            <FaSteam
+              style={{
+                marginRight: "0.25rem",
+                color: `${xpObtained < XPTARGET ? "#fefefe" : "#fecc09"}`,
+              }}
+            />
+            {`${xpObtained < XPTARGET ? `${xpObtained} XP` : `${XPTARGET} XP`}`}
+          </CompletedXP>
+        )}
+        {xpObtained > XPTARGET && (
+          <CompletedXP
+            style={{
+              color: `${xpObtained < XPTARGET ? "#fefefe" : "#fecc09"}`,
+            }}
+          >
+            <FaCheck
+              style={{
+                marginRight: "0.25rem",
+                color: `${xpObtained < XPTARGET ? "#fefefe" : "#fecc09"}`,
+              }}
+            />
+          </CompletedXP>
+        )}
       </InnerContainerLeft>
     </Card>
   );
