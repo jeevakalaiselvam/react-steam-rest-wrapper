@@ -279,11 +279,11 @@ export const refreshDatabaseAndMoveToPage = async (path) => {
       if (_STORAGE_READ(SELECTED_GAME)) {
         setTimeout(() => {
           window.location.href = path;
-        }, 3000);
+        }, 4000);
       } else {
         setTimeout(() => {
           window.location.href = "/games";
-        }, 3000);
+        }, 4000);
       }
     }
   }, 10);
