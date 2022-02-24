@@ -105,7 +105,7 @@ const InnerContainer = styled.div`
   align-items: center;
   justify-content: center;
   align-self: center;
-  font-size: 1.1rem;
+  font-size: 1rem;
   display: none;
 `;
 
@@ -304,10 +304,10 @@ export default function GameCardMinimal(props) {
       <InnerContainer>
         <RemainingXP
           style={{
-            color: `${xpObtained < XPLEVELUP ? "#55aece" : "#55aece"}`,
+            color: `${xpObtained < XPLEVELUP ? "#fefefe" : "#fefefe"}`,
+            fontSize: "0.9rem",
           }}
         >
-          <FaSteam style={{ marginRight: "0.25rem", color: "#55aece" }} />
           {`${xpRemaining}`} XP
         </RemainingXP>
 
