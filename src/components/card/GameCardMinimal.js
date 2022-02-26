@@ -106,7 +106,6 @@ const InnerContainer = styled.div`
   justify-content: center;
   align-self: center;
   font-size: 1rem;
-  display: none;
 `;
 
 const InnerContainerLeft = styled.div`
@@ -121,6 +120,7 @@ const InnerContainerLeft = styled.div`
   justify-content: center;
   align-self: center;
   font-size: 1.1rem;
+  display: none;
 `;
 
 const InnerContainerMedal = styled.div`

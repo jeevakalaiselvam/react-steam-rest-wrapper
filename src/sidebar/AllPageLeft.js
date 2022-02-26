@@ -122,6 +122,26 @@ const DataMedal = styled.div`
 
 const DataToXP = styled.div`
   display: flex;
+  align-self: center;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  font-size: 0.9rem; ;
+`;
+
+const Data = styled.div`
+  display: flex;
+  flex:1;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  font-size: 0.9rem; ;
+`;
+const Image = styled.div`
+  display: flex;
+  flex:1;
   flex-direction: row;
   align-items: center;
   text-align: center;
@@ -305,7 +325,7 @@ export default function AllPageLeft({ allAchievements }) {
     perfect_games_count: _STORAGE_READ(STORAGE_HEADER_TOTAL_PERFECT_GAMES) ?? 0,
   });
   const [loading, setLoading] = useState(false);
-  const [count, setCount] = useState({ todayCount: 0, weekCount: 0 });
+  const [count, setCount] = useState({ todayCount: 0, today1MinusCount: 0,today2MinusCount: 0,today3MinusCount: 0,today4MinusCount: 0,today5MinusCount: 0,today6MinusCount: 0 });
 
   useEffect(() => {
     const getAllGamesInfo = async () => {
@@ -327,12 +347,23 @@ export default function AllPageLeft({ allAchievements }) {
         phase4: phase4AllAchievements,
         unlockedAll: unlockedAchievements,
         unlockedToday: unlockedTodayAchievements,
+        unlockedToday1Minus: unlockedToday1MinusAchievements,
+        unlockedToday2Minus: unlockedToday2MinusAchievements,
+        unlockedToday3Minus: unlockedToday3MinusAchievements,
+        unlockedToday4Minus: unlockedToday4MinusAchievements,
+        unlockedToday5Minus: unlockedToday5MinusAchievements,
+        unlockedToday6Minus: unlockedToday6MinusAchievements,
         unlockedWeek: unlockedWeekAchievements,
         lockedAll: lockedAllAchievements,
       } = getAchievementsFilteredByPhase(allAchievements);
       setCount((old) => ({
         todayCount: getXPSumForAchievements(unlockedTodayAchievements),
-        weekCount: getXPSumForAchievements(unlockedWeekAchievements),
+        today1MinusCount: getXPSumForAchievements(unlockedToday1MinusAchievements),
+        today2MinusCount: getXPSumForAchievements(unlockedToday2MinusAchievements),
+        today3MinusCount: getXPSumForAchievements(unlockedToday3MinusAchievements),
+        today4MinusCount: getXPSumForAchievements(unlockedToday4MinusAchievements),
+        today5MinusCount: getXPSumForAchievements(unlockedToday5MinusAchievements),
+        today6MinusCount: getXPSumForAchievements(unlockedToday6MinusAchievements),
       }));
     };
 
@@ -448,23 +479,109 @@ export default function AllPageLeft({ allAchievements }) {
           {totalUnlockedXP} XP
         </Tag>
       </DataToXP>
-      <Subheader>TODAY </Subheader>
+      <Subheader>THIS WEEK </Subheader>
       <DataToXP style={{ color: "#c0c0c0" }}>
-        <FaPlusCircle style={{ marginRight: "0.2rem" }} /> {count.todayCount} XP
+      <Image> </Image> <Data><Tag
+                color="#55aece"
+                style={{
+                  width:"75px",
+                  
+                  color: "rgba(3,3,3,1)",
+                  fontSize: "0.9rem",
+                  marginTop:"0.25rem",
+                  textAlign: "center",
+                }}
+              >{count.todayCount} XP </Tag></Data>
       </DataToXP>
+      {/* <DataToXP style={{ color: "#c0c0c0" }}>
+        <Image></Image> <Data><Tag
+                color="#55aece"
+                style={{
+                  width:"75px",
+                  
+                  color: "rgba(3,3,3,1)",
+                  fontSize: "0.9rem",
+                  marginTop:"0.25rem",
+                  textAlign: "center",
+                }}
+              >{count.today1MinusCount} XP</Tag></Data>
+      </DataToXP> <DataToXP style={{ color: "#c0c0c0" }}>
+      <Image> </Image> <Data><Tag
+                color="#55aece"
+                style={{
+                  width:"75px",
+                  
+                  color: "rgba(3,3,3,1)",
+                  fontSize: "0.9rem",
+                  marginTop:"0.25rem",
+                  textAlign: "center",
+                }}
+              >{count.today2MinusCount} XP</Tag></Data>
+      </DataToXP> <DataToXP style={{ color: "#c0c0c0" }}>
+      <Image> </Image> <Data><Tag
+                color="#55aece"
+                style={{
+                  width:"75px",
+                  
+                  color: "rgba(3,3,3,1)",
+                  fontSize: "0.9rem",
+                  marginTop:"0.25rem",
+                  textAlign: "center",
+                }}
+              >{count.today3MinusCount} XP</Tag></Data>
+      </DataToXP> <DataToXP style={{ color: "#c0c0c0" }}>
+      <Image></Image> <Data><Tag
+                color="#55aece"
+                style={{
+                  width:"75px",
+                  
+                  color: "rgba(3,3,3,1)",
+                  fontSize: "0.9rem",
+                  marginTop:"0.25rem",
+                  textAlign: "center",
+                }}
+              >{count.today4MinusCount} XP</Tag></Data>
+      </DataToXP> <DataToXP style={{ color: "#c0c0c0" }}>
+      <Image></Image> <Data><Tag
+                color="#55aece"
+                style={{
+                  width:"75px",
+                  color: "rgba(3,3,3,1)",
+                  fontSize: "0.9rem",
+                  marginTop:"0.25rem",
+                  textAlign: "center",
+                }}
+              >{count.today5MinusCount} XP</Tag></Data>
+      </DataToXP> <DataToXP style={{ color: "#c0c0c0" }}>
+      <Image> </Image> <Data><Tag
+                color="#55aece"
+                style={{
+                  width:"75px",
+                  color: "rgba(3,3,3,1)",
+                  fontSize: "0.9rem",
+                  marginTop:"0.25rem",
+                  textAlign: "center",
+                }}
+              >{count.today6MinusCount} XP</Tag></Data>
+      </DataToXP> */}
+      
       <LevelProgress>
         <Subheader>PROGRESS </Subheader>
         <LevelItem>
-          <Tag
-            color="#55aece"
-            style={{ color: "rgba(3,3,3,1)", fontSize: "0.9rem" }}
-          >
+        <Tag
+                color="#55aece"
+                style={{
+                  color: "rgba(3,3,3,1)",
+                  fontSize: "0.9rem",
+                  textAlign: "center",
+                }}
+              >
             Level {Math.floor(totalXP / XPLEVELUP)}
           </Tag>
         </LevelItem>
         {levelArray.map((level, index) => {
           return (
-            <LevelItem>
+            <LevelItem>s
               <FaAngleDoubleUp style={{ margin: "0.2rem" }} />
               <Tag
                 color="#55aece"

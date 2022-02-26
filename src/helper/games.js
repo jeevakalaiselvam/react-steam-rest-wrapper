@@ -152,6 +152,12 @@ export const getAchievementsFilteredByPhase = (achievements) => {
     phase4: [],
     unlockedAll: [],
     unlockedToday: [],
+    unlockedToday1Minus: [],
+    unlockedToday2Minus: [],
+    unlockedToday3Minus: [],
+    unlockedToday4Minus: [],
+    unlockedToday5Minus: [],
+    unlockedToday6Minus: [],
     lockedAll: [],
   };
 
@@ -199,6 +205,69 @@ export const getAchievementsFilteredByPhase = (achievements) => {
     dateToday.setUTCHours(0, 0, 0, 0);
     let unlockedDate = new Date(achievement.unlocked_time * 1000);
     if (unlockedDate.getTime() > dateToday.getTime()) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+
+  data.unlockedToday1Minus = data.unlockedAll.filter((achievement) => {
+    const dateToday = new Date();
+    dateToday.setUTCHours(0, 0, 0, 0);
+    let unlockedDate = new Date(achievement.unlocked_time * 1000);
+    if (unlockedDate.getTime() > (dateToday.getTime() - (1 * 24 * 60 * 60 * 1000))) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+
+  data.unlockedToday2Minus = data.unlockedAll.filter((achievement) => {
+    const dateToday = new Date();
+    dateToday.setUTCHours(0, 0, 0, 0);
+    let unlockedDate = new Date(achievement.unlocked_time * 1000);
+    if (unlockedDate.getTime() > (dateToday.getTime() - (2 * 24 * 60 * 60 * 1000))) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+  
+  data.unlockedToday3Minus = data.unlockedAll.filter((achievement) => {
+    const dateToday = new Date();
+    dateToday.setUTCHours(0, 0, 0, 0);
+    let unlockedDate = new Date(achievement.unlocked_time * 1000);
+    if (unlockedDate.getTime() > (dateToday.getTime() - (3 * 24 * 60 * 60 * 1000))) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+  data.unlockedToday4Minus = data.unlockedAll.filter((achievement) => {
+    const dateToday = new Date();
+    dateToday.setUTCHours(0, 0, 0, 0);
+    let unlockedDate = new Date(achievement.unlocked_time * 1000);
+    if (unlockedDate.getTime() > (dateToday.getTime() - (4 * 24 * 60 * 60 * 1000))) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+  data.unlockedToday5Minus = data.unlockedAll.filter((achievement) => {
+    const dateToday = new Date();
+    dateToday.setUTCHours(0, 0, 0, 0);
+    let unlockedDate = new Date(achievement.unlocked_time * 1000);
+    if (unlockedDate.getTime() > (dateToday.getTime() - (5 * 24 * 60 * 60 * 1000))) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+  data.unlockedToday6Minus = data.unlockedAll.filter((achievement) => {
+    const dateToday = new Date();
+    dateToday.setUTCHours(0, 0, 0, 0);
+    let unlockedDate = new Date(achievement.unlocked_time * 1000);
+    if (unlockedDate.getTime() > (dateToday.getTime() - (6 * 24 * 60 * 60 * 1000))) {
       return true;
     } else {
       return false;
