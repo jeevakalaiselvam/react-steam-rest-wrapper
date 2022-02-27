@@ -479,7 +479,7 @@ export default function AllPageLeft({ allAchievements }) {
           {totalUnlockedXP} XP
         </Tag>
       </DataToXP>
-      <Subheader>THIS WEEK </Subheader>
+      <Subheader>TODAY </Subheader>
       <DataToXP style={{ color: "#c0c0c0" }}>
       <Image> </Image> <Data><Tag
                 color="#55aece"
@@ -581,7 +581,7 @@ export default function AllPageLeft({ allAchievements }) {
         </LevelItem>
         {levelArray.map((level, index) => {
           return (
-            <LevelItem>s
+            <LevelItem>
               <FaAngleDoubleUp style={{ margin: "0.2rem" }} />
               <Tag
                 color="#55aece"
